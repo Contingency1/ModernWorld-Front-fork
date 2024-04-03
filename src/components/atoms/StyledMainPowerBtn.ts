@@ -13,8 +13,8 @@ const StyledMainPowerBtn = styled.div<StyledMainPowerBtn>`
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(https://wang0514.s3.ap-northeast-2.amazonaws.com/page/powerbtn-removebg-preview.png);
-    filter: drop-shadow(2px 2px 2px black);
+    background-image: url(https://wang0514.s3.ap-northeast-2.amazonaws.com/page/power.png);
+    filter: drop-shadow(5px 2px 2px grey);
 `;
 
 export { StyledMainPowerBtn };
