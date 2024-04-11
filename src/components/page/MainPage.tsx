@@ -1,20 +1,20 @@
-import { StyledMainLogo } from '@/components/atoms/StyledMainLogo';
-import { StyledMainLogoText } from '@/components/atoms/StyledMainLogoText';
-import { StyledMainPowerBtn } from '@/components/atoms/StyledMainPowerBtn';
+import { MainLogo } from '@/components/atoms/MainLogo';
+import { MainLogoText } from '@/components/atoms/MainLogoText';
+import { MainPowerBtn } from '@/components/atoms/MainPowerBtn';
 import Link from 'next/link';
-import { StyledBackgroundColor } from '../atoms/StyledBackgroundColor';
+import { BackgroundColor } from '../globalStyle/BackgroundColor';
 export default function LoginPage() {
     return (
-        <StyledBackgroundColor backgroundcolor="#5F6F52">
-            <StyledMainLogo grid1={40 + '%'} grid2={30 + '%'} grid3={30 + '%'}>
-                <StyledMainLogoText margintop={230} fontSize={5}>
+        <BackgroundColor backgroundcolor="#5F6F52">
+            <MainLogo grid1={40 + '%'} grid2={30 + '%'} grid3={30 + '%'}>
+                <MainLogoText margintop={230} fontSize={5}>
                     모던월드
-                </StyledMainLogoText>
-                <StyledMainLogoText fontSize={2}>님 환영합니다 :)</StyledMainLogoText>
+                </MainLogoText>
+                <MainLogoText fontSize={2}>님 환영합니다 :)</MainLogoText>
                 <Link href="/">
-                    <StyledMainPowerBtn width={80} height={80}></StyledMainPowerBtn>
+                    <MainPowerBtn width={80} height={80}></MainPowerBtn>
                 </Link>
-            </StyledMainLogo>
-        </StyledBackgroundColor>
+            </MainLogo>
+        </BackgroundColor>
     );
 }

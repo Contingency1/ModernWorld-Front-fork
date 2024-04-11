@@ -1,5 +1,3 @@
-import { StyledLoginBtn } from './StyledLoginBtn';
-
 interface LoginBtn {
     src: string;
     alt: string;

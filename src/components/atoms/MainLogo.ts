@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-interface StyledMainLogo {
+interface MainLogo {
     props?: string;
     grid1?: string | number;
     grid2?: string | number;
@@ -10,7 +10,7 @@ interface StyledMainLogo {
     grid4?: string | number;
 }
 
-const StyledMainLogo = styled.div<StyledMainLogo>`
+const MainLogo = styled.div<MainLogo>`
     width: 95wh;
     height: 100vh;
     background-size: 90% 110%;
@@ -23,4 +23,4 @@ const StyledMainLogo = styled.div<StyledMainLogo>`
     place-items: center;
 `;
 
-export { StyledMainLogo };
+export { MainLogo };
