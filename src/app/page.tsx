@@ -7,6 +7,8 @@ export default function test() {
             <Link href="/login">로그인창</Link>
             <br></br>
             <Link href="/main">메인창</Link>
+            <br></br>
+            <Link href="/createcharacter">캐릭생성</Link>
         </React.Fragment>
     );
 }

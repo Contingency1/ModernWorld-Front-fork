@@ -2,12 +2,12 @@
 
 import styled from 'styled-components';
 
-interface StyledMainPowerBtn {
+interface MainPowerBtn {
     width?: number;
     height?: number;
 }
 
-const StyledMainPowerBtn = styled.div<StyledMainPowerBtn>`
+const MainPowerBtn = styled.div<MainPowerBtn>`
     width: ${(props) => props.width}px;
     height: ${(props) => props.height}px;
     background-position: center;
@@ -17,4 +17,4 @@ const StyledMainPowerBtn = styled.div<StyledMainPowerBtn>`
     filter: drop-shadow(5px 2px 2px grey);
 `;
 
-export { StyledMainPowerBtn };
+export { MainPowerBtn };

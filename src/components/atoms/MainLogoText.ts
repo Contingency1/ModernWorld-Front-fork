@@ -10,7 +10,7 @@ interface MainLogoTextProps {
     textshadow?: number;
 }
 
-const StyledMainLogoText = styled.div<MainLogoTextProps>`
+const MainLogoText = styled.div<MainLogoTextProps>`
     width: ${(props) => props.width}px;
     height: ${(props) => props.height}px;
     font-size: ${(props) => props.fontSize}rem;
@@ -18,4 +18,4 @@ const StyledMainLogoText = styled.div<MainLogoTextProps>`
     text-shadow: 4px 4px 4px white;
 `;
 
-export { StyledMainLogoText };
+export { MainLogoText };
