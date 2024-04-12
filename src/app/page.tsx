@@ -1,14 +1,11 @@
-import Link from 'next/link';
 import React from 'react';
+import '../style/globals.css';
+import LoginPage from '@/components/index-page/LoginPage';
 
 export default function test() {
     return (
         <React.Fragment>
-            <Link href="/login">로그인창</Link>
-            <br></br>
-            <Link href="/main">메인창</Link>
-            <br></br>
-            <Link href="/createcharacter">캐릭생성</Link>
+            <LoginPage></LoginPage>
         </React.Fragment>
     );
 }
