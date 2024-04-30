@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import styled from 'styled-components';
 
 interface BackgroundColor {
@@ -201,59 +202,47 @@ export const ShowFirstCharacterBox = styled.div<ChoiseCharacterBox>`
  */
 export const LeftArrow = styled.div`
     grid-area: left;
+    cursor: pointer;
 `;
 /**
  * 오른쪽 화살표 그리드 위치
  */
 export const RightArrow = styled.div`
     grid-area: right;
-    img {
-    }
+    cursor: pointer;
 `;
 
-interface FirstCharacter {
-    display: string;
-}
 /**
  * 고양이 캐릭터 위치 크기 및 위치 조정
  */
-export const FirstCat = styled.div<FirstCharacter>`
+export const FirstCat = styled.div`
     grid-area: center;
     img {
         width: 150px;
         height: 150px;
     }
     z-index: 1;
-    display: ${(props) => props.display};
 `;
 /**
- * 개 캐릭터 위치 크기 및 위치 조정
+ * 캐릭 선택시 주의 문구
  */
-export const FirstDog = styled.div<FirstCharacter>`
-    grid-area: center;
-    img {
-        width: 175px;
-        height: 175px;
-    }
-    z-index: 1;
-    display: ${(props) => props.display};
-`;
 export const WarningText = styled.div`
     grid-area: center;
     color: #ababab;
     font-size: 2.4vh;
     margin-top: 29%;
 `;
-export const startButton = styled.div`
+/**
+ * 시작하기 버튼
+ */
+export const startButton = styled(Link)`
     grid-area: right;
     color: #ffffff;
     margin-top: 135%;
     margin-left: 15%;
     font-size: 5vh;
     cursor: pointer;
-    Link {
-        text-decoration-line: none;
-    }
+    text-decoration-line: none;
     &:hover {
         color: red;
     }
