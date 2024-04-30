@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import NewCharacterHook from './NewCharacterHook';
+import NewNicknameCondition from './NewNicknameCondition';
 import * as S from './style';
 
 export default function NewCharacter() {
@@ -12,18 +15,20 @@ export default function NewCharacter() {
                 상점에서 다른 캐릭터로 변경이 가능합니다. <br />
                 모쪼록 생성한 캐릭터와 행복한 시간 보내시길 바랍니다.
             </S.InfoNewCharacter>
-            <S.ChoiseCharacterBox display="flex" flexdirection="column" alignitems="center">
-                <S.InputNicknameBox> 닉 네 임</S.InputNicknameBox>
-                <S.ShowFirstCharacterBox display="flex">
-                    <S.LeftArrow>
-                        <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"></img>
-                    </S.LeftArrow>
-                    <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/firstCat.png"></img>
-                    <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/firstDog.png"></img>
-                    <S.RightArrow>
-                        <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"></img>
-                    </S.RightArrow>
-                </S.ShowFirstCharacterBox>
+            <S.ChoiseCharacterBox>
+                <S.InputNicknameBox>
+                    <S.TextNickname>닉 네 임 ㅣ </S.TextNickname>
+                </S.InputNicknameBox>
+                <NewNicknameCondition></NewNicknameCondition>
+
+                <NewCharacterHook></NewCharacterHook>
+
+                <S.ShowFirstCharacterBox display="flex"></S.ShowFirstCharacterBox>
+                <S.WarningText>
+                    동물은 한 번 선택 시 추후에도 동일한 동물 종류로만 캐릭터 변경이 가능합니다.
+                </S.WarningText>
+
+                <S.startButton>시작하기</S.startButton>
             </S.ChoiseCharacterBox>
         </S.BackgroundColor>
     );

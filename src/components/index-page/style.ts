@@ -8,7 +8,9 @@ interface BackgroundColor {
     flexdirection?: string;
     alignitems?: string;
 }
-
+/**
+ * 배경색, 그리드 부여
+ */
 export const BackgroundColor = styled.body<BackgroundColor>`
     height: 100vh;
     width: 100vw;
@@ -25,7 +27,9 @@ interface MainLogo {
     grid3?: string | number;
     grid4?: string | number;
 }
-
+/**
+ * 배경에 있는 커다란 새싹 백그라운드 이미지
+ */
 export const MainLogo = styled.div<MainLogo>`
     width: 95wh;
     height: 100vh;
@@ -111,60 +115,146 @@ interface ChoiseCharacterBox {
     flexdirection?: string;
     alignitems?: string;
 }
+/**
+ 메인박스
+ */
 
 export const ChoiseCharacterBox = styled.div<ChoiseCharacterBox>`
     width: 80%;
-    height: 48%;
+    height: 53%;
     background-color: white;
     background-color: rgba(256, 256, 256, 0.8);
     border-radius: 33px;
-    display: ${(props) => props.display};
+    display: grid;
+    grid-template-areas: '. nicknameinput .' 'left center right';
+    grid-template-columns: 18% 64% 18%;
+    grid-template-rows: 30% 70%;
+    place-items: center;
     flex-direction: ${(props) => props.flexdirection};
     align-items: ${(props) => props.alignitems};
-`;
-/**
- 캐릭터 생성 페이지 '캐릭터를 생성하세요!'
- */
-export const StartText = styled.div`
-    font-size: 64px;
-    color: white;
     margin-bottom: 2%;
 `;
 
 /**
- 캐릭터 생성 페이지 닉네임 입력 input
+ 닉네임 input 감싸는 박스
  */
 export const InputNicknameBox = styled.div`
     margin-top: 1%;
-    width: 64%;
-    height: 17%;
+    width: 100%;
+    height: 70%;
     border-radius: 33px;
     background-color: white;
     font-size: 6.5vh;
     line-height: 130%;
+    grid-area: nicknameinput;
+    display: flex;
+    align-items: center;
 `;
+/**
+ * 닉네임 텍스트
+ */
+export const TextNickname = styled.div`
+    margin-top: 1%;
+    margin-left: 0.5%;
+    width: 35%;
+    height: 100%;
+    font-size: 35px;
+`;
+/**
+ * input 박스
+ */
+export const InputNickname = styled.input`
+    margin-left: 20%;
+    grid-area: nicknameinput;
+    width: 68%;
+    height: 60%;
+    font-size: 35px;
+    outline: none;
+    border: 0;
+`;
+
+/**
+ * 닉네임 조건 검사 텍스트
+ */
+export const NewNicknamecondition = styled.div`
+    margin-top: 13.5%;
+    grid-area: nicknameinput;
+    color: #ababab;
+    font-size: 2.4vh;
+`;
+
 /**
  캐릭터 생성 박스
  */
 export const ShowFirstCharacterBox = styled.div<ChoiseCharacterBox>`
-    margin-top: 2%;
-    width: 64%;
-    height: 57%;
+    width: 100%;
+    height: 80%;
     border-radius: 33px;
     background-color: white;
-    display: ${(props) => props.display};
     flex-direction: ${(props) => props.flexdirection};
     align-items: ${(props) => props.alignitems};
+    grid-area: center;
+    margin-bottom: 2%;
 `;
-
+/**
+ * 왼쪽 화살표 그리드 위치
+ */
 export const LeftArrow = styled.div`
+    grid-area: left;
+`;
+/**
+ * 오른쪽 화살표 그리드 위치
+ */
+export const RightArrow = styled.div`
+    grid-area: right;
     img {
-        margin-right: 10px;
     }
 `;
 
-export const RightArrow = styled.div`
+interface FirstCharacter {
+    display: string;
+}
+/**
+ * 고양이 캐릭터 위치 크기 및 위치 조정
+ */
+export const FirstCat = styled.div<FirstCharacter>`
+    grid-area: center;
     img {
-        margin-left: 10px;
+        width: 150px;
+        height: 150px;
+    }
+    z-index: 1;
+    display: ${(props) => props.display};
+`;
+/**
+ * 개 캐릭터 위치 크기 및 위치 조정
+ */
+export const FirstDog = styled.div<FirstCharacter>`
+    grid-area: center;
+    img {
+        width: 175px;
+        height: 175px;
+    }
+    z-index: 1;
+    display: ${(props) => props.display};
+`;
+export const WarningText = styled.div`
+    grid-area: center;
+    color: #ababab;
+    font-size: 2.4vh;
+    margin-top: 29%;
+`;
+export const startButton = styled.div`
+    grid-area: right;
+    color: #ffffff;
+    margin-top: 135%;
+    margin-left: 15%;
+    font-size: 5vh;
+    cursor: pointer;
+    Link {
+        text-decoration-line: none;
+    }
+    &:hover {
+        color: red;
     }
 `;
