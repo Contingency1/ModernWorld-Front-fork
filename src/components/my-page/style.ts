@@ -1,5 +1,4 @@
 "use client";
-import exp from "constants";
 import styled from "styled-components";
 
 /** Background Color CSS */
@@ -12,7 +11,7 @@ export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
-  grid-gap: 2.5vw;
+  grid-gap: 2vw;
   position: fixed; //위치 고정
   top: 50%; //가운데 위치하게끔 만들어줌
   left: 50%;
@@ -31,7 +30,7 @@ export const OutLineSection = styled.div<OutLineSection>`
 `;
 
 /** 캐릭터 이미지 및 닉네임 표시 */
-export const CharacterInfo = styled.div<CharacterInfo>`
+export const CharacterInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,7 +47,7 @@ export const NameSection = styled.div`
 `;
 
 /** 포인트 표시 구역 */
-export const PointInfo = styled.div<PointInfo>`
+export const PointInfo = styled.div`
   height: 19vh;
   width: 100%;
   text-align: center;
@@ -69,7 +68,7 @@ export const PointContent = styled.div`
 `;
 
 /** 카테고리 메뉴 표시 구역 (grid 적용) */
-export const CategorySection = styled.div<CategorySection>`
+export const CategorySection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -98,9 +97,13 @@ export const CategoryEle = styled.div<CategoryEle>`
 `;
 
 /** 콘텐츠들이 표시될 오른쪽 구역 Div */
-export const ContentSection = styled.div<ContentSection>`
+export const ContentSection = styled.div`
   height: 100%;
   width: 100%;
   background-color: #e9eff1;
   border-radius: 20px;
+`;
+
+export const PointHr = styled.hr`
+  width: 80%;
 `;
