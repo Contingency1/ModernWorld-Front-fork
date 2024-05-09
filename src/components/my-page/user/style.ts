@@ -96,14 +96,6 @@ export const CategoryEle = styled.div<CategoryEle>`
   align-content: center;
 `;
 
-/** 콘텐츠들이 표시될 오른쪽 구역 Div */
-export const ContentSection = styled.div`
-  height: 100%;
-  width: 100%;
-  background-color: #e9eff1;
-  border-radius: 20px;
-`;
-
 export const PointHr = styled.hr`
   width: 80%;
 `;
