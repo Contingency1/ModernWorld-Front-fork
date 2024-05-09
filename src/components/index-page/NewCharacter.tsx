@@ -17,7 +17,7 @@ export default function NewCharacter() {
             </S.InfoNewCharacter>
             <S.ChoiseCharacterBox>
                 <S.InputNicknameBox>
-                    <S.TextNickname>닉 네 임 ㅣ </S.TextNickname>
+                    <S.TextNickname> 닉 네 임 ㅣ </S.TextNickname>
                 </S.InputNicknameBox>
                 <NewNicknameCondition></NewNicknameCondition>
 
@@ -28,7 +28,7 @@ export default function NewCharacter() {
                     동물은 한 번 선택 시 추후에도 동일한 동물 종류로만 캐릭터 변경이 가능합니다.
                 </S.WarningText>
 
-                <S.startButton>시작하기</S.startButton>
+                <S.startButton href="/my-page">시작하기</S.startButton>
             </S.ChoiseCharacterBox>
         </S.BackgroundColor>
     );
