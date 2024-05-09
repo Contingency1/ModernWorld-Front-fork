@@ -42,6 +42,7 @@ export const MainLogo = styled.div<MainLogo>`
             props.grid4};
     display: grid;
     place-items: center;
+    grid-gap: 1%;
 `;
 
 interface MainLogoTextProps {
@@ -55,12 +56,44 @@ interface MainLogoTextProps {
  로그인 페이지 텍스트들
  @params width : number, height : number, font-size : number, margin-top : number 
  */
-export const MainLogoText = styled.div<MainLogoTextProps>`
-    width: ${(props) => props.width}px;
-    height: ${(props) => props.height}px;
-    font-size: ${(props) => props.fontSize}rem;
-    margin-top: ${(props) => props.margintop}px;
-    text-shadow: 4px 4px 4px white;
+export const MainLogoText = styled.h1<MainLogoTextProps>`
+    font-size: ${(props) => props.fontSize}%;
+    margin-top: ${(props) => props.margintop}%;
+    text-shadow: 4px 4px white;
+`;
+
+interface LoginBtnLink {
+    textcolor: string;
+    img_width?: string;
+    img_height?: string;
+    img_margin_right?: string;
+    img_margin_left?: string;
+}
+
+/**
+ * selfmade login btn
+ * @params color : string, textcolor : string, img_margin_right : string, img_width : string, img_height : string
+ */
+export const LoginBtnLink = styled(Link)<LoginBtnLink>`
+    width: 18%;
+    height: 90%;
+    background-color: ${(props) => props.color};
+    color: ${(props) => props.textcolor};
+    margin-top: 5%;
+    border-radius: 7px;
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    text-decoration-line: none;
+    font-size: 120%;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    img {
+        margin-left: ${(props) => props.img_margin_left};
+        margin-right: ${(props) => props.img_margin_right};
+        width: ${(props) => props.img_width};
+        height: ${(props) => props.img_height};
+    }
 `;
 
 interface MainPowerBtn {
@@ -89,9 +122,8 @@ export const MainPowerBtn = styled.div<MainPowerBtn>`
 export const CreateCharacterText = styled.div`
     font-size: 64px;
     color: white;
-    margin-bottom: 2%;
+    margin: 1%;
 `;
-
 /**
  캐릭터 생성 시 주의사항 안내 텍스트
 */
@@ -156,7 +188,7 @@ export const InputNicknameBox = styled.div`
  */
 export const TextNickname = styled.div`
     margin-top: 1%;
-    margin-left: 0.5%;
+    margin-left: 3%;
     width: 35%;
     height: 100%;
     font-size: 35px;
@@ -165,7 +197,7 @@ export const TextNickname = styled.div`
  * input 박스
  */
 export const InputNickname = styled.input`
-    margin-left: 20%;
+    margin-left: 25%;
     grid-area: nicknameinput;
     width: 68%;
     height: 60%;
@@ -178,7 +210,7 @@ export const InputNickname = styled.input`
  * 닉네임 조건 검사 텍스트
  */
 export const NewNicknamecondition = styled.div`
-    margin-top: 13.5%;
+    margin-top: 14.5%;
     grid-area: nicknameinput;
     color: #ababab;
     font-size: 2.4vh;
@@ -213,9 +245,9 @@ export const RightArrow = styled.div`
 `;
 
 /**
- * 고양이 캐릭터 위치 크기 및 위치 조정
+ * 캐릭터 위치 크기 및 위치 조정
  */
-export const FirstCat = styled.div`
+export const FirstCharacter = styled.div`
     grid-area: center;
     img {
         width: 150px;

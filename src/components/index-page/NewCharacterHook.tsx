@@ -33,15 +33,14 @@ export default function NewCharacterHook() {
     const minus = () => {
         n1 <= 0 ? setn1(animalsURL.length - 1) : setn1(n1 - 1);
     };
-    console.log(n1);
     return (
         <>
             <S.LeftArrow>
                 <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png" onClick={minus}></img>
             </S.LeftArrow>
-            <S.FirstCat>
+            <S.FirstCharacter>
                 <img src={animalsURLmap()[n1]}></img>
-            </S.FirstCat>
+            </S.FirstCharacter>
             <S.RightArrow>
                 <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png" onClick={plus}></img>
             </S.RightArrow>
