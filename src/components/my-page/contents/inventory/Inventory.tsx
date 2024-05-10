@@ -4,12 +4,12 @@ export default function Inventory() {
   return (
     <>
       <S.ContentSection>
-        <S.InventoryHeader>
+        <S.BookMarkHeader>
           <S.TMenuDiv>오브제</S.TMenuDiv>
           <S.TMenuDiv>캐릭터</S.TMenuDiv>
-        </S.InventoryHeader>
-        <S.InventoryBody>
-          <S.InventoryBox>
+        </S.BookMarkHeader>
+        <S.BookMarkBody>
+          <S.BookMarkBox height="65vh">
             {[...Array(12)].map((_, index) => (
               <S.ItemDiv key={index}></S.ItemDiv>
             ))}
@@ -26,15 +26,15 @@ export default function Inventory() {
                 width="30vw"
               />
             </S.PageSection>
-          </S.InventoryBox>
-          <S.InventorySide>
+          </S.BookMarkBox>
+          <S.BookMarkSide>
             <S.RMenuDiv>재진</S.RMenuDiv>
             <S.RMenuDiv>영은</S.RMenuDiv>
             <S.RMenuDiv>은우</S.RMenuDiv>
             <S.RMenuDiv>준우</S.RMenuDiv>
             <S.RMenuDiv>진</S.RMenuDiv>
-          </S.InventorySide>
-        </S.InventoryBody>
+          </S.BookMarkSide>
+        </S.BookMarkBody>
       </S.ContentSection>
     </>
   );
