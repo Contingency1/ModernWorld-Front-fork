@@ -1,6 +1,6 @@
-import Village from '@/components/village-page/Village';
 import '../../style/globals.css';
+import VillageDog from '@/components/village-page/VillageDog';
 
 export default function CreateCharacter() {
-    return <Village></Village>;
+    return <VillageDog></VillageDog>;
 }
