@@ -33,6 +33,8 @@ interface ContentsView {
 /** 받은/보낸 item 설명 & 받은 아이템 목록 보여주는 fff div */
 export const ContentsView = styled.div<ContentsView>`
   width: 20vw;
+  display: flex;
+  flex-direction: column;
   height: ${(props) => props.height};
   margin: 2vh 0;
   border-radius: 30px;
@@ -59,4 +61,31 @@ interface MarginSpan {
 export const MarginDiv = styled.div<MarginSpan>`
   margin: ${(props) => props.margin};
   font-size: ${(props) => props.fontSize};
+`;
+
+/** ItemInfo 에 있는 삭제 버튼 담는 섹션 */
+export const DelSection = styled.div`
+  margin-top: 2vh;
+  margin-right: 2vh;
+  display: flex;
+  justify-content: right;
+`;
+
+/** ItemImg 담을 섹션 */
+export const ItemImg = styled.div`
+  margin-bottom: 10vh;
+`;
+
+interface FontSize {
+  fontSize?: string;
+}
+/** font size 설정하는 div */
+export const FontSize = styled.div<FontSize>`
+  font-size: ${(props) => props.fontSize};
+`;
+
+/** Item List 스크롤 div */
+export const ListScroll = styled.div`
+  height: 100%;
+  overflow-y: auto;
 `;
