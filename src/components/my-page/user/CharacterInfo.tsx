@@ -1,4 +1,4 @@
-import * as S from "@/components/my-page/style";
+import * as S from "@/components/my-page/user/style";
 
 export default function CharacterInfo() {
   return (

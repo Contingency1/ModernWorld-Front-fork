@@ -1,5 +1,5 @@
 import "../../style/globals.css";
-import * as S from "@/components/my-page/style";
+import * as S from "@/components/my-page/user/style";
 import LeftSection from "@/components/my-page/user/LeftSection";
 
 export default function MyPageLayout({
@@ -13,7 +13,7 @@ export default function MyPageLayout({
         <S.GridContainer>
           <LeftSection></LeftSection>
           <S.OutLineSection width="148vh" height="82vh">
-            <S.ContentSection>{children}</S.ContentSection>
+            {children}
           </S.OutLineSection>
         </S.GridContainer>
       </S.BodyContainer>
