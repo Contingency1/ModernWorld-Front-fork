@@ -1,4 +1,5 @@
 import * as S from "@/components/my-page/user/style";
+import Link from "next/link";
 
 export default function Category() {
   return (

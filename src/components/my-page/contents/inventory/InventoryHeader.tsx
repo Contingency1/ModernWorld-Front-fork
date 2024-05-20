@@ -1,3 +1,4 @@
+import * as S from "@/components/my-page/contents/style";
 export default function InventoryHeader() {
   return (
     <>

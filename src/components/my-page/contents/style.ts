@@ -85,8 +85,9 @@ export const ItemDiv = styled.div`
 /** 페이지네이션 */
 export const PageSection = styled.div`
   grid-column: 1 / -1;
+  width: 100%;
   display: flex;
   text-align: center;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 `;

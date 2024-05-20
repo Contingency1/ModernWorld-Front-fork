@@ -1,0 +1,27 @@
+"use client";
+import styled from "styled-components";
+
+interface BookMarkBox {
+  height?: string;
+}
+
+/** 인벤토리 / 상점 그리드 설정 */
+export const BookMarkBox = styled.div<BookMarkBox>`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 0.1fr;
+  gap: 5vh;
+  padding: 5vh 12vw;
+  width: 180vw;
+  height: ${(props) => props.height};
+  background-color: #e9eff1;
+  border-radius: 20px;
+`;
+
+/** 인벤토리의 각 아이템 넣을 div */
+export const ItemDiv = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+`;
