@@ -62,12 +62,16 @@ export const SearchInput = styled.input`
     font-size: 5vh;
     margin-left: 6%;
 `;
-
+/**
+ * 왼쪽 화살표
+ */
 export const LeftArrow = styled.div`
     margin-top: 14%;
     padding-left: 5%;
 `;
-
+/**
+ * 유저들을 8명씩 보여주는 박스
+ */
 export const GreyBox = styled.div`
     width: 75%;
     height: 92%;
@@ -80,12 +84,16 @@ export const GreyBox = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
 `;
-
+/**
+ * 오른쪽 화살표
+ */
 export const RightArrow = styled.div`
     margin-top: 200%;
     margin-left: 12%;
 `;
-
+/**
+ * 유저 한명의 박스
+ */
 export const UserBox = styled.div`
     width: 70%;
     height: 70%;
@@ -93,7 +101,9 @@ export const UserBox = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-
+/**
+ * 유저 박스 안에 들어있는 캐릭터 사진
+ */
 export const UserCharacter = styled.div`
     margin-top: 2%;
     text-align: center;
@@ -109,7 +119,9 @@ export const UserCharacter = styled.div`
         height: 70%;
     }
 `;
-
+/**
+ *
+ */
 export const FlexBox = styled.div`
     display: flex;
     height: 100%;
@@ -119,25 +131,31 @@ export const FlexBox = styled.div`
 export const RightArrow_SortDiv = styled.div``;
 
 export const SortDiv = styled.div`
-    margin-left: 15%;
+    margin-left: 30%;
     display: flex;
     flex-direction: column;
 `;
 
 export const SortLabel = styled.label`
-    margin-top: 23%;
-    display: flex;
-    align-items: center;
+    margin-top: 30%;
+    font-size: 3lvh;
 `;
-
-export const Sort = styled.input`
-    width: 1rem;
-    height: 1rem;
+/**
+ * 라디오버튼 크기 조정
+ */
+export const Sort = styled.input``;
+/**
+ * 유저 이름 폰트 사이즈
+ */
+export const UserName = styled.div`
+    font-size: 1%;
 `;
-
-export const SortText = styled.div`
-    font-size: 1.5rem;
-    margin-left: 15%;
+/**
+ * 유저 하트 수 표시해주는 이미지 크기 조정
+ */
+export const UserHeart = styled.div`
+    img {
+        width: 10px;
+        height: 10px;
+    }
 `;
-
-export const UserName = styled.div``;

@@ -1,8 +1,8 @@
 import * as S from '@/components/village-page/style';
 import GetUserApi from './getUserApi';
+import RadioSort from './RadioSort';
 
 export default function VillageDog() {
-    const SortArray = [{ name: '최신' }, { name: '인기' }, { name: '랭킹' }, { name: '하트' }];
     return (
         <S.BackgroundDisplay>
             <S.Title>
@@ -24,14 +24,7 @@ export default function VillageDog() {
                         <S.RightArrow>
                             <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"></img>
                         </S.RightArrow>
-                        <S.SortDiv>
-                            {SortArray.map((e) => (
-                                <S.SortLabel>
-                                    <S.Sort type="radio" name="sort"></S.Sort>
-                                    <S.SortText>{e.name}</S.SortText>
-                                </S.SortLabel>
-                            ))}
-                        </S.SortDiv>
+                        <RadioSort></RadioSort>
                     </S.RightArrow_SortDiv>
                 </S.FlexBox>
             </S.CreamBox>
