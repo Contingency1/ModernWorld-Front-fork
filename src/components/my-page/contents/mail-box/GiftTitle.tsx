@@ -1,10 +1,10 @@
 import * as S from "@/components/my-page/contents/mail-box/style";
 
-export default function GiftTitle() {
+export default function GiftTitle(props) {
   return (
     <>
       <S.MarginDiv margin="0.5vh 0 1vh 0" fontSize="28px">
-        보낸 선물 (3)
+        {props.title} 선물 (3)
       </S.MarginDiv>
       <S.UserInfo>
         <img

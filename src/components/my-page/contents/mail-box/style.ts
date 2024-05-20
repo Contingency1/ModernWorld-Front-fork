@@ -9,8 +9,8 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  background-color: #e9eff1;
   border-radius: 30px;
+  background-color: #e9eff1;
 `;
 
 /** 왼쪽 오른쪽 섹션 구분 + display:flex 적용 */
@@ -22,7 +22,6 @@ export const MailBoxSection = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid #000;
   border-radius: 30px;
 `;
 
@@ -55,12 +54,14 @@ export const UserInfo = styled.div<UserInfo>`
 interface MarginSpan {
   margin?: string;
   fontSize?: string;
+  color?: string;
 }
 
 /** margin 값을 줄 수 있는 div 스타일 */
 export const MarginDiv = styled.div<MarginSpan>`
   margin: ${(props) => props.margin};
   font-size: ${(props) => props.fontSize};
+  color: ${(props) => props.color};
 `;
 
 /** ItemInfo 에 있는 삭제 버튼 담는 섹션 */
@@ -88,4 +89,11 @@ export const FontSize = styled.div<FontSize>`
 export const ListScroll = styled.div`
   height: 100%;
   overflow-y: auto;
+`;
+
+/** 아이템 리스트를 담는 div */
+export const ItemListEleDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
