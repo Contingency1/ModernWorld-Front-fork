@@ -84,7 +84,7 @@ export const LoginBtnLink = styled(Link)<LoginBtnLink>`
     font-family: 'Pretendard-Regular';
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     text-decoration-line: none;
-    font-size: 120%;
+    font-size: 110%;
     font-weight: bolder;
     display: flex;
     align-items: center;
