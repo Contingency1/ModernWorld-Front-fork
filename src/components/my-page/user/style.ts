@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import styled from "styled-components";
 
 /** Background Color CSS */
@@ -96,6 +97,17 @@ export const CategoryEle = styled.div<CategoryEle>`
   align-content: center;
 `;
 
+/** 카테고리 요소의 각 링크 태그 */
+export const LinkBox = styled(Link)`
+  color: #696969;
+  text-decoration-line: none;
+
+  &:hover {
+    color: #363a8d;
+  }
+`;
+
+/** 구분선 */
 export const PointHr = styled.hr`
   width: 80%;
 `;
