@@ -2,9 +2,13 @@
 import Link from "next/link";
 import styled from "styled-components";
 
+interface PageNumber {
+  page?: boolean;
+}
+
 /** Background Color CSS */
-export const BodyContainer = styled.body`
-  background-color: #c9d7dd;
+export const BodyContainer = styled.body<PageNumber>`
+  background-color: ${(props) => (props.page ? "#E5D9B6" : "#c9d7dd")};
 `;
 
 /** 최상단 Div 에 grid 적용 */
@@ -31,14 +35,14 @@ export const OutLineSection = styled.div<OutLineSection>`
 `;
 
 /** 캐릭터 이미지 및 닉네임 표시 */
-export const CharacterInfo = styled.div`
+export const CharacterInfo = styled.div<PageNumber>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 28.5vh;
   width: 100%;
-  background-color: #e9eff1;
+  background-color: ${(props) => (props.page ? "#F5F0E2" : "#c9d7dd")};
   border-radius: 20px;
 `;
 
@@ -48,13 +52,13 @@ export const NameSection = styled.div`
 `;
 
 /** 포인트 표시 구역 */
-export const PointInfo = styled.div`
+export const PointInfo = styled.div<PageNumber>`
   height: 19vh;
   width: 100%;
   text-align: center;
   align-content: center;
   margin-top: 3vh;
-  background-color: #e9eff1;
+  background-color: ${(props) => (props.page ? "#F5F0E2" : "#c9d7dd")};
   border-radius: 20px;
 `;
 
@@ -84,6 +88,7 @@ interface CategoryEle {
   borderBottom?: string;
   borderRight?: string;
   borderLeft?: string;
+  page?: boolean;
 }
 
 /** 카테고리 요소들 */
@@ -92,14 +97,18 @@ export const CategoryEle = styled.div<CategoryEle>`
   border-bottom: ${(props) => props.borderBottom};
   border-left: ${(props) => props.borderLeft};
   border-right: ${(props) => props.borderRight};
-  background-color: #c9d7dd;
+  background-color: ${(props) => (props.page ? "#F5F0E2" : "#c9d7dd")};
   text-align: center;
   align-content: center;
 `;
 
+interface LinkBox {
+  color?: string;
+}
+
 /** 카테고리 요소의 각 링크 태그 */
-export const LinkBox = styled(Link)`
-  color: #696969;
+export const LinkBox = styled(Link)<LinkBox>`
+  color: ${(props) => props.color || "#696969"};
   text-decoration-line: none;
 
   &:hover {

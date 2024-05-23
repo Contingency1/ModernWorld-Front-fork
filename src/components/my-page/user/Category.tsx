@@ -5,7 +5,7 @@ export default function Category() {
     <>
       <S.CategorySection>
         <S.CategoryEle borderRight="1px solid #A2A2A2">
-          <S.LinkBox href="/my-page/mailbox">우편함</S.LinkBox>
+          <S.LinkBox href="/my-page/mailbox?p=0">우편함</S.LinkBox>
         </S.CategoryEle>
         <S.CategoryEle>
           <S.LinkBox href="/my-page">이웃</S.LinkBox>
@@ -14,10 +14,10 @@ export default function Category() {
           borderRight="1px solid #A2A2A2"
           borderTop="1px solid #A2A2A2"
         >
-          <S.LinkBox href="/my-page">퀘스트</S.LinkBox>
+          <S.LinkBox href="/shop?p=1">상점</S.LinkBox>
         </S.CategoryEle>
         <S.CategoryEle borderTop="1px solid #A2A2A2">
-          <S.LinkBox href="/my-page/inventory">인벤토리</S.LinkBox>
+          <S.LinkBox href="/my-page/inventory?p=0">인벤토리</S.LinkBox>
         </S.CategoryEle>
         <S.CategoryEle
           borderRight="1px solid #A2A2A2"
