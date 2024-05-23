@@ -4,7 +4,7 @@ import styled from "styled-components";
 /**mail box layout 그리드 설정  */
 
 export const Grid = styled.div`
-  width: 100%;
+  width: 250%;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -31,7 +31,7 @@ interface ContentsView {
 
 /** 받은/보낸 item 설명 & 받은 아이템 목록 보여주는 fff div */
 export const ContentsView = styled.div<ContentsView>`
-  width: 20vw;
+  width: 25vw;
   display: flex;
   flex-direction: column;
   height: ${(props) => props.height};
