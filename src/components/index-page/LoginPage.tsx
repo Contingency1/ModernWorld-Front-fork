@@ -20,7 +20,7 @@ export default function MainPage() {
                     네이버 로그인
                 </S.LoginBtnLink>
                 <S.LoginBtnLink
-                    href="village"
+                    href="villagedog"
                     color="#FEE500"
                     textcolor="#000000"
                     img_width={'25%'}

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const BackgroundDisplay = styled.div`
     width: 100vw;
     height: 100vh;
-    background-color: #e5d9b6;
+    background-color: ${(props) => props.color};
 `;
 
 /**
@@ -23,10 +23,10 @@ export const Title = styled.div`
 /**
  * 최외곽 박스
  */
-export const CreamBox = styled.div`
+export const TheBiggestBox = styled.div`
     width: 90%;
     height: 80%;
-    background-color: #fffbee;
+    background-color: ${(props) => props.color};
     border-radius: 30px;
     margin-left: 5%;
     margin-bottom: 12%;
@@ -37,12 +37,11 @@ export const CreamBox = styled.div`
 /**
  * 검색창
  */
-export const SearchBox = styled.div`
+export const SearchDiv = styled.div`
     margin-left: 34%;
     padding: 1%;
     width: 29%;
     height: 5%;
-    background-color: #fffbee;
     border-bottom: 3px solid black;
     display: flex;
     img {
@@ -51,14 +50,17 @@ export const SearchBox = styled.div`
     }
 `;
 
+interface SearchInput {
+    inputcolor: string;
+}
 /**
  * 검색input
  */
-export const SearchInput = styled.input`
+export const SearchInput = styled.input<SearchInput>`
     width: 80%;
     border-width: 0;
     outline: none;
-    background-color: #fffbee;
+    background-color: ${({ inputcolor }) => inputcolor};
     font-size: 5vh;
     margin-left: 6%;
 `;
@@ -130,6 +132,12 @@ export const FlexBox = styled.div`
 
 export const RightArrow_SortDiv = styled.div``;
 
+export const SortElementalDiv = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 30%;
+`;
+
 export const SortDiv = styled.div`
     margin-left: 30%;
     display: flex;
@@ -137,7 +145,6 @@ export const SortDiv = styled.div`
 `;
 
 export const SortLabel = styled.label`
-    margin-top: 30%;
     font-size: 3lvh;
 `;
 /**
