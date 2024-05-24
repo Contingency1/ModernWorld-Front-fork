@@ -3,15 +3,21 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as S from '@/components/village-page/style';
-import { SortStateAtom } from './RadioSort';
+import { SortStateAtom } from './SortDiv';
 import { useAtom } from 'jotai';
+import { PageNumber } from './Pagenation';
+import { searchValue } from './SearchBox';
 
 export default function GetUserApi() {
     const [userNicknameArray, setuserNicknameArray] = useState([]);
 
     const [radioAtom] = useAtom(SortStateAtom);
+    const [page_num] = useAtom(PageNumber);
+    const [keyword] = useAtom(searchValue);
 
     let sort = radioAtom;
+
+    let page = page_num;
 
     useEffect(() => {
         async function getUser() {
@@ -27,7 +33,9 @@ export default function GetUserApi() {
                     break;
             }
             try {
-                const response = await axios.get(`http://54.180.98.58:3000/users?pageNo=1&take=8${sort}`);
+                const response = await axios.get(
+                    `http://54.180.98.58:3000/users?pageNo=${page}&take=8${sort}&nickname=${keyword}`
+                );
 
                 setuserNicknameArray(response.data);
             } catch (error) {
@@ -35,7 +43,7 @@ export default function GetUserApi() {
             }
         }
         getUser();
-    }, [radioAtom]);
+    }, [radioAtom, page_num, keyword]);
     return (
         <>
             {userNicknameArray.map(

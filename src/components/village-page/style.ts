@@ -61,7 +61,7 @@ export const SearchInput = styled.input<SearchInput>`
     border-width: 0;
     outline: none;
     background-color: ${({ inputcolor }) => inputcolor};
-    font-size: 5vh;
+    font-size: 4vh;
     margin-left: 6%;
 `;
 /**
@@ -162,4 +162,8 @@ export const SortCheckBox = styled.div<SortCheckBox>`
     align-items: center;
     cursor: pointer;
     border-style: 1px solid black;
+    &:hover {
+        background-color: 'red';
+        transition: 0.5s;
+    }
 `;
