@@ -4,20 +4,19 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as S from '@/components/village-page/style';
 import { SortStateAtom } from './SortDiv';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { PageNumber } from './Pagenation';
 import { searchValue } from './SearchBox';
 
 export default function GetUserApi() {
     const [userNicknameArray, setuserNicknameArray] = useState([]);
+    const [userCount, setUserCount] = useAtom(userCountAtom);
 
     const [radioAtom] = useAtom(SortStateAtom);
     const [page_num] = useAtom(PageNumber);
     const [keyword] = useAtom(searchValue);
 
-    let sort = radioAtom;
-
-    let page = page_num;
+    let sort = '';
 
     useEffect(() => {
         async function getUser() {
@@ -34,10 +33,11 @@ export default function GetUserApi() {
             }
             try {
                 const response = await axios.get(
-                    `http://54.180.98.58:3000/users?pageNo=${page}&take=8${sort}&nickname=${keyword}`
+                    `http://54.180.98.58:3000/users?pageNo=${page_num}&take=8${sort}&nickname=${keyword}`
                 );
 
                 setuserNicknameArray(response.data);
+                setUserCount(response.data);
             } catch (error) {
                 console.error(error);
             }
@@ -73,3 +73,5 @@ export default function GetUserApi() {
         </>
     );
 }
+
+export const userCountAtom = atom([]);

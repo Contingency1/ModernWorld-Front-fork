@@ -1,19 +1,20 @@
 'use client';
 
 import * as S from '@/components/village-page/style';
-import GetUserApi from './getUserApi';
+import GetUserApi, { userCountAtom } from './getUserApi';
 import RadioSort from './SortDiv';
 import { atom, useAtom } from 'jotai';
 
 export const Pagenation = () => {
+    const [userCount] = useAtom(userCountAtom);
     const [pageNumberState, setPageNumberState] = useAtom(PageNumber);
 
     const NextPage = () => {
-        setPageNumberState(pageNumberState + 1);
+        userCount.length < 8 ? alert('마지막 페이지입니다') : setPageNumberState(pageNumberState + 1);
     };
 
     const PrevPage = () => {
-        pageNumberState === 1 ? alert('더없어') : setPageNumberState(pageNumberState - 1);
+        pageNumberState === 1 ? alert('첫 페이지입니다') : setPageNumberState(pageNumberState - 1);
     };
 
     console.log(pageNumberState);
