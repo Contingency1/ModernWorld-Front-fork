@@ -1,9 +1,9 @@
-import Inventory from "@/components/my-page/contents/inventory/Inventory";
+import Shop from "@/components/shop-page/Shop";
 
 export default function MyPage() {
   return (
     <>
-      <Inventory />
+      <Shop />
     </>
   );
 }

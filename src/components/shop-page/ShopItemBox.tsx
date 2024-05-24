@@ -1,10 +1,10 @@
 import * as S from "@/components/my-page/contents/inventory/style";
-import Pagination from "../../pagination/Pagination";
+import Pagination from "../my-page/pagination/Pagination";
 
-export default function InventoryItemBox() {
+export default function ShopItemBox() {
   return (
     <>
-      <S.BookMarkBox height="65vh" backColor="#e9eff1">
+      <S.BookMarkBox height="65vh" backColor="#F5F0E2">
         {[...Array(12)].map((_, index) => (
           <S.ItemDiv key={index}></S.ItemDiv>
         ))}

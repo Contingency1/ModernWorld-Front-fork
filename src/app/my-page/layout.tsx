@@ -1,3 +1,5 @@
+"use client";
+
 import "../../style/globals.css";
 import * as S from "@/components/my-page/user/style";
 import LeftSection from "@/components/my-page/user/LeftSection";
@@ -9,7 +11,7 @@ export default function MyPageLayout({
 }) {
   return (
     <>
-      <S.BodyContainer>
+      <S.BodyContainer color="#c9d7dd">
         <S.GridContainer>
           <LeftSection></LeftSection>
           <S.OutLineSection width="148vh" height="82vh">

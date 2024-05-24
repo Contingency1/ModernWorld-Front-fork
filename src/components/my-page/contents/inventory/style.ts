@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface BookMarkBox {
   height?: string;
+  backColor?: string;
 }
 
 /** 인벤토리 / 상점 그리드 설정 */
@@ -14,7 +15,8 @@ export const BookMarkBox = styled.div<BookMarkBox>`
   padding: 5vh 12vw;
   width: 180vw;
   height: ${(props) => props.height};
-  background-color: #e9eff1;
+  background-color: ${(props) => props.backColor};
+  /* background-color: #e9eff1; */
   border-radius: 20px;
 `;
 
