@@ -2,13 +2,13 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-interface PageNumber {
-  page?: boolean;
+interface Color {
+  color?: string;
 }
 
 /** Background Color CSS */
-export const BodyContainer = styled.body<PageNumber>`
-  background-color: ${(props) => (props.page ? "#E5D9B6" : "#c9d7dd")};
+export const BodyContainer = styled.body<Color>`
+  background-color: ${(props) => props.color};
 `;
 
 /** 최상단 Div 에 grid 적용 */
@@ -35,14 +35,14 @@ export const OutLineSection = styled.div<OutLineSection>`
 `;
 
 /** 캐릭터 이미지 및 닉네임 표시 */
-export const CharacterInfo = styled.div<PageNumber>`
+export const CharacterInfo = styled.div<Color>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 28.5vh;
   width: 100%;
-  background-color: ${(props) => (props.page ? "#F5F0E2" : "#c9d7dd")};
+  background-color: ${(props) => props.color};
   border-radius: 20px;
 `;
 
@@ -52,13 +52,13 @@ export const NameSection = styled.div`
 `;
 
 /** 포인트 표시 구역 */
-export const PointInfo = styled.div<PageNumber>`
+export const PointInfo = styled.div<Color>`
   height: 19vh;
   width: 100%;
   text-align: center;
   align-content: center;
   margin-top: 3vh;
-  background-color: ${(props) => (props.page ? "#F5F0E2" : "#c9d7dd")};
+  background-color: ${(props) => props.color};
   border-radius: 20px;
 `;
 
@@ -88,7 +88,7 @@ interface CategoryEle {
   borderBottom?: string;
   borderRight?: string;
   borderLeft?: string;
-  page?: boolean;
+  color?: string;
 }
 
 /** 카테고리 요소들 */
@@ -97,7 +97,6 @@ export const CategoryEle = styled.div<CategoryEle>`
   border-bottom: ${(props) => props.borderBottom};
   border-left: ${(props) => props.borderLeft};
   border-right: ${(props) => props.borderRight};
-  background-color: ${(props) => (props.page ? "#F5F0E2" : "#c9d7dd")};
   text-align: center;
   align-content: center;
 `;
@@ -112,7 +111,7 @@ export const LinkBox = styled(Link)<LinkBox>`
   text-decoration-line: none;
 
   &:hover {
-    color: #363a8d;
+    color: #414141;
   }
 `;
 

@@ -3,17 +3,16 @@
 import "../../style/globals.css";
 import * as S from "@/components/my-page/user/style";
 import LeftSection from "@/components/my-page/user/LeftSection";
-import useSearchBar from "@/hooks/SearchBar";
+import useSearchBar from "@/hooks/useSearchBar";
 
 export default function MyPageLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const search = useSearchBar();
   return (
     <>
-      <S.BodyContainer page={search}>
+      <S.BodyContainer color="#E5D9B6">
         <S.GridContainer>
           <LeftSection />
           <S.OutLineSection width="148vh" height="82vh">

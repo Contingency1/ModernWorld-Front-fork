@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import useSearchBar from "@/hooks/SearchBar";
+import useSearchBar from "@/hooks/useSearchBar";
 
 export default function MyPage() {
   const search = useSearchBar();
