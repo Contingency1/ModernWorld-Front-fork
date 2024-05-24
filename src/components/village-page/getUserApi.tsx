@@ -33,7 +33,7 @@ export default function GetUserApi() {
             }
             try {
                 const response = await axios.get(
-                    `http://54.180.98.58:3000/users?pageNo=${page_num}&take=8${sort}&nickname=${keyword}`
+                    `http://54.180.98.58:3000/users?pageNo=${page_num}&take=8&${sort}&nickname=${keyword}`
                 );
 
                 setuserNicknameArray(response.data);
@@ -75,3 +75,4 @@ export default function GetUserApi() {
 }
 
 export const userCountAtom = atom([]);
+export const animal = atom('');

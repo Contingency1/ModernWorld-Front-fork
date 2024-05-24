@@ -2,6 +2,8 @@ import * as S from '@/components/village-page/style';
 import SearchBox from './SearchBox';
 import Link from 'next/link';
 import { Pagenation } from './Pagenation';
+import { useAtom } from 'jotai';
+import { animal } from './getUserApi';
 
 export default function VillageDog() {
     return (
