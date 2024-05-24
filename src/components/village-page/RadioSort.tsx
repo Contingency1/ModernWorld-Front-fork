@@ -5,37 +5,26 @@ import { atom, useAtom } from 'jotai';
 import { useState } from 'react';
 
 export default function RadioSort() {
-    const [radioTarget, setRadioTarget] = useAtom(RadioStateAtom);
+    const SortArray = [{ name: '최신', checkd: true }, { name: '랭킹' }, { name: '좋아요' }];
 
-    const [selectRadio, setSelectRadio] = useState('');
+    const [sortTarget, setSortTarget] = useAtom(SortStateAtom);
 
-    const handlechange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectRadio(event.target.value);
-    };
+    const [selectSort, setSelectSort] = useState(SortArray[0].name);
 
-    const SortArray = [{ name: '최신', checkd: true }, { name: '인기' }, { name: '랭킹' }, { name: '하트' }];
+    function SortBoxCheck(name: string) {
+        setSelectSort(name);
+        setSortTarget(name);
+    }
 
     return (
-        <S.SortDiv>
+        <>
             {SortArray.map((e) => (
-                <>
-                    <S.SortElementalDiv>
-                        <S.Sort
-                            type="radio"
-                            name="sort"
-                            value={e.name}
-                            id={e.name}
-                            onChange={() => {
-                                setRadioTarget(e.name);
-                            }}
-                            checked={selectRadio === e.name ? false : true}
-                        ></S.Sort>
-                        <S.SortLabel htmlFor={e.name}>{e.name}</S.SortLabel>
-                    </S.SortElementalDiv>
-                </>
+                <S.SortCheckBox key={e.name} onClick={() => SortBoxCheck(e.name)} check={selectSort === e.name}>
+                    {e.name}
+                </S.SortCheckBox>
             ))}
-        </S.SortDiv>
+        </>
     );
 }
 
-export const RadioStateAtom = atom('');
+export const SortStateAtom = atom('');

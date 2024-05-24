@@ -11,7 +11,7 @@ export default function SearchBox(props: SearchBox) {
     useEffect(() => {
         async function getUser() {
             try {
-                const response = await axios.get(`http://54.180.98.58:3000/users/all/1?take=8&orderByField=like`);
+                const response = await axios.get(`http://54.180.98.58:3000/users/all/1?take=8&orderByField=like}`);
             } catch (error) {
                 console.error(error);
             }

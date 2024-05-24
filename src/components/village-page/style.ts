@@ -132,25 +132,6 @@ export const FlexBox = styled.div`
 
 export const RightArrow_SortDiv = styled.div``;
 
-export const SortElementalDiv = styled.div`
-    display: flex;
-    align-items: center;
-    margin-top: 30%;
-`;
-
-export const SortDiv = styled.div`
-    margin-left: 30%;
-    display: flex;
-    flex-direction: column;
-`;
-
-export const SortLabel = styled.label`
-    font-size: 3lvh;
-`;
-/**
- * 라디오버튼 크기 조정
- */
-export const Sort = styled.input``;
 /**
  * 유저 이름 폰트 사이즈
  */
@@ -165,4 +146,20 @@ export const UserHeart = styled.div`
         width: 10px;
         height: 10px;
     }
+`;
+interface SortCheckBox {
+    check: boolean;
+}
+export const SortCheckBox = styled.div<SortCheckBox>`
+    background-color: ${(props) => (props.check ? 'red' : '#fff')};
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    margin-top: 10%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-style: 1px solid black;
 `;

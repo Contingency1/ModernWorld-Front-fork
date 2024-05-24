@@ -11,7 +11,7 @@ export default function VillageDog() {
                 <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/KakaoTalk_20240509_151108128.png"></img>
             </S.Title>
             <S.TheBiggestBox color="#ffffff">
-                <SearchBox color="#ffffff" inputcolor="#ffffff"></SearchBox>
+                <SearchBox inputcolor="#ffffff"></SearchBox>
                 <S.FlexBox>
                     <S.LeftArrow>
                         <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"></img>
