@@ -1,5 +1,6 @@
 "use client";
 import styled from "styled-components";
+import Link from "next/link";
 
 interface BookMarkBox {
   height?: string;
@@ -10,9 +11,9 @@ interface BookMarkBox {
 export const BookMarkBox = styled.div<BookMarkBox>`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 0.1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 5vh;
-  padding: 5vh 12vw;
+  padding: 5vh 10vw;
   width: 180vw;
   height: ${(props) => props.height};
   background-color: ${(props) => props.backColor};
@@ -26,4 +27,10 @@ export const ItemDiv = styled.div`
   width: 100%;
   background-color: #fff;
   border-radius: 20px;
+`;
+
+/** Link 태그 style */
+
+export const LinkBox = styled(Link)`
+  text-decoration-line: none;
 `;
