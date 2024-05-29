@@ -35,11 +35,16 @@ export const BookMarkSide = styled.div`
   margin-top: 2vh;
 `;
 
+interface Color {
+  color?: string;
+}
+
 /** 북마크가 존재하는 Div 의 위의 책갈피 메뉴 */
-export const TMenuDiv = styled.div`
+export const TMenuDiv = styled.div<Color>`
   height: 8vh;
   width: 8vw;
-  background-color: #7c80c8;
+  background-color: ${(props) => props.color};
+  color: #fff;
   border-radius: 20px 20px 0px 0px;
   flex-direction: row;
   align-content: center;
@@ -47,10 +52,11 @@ export const TMenuDiv = styled.div`
 `;
 
 /** 북마크가 존재하는 Div 의 옆의 책갈피 메뉴 */
-export const RMenuDiv = styled.div`
+export const RMenuDiv = styled.div<Color>`
   height: 14vh;
   width: 4.5vw;
-  background-color: #7c80c8;
+  background-color: ${(props) => props.color};
+  color: #fff;
   border-radius: 0px 20px 20px 0px;
   align-content: center;
   writing-mode: vertical-rl;

@@ -1,0 +1,22 @@
+branchName: '/${issue.title[0,25]}/#${issue.number}'
+gitSafeReplacementChar: '_'
+defaultBranch: 'develop'
+autoCloseIssue: true
+commentMessage: 'Branch ${branchName} created for issue: ${issue.title}'
+branches:
+  - label: 🌏 Deploy
+    prefix: deploy
+  - label: ⚙ Setting
+    prefix: setting
+  - label: 🐞 BugFix
+    prefix: bugfix
+  - label: ✨ Feature
+    prefix: feat
+  - label: 📬 API
+    prefix: api
+  - label: 📝 Modify
+    prefix: modify
+  - label: 🎨 Publish
+    prefix: publish
+  - label: 🔨 Refactor
+    prefix: refactor
