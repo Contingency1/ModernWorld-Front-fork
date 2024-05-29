@@ -151,7 +151,7 @@ interface SortCheckBox {
     check: boolean;
 }
 export const SortCheckBox = styled.div<SortCheckBox>`
-    background-color: ${(props) => (props.check ? 'red' : '#fff')};
+    background-color: ${(props) => (props.check ? 'pink' : 'grey')};
     width: 100px;
     height: 50px;
     border-radius: 20px;
