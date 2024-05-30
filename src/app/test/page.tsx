@@ -1,6 +1,6 @@
-import GetInventoryList from "@/hooks/GetInventoryList";
-import "../../style/globals.css";
+import { MyRoom } from '@/components/my-room/MyRoom';
+import '../../style/globals.css';
 
 export default function test() {
-  return <GetInventoryList user="1" theme="여름 테마" />;
+    return <MyRoom />;
 }
