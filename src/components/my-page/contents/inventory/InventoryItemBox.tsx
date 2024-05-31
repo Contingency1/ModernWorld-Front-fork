@@ -1,8 +1,7 @@
 "use client";
 
 import * as S from "@/components/my-page/contents/inventory/style";
-import Pagination from "../../pagination/Pagination";
-import useGetData from "@/utils/useGetData";
+import useGetData from "@/app/api/useGetData";
 
 export default function InventoryItemBox() {
   const data = useGetData(
@@ -12,7 +11,7 @@ export default function InventoryItemBox() {
     <>
       <S.BookMarkBox height="65vh" backColor="#e9eff1">
         {data.length > 0 ? (
-          data.map((i) => <S.ItemDiv key={i.no}>{i.item.image}</S.ItemDiv>)
+          data.map((i) => <S.ItemDiv img={i.item.image} key={i.no}></S.ItemDiv>)
         ) : (
           <p>error</p>
         )}
