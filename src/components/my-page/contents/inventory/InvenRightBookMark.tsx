@@ -3,9 +3,11 @@
 import { useAtom } from "jotai";
 import { themeAtom } from "@/state/itemAtoms";
 import * as S from "@/components/my-page/contents/style";
+import { useState } from "react";
 
 export default function InvenRightBookMark() {
   const [theme, setTheme] = useAtom(themeAtom);
+
   const themeClick = (index) => {
     switch (index) {
       case 1:
@@ -28,16 +30,28 @@ export default function InvenRightBookMark() {
   return (
     <>
       <S.BookMarkSide>
-        <S.RMenuDiv color="#7C80C8" onClick={() => themeClick(1)}>
+        <S.RMenuDiv
+          color={theme === "봄 테마" ? "#363A8D" : "#7C80C8"}
+          onClick={() => themeClick(1)}
+        >
           봄
         </S.RMenuDiv>
-        <S.RMenuDiv color="#7C80C8" onClick={() => themeClick(2)}>
+        <S.RMenuDiv
+          color={theme === "여름 테마" ? "#363A8D" : "#7C80C8"}
+          onClick={() => themeClick(2)}
+        >
           여름
         </S.RMenuDiv>
-        <S.RMenuDiv color="#7C80C8" onClick={() => themeClick(3)}>
+        <S.RMenuDiv
+          color={theme === "가을 테마" ? "#363A8D" : "#7C80C8"}
+          onClick={() => themeClick(3)}
+        >
           가을
         </S.RMenuDiv>
-        <S.RMenuDiv color="#7C80C8" onClick={() => themeClick(4)}>
+        <S.RMenuDiv
+          color={theme === "겨울 테마" ? "#363A8D" : "#7C80C8"}
+          onClick={() => themeClick(4)}
+        >
           겨울
         </S.RMenuDiv>
       </S.BookMarkSide>

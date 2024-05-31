@@ -14,7 +14,6 @@ export default function getUserItem(user) {
           `http://54.180.98.58:3000/inventory/users/${user}?theme=${theme}`
         );
         setItem(response.data);
-        console.log(item);
       } catch (error) {
         console.error(error);
       }
