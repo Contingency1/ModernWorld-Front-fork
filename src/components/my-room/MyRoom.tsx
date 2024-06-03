@@ -1,25 +1,24 @@
-'use client';
-
 import { GetItems } from '@/app/api/GetItems';
 import * as S from './style';
 
-export const MyRoom = () => {
+export async function MyRoom() {
+    const imageSrc = await GetItems();
     return (
         <>
-            <S.Container>
+            <S.RootDiv width="100vw" height="100vh">
                 <S.BackGroundGrid>
                     <S.WallPaper />
                     <S.Floor />
                 </S.BackGroundGrid>
                 <S.ItemsGrid>
-                    <img src={GetItems(1)}></img>
-                    <img src={GetItems(2)}></img>
-                    <img src={GetItems(3)}></img>
-                    <img src={GetItems(4)}></img>
-                    <img src={GetItems(5)}></img>
-                    <img src={GetItems(6)}></img>
+                    <img src={imageSrc}></img>
+                    <img src={imageSrc}></img>
+                    <img src={imageSrc}></img>
+                    <img src={imageSrc}></img>
+                    <img src={imageSrc}></img>
+                    <img src={imageSrc}></img>
                 </S.ItemsGrid>
-            </S.Container>
+            </S.RootDiv>
         </>
     );
-};
+}

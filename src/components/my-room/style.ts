@@ -2,10 +2,15 @@
 
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface RootDiv {
+    width: string;
+    height: string;
+}
+
+export const RootDiv = styled.div<RootDiv>`
     position: relative;
-    width: 100wh;
-    height: 100vh;
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
 `;
 
 export const Grid = styled.div`
