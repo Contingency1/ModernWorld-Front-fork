@@ -49,11 +49,12 @@ export const TMenuDiv = styled.div<Color>`
   flex-direction: row;
   align-content: center;
   font-size: 25px;
+  cursor: pointer;
 `;
 
 /** 북마크가 존재하는 Div 의 옆의 책갈피 메뉴 */
 export const RMenuDiv = styled.div<Color>`
-  height: 14vh;
+  height: 16vh;
   width: 4.5vw;
   background-color: ${(props) => props.color};
   color: #fff;
@@ -61,6 +62,7 @@ export const RMenuDiv = styled.div<Color>`
   align-content: center;
   writing-mode: vertical-rl;
   font-size: 25px;
+  cursor: pointer;
 `;
 
 interface BookMarkBox {

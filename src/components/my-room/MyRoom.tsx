@@ -2,7 +2,7 @@ import { GetItems } from '@/app/api/GetItems';
 import * as S from './style';
 
 export async function MyRoom() {
-    const imageSrc = await GetItems();
+    const userItemArray = await GetItems();
     return (
         <>
             <S.RootDiv width="100vw" height="100vh">
@@ -11,12 +11,16 @@ export async function MyRoom() {
                     <S.Floor />
                 </S.BackGroundGrid>
                 <S.ItemsGrid>
-                    <img src={imageSrc}></img>
-                    <img src={imageSrc}></img>
-                    <img src={imageSrc}></img>
-                    <img src={imageSrc}></img>
-                    <img src={imageSrc}></img>
-                    <img src={imageSrc}></img>
+                    {userItemArray.map(
+                        (e: {
+                            item: {
+                                image: string;
+                                name: string;
+                            };
+                        }) => (
+                            <img src={e.item.image} key={e.item.name}></img>
+                        )
+                    )}
                 </S.ItemsGrid>
             </S.RootDiv>
         </>

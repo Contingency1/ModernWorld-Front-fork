@@ -21,11 +21,18 @@ export const BookMarkBox = styled.div<BookMarkBox>`
   border-radius: 20px;
 `;
 
+interface ImgUrl {
+  img?: string;
+}
+
 /** 인벤토리의 각 아이템 넣을 div */
-export const ItemDiv = styled.div`
+export const ItemDiv = styled.div<ImgUrl>`
   height: 100%;
   width: 100%;
-  background-color: #fff;
+  background-image: url(${(props) => props.img});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 20px;
 `;
 
