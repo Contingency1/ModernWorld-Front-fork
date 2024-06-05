@@ -8,7 +8,7 @@ export default function MainPage() {
                     모던월드
                 </S.MainLogoText>
                 <S.LoginBtnLink
-                    href="newcharacter"
+                    href={`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=_udRI5pXQrnMsGMQKOZV&redirect_uri=${process.env.MODERN_WORLD_BASE_URL}/naver/auth/callback&state=test`}
                     color="#03C75A"
                     textcolor="#ffffff"
                     img_width={'35%'}
