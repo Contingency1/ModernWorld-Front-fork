@@ -11,7 +11,7 @@ export default function getUserItem(user) {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `${process.env.MODERN_WORLD_BASE_URL}/inventory/users/${user}?theme=${theme}`
+                    `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/inventory/users/${user}?theme=${theme}`
                 );
                 setItem(response.data);
             } catch (error) {

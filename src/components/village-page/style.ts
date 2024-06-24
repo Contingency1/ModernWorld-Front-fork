@@ -70,6 +70,7 @@ export const SearchInput = styled.input<SearchInput>`
 export const LeftArrow = styled.div`
     margin-top: 14%;
     padding-left: 5%;
+    cursor: pointer;
 `;
 /**
  * 유저들을 8명씩 보여주는 박스
@@ -92,7 +93,9 @@ export const GreyBox = styled.div`
 export const RightArrow = styled.div`
     margin-top: 200%;
     margin-left: 12%;
+    cursor: pointer;
 `;
+
 /**
  * 유저 한명의 박스
  */

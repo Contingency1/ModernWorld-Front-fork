@@ -7,16 +7,21 @@ import { SortStateAtom } from './SortDiv';
 import { atom, useAtom } from 'jotai';
 import { PageNumber } from './Pagenation';
 import { searchValue } from './SearchBox';
+import { useStyleSheetContext } from 'styled-components/dist/models/StyleSheetManager';
 
 export default function GetUserApi() {
     const [userNicknameArray, setuserNicknameArray] = useState([]);
     const [userCount, setUserCount] = useAtom(userCountAtom);
 
     const [radioAtom] = useAtom(SortStateAtom);
-    const [page_num] = useAtom(PageNumber);
+    const [page_num, setPage_Num] = useAtom(PageNumber);
     const [keyword] = useAtom(searchValue);
 
     let sort = '';
+
+    useEffect(() => {
+        setPage_Num(1);
+    }, [radioAtom, keyword]);
 
     useEffect(() => {
         async function getUser() {
@@ -31,9 +36,10 @@ export default function GetUserApi() {
                     sort = '&orderByField=like';
                     break;
             }
+
             try {
                 const response = await axios.get(
-                    `${process.env.MODERN_WORLD_BASE_URL}/users?pageNo=${page_num}&take=8&${sort}&nickname=${keyword}`
+                    `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/users?&take=8&pageNo=${page_num}${sort}&nickname=${keyword}`
                 );
 
                 setuserNicknameArray(response.data);
@@ -44,6 +50,7 @@ export default function GetUserApi() {
         }
         getUser();
     }, [radioAtom, page_num, keyword]);
+
     return (
         <>
             {userNicknameArray.map(
@@ -52,7 +59,7 @@ export default function GetUserApi() {
                     characterLocker: Array<{ character: { image: string } }>;
                     createdAt: string;
                     description: string;
-                    like: number;
+                    legend: { likeCount: number };
                     nickname: string;
                     accumulationPoint: number;
                 }) => (
@@ -63,7 +70,7 @@ export default function GetUserApi() {
                         {e.nickname}
                         <S.UserHeart>
                             <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></img>
-                            {e.like}
+                            {e.legend.likeCount}
                             <> point : {e.accumulationPoint}</>
                         </S.UserHeart>
                         <S.UserName>{e.nickname}</S.UserName>
