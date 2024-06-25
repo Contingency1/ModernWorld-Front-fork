@@ -1,26 +1,26 @@
-import { useEffect } from 'react';
-import axios from 'axios';
-import { useAtom } from 'jotai';
-import { themeAtom, userItemAtom } from '../../state/itemAtoms';
+import { useEffect } from "react";
+import axios from "axios";
+import { useAtom } from "jotai";
+import { themeAtom, userItemAtom } from "../../state/itemAtoms";
 
-export default function getUserItem(user) {
-    const [item, setItem] = useAtom(userItemAtom);
-    const [theme] = useAtom(themeAtom);
+export default function getUserItem(user: number) {
+  const [item, setItem] = useAtom(userItemAtom);
+  const [theme] = useAtom(themeAtom);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/inventory/users/${user}?theme=${theme}`
-                );
-                setItem(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/inventory/users/${user}?theme=${theme}`
+        );
+        setItem(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        fetchData();
-    }, [setItem, theme]);
+    fetchData();
+  }, [setItem, theme]);
 
-    return item;
+  return item;
 }

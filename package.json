@@ -11,6 +11,10 @@
   "dependencies": {
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
+<<<<<<< HEAD
+=======
+    "env": "^0.0.2",
+>>>>>>> 283e0bbc7d0c456d60de6392fc6f0d14ea8c27be
     "jotai": "^2.8.0",
     "next": "14.1.4",
     "react": "^18",
