@@ -26,7 +26,7 @@ export const BookMarkBox = styled.div<BookMarkBox>`
 export const ItemDiv = styled.div`
   height: 80%;
   width: 85%;
-  padding: 10%;
+  padding: 15%;
   background-color: #fff;
   border-radius: 20px;
 `;
@@ -43,12 +43,25 @@ interface Img {
 
 /** 각 아이템 이미지 넣을 태그 */
 export const Img = styled.div<Img>`
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   background-image: url(${(props) => props.img});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   object-fit: contain;
   object-position: center;
+`;
+
+interface Color {
+  color?: string;
+}
+
+export const StatusCheck = styled.div<Color>`
+  width: 6px;
+  height: 6px;
+  margin-left: 6.5vw;
+  margin-top: -0.6vh;
+  background-color: ${(props) => props.color};
+  border-radius: 50%;
 `;
