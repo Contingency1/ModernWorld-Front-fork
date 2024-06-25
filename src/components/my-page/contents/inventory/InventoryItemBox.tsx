@@ -4,6 +4,7 @@ import * as S from "@/components/my-page/contents/inventory/style";
 import { useAtom } from "jotai";
 import { userItemAtom } from "@/state/itemAtoms";
 import getUserItem from "@/app/api/getUserItem";
+import updateStatus from "@/app/api/updateStatus";
 
 interface Item {
   no: number;
@@ -28,9 +29,21 @@ export default function InventoryItemBox() {
       <S.BookMarkBox height="65vh" backColor="#e9eff1">
         {length > 0
           ? userItem.map((i) => (
-              <S.ItemDiv key={i.no}>
-                <S.Img img={i.item.image} />
-              </S.ItemDiv>
+              <div
+                id={i.no}
+                onClick={(e) => {
+                  updateStatus(i.itemNo);
+                }}
+              >
+                <S.ItemDiv key={i.no}>
+                  {i.status ? (
+                    <S.StatusCheck color="#5A61E6" />
+                  ) : (
+                    <S.StatusCheck color="#EC4A4A" />
+                  )}
+                  <S.Img img={i.item.image} />
+                </S.ItemDiv>
+              </div>
             ))
           : null}
         {[...Array(12 - length)].map((_, index) => (
