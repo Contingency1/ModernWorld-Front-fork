@@ -7,7 +7,6 @@ import { SortStateAtom } from './SortDiv';
 import { atom, useAtom } from 'jotai';
 import { PageNumber } from './Pagenation';
 import { searchValue } from './SearchBox';
-import { useStyleSheetContext } from 'styled-components/dist/models/StyleSheetManager';
 
 export default function GetUserApi() {
     const [userNicknameArray, setuserNicknameArray] = useState([]);

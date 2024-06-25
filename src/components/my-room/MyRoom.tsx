@@ -18,7 +18,7 @@ export async function MyRoom() {
                                 name: string;
                             };
                         }) => (
-                            <img src={e.item.image} key={e.item.name}></img>
+                            <S.ItemImageSize src={e.item.image} key={e.item.name}></S.ItemImageSize>
                         )
                     )}
                 </S.ItemsGrid>
