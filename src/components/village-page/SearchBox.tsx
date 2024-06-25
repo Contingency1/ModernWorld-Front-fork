@@ -16,8 +16,6 @@ export default function SearchBox(props: SearchBox) {
         setInputValue(e.target.value);
     };
 
-    console.log(inputValue);
-
     return (
         <S.SearchDiv>
             <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EB%8F%8B%EB%B3%B4%EA%B8%B0"></img>

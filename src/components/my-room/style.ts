@@ -43,3 +43,8 @@ export const ItemsGrid = styled(Grid)`
     grid-template-rows: 65% 35%;
     align-items: center;
 `;
+
+export const ItemImageSize = styled.img`
+    width: 100px;
+    height: 100px;
+`;
