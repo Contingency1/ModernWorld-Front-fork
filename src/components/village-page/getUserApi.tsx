@@ -67,7 +67,7 @@ export default function GetUserApi() {
                             <img src={e.characterLocker[0].character.image}></img>
                         </S.UserCharacter>
                         {e.nickname}
-                        <S.UserHeart>
+                        <S.UserHeart key={e.nickname}>
                             <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></img>
                             {e.legend.likeCount}
                             <> point : {e.accumulationPoint}</>
