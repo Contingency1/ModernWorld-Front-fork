@@ -4,7 +4,7 @@ import * as S from "@/components/my-page/contents/inventory/style";
 import { useAtom } from "jotai";
 import { userItemAtom } from "@/state/itemAtoms";
 import useGetUserItem from "@/app/api/useGetUserItem";
-import useUpdateStatus from "@/app/api/useUpdateStatus";
+import updateStatus from "@/app/api/updateStatus";
 
 interface Item {
   no: number;
@@ -14,7 +14,7 @@ interface Item {
 }
 
 export default function InventoryItemBox() {
-  useGetUserItem(2);
+  useGetUserItem(1);
   const [userItem] = useAtom<Item[]>(userItemAtom);
 
   let length: number;
@@ -32,8 +32,9 @@ export default function InventoryItemBox() {
               <div
                 key={i.no}
                 onClick={(e) => {
-                  useUpdateStatus(i.itemNo);
+                  updateStatus(i.itemNo);
                 }}
+                style={{ cursor: "pointer" }}
               >
                 <S.ItemDiv key={i.no}>
                   {i.status ? (

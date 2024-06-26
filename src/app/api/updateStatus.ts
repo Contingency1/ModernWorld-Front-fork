@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function useUpdateStatus(itemNo: number) {
+export default function updateStatus(itemNo: number) {
   const apiUrl = `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/inventory/${itemNo}`;
 
   const patchData = async () => {
