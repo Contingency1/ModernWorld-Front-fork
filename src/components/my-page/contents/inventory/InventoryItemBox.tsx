@@ -8,6 +8,8 @@ import updateStatus from "@/app/api/updateStatus";
 
 interface Item {
   no: number;
+  itemNo: number;
+  status: boolean;
   item: {
     image: string;
   };
@@ -32,7 +34,7 @@ export default function InventoryItemBox() {
               <div
                 key={i.no}
                 onClick={(e) => {
-                  updateStatus(i.itemNo);
+                  updateStatus([i.itemNo, i.status]);
                 }}
                 style={{ cursor: "pointer" }}
               >
