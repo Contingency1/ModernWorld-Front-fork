@@ -4,10 +4,10 @@ import * as S from "@/components/my-page/user/style";
 import CharacterInfo from "./CharacterInfo";
 import PointInfo from "./PointInfo";
 import Category from "./Category";
-import getUser from "@/app/api/getUser";
+import useGetUser from "@/app/api/useGetUser";
 
 export default function LeftSection() {
-  getUser(2);
+  useGetUser(2);
 
   return (
     <>
