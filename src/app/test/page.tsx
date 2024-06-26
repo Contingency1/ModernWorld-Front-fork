@@ -1,6 +1,6 @@
-import { MyRoom } from '@/components/my-room/MyRoom';
-import '../../style/globals.css';
+// import { MyRoom } from '@/components/my-room/MyRoom';
+// import '../../style/globals.css';
 
-export default function test() {
-    return <MyRoom />;
-}
+// export default function test() {
+//     return <MyRoom />;
+// }
