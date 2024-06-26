@@ -62,8 +62,8 @@ export default function GetUserApi() {
                     nickname: string;
                     accumulationPoint: number;
                 }) => (
-                    <S.UserBox>
-                        <S.UserCharacter>
+                    <S.UserBox key={e.nickname}>
+                        <S.UserCharacter key={e.nickname}>
                             <img src={e.characterLocker[0].character.image}></img>
                         </S.UserCharacter>
                         {e.nickname}
@@ -72,7 +72,7 @@ export default function GetUserApi() {
                             {e.legend.likeCount}
                             <> point : {e.accumulationPoint}</>
                         </S.UserHeart>
-                        <S.UserName>{e.nickname}</S.UserName>
+                        <S.UserName key={e.nickname}>{e.nickname}</S.UserName>
                     </S.UserBox>
                 )
             )}
