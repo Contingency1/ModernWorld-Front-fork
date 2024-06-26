@@ -3,8 +3,8 @@
 import * as S from "@/components/my-page/contents/inventory/style";
 import { useAtom } from "jotai";
 import { userItemAtom } from "@/state/itemAtoms";
-import getUserItem from "@/app/api/getUserItem";
-import updateStatus from "@/app/api/updateStatus";
+import useGetUserItem from "@/app/api/useGetUserItem";
+import useUpdateStatus from "@/app/api/useUpdateStatus";
 
 interface Item {
   no: number;
@@ -14,7 +14,7 @@ interface Item {
 }
 
 export default function InventoryItemBox() {
-  getUserItem(2);
+  useGetUserItem(2);
   const [userItem] = useAtom<Item[]>(userItemAtom);
 
   let length: number;
@@ -30,9 +30,9 @@ export default function InventoryItemBox() {
         {length > 0
           ? userItem.map((i) => (
               <div
-                id={i.no}
+                key={i.no}
                 onClick={(e) => {
-                  updateStatus(i.itemNo);
+                  useUpdateStatus(i.itemNo);
                 }}
               >
                 <S.ItemDiv key={i.no}>

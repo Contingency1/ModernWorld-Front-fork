@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAtom } from "jotai";
 import { userDataAtom } from "@/state/userAtoms";
 
-export default function getUser(user: number) {
+export default function useGetUser(user: number) {
   const [data, setData] = useAtom(userDataAtom);
 
   useEffect(() => {

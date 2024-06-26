@@ -3,12 +3,11 @@
 import { useAtom } from "jotai";
 import { themeAtom } from "@/state/itemAtoms";
 import * as S from "@/components/my-page/contents/style";
-import { useState } from "react";
 
 export default function InvenRightBookMark() {
   const [theme, setTheme] = useAtom(themeAtom);
 
-  const themeClick = (index) => {
+  const themeClick = (index: number) => {
     switch (index) {
       case 1:
         setTheme("봄 테마");

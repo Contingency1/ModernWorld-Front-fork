@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAtom } from "jotai";
 import { themeAtom, userItemAtom } from "../../state/itemAtoms";
 
-export default function getUserItem(user: number) {
+export default function useGetUserItem(user: number) {
   const [item, setItem] = useAtom(userItemAtom);
   const [theme] = useAtom(themeAtom);
 
