@@ -32,7 +32,7 @@ export const BookMarkSide = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 2vh;
+  margin-top: 4vh;
 `;
 
 interface Color {
