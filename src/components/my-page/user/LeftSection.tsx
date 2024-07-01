@@ -1,5 +1,3 @@
-"use client";
-
 import * as S from "@/components/my-page/user/style";
 import CharacterInfo from "./CharacterInfo";
 import PointInfo from "./PointInfo";

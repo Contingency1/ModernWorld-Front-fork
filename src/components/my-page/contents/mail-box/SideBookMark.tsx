@@ -2,7 +2,7 @@
 
 import * as S from "@/components/my-page/contents/style";
 import { useAtom } from "jotai";
-import { typeAtom } from "@/state/mailboxAtoms";
+import { typeAtom } from "@/states/mailboxAtoms";
 
 export default function SideBookMark() {
   const [type, setType] = useAtom(typeAtom);

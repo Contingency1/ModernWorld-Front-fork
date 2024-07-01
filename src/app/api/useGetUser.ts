@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
-import { userDataAtom } from "@/state/userAtoms";
+import { userDataAtom } from "@/states/userAtoms";
 
 export default function useGetUser(user: number) {
   const [data, setData] = useAtom(userDataAtom);

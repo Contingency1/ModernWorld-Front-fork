@@ -1,6 +1,6 @@
 import * as S from "@/components/my-page/user/style";
 import { useAtom } from "jotai";
-import { userDataAtom } from "@/state/userAtoms";
+import { userDataAtom } from "@/states/userAtoms";
 
 export default function PointInfo() {
   const [data] = useAtom(userDataAtom);

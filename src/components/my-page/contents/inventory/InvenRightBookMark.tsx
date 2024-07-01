@@ -1,7 +1,7 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { themeAtom } from "@/state/itemAtoms";
+import { themeAtom } from "@/states/itemAtoms";
 import * as S from "@/components/my-page/contents/style";
 
 export default function InvenRightBookMark() {
