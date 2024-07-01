@@ -21,6 +21,33 @@ const INVENTORY = {
     );
     return result.data;
   },
+  /** 아이템 배치 상태 업데이트 */
+  async setItemStatus(itemNo: number, status: boolean): Promise<any> {
+    if (status) {
+      if (!window.confirm('배치를 취소하시겠습니까?')) {
+        return; // 취소 확인을 받지 못하면 함수 종료
+      }
+    } else {
+      if (!window.confirm('아이템을 배치하시겠습니까?')) {
+        return; // 배치 확인을 받지 못하면 함수 종료
+      }
+    }
+
+    const response: AxiosResponse = await instance.patch(
+      `${INVENTORY.path}/${itemNo}`,
+      {
+        status: !status,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          accept: '*/*',
+        },
+      },
+    );
+
+    return response.data;
+  },
 };
 
 export default INVENTORY;

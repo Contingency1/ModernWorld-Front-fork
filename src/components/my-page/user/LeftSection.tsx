@@ -1,11 +1,27 @@
-import * as S from "@/components/my-page/user/style";
-import CharacterInfo from "./CharacterInfo";
-import PointInfo from "./PointInfo";
-import Category from "./Category";
-import useGetUser from "@/app/api/useGetUser";
+import * as S from '@/components/my-page/user/style';
+import CharacterInfo from './CharacterInfo';
+import PointInfo from './PointInfo';
+import Category from './Category';
+import USER from '@/app/api/user';
+import { useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { userDataAtom } from '@/states/userAtoms';
 
 export default function LeftSection() {
-  useGetUser(2);
+  const [userData, setUserData] = useAtom(userDataAtom);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await USER.getUserInfo(1); //유저 아이디
+        setUserData(response);
+      } catch (error) {
+        console.error('사용자 정보 불러오기 실패:', error);
+      }
+    };
+
+    getData();
+  }, []); //페이지 로딩 시 한 번만 요청 보냄.
 
   return (
     <>

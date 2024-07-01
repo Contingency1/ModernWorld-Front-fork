@@ -3,7 +3,6 @@
 import * as S from '@/components/my-page/contents/inventory/style';
 import { useAtom } from 'jotai';
 import { themeAtom, userItemAtom } from '@/states/itemAtoms';
-import updateStatus from '@/app/api/updateStatus';
 import { useEffect, useState } from 'react';
 import INVENTORY from '@/app/api/inventory';
 
@@ -38,7 +37,7 @@ export default function InventoryItemBox() {
           <div
             key={i.no}
             onClick={(e) => {
-              updateStatus([i.itemNo, i.status]);
+              INVENTORY.setItemStatus(i.itemNo, i.status);
             }}
             style={{ cursor: 'pointer' }}>
             <S.ItemDiv key={i.no}>
