@@ -1,4 +1,4 @@
-import { atom } from "jotai";
+import { atom } from 'jotai';
 
 export const userItemAtom = atom([]);
-export const themeAtom = atom("봄 테마");
+export const themeAtom = atom('봄 테마');

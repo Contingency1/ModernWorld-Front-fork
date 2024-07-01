@@ -2,61 +2,59 @@
 
 import * as S from '@/components/my-page/contents/inventory/style';
 import { useAtom } from 'jotai';
-import { userItemAtom } from '@/states/itemAtoms';
+import { themeAtom, userItemAtom } from '@/states/itemAtoms';
 import updateStatus from '@/app/api/updateStatus';
 import { useEffect, useState } from 'react';
+import INVENTORY from '@/app/api/inventory';
 
 interface Item {
-    no: number;
-    itemNo: number;
-    status: boolean;
-    item: {
-        image: string;
-    };
+  no: number;
+  itemNo: number;
+  status: boolean;
+  item: {
+    image: string;
+  };
 }
 
 export default function InventoryItemBox() {
-    const [status, setStatus] = useState<boolean>(false);
+  const [status, setStatus] = useState(true);
+  const [theme] = useAtom<string>(themeAtom);
+  const [userItem, setUserItem] = useAtom(userItemAtom);
 
-    //api 실행
-    //useEffect 실행
+  const getInventoryItem = async () => {
+    const response = await INVENTORY.getInventoryItem(1, theme);
+    setUserItem(response);
+    setStatus(!status);
+  };
 
-    const [userItem] = useAtom<Item[]>(userItemAtom);
+  useEffect(() => {
+    getInventoryItem();
+  }, [theme, status]);
 
-    let length: number;
-    try {
-        length = userItem.length; //set으로 고치기
-    } catch (e) {
-        length = 0;
-    }
-
-    return (
-        <>
-            <S.BookMarkBox height="65vh" backColor="#e9eff1">
-                {length > 0
-                    ? userItem.map((i) => (
-                          <div
-                              key={i.no}
-                              onClick={(e) => {
-                                  updateStatus([i.itemNo, i.status]);
-                                  setStatus(!status);
-                              }}
-                              style={{ cursor: 'pointer' }}>
-                              <S.ItemDiv key={i.no}>
-                                  {i.status ? (
-                                      <S.StatusCheck color="#5A61E6" />
-                                  ) : (
-                                      <S.StatusCheck color="#EC4A4A" />
-                                  )}
-                                  <S.Img img={i.item.image} />
-                              </S.ItemDiv>
-                          </div>
-                      ))
-                    : null}
-                {[...Array(12 - length)].map((_, index) => (
-                    <S.ItemDiv key={`null-${index}`}></S.ItemDiv>
-                ))}
-            </S.BookMarkBox>
-        </>
-    );
+  return (
+    <>
+      <S.BookMarkBox height="65vh" backColor="#e9eff1">
+        {userItem.map((i: any) => (
+          <div
+            key={i.no}
+            onClick={(e) => {
+              updateStatus([i.itemNo, i.status]);
+            }}
+            style={{ cursor: 'pointer' }}>
+            <S.ItemDiv key={i.no}>
+              {i.status ? (
+                <S.StatusCheck color="#5A61E6" />
+              ) : (
+                <S.StatusCheck color="#EC4A4A" />
+              )}
+              <S.Img img={i.item.image} />
+            </S.ItemDiv>
+          </div>
+        ))}
+        {[...Array(12 - userItem.length)].map((_, index) => (
+          <S.ItemDiv key={`null-${index}`}></S.ItemDiv>
+        ))}
+      </S.BookMarkBox>
+    </>
+  );
 }

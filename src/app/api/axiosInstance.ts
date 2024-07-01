@@ -1,23 +1,23 @@
 import axios from 'axios';
 
-export const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL,
-    timeout: 4000,
-    //withCredentials: true, //자격 증명(쿠키) 전송
-    headers: { 'X-Custom-Header': 'foobar' },
+const instance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL,
+  timeout: 4000,
+  //withCredentials: true, //자격 증명(쿠키) 전송
+  headers: { 'X-Custom-Header': 'foobar' },
 });
 
-// 요청 인터셉터 추가하기
-axios.interceptors.request.use(
-    function (config) {
-        // 요청이 전달되기 전에 작업 수행
-        return config;
-    },
-    function (error) {
-        // 요청 오류가 있는 작업 수행
-        return Promise.reject(error);
-    },
-);
+// 요청 인터셉터 추가하기 (우선은 필요 없을 것 같아서 주석처리했습니다.)
+// axios.interceptors.request.use(
+//     function (config) {
+//         // 요청이 전달되기 전에 작업 수행
+//         return config;
+//     },
+//     function (error) {
+//         // 요청 오류가 있는 작업 수행
+//         return Promise.reject(error);
+//     },
+// );
 
 // // 응답 인터셉터 추가하기
 // axios.interceptors.response.use(
@@ -32,3 +32,5 @@ axios.interceptors.request.use(
 //     return Promise.reject(error);
 //   }
 // );
+
+export default instance;
