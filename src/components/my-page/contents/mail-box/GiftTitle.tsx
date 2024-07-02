@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import * as S from "@/components/my-page/contents/mail-box/style";
-import { useAtom } from "jotai";
-import { typeAtom } from "@/states/mailboxAtoms";
+import * as S from '@/components/my-page/contents/mail-box/style';
+import { useAtom } from 'jotai';
+import { typeAtom } from '@/states/mailboxAtoms';
 
 export default function GiftTitle(props: any) {
   const [type] = useAtom(typeAtom);
@@ -16,8 +16,8 @@ export default function GiftTitle(props: any) {
         <img
           src={
             type
-              ? "https://wang0514.s3.ap-northeast-2.amazonaws.com/page/gift-icon.png"
-              : "https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mail.png"
+              ? 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/gift-icon.png'
+              : 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mail.png'
           }
           alt="gift"
           width="20vw"
