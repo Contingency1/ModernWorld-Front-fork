@@ -1,5 +1,6 @@
 import * as S from "@/components/my-page/contents/style";
 import MailBoxBody from "./MailBoxBody";
+import SideBookMark from "./SideBookMark";
 
 export default function MailBox() {
   return (
@@ -7,10 +8,7 @@ export default function MailBox() {
       <S.ContentSection>
         <S.BookMarkBody>
           <MailBoxBody />
-          <S.BookMarkSide>
-            <S.RMenuDiv>편지</S.RMenuDiv>
-            <S.RMenuDiv>선물</S.RMenuDiv>
-          </S.BookMarkSide>
+          <SideBookMark />
         </S.BookMarkBody>
       </S.ContentSection>
     </>

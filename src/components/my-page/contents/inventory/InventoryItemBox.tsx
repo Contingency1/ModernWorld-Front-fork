@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import * as S from "@/components/my-page/contents/inventory/style";
-import { useAtom } from "jotai";
-import { userItemAtom } from "@/state/itemAtoms";
-import useGetUserItem from "@/app/api/useGetUserItem";
-import updateStatus from "@/app/api/updateStatus";
+import * as S from '@/components/my-page/contents/inventory/style';
+import { useAtom } from 'jotai';
+import { themeAtom, userItemAtom } from '@/states/itemAtoms';
+import { useEffect, useState } from 'react';
+import INVENTORY from '@/app/api/inventory';
 
 interface Item {
   no: number;
@@ -16,40 +16,41 @@ interface Item {
 }
 
 export default function InventoryItemBox() {
-  useGetUserItem(1);
-  const [userItem] = useAtom<Item[]>(userItemAtom);
+  const [status, setStatus] = useState(true);
+  const [theme] = useAtom<string>(themeAtom);
+  const [userItem, setUserItem] = useAtom(userItemAtom);
 
-  let length: number;
-  try {
-    length = userItem.length;
-  } catch (e) {
-    length = 0;
-  }
+  const getInventoryItem = async () => {
+    const response = await INVENTORY.getInventoryItem(1, theme);
+    setUserItem(response);
+    setStatus(!status);
+  };
+
+  useEffect(() => {
+    getInventoryItem();
+  }, [theme, status]);
 
   return (
     <>
       <S.BookMarkBox height="65vh" backColor="#e9eff1">
-        {length > 0
-          ? userItem.map((i) => (
-              <div
-                key={i.no}
-                onClick={(e) => {
-                  updateStatus([i.itemNo, i.status]);
-                }}
-                style={{ cursor: "pointer" }}
-              >
-                <S.ItemDiv key={i.no}>
-                  {i.status ? (
-                    <S.StatusCheck color="#5A61E6" />
-                  ) : (
-                    <S.StatusCheck color="#EC4A4A" />
-                  )}
-                  <S.Img img={i.item.image} />
-                </S.ItemDiv>
-              </div>
-            ))
-          : null}
-        {[...Array(12 - length)].map((_, index) => (
+        {userItem.map((i: any) => (
+          <div
+            key={i.no}
+            onClick={(e) => {
+              INVENTORY.setItemStatus(i.itemNo, i.status);
+            }}
+            style={{ cursor: 'pointer' }}>
+            <S.ItemDiv key={i.no}>
+              {i.status ? (
+                <S.StatusCheck color="#5A61E6" />
+              ) : (
+                <S.StatusCheck color="#EC4A4A" />
+              )}
+              <S.Img img={i.item.image} />
+            </S.ItemDiv>
+          </div>
+        ))}
+        {[...Array(12 - userItem.length)].map((_, index) => (
           <S.ItemDiv key={`null-${index}`}></S.ItemDiv>
         ))}
       </S.BookMarkBox>
