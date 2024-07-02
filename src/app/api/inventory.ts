@@ -38,12 +38,6 @@ const INVENTORY = {
       {
         status: !status,
       },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          accept: '*/*',
-        },
-      },
     );
 
     return response.data;
