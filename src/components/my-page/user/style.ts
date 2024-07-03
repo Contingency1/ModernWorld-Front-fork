@@ -1,13 +1,10 @@
-"use client";
-import Link from "next/link";
-import styled from "styled-components";
-
-interface Color {
-  color?: string;
-}
+'use client';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { styleType } from '@/types/style';
 
 /** Background Color CSS */
-export const BodyContainer = styled.body<Color>`
+export const BodyContainer = styled.body<styleType>`
   background-color: ${(props) => props.color};
 `;
 
@@ -23,19 +20,14 @@ export const GridContainer = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-interface OutLineSection {
-  height?: string;
-  width?: string;
-}
-
 /** 마이페이지 왼쪽 오른쪽 섹션 분리 */
-export const OutLineSection = styled.div<OutLineSection>`
+export const OutLineSection = styled.div<styleType>`
   height: ${(props) => props.height};
   width: ${(props) => props.width};
 `;
 
 /** 캐릭터 이미지 및 닉네임 표시 */
-export const CharacterInfo = styled.div<Color>`
+export const CharacterInfo = styled.div<styleType>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,7 +44,7 @@ export const NameSection = styled.div`
 `;
 
 /** 포인트 표시 구역 */
-export const PointInfo = styled.div<Color>`
+export const PointInfo = styled.div<styleType>`
   height: 19vh;
   width: 100%;
   text-align: center;
@@ -83,16 +75,8 @@ export const CategorySection = styled.div`
   margin-top: 3vh;
 `;
 
-interface CategoryEle {
-  borderTop?: string;
-  borderBottom?: string;
-  borderRight?: string;
-  borderLeft?: string;
-  color?: string;
-}
-
 /** 카테고리 요소들 */
-export const CategoryEle = styled.div<CategoryEle>`
+export const CategoryEle = styled.div<styleType>`
   border-top: ${(props) => props.borderTop};
   border-bottom: ${(props) => props.borderBottom};
   border-left: ${(props) => props.borderLeft};
@@ -101,13 +85,9 @@ export const CategoryEle = styled.div<CategoryEle>`
   align-content: center;
 `;
 
-interface LinkBox {
-  color?: string;
-}
-
 /** 카테고리 요소의 각 링크 태그 */
-export const LinkBox = styled(Link)<LinkBox>`
-  color: ${(props) => props.color || "#696969"};
+export const LinkBox = styled(Link)<styleType>`
+  color: ${(props) => props.color || '#696969'};
   text-decoration-line: none;
 
   &:hover {
