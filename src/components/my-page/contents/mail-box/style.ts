@@ -1,8 +1,9 @@
-"use client";
-import styled from "styled-components";
+'use client';
+
+import styled from 'styled-components';
+import { styleType } from '@/types/style';
 
 /**mail box layout 그리드 설정  */
-
 export const Grid = styled.div`
   width: 250%;
   height: 100%;
@@ -25,12 +26,8 @@ export const MailBoxSection = styled.div`
   border-radius: 30px;
 `;
 
-interface ContentsView {
-  height?: string;
-}
-
 /** 받은/보낸 item 설명 & 받은 아이템 목록 보여주는 fff div */
-export const ContentsView = styled.div<ContentsView>`
+export const ContentsView = styled.div<styleType>`
   width: 25vw;
   display: flex;
   flex-direction: column;
@@ -40,10 +37,8 @@ export const ContentsView = styled.div<ContentsView>`
   background-color: #fff;
 `;
 
-interface UserInfo {}
-
 /** ##님에게 ##습니다. 를 담는 div*/
-export const UserInfo = styled.div<UserInfo>`
+export const UserInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,14 +46,8 @@ export const UserInfo = styled.div<UserInfo>`
   flex-direction: row;
 `;
 
-interface MarginSpan {
-  margin?: string;
-  fontSize?: string;
-  color?: string;
-}
-
 /** margin 값을 줄 수 있는 div 스타일 */
-export const MarginDiv = styled.div<MarginSpan>`
+export const MarginDiv = styled.div<styleType>`
   margin: ${(props) => props.margin};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};
@@ -77,11 +66,8 @@ export const ItemImg = styled.div`
   margin-bottom: 10vh;
 `;
 
-interface FontSize {
-  fontSize?: string;
-}
 /** font size 설정하는 div */
-export const FontSize = styled.div<FontSize>`
+export const FontSize = styled.div<styleType>`
   font-size: ${(props) => props.fontSize};
 `;
 
