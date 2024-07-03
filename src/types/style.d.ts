@@ -1,4 +1,4 @@
-export interface styleType {
+export interface StyleType {
   height?: string;
   width?: string;
   margin?: string;

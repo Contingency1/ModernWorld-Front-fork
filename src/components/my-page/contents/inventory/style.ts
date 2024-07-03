@@ -1,10 +1,10 @@
 'use client';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { styleType } from '@/types/style';
+import { StyleType } from '@/types/style';
 
 /** 인벤토리 / 상점 그리드 설정 */
-export const BookMarkBox = styled.div<styleType>`
+export const BookMarkBox = styled.div<StyleType>`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -33,7 +33,7 @@ export const LinkBox = styled(Link)`
 `;
 
 /** 각 아이템 이미지 넣을 태그 */
-export const Img = styled.div<styleType>`
+export const Img = styled.div<StyleType>`
   width: 95%;
   height: 95%;
   background-image: url(${(props) => props.img});
@@ -44,7 +44,7 @@ export const Img = styled.div<styleType>`
   object-position: center;
 `;
 
-export const StatusCheck = styled.div<styleType>`
+export const StatusCheck = styled.div<StyleType>`
   width: 6px;
   height: 6px;
   margin-left: 6.5vw;

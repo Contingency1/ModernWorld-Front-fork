@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { styleType } from '@/types/style';
+import { StyleType } from '@/types/style';
 
 /** 콘텐츠들이 표시될 오른쪽 구역 Div full */
 export const ContentSection = styled.div`
@@ -37,7 +37,7 @@ export const BookMarkSide = styled.div`
 `;
 
 /** 북마크가 존재하는 Div 의 위의 책갈피 메뉴 */
-export const TMenuDiv = styled.div<styleType>`
+export const TMenuDiv = styled.div<StyleType>`
   height: 8vh;
   width: 8vw;
   background-color: ${(props) => props.color};
@@ -50,7 +50,7 @@ export const TMenuDiv = styled.div<styleType>`
 `;
 
 /** 북마크가 존재하는 Div 의 옆의 책갈피 메뉴 */
-export const RMenuDiv = styled.div<styleType>`
+export const RMenuDiv = styled.div<StyleType>`
   height: 16vh;
   width: 4.5vw;
   background-color: ${(props) => props.color};
@@ -63,7 +63,7 @@ export const RMenuDiv = styled.div<styleType>`
 `;
 
 /** 북마크가 존재하는 내용물 들어갈 div */
-export const BookMarkBox = styled.div<styleType>`
+export const BookMarkBox = styled.div<StyleType>`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 0.1fr;
