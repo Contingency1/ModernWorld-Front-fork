@@ -1,6 +1,7 @@
-"use client";
-import { Interface } from "readline";
-import styled from "styled-components";
+'use client';
+
+import styled from 'styled-components';
+import { styleType } from '@/types/style';
 
 /** 콘텐츠들이 표시될 오른쪽 구역 Div full */
 export const ContentSection = styled.div`
@@ -32,15 +33,11 @@ export const BookMarkSide = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 2vh;
+  margin-top: 4vh;
 `;
 
-interface Color {
-  color?: string;
-}
-
 /** 북마크가 존재하는 Div 의 위의 책갈피 메뉴 */
-export const TMenuDiv = styled.div<Color>`
+export const TMenuDiv = styled.div<styleType>`
   height: 8vh;
   width: 8vw;
   background-color: ${(props) => props.color};
@@ -53,7 +50,7 @@ export const TMenuDiv = styled.div<Color>`
 `;
 
 /** 북마크가 존재하는 Div 의 옆의 책갈피 메뉴 */
-export const RMenuDiv = styled.div<Color>`
+export const RMenuDiv = styled.div<styleType>`
   height: 16vh;
   width: 4.5vw;
   background-color: ${(props) => props.color};
@@ -65,12 +62,8 @@ export const RMenuDiv = styled.div<Color>`
   cursor: pointer;
 `;
 
-interface BookMarkBox {
-  height?: string;
-}
-
 /** 북마크가 존재하는 내용물 들어갈 div */
-export const BookMarkBox = styled.div<BookMarkBox>`
+export const BookMarkBox = styled.div<styleType>`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 0.1fr;
