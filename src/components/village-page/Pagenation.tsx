@@ -16,8 +16,6 @@ export const Pagenation = () => {
     const PrevPage = () => {
         pageNumberState === 1 ? alert('첫 페이지입니다') : setPageNumberState(pageNumberState - 1);
     };
-
-    console.log(pageNumberState);
     return (
         <>
             <S.LeftArrow onClick={() => PrevPage()}>

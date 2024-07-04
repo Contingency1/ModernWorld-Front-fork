@@ -29,15 +29,15 @@ export default function GetUserApi() {
                     sort = '';
                     break;
                 case '랭킹':
-                    sort = 'accumulationPoint';
+                    sort = '&orderByField=accumulationPoint';
                     break;
                 case '좋아요':
-                    sort = 'like';
+                    sort = '&orderByField=like';
                     break;
             }
             const response = await Village.getVillageUser(page_num,8,sort,'cat',keyword)
-            console.log(response)
             setuserNicknameArray(response)
+            setUserCount(response)
         }
         getUser();
     }, [radioAtom, page_num, keyword]);
@@ -53,18 +53,18 @@ export default function GetUserApi() {
                     legend: { likeCount: number };
                     nickname: string;
                     accumulationPoint: number;
-                }) => (
+                },i : number) => (
                     <S.UserBox key={e.nickname}>
-                        <S.UserCharacter key={e.nickname}>
+                        <S.UserCharacter>
                             <img src={e.characterLocker[0].character.image}></img>
                         </S.UserCharacter>
                         {e.nickname}
-                        <S.UserHeart key={e.nickname}>
+                        <S.UserHeart>
                             <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></img>
                             {e.legend.likeCount}
                             <> point : {e.accumulationPoint}</>
                         </S.UserHeart>
-                        <S.UserName key={e.nickname}>{e.nickname}</S.UserName>
+                        <S.UserName>{e.nickname}</S.UserName>
                     </S.UserBox>
                 )
             )}
