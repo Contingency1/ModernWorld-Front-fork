@@ -10,41 +10,44 @@ import { Village } from '@/app/api/village';
 
 export default function GetUserApi() {
   const [userNicknameArray, setuserNicknameArray] = useState([]);
+  const [sort, setSort] = useState('');
   const [userCount, setUserCount] = useAtom(userCountAtom);
-
   const [radioAtom] = useAtom(SortStateAtom);
   const [page_num, setPage_Num] = useAtom(PageNumber);
   const [keyword] = useAtom(searchValue);
-
-  let sort = '';
 
   useEffect(() => {
     setPage_Num(1);
   }, [radioAtom, keyword]);
 
-  useEffect(() => {
-    async function getUser() {
-      switch (radioAtom) {
-        case '최신':
-          sort = '';
-          break;
-        case '랭킹':
-          sort = '&orderByField=accumulationPoint';
-          break;
-        case '좋아요':
-          sort = '&orderByField=like';
-          break;
-      }
-      const response = await Village.getVillageUser(
-        page_num,
-        8,
-        sort,
-        'cat',
-        keyword,
-      );
-      setuserNicknameArray(response);
-      setUserCount(response);
+  function Sort() {
+    switch (radioAtom) {
+      case '최신':
+        setSort('');
+        break;
+      case '랭킹':
+        setSort('accumulationPoint');
+        break;
+      case '좋아요':
+        setSort('like');
+        break;
     }
+  }
+
+  async function getUser() {
+    const response = await Village.getVillageUser({
+      pageNo: page_num,
+      take: 8,
+      orderByField: sort,
+      animal: 'cat',
+      nickname: keyword,
+    });
+    setuserNicknameArray(response);
+    setUserCount(response);
+  }
+
+  useEffect(() => {
+    Sort();
     getUser();
   }, [radioAtom, page_num, keyword]);
 

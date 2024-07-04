@@ -21,7 +21,7 @@ export interface styleType {
   img_margin_right?: string;
   img_margin_left?: string;
   font?: string;
-  margintop? : string;
+  margintop?: string;
   props?: string;
   //MainLogo
   grid1?: string;
