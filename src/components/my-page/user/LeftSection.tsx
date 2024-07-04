@@ -5,10 +5,11 @@ import Category from './Category';
 import USER from '@/app/api/user';
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { userDataAtom } from '@/states/userAtoms';
+import { userDataAtom, userCharacterChangeAtom } from '@/states/userAtoms';
 
 export default function LeftSection() {
   const [userData, setUserData] = useAtom(userDataAtom);
+  const [userCharacterChange] = useAtom(userCharacterChangeAtom);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,7 +22,7 @@ export default function LeftSection() {
     };
 
     getData();
-  }, []); //페이지 로딩 시 한 번만 요청 보냄.
+  }, [userCharacterChange]); //페이지 로딩 시 한 번만 요청 보냄.
 
   return (
     <>
