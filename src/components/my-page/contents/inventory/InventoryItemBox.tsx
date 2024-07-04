@@ -2,7 +2,7 @@
 
 import * as S from '@/components/my-page/contents/inventory/style';
 import { useAtom } from 'jotai';
-import { themeAtom, userItemAtom } from '@/states/itemAtoms';
+import { themeAtom } from '@/states/itemAtoms';
 import { useEffect, useState } from 'react';
 import INVENTORY from '@/app/api/inventory';
 
@@ -18,7 +18,7 @@ interface Item {
 export default function InventoryItemBox() {
   const [status, setStatus] = useState(true);
   const [theme] = useAtom<string>(themeAtom);
-  const [userItem, setUserItem] = useAtom(userItemAtom);
+  const [userItem, setUserItem] = useState([]);
 
   const getInventoryItem = async () => {
     const response = await INVENTORY.getInventoryItem(1, theme);
