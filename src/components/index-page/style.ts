@@ -1,5 +1,6 @@
 'use client';
 
+import { styleType } from '@/types/style';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -12,26 +13,19 @@ interface BackgroundColor {
 /**
  * 배경색, 그리드 부여
  */
-export const BackgroundColor = styled.body<BackgroundColor>`
+export const BackgroundColor = styled.body<styleType>`
     height: 100vh;
     width: 100vw;
-    background-color: ${(props) => props.backgroundcolor};
+    background-color: ${(props) => props.backColor};
     display: ${(props) => props.display};
     flex-direction: ${(props) => props.flexdirection};
     align-items: ${(props) => props.alignitems};
 `;
 
-interface MainLogo {
-    props?: string;
-    grid1?: string | number;
-    grid2?: string | number;
-    grid3?: string | number;
-    grid4?: string | number;
-}
 /**
  * 배경에 있는 커다란 새싹 백그라운드 이미지
  */
-export const MainLogo = styled.div<MainLogo>`
+export const MainLogo = styled.div<styleType>`
     width: 95wh;
     height: 100vh;
     background-size: 90% 110%;
@@ -45,37 +39,21 @@ export const MainLogo = styled.div<MainLogo>`
     grid-gap: 1%;
 `;
 
-interface MainLogoTextProps {
-    width?: number;
-    height?: number;
-    fontSize?: number;
-    margintop?: number;
-    textshadow?: number;
-}
 /**
  로그인 페이지 텍스트들
  @params width : number, height : number, font-size : number, margin-top : number 
  */
-export const MainLogoText = styled.h1<MainLogoTextProps>`
-    font-size: ${(props) => props.fontSize}%;
-    margin-top: ${(props) => props.margintop}%;
+export const MainLogoText = styled.h1<styleType>`
+    font-size: ${(props) => props.fontSize};
+    margin-top: ${(props) => props.margintop};
     text-shadow: 4px 4px white;
 `;
-
-interface LoginBtnLink {
-    textcolor: string;
-    img_width?: string;
-    img_height?: string;
-    img_margin_right?: string;
-    img_margin_left?: string;
-    font: number;
-}
 
 /**
  * selfmade login btn
  * @params color : string, textcolor : string, img_margin_right : string, img_width : string, img_height : string
  */
-export const LoginBtnLink = styled(Link)<LoginBtnLink>`
+export const LoginBtnLink = styled(Link)<styleType>`
     width: 18%;
     height: 90%;
     background-color: ${(props) => props.color};
@@ -97,17 +75,13 @@ export const LoginBtnLink = styled(Link)<LoginBtnLink>`
     }
 `;
 
-interface MainPowerBtn {
-    width?: number;
-    height?: number;
-}
 /**
  소셜 로그인 성공시 생성되는 접속버튼
- @params width : number, height : number
+ @params width : string, height : string
  */
-export const MainPowerBtn = styled.div<MainPowerBtn>`
-    width: ${(props) => props.width}px;
-    height: ${(props) => props.height}px;
+export const MainPowerBtn = styled.div<styleType>`
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -141,19 +115,10 @@ export const InfoNewCharacter = styled.div`
 `;
 
 /**
- 캐릭터 생성 최상위 부모 박스
- */
-
-interface ChoiseCharacterBox {
-    display?: string;
-    flexdirection?: string;
-    alignitems?: string;
-}
-/**
  메인박스
  */
 
-export const ChoiseCharacterBox = styled.div<ChoiseCharacterBox>`
+export const ChoiseCharacterBox = styled.div<styleType>`
     width: 80%;
     height: 53%;
     background-color: white;
@@ -220,7 +185,7 @@ export const NewNicknamecondition = styled.div`
 /**
  캐릭터 생성 박스
  */
-export const ShowFirstCharacterBox = styled.div<ChoiseCharacterBox>`
+export const ShowFirstCharacterBox = styled.div<styleType>`
     width: 100%;
     height: 80%;
     border-radius: 33px;

@@ -1,8 +1,9 @@
 'use client';
 
+import { styleType } from '@/types/style';
 import styled from 'styled-components';
 
-export const BackgroundDisplay = styled.div`
+export const BackgroundDisplay = styled.div<styleType>`
     width: 100vw;
     height: 100vh;
     background-color: ${(props) => props.color};
@@ -50,13 +51,10 @@ export const SearchDiv = styled.div`
     }
 `;
 
-interface SearchInput {
-    inputcolor: string;
-}
 /**
  * 검색input
  */
-export const SearchInput = styled.input<SearchInput>`
+export const SearchInput = styled.input<styleType>`
     width: 80%;
     border-width: 0;
     outline: none;
@@ -150,10 +148,8 @@ export const UserHeart = styled.div`
         height: 10px;
     }
 `;
-interface SortCheckBox {
-    check: boolean;
-}
-export const SortCheckBox = styled.div<SortCheckBox>`
+
+export const SortCheckBox = styled.div<styleType>`
     background-color: ${(props) => (props.check ? 'pink' : 'grey')};
     width: 100px;
     height: 50px;

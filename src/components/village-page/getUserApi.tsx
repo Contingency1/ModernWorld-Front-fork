@@ -1,12 +1,12 @@
 'use client';
 
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as S from '@/components/village-page/style';
 import { SortStateAtom } from './SortDiv';
 import { atom, useAtom } from 'jotai';
 import { PageNumber } from './Pagenation';
 import { searchValue } from './SearchBox';
+import { Village } from '@/app/api/village';
 
 export default function GetUserApi() {
     const [userNicknameArray, setuserNicknameArray] = useState([]);
@@ -29,23 +29,15 @@ export default function GetUserApi() {
                     sort = '';
                     break;
                 case '랭킹':
-                    sort = '&orderByField=accumulationPoint';
+                    sort = 'accumulationPoint';
                     break;
                 case '좋아요':
-                    sort = '&orderByField=like';
+                    sort = 'like';
                     break;
             }
-
-            try {
-                const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/users?&take=8&pageNo=${page_num}${sort}&nickname=${keyword}`
-                );
-
-                setuserNicknameArray(response.data);
-                setUserCount(response.data);
-            } catch (error) {
-                console.error(error);
-            }
+            const response = await Village.getVillageUser(page_num,8,sort,'cat',keyword)
+            console.log(response)
+            setuserNicknameArray(response)
         }
         getUser();
     }, [radioAtom, page_num, keyword]);
