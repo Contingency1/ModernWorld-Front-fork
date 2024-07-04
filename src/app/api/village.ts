@@ -10,14 +10,16 @@ interface villageType {
 
 export const Village = {
   async getVillageUser(params: villageType): Promise<any> {
+    const { pageNo, take, orderByField, animal, nickname } = params;
+
+    const queryParams: villageType = { pageNo, take, animal };
+
+    orderByField ? (queryParams.orderByField = orderByField) : null;
+
+    nickname ? (queryParams.nickname = nickname) : null;
+
     const result = await instance.get(`users`, {
-      params: {
-        pageNo: params.pageNo,
-        take: params.take,
-        orderByField: params.orderByField,
-        animal: params.animal,
-        nickname: params.nickname,
-      },
+      params: queryParams,
     });
     return result.data;
   },
