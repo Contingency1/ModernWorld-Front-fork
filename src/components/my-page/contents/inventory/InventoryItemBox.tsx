@@ -10,26 +10,18 @@ import {
 } from '@/states/inventoryAtoms';
 import { useEffect, useState } from 'react';
 import INVENTORY from '@/app/api/inventory';
-
-interface Item {
-  no: number;
-  itemNo: number;
-  status: boolean;
-  item: {
-    image: string;
-  };
-}
+import { InventoryItemType } from '@/types/inventory';
 
 export default function InventoryItemBox() {
-  const [statusView, setStatusView] = useState('착용');
+  const [statusView, setStatusView] = useState<string>('착용');
   const [theme] = useAtom<string>(themeAtom);
-  const [userItem, setUserItem] = useState([]);
-  const [userCharacter, setUserCharacter] = useState([]);
-  const [characterType] = useAtom(characterTypeAtom);
-  const [userCharacterChange, setUserCharacterChange] = useAtom(
+  const [userItem, setUserItem] = useState<any>([]);
+  const [userCharacter, setUserCharacter] = useState<any>([]);
+  const [characterType] = useAtom<string>(characterTypeAtom);
+  const [userCharacterChange, setUserCharacterChange] = useAtom<boolean>(
     userCharacterChangeAtom,
   );
-  const [selectedType] = useAtom(selectedTypeAtom);
+  const [selectedType] = useAtom<string>(selectedTypeAtom);
 
   const getInventoryItem = async () => {
     const response = await INVENTORY.getInventoryItem(1, theme);
@@ -68,7 +60,7 @@ export default function InventoryItemBox() {
     <>
       <S.BookMarkBox height="65vh" backColor="#e9eff1">
         {(selectedType === 'objects' ? userItem : userCharacter).map(
-          (i: any) => (
+          (i: InventoryItemType) => (
             <div
               key={i.no}
               onClick={(e) => {
