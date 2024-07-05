@@ -2,7 +2,12 @@
 
 import * as S from '@/components/my-page/contents/inventory/style';
 import { useAtom } from 'jotai';
-import { themeAtom, userItemAtom } from '@/states/itemAtoms';
+import { userCharacterChangeAtom } from '@/states/userAtoms';
+import {
+  themeAtom,
+  characterTypeAtom,
+  selectedTypeAtom,
+} from '@/states/inventoryAtoms';
 import { useEffect, useState } from 'react';
 import INVENTORY from '@/app/api/inventory';
 
@@ -16,41 +21,87 @@ interface Item {
 }
 
 export default function InventoryItemBox() {
-  const [status, setStatus] = useState(true);
+  const [statusView, setStatusView] = useState('착용');
   const [theme] = useAtom<string>(themeAtom);
-  const [userItem, setUserItem] = useAtom(userItemAtom);
+  const [userItem, setUserItem] = useState([]);
+  const [userCharacter, setUserCharacter] = useState([]);
+  const [characterType] = useAtom(characterTypeAtom);
+  const [userCharacterChange, setUserCharacterChange] = useAtom(
+    userCharacterChangeAtom,
+  );
+  const [selectedType] = useAtom(selectedTypeAtom);
 
   const getInventoryItem = async () => {
     const response = await INVENTORY.getInventoryItem(1, theme);
     setUserItem(response);
-    setStatus(!status);
+  };
+
+  const getInventoryCharacter = async () => {
+    const response = await INVENTORY.getInventoryCharacter(1, characterType);
+    setUserCharacter(response);
+  };
+
+  const setItemStatus = async (no: number, status: boolean) => {
+    await INVENTORY.setItemStatus(no, status);
+    statusView === '착용' ? setStatusView('미착용') : setStatusView('착용');
+  };
+
+  const setCharacterStatus = async (no: number, status: boolean) => {
+    await INVENTORY.setCharacterStatus(no, status);
+    setUserCharacterChange(!userCharacterChange);
+    statusView === '착용' ? setStatusView('미착용') : setStatusView('착용');
+  };
+
+  const dynamicFetch = async () => {
+    if (selectedType === 'objects') {
+      await getInventoryItem();
+    } else {
+      await getInventoryCharacter();
+    }
   };
 
   useEffect(() => {
-    getInventoryItem();
-  }, [theme, status]);
+    dynamicFetch();
+  }, [selectedType, statusView, theme, characterType]);
 
   return (
     <>
       <S.BookMarkBox height="65vh" backColor="#e9eff1">
-        {userItem.map((i: any) => (
-          <div
-            key={i.no}
-            onClick={(e) => {
-              INVENTORY.setItemStatus(i.itemNo, i.status);
-            }}
-            style={{ cursor: 'pointer' }}>
-            <S.ItemDiv key={i.no}>
-              {i.status ? (
-                <S.StatusCheck color="#5A61E6" />
-              ) : (
-                <S.StatusCheck color="#EC4A4A" />
-              )}
-              <S.Img img={i.item.image} />
-            </S.ItemDiv>
-          </div>
-        ))}
-        {[...Array(12 - userItem.length)].map((_, index) => (
+        {(selectedType === 'objects' ? userItem : userCharacter).map(
+          (i: any) => (
+            <div
+              key={i.no}
+              onClick={(e) => {
+                selectedType === 'objects'
+                  ? setItemStatus(i.itemNo, i.status)
+                  : setCharacterStatus(i.characterNo, i.status);
+              }}
+              style={{ cursor: 'pointer' }}>
+              <S.ItemDiv key={i.no}>
+                {i.status ? (
+                  <S.StatusCheck color="#5A61E6" />
+                ) : (
+                  <S.StatusCheck color="#EC4A4A" />
+                )}
+                <S.Img
+                  img={
+                    selectedType === 'objects'
+                      ? i.item.image
+                      : i.character.image
+                  }
+                />
+              </S.ItemDiv>
+            </div>
+          ),
+        )}
+        {[
+          ...Array(
+            12 -
+              (selectedType === 'objects'
+                ? userItem.length
+                : userCharacter.length),
+          ),
+        ].map((_, index) => (
           <S.ItemDiv key={`null-${index}`}></S.ItemDiv>
         ))}
       </S.BookMarkBox>

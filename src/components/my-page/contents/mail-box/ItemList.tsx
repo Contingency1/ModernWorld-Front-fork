@@ -1,7 +1,7 @@
 import * as S from "@/components/my-page/contents/mail-box/style";
 import ItemListEle from "./ItemListEle";
-
-export default function ItemList(props) {
+;
+export default function ItemList(props : any) {
   return (
     <>
       <S.ContentsView height="20vh">

@@ -1,13 +1,9 @@
 'use client';
 
+import { styleType } from '@/types/style';
 import styled from 'styled-components';
 
-interface RootDiv {
-    width: string;
-    height: string;
-}
-
-export const RootDiv = styled.div<RootDiv>`
+export const RootDiv = styled.div<styleType>`
     position: relative;
     width: ${(props) => props.width};
     height: ${(props) => props.height};
