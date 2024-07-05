@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { styleType } from '@/types/style';
+import { StyleType } from '@/types/style';
 
 /** Background Color CSS */
-export const BodyContainer = styled.body<styleType>`
+export const BodyContainer = styled.body<StyleType>`
   background-color: ${(props) => props.color};
 `;
 
@@ -21,13 +21,13 @@ export const GridContainer = styled.div`
 `;
 
 /** 마이페이지 왼쪽 오른쪽 섹션 분리 */
-export const OutLineSection = styled.div<styleType>`
+export const OutLineSection = styled.div<StyleType>`
   height: ${(props) => props.height};
   width: ${(props) => props.width};
 `;
 
 /** 캐릭터 이미지 및 닉네임 표시 */
-export const CharacterInfo = styled.div<styleType>`
+export const CharacterInfo = styled.div<StyleType>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +44,7 @@ export const NameSection = styled.div`
 `;
 
 /** 포인트 표시 구역 */
-export const PointInfo = styled.div<styleType>`
+export const PointInfo = styled.div<StyleType>`
   height: 19vh;
   width: 100%;
   text-align: center;
@@ -76,7 +76,7 @@ export const CategorySection = styled.div`
 `;
 
 /** 카테고리 요소들 */
-export const CategoryEle = styled.div<styleType>`
+export const CategoryEle = styled.div<StyleType>`
   border-top: ${(props) => props.borderTop};
   border-bottom: ${(props) => props.borderBottom};
   border-left: ${(props) => props.borderLeft};
@@ -86,7 +86,7 @@ export const CategoryEle = styled.div<styleType>`
 `;
 
 /** 카테고리 요소의 각 링크 태그 */
-export const LinkBox = styled(Link)<styleType>`
+export const LinkBox = styled(Link)<StyleType>`
   color: ${(props) => props.color || '#696969'};
   text-decoration-line: none;
 

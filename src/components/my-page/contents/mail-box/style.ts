@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { styleType } from '@/types/style';
+import { StyleType } from '@/types/style';
 
 /**mail box layout 그리드 설정  */
 export const Grid = styled.div`
@@ -27,7 +27,7 @@ export const MailBoxSection = styled.div`
 `;
 
 /** 받은/보낸 item 설명 & 받은 아이템 목록 보여주는 fff div */
-export const ContentsView = styled.div<styleType>`
+export const ContentsView = styled.div<StyleType>`
   width: 25vw;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ export const UserInfo = styled.div`
 `;
 
 /** margin 값을 줄 수 있는 div 스타일 */
-export const MarginDiv = styled.div<styleType>`
+export const MarginDiv = styled.div<StyleType>`
   margin: ${(props) => props.margin};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};
@@ -67,7 +67,7 @@ export const ItemImg = styled.div`
 `;
 
 /** font size 설정하는 div */
-export const FontSize = styled.div<styleType>`
+export const FontSize = styled.div<StyleType>`
   font-size: ${(props) => props.fontSize};
 `;
 

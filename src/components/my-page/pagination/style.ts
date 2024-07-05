@@ -1,9 +1,9 @@
 'use client';
 import styled from 'styled-components';
-import { styleType } from '@/types/style';
+import { StyleType } from '@/types/style';
 
 /** 페이지네이션 담는 div */
-export const PageSection = styled.div<styleType>`
+export const PageSection = styled.div<StyleType>`
   grid-column: 1 / -1;
   width: ${(props) => props.width};
   display: flex;
