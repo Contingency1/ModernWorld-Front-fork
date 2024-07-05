@@ -9,7 +9,11 @@ interface inventory {
 const INVENTORY = {
   path: `/inventory`,
   /** 인벤토리 아이템 불러오기 API */
-  async getInventoryItem(user: number, theme: string): Promise<any> {
+  async getInventoryItem(
+    user: number,
+    theme?: string,
+    status?: boolean,
+  ): Promise<any> {
     const result: AxiosResponse = await instance.get(
       `${INVENTORY.path}/users/${user}`,
       {

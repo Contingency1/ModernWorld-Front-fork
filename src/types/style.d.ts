@@ -10,18 +10,18 @@ export interface styleType {
   color?: string;
   img?: string;
   fontSize?: string;
-  inputcolor?: string;
+  inputColor?: string;
   check?: boolean;
   display?: string;
-  flexdirection?: string;
-  alignitems?: string;
-  textcolor?: string;
+  flexDirection?: string;
+  alignItems?: string;
+  textColor?: string;
   img_width?: string;
   img_height?: string;
   img_margin_right?: string;
   img_margin_left?: string;
   font?: string;
-  margintop?: string;
+  marginTop?: string;
   props?: string;
   //MainLogo
   grid1?: string;

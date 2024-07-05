@@ -1,8 +1,8 @@
-import { myRoom } from '@/app/api/myRoom';
 import * as S from './style';
+import INVENTORY from '@/app/api/inventory';
 
 export async function MyRoom() {
-  const userItemArray = await myRoom();
+  const userItemArray = await INVENTORY.getInventoryItem(1, undefined, true);
   return (
     <>
       <S.RootDiv width="100vw" height="100vh">
