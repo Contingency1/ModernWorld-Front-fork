@@ -11,18 +11,14 @@ export default function LeftSection() {
   const [userData, setUserData] = useAtom(userDataAtom);
   const [userCharacterChange] = useAtom<boolean>(userCharacterChangeAtom);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await USER.getUserInfo(1); //유저 아이디
-        setUserData(response);
-      } catch (error) {
-        console.error('사용자 정보 불러오기 실패:', error);
-      }
-    };
+  const getUserInfo = async () => {
+    const response = await USER.getUserInfo(1); //유저 아이디
+    setUserData(response);
+  };
 
-    getData();
-  }, [userCharacterChange]); //페이지 로딩 시 한 번만 요청 보냄.
+  useEffect(() => {
+    getUserInfo();
+  }, [userCharacterChange]); //캐릭터가 변경될 때마다 요청 보냄
 
   return (
     <>
