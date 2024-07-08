@@ -1,9 +1,5 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
-<<<<<<< HEAD
-=======
-import { InventoryApiType } from '@/types/inventory';
->>>>>>> 4bebb964f6474b8e01986b29f81b23487797b42a
 
 const INVENTORY = {
   path: `/inventory`,
