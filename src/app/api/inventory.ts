@@ -1,11 +1,6 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
 
-interface inventory {
-  user: number;
-  theme: string;
-}
-
 const INVENTORY = {
   path: `/inventory`,
   /** 인벤토리 아이템 불러오기 API */
@@ -19,6 +14,7 @@ const INVENTORY = {
       {
         params: {
           theme: theme,
+          status: status,
         },
       },
     );

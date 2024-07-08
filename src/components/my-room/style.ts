@@ -1,46 +1,91 @@
 'use client';
 
-import { styleType } from '@/types/style';
+import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
-export const RootDiv = styled.div<styleType>`
-    position: relative;
-    width: ${(props) => props.width};
-    height: ${(props) => props.height};
+export const RootDiv = styled.div<StyleType>`
+  position: relative;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;
 
 export const Grid = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
 `;
 
 export const BackGroundGrid = styled(Grid)`
-    grid-template-rows: 65% 35%;
+  grid-template-rows: 65% 35%;
 `;
 
 export const WallPaper = styled.div`
-    background-color: #b5e4ff;
-    width: 100%;
-    height: 100%;
+  background-color: #b5e4ff;
+  width: 100%;
+  height: 100%;
 `;
 
 export const Floor = styled.div`
-    background-color: #d5f0ff;
-    width: 100%;
-    height: 100%;
+  background-color: #d5f0ff;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ItemsGrid = styled(Grid)`
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 65% 35%;
-    align-items: center;
+  grid-template-columns: 33.3% 33.4% 33.3%;
+  grid-template-rows: 65% 35%;
+  align-items: center;
 `;
 
-export const ItemImageSize = styled.img`
-    width: 100px;
-    height: 100px;
+export const DivElement = styled.div<StyleType>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+`;
+
+export const Place_1_4_5 = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Place_1 = styled.div`
+  width: 100%;
+  height: 50%;
+`;
+
+export const Place_4_5 = styled.div`
+  display: flex;
+  width: 100%;
+  height: 50%;
+`;
+
+export const Place_4 = styled.div`
+  width: 50%;
+  height: 100%;
+`;
+
+export const Place_5 = styled.div`
+  width: 50%;
+  height: 100%;
+`;
+
+export const Place_2 = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const Place_3 = styled.div`
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+export const ItemImageSize = styled.div`
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
 `;

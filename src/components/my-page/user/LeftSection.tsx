@@ -9,7 +9,7 @@ import { userDataAtom, userCharacterChangeAtom } from '@/states/userAtoms';
 
 export default function LeftSection() {
   const [userData, setUserData] = useAtom(userDataAtom);
-  const [userCharacterChange] = useAtom(userCharacterChangeAtom);
+  const [userCharacterChange] = useAtom<boolean>(userCharacterChangeAtom);
 
   useEffect(() => {
     const getData = async () => {
