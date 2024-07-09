@@ -1,3 +1,5 @@
-import { atom } from "jotai";
+import { atom } from 'jotai';
 
-export const typeAtom = atom(0);
+export const selectMailBoxTypeAtom = atom(0);
+export const senderPresentAtom = atom([]);
+export const receiverPresentAtom = atom([]);
