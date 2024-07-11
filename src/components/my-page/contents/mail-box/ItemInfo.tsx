@@ -1,3 +1,5 @@
+'use client';
+
 import * as S from '@/components/my-page/contents/mail-box/style';
 import { useAtomValue } from 'jotai';
 import {

@@ -6,16 +6,12 @@ import {
   selectMailBoxTypeAtom,
   senderPresentAtom,
   receiverPresentAtom,
-  viewSenderPresentNo,
-  viewReceiverPresentNo,
 } from '@/states/mailboxAtoms';
 
 export default function GiftTitle(props: any) {
   const type = useAtomValue(selectMailBoxTypeAtom);
   const senderPresent = useAtomValue(senderPresentAtom);
   const receiverPresent = useAtomValue(receiverPresentAtom);
-  const viewSenderPresent = useAtomValue(viewSenderPresentNo);
-  const viewReceiverPresent = useAtomValue(viewReceiverPresentNo);
   return (
     <>
       <S.MarginDiv margin="0.5vh 0 1vh 0" fontSize="28px">
@@ -36,9 +32,9 @@ export default function GiftTitle(props: any) {
           width="20vw"
         />
         <S.MarginDiv margin="1vw">
-          {props.title === '보낸 선물'
+          {/* {props.title === '보낸 선물'
             ? viewSenderPresent.userPresentReceiverNo.nickname
-            : viewReceiverPresent.userPresentSenderNo.nickname}{' '}
+            : viewReceiverPresent.userPresentSenderNo.nickname}{' '} */}
           님에게 {props.title === '보낸 선물' ? '보냈습니다.' : '받았습니다.'}
         </S.MarginDiv>
       </S.UserInfo>
