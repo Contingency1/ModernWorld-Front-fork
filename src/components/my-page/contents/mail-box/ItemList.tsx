@@ -2,7 +2,7 @@ import * as S from '@/components/my-page/contents/mail-box/style';
 import ItemListEle from './ItemListEle';
 import { senderPresentAtom, receiverPresentAtom } from '@/states/mailboxAtoms';
 import { useAtomValue } from 'jotai';
-export default function ItemList(props: any) {
+export default function ItemList(props: { title: string }) {
   const senderPresent = useAtomValue(senderPresentAtom);
   const receiverPresent = useAtomValue(receiverPresentAtom);
 
