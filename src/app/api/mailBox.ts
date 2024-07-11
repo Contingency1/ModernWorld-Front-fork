@@ -13,6 +13,14 @@ const MAILBOX = {
     });
     return result.data;
   },
+
+  /** 특정 선물 정보 불러오기 API */
+  async getPresent(presentNo: number): Promise<any> {
+    const result: AxiosResponse = await instance.get(
+      `${MAILBOX.path}/${presentNo}`,
+    );
+    return result.data;
+  },
 };
 
 export default MAILBOX;

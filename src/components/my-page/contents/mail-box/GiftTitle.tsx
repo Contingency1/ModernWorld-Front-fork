@@ -32,8 +32,10 @@ export default function GiftTitle(props: any) {
           width="20vw"
         />
         <S.MarginDiv margin="1vw">
-          재진 님에게{' '}
-          {props.title === '보낸 선물' ? '보냈습니다.' : '받았습니다.'}
+          {/* {props.title === '보낸 선물'
+            ? viewSenderPresent.userPresentReceiverNo.nickname
+            : viewReceiverPresent.userPresentSenderNo.nickname}{' '} */}
+          님에게 {props.title === '보낸 선물' ? '보냈습니다.' : '받았습니다.'}
         </S.MarginDiv>
       </S.UserInfo>
     </>

@@ -9,7 +9,7 @@ export default function MailBoxBodyEle(props: any) {
     <>
       <S.MailBoxSection>
         <GiftTitle title={props.title} />
-        <ItemInfo />
+        <ItemInfo title={props.title} />
         <Pagination width="70%" />
         <ItemList title={props.title} />
       </S.MailBoxSection>
