@@ -67,8 +67,8 @@ export const Place_6_7_8 = styled.div`
 export const ItemImageSize = styled.div`
   width: 100px;
   height: 100px;
-  border: 3px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 3px solid black;
 `;
