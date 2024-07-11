@@ -72,3 +72,8 @@ export const ItemImageSize = styled.div`
   align-items: center;
   border: 3px solid black;
 `;
+
+export const imagetest = styled.img`
+  width: 100px;
+  height: 100px;
+`;
