@@ -41,6 +41,22 @@ export default function ItemInfo(props: { title: string }) {
     }
   }, [selectMailBoxType, receiverPresentNo, senderPresentNo]);
 
+  const statusChange = (s: string) => {
+    switch (s) {
+      case 'unread':
+        return '안읽음';
+        break;
+      case 'read':
+        return '읽　음';
+        break;
+      case 'accept':
+        return '수　락';
+        break;
+      case 'reject':
+        return '거　절';
+    }
+  };
+
   return (
     <>
       <S.ContentsView height="25vh">
@@ -60,9 +76,9 @@ export default function ItemInfo(props: { title: string }) {
                 : receiverPresentInfo.item.image
             }
             alt="img"
-            width="90vw"
+            height="90vh"
           />
-          <S.FontSize fontSize="20px">
+          <S.FontSize fontSize="18px">
             {props.title === '보낸 선물'
               ? senderPresentInfo.item.name
               : receiverPresentInfo.item.name}
@@ -72,7 +88,7 @@ export default function ItemInfo(props: { title: string }) {
               ? senderPresentInfo.item.description
               : receiverPresentInfo.item.description}
           </S.FontSize>
-          <S.FontSize fontSize="14px">
+          <S.FontSize fontSize="12px">
             {props.title === '보낸 선물'
               ? senderPresentInfo.createdAt
                   .replace(/T/, ' ')
@@ -81,7 +97,17 @@ export default function ItemInfo(props: { title: string }) {
                   .replace(/T/, ' ')
                   .replace(/\..+/, '')}
           </S.FontSize>
-          <S.FontSize fontSize="18px">읽음</S.FontSize>
+
+          {props.title === '보낸 선물' ? (
+            <S.StatusFont fontSize="18px">
+              {statusChange(senderPresentInfo.status)}
+            </S.StatusFont>
+          ) : (
+            <S.ItemApprovalControls>
+              <div>수락하기</div>
+              <div>거절하기</div>
+            </S.ItemApprovalControls>
+          )}
         </S.ItemImg>
       </S.ContentsView>
     </>
