@@ -4,14 +4,8 @@ import { PresentListType, PresentInfo } from '@/types/mailBox';
 export const selectMailBoxTypeAtom = atom(1);
 export const senderPresentAtom = atom<PresentListType[]>([]);
 export const receiverPresentAtom = atom<PresentListType[]>([]);
-export const viewSenderPresentNoAtom = atom((get) => {
-  const data = get(senderPresentAtom);
-  return data[0];
-});
-export const viewReceiverPresentNoAtom = atom((get) => {
-  const data = get(receiverPresentAtom);
-  return data[0];
-});
+export const viewSenderPresentNoAtom = atom<number>(0);
+export const viewReceiverPresentNoAtom = atom<number>(0);
 
 //presentInfo 공통 초기값
 const presentInfoData: PresentInfo = {

@@ -24,12 +24,12 @@ export default function ItemInfo(props: { title: string }) {
   );
 
   const getSenderPresent = async () => {
-    const response = await MAILBOX.getPresent(senderPresentNo.no);
+    const response = await MAILBOX.getPresent(senderPresentNo);
     setSenderPresentInfo(response);
   };
 
   const getReceiverPresent = async () => {
-    const response = await MAILBOX.getPresent(receiverPresentNo.no);
+    const response = await MAILBOX.getPresent(receiverPresentNo);
     setReceiverPresentInfo(response);
   };
 
@@ -81,6 +81,7 @@ export default function ItemInfo(props: { title: string }) {
                   .replace(/T/, ' ')
                   .replace(/\..+/, '')}
           </S.FontSize>
+          <S.FontSize fontSize="18px">읽음</S.FontSize>
         </S.ItemImg>
       </S.ContentsView>
     </>
