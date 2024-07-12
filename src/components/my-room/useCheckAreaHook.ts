@@ -1,6 +1,7 @@
 'use client';
 
 import INVENTORY from '@/app/api/inventory';
+import { InventoryItemType } from '@/types/inventory';
 import { useEffect, useState } from 'react';
 
 export default function useCheckAreaHook(AreaNumber: number) {
@@ -15,9 +16,9 @@ export default function useCheckAreaHook(AreaNumber: number) {
     getUserInventoryStatus();
   }, []);
 
-  console.log();
-
-  return item.filter(
-    (e: { item: { type: string } }) => e.item.type === `${AreaNumber}번 타입`,
-  )[0]?.item.image;
+  return (
+    item.filter(
+      (e: InventoryItemType) => e.item.type === `${AreaNumber}번 타입`,
+    )[0] as InventoryItemType
+  )?.item.image;
 }
