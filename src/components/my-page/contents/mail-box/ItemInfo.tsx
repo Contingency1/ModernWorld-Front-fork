@@ -1,15 +1,45 @@
 'use client';
 
 import * as S from '@/components/my-page/contents/mail-box/style';
-import { useAtomValue } from 'jotai';
+import { useEffect } from 'react';
+import { useAtomValue, useAtom } from 'jotai';
 import {
-  viewReceiverPresentNo,
-  viewSenderPresentNo,
+  selectMailBoxTypeAtom,
+  viewReceiverPresentNoAtom,
+  viewSenderPresentNoAtom,
+  senderPresentInfoAtom,
+  receiverPresentInfoAtom,
 } from '@/states/mailboxAtoms';
+import MAILBOX from '@/app/api/mailBox';
 
-export default function ItemInfo(props: any) {
-  const viewSenderPresent = useAtomValue(viewSenderPresentNo);
-  const viewReceiverPresent = useAtomValue(viewReceiverPresentNo);
+export default function ItemInfo(props: { title: string }) {
+  const selectMailBoxType = useAtomValue(selectMailBoxTypeAtom);
+  const receiverPresentNo = useAtomValue(viewReceiverPresentNoAtom);
+  const senderPresentNo = useAtomValue(viewSenderPresentNoAtom);
+  const [receiverPresentInfo, setReceiverPresentInfo] = useAtom(
+    receiverPresentInfoAtom,
+  );
+  const [senderPresentInfo, setSenderPresentInfo] = useAtom(
+    senderPresentInfoAtom,
+  );
+
+  const getSenderPresent = async () => {
+    const response = await MAILBOX.getPresent(senderPresentNo);
+    setSenderPresentInfo(response);
+  };
+
+  const getReceiverPresent = async () => {
+    const response = await MAILBOX.getPresent(receiverPresentNo);
+    setReceiverPresentInfo(response);
+  };
+
+  useEffect(() => {
+    if (selectMailBoxType === 0) {
+    } else {
+      getSenderPresent();
+      getReceiverPresent();
+    }
+  }, [selectMailBoxType, receiverPresentNo, senderPresentNo]);
 
   return (
     <>
@@ -23,10 +53,35 @@ export default function ItemInfo(props: any) {
         </S.DelSection>
 
         <S.ItemImg>
-          <img src="" alt="img" width="90vw" />
-          <S.FontSize fontSize="20px">아이템 이름</S.FontSize>
-          <S.FontSize fontSize="14px">아이템 설명</S.FontSize>
-          <S.FontSize fontSize="14px">보낸 날짜</S.FontSize>
+          <img
+            src={
+              props.title === '보낸 선물'
+                ? senderPresentInfo.item.image
+                : receiverPresentInfo.item.image
+            }
+            alt="img"
+            width="90vw"
+          />
+          <S.FontSize fontSize="20px">
+            {props.title === '보낸 선물'
+              ? senderPresentInfo.item.name
+              : receiverPresentInfo.item.name}
+          </S.FontSize>
+          <S.FontSize fontSize="14px">
+            {props.title === '보낸 선물'
+              ? senderPresentInfo.item.description
+              : receiverPresentInfo.item.description}
+          </S.FontSize>
+          <S.FontSize fontSize="14px">
+            {props.title === '보낸 선물'
+              ? senderPresentInfo.createdAt
+                  .replace(/T/, ' ')
+                  .replace(/\..+/, '')
+              : receiverPresentInfo.createdAt
+                  .replace(/T/, ' ')
+                  .replace(/\..+/, '')}
+          </S.FontSize>
+          <S.FontSize fontSize="18px">읽음</S.FontSize>
         </S.ItemImg>
       </S.ContentsView>
     </>
