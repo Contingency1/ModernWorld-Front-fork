@@ -5,51 +5,57 @@ import {
   senderPresentAtom,
   receiverPresentAtom,
 } from '@/states/mailboxAtoms';
-import { useAtom, useAtomValue } from 'jotai';
-import Link from 'next/link';
+import { useSetAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export default function Pagination(props: any) {
   const [sendPage, setSendPage] = useState(0);
   const [receivePage, setReceivePage] = useState(0);
-  const [viewSenderPresentNo, setViewSenderPresentNo] = useAtom(
-    viewSenderPresentNoAtom,
-  );
-  const [viewReceiverPresentNo, setViewReceiverPresentNo] = useAtom(
-    viewReceiverPresentNoAtom,
-  );
+  const setViewSenderPresentNo = useSetAtom(viewSenderPresentNoAtom);
+  const setViewReceiverPresentNo = useSetAtom(viewReceiverPresentNoAtom);
   const senderPresents = useAtomValue(senderPresentAtom);
   const receiverPresents = useAtomValue(receiverPresentAtom);
+
   const nextPage = () => {
     if (props.title === '보낸 선물') {
-      sendPage < senderPresents.length - 1 ? setSendPage(sendPage + 1) : null;
+      setSendPage((prevPage) =>
+        prevPage < senderPresents.length - 1 ? prevPage + 1 : prevPage,
+      );
     } else {
-      receivePage < receiverPresents.length - 1
-        ? setReceivePage(receivePage + 1)
-        : null;
+      setReceivePage((prevPage) =>
+        prevPage < receiverPresents.length - 1 ? prevPage + 1 : prevPage,
+      );
     }
   };
 
   const previousPage = () => {
     if (props.title === '보낸 선물') {
-      sendPage === 0 ? null : setSendPage(sendPage - 1);
+      setSendPage((prevPage) => (prevPage === 0 ? prevPage : prevPage - 1));
     } else {
-      receivePage === 0 ? null : setReceivePage(receivePage - 1);
+      setReceivePage((prevPage) => (prevPage === 0 ? prevPage : prevPage - 1));
     }
   };
 
   useEffect(() => {
-    setViewReceiverPresentNo(receiverPresents[receivePage]?.no);
-    setViewSenderPresentNo(senderPresents[sendPage]?.no);
-  }, [receivePage, sendPage, receiverPresents, senderPresents]);
+    if (receiverPresents.length > 0) {
+      setViewReceiverPresentNo(receiverPresents[receivePage]?.no);
+    }
+    if (senderPresents.length > 0) {
+      setViewSenderPresentNo(senderPresents[sendPage]?.no);
+    }
+  }, [
+    receivePage,
+    sendPage,
+    receiverPresents,
+    senderPresents,
+    setViewReceiverPresentNo,
+    setViewSenderPresentNo,
+  ]);
 
   return (
     <>
       <S.PageSection width={`${props.width}`}>
-        <div
-          onClick={() => {
-            previousPage();
-          }}>
+        <div onClick={previousPage}>
           <img
             src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"
             alt="<"
@@ -60,13 +66,10 @@ export default function Pagination(props: any) {
         {props.title === '보낸 선물'
           ? senderPresents.length
           : receiverPresents.length}
-        <div
-          onClick={() => {
-            nextPage();
-          }}>
+        <div onClick={nextPage}>
           <img
             src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"
-            alt="<"
+            alt=">"
             width="30vw"
           />
         </div>
