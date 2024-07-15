@@ -42,7 +42,7 @@ const INVENTORY = {
     return response.data;
   },
   /** 인벤토리에 캐릭터 불러오기 API */
-  async getInventoryCharacter(user: number, type: string): Promise<any> {
+  async getInventoryCharacter(user: number, type?: string): Promise<any> {
     const result: AxiosResponse = await instance.get(
       `/character-locker/users/${user}`,
       {

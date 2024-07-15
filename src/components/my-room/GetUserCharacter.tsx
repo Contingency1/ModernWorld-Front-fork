@@ -9,7 +9,7 @@ export const GetUserCharacter = (props: { userNo: number }) => {
   const [character, setCharacter] = useState([]);
 
   const getUserCharacter = async () => {
-    const response = await INVENTORY.getInventoryCharacter(props.userNo, 'cat');
+    const response = await INVENTORY.getInventoryCharacter(props.userNo);
     setCharacter(response);
   };
 
@@ -19,14 +19,14 @@ export const GetUserCharacter = (props: { userNo: number }) => {
 
   return (
     <>
-      <S.imagetest
+      <S.CharacterImage
         src={
           (
             character.filter(
               (e: InventoryItemType) => e.status,
             )[0] as InventoryItemType
           )?.character.image
-        }></S.imagetest>
+        }></S.CharacterImage>
     </>
   );
 };
