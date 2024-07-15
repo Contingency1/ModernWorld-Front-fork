@@ -28,6 +28,10 @@ interface Props {
   grid2: string;
   grid3: string;
   grid4: string;
+  margin_left: string;
+  margin_right: string;
+  margin_top: string;
+  z_index: number;
 }
 
 export interface StyleType extends Partial<Props> {}

@@ -1,30 +1,55 @@
-import { myRoom } from '@/app/api/myRoom';
-import * as S from './style';
+'use client';
 
-export async function MyRoom() {
-  const userItemArray = await myRoom();
+import * as S from './style';
+import { Area1_4_5 } from './Area1_4_5';
+import { Area6_7_8 } from './Area6_7_8';
+import useCheckAreaHook from './useCheckAreaHook';
+
+export function MyRoom() {
   return (
     <>
-      <S.RootDiv width="100vw" height="100vh">
+      <S.MyRoomRootDiv width="100vw" height="100vh">
         <S.BackGroundGrid>
-          <S.WallPaper />
-          <S.Floor />
+          <S.FloorAndWall color="#b5e4ff" />
+          <S.FloorAndWall color="#d5f0ff" />
         </S.BackGroundGrid>
         <S.ItemsGrid>
-          {userItemArray.map(
-            (e: {
-              item: {
-                image: string;
-                name: string;
-              };
-            }) => (
-              <S.ItemImageSize
-                src={e.item.image}
-                key={e.item.name}></S.ItemImageSize>
-            ),
-          )}
+          <S.DivElement width="100%" height="100%" id="place_2">
+            <S.ItemImageSize id="place_2" margin_top="35%">
+              <S.imagetest
+                width="350px"
+                height="350px"
+                src={useCheckAreaHook(7)}></S.imagetest>
+            </S.ItemImageSize>
+          </S.DivElement>
+          <Area1_4_5 />
+          <S.DivElement width="100%" height="100%" id="place_3">
+            <S.ItemImageSize id="place_3" margin_top="35%">
+              <S.imagetest
+                width="350px"
+                height="350px"
+                src={useCheckAreaHook(7)}></S.imagetest>
+            </S.ItemImageSize>
+          </S.DivElement>
+          <S.DivElement id="place_9">
+            <S.ItemImageSize>
+              <S.imagetest
+                width="250px"
+                height="200px"
+                src={useCheckAreaHook(9)}></S.imagetest>
+            </S.ItemImageSize>
+          </S.DivElement>
+          <Area6_7_8 />
+          <S.DivElement id="palce_10">
+            <S.ItemImageSize>
+              <S.imagetest
+                width="200px"
+                height="200px"
+                src={useCheckAreaHook(10)}></S.imagetest>
+            </S.ItemImageSize>
+          </S.DivElement>
         </S.ItemsGrid>
-      </S.RootDiv>
+      </S.MyRoomRootDiv>
     </>
   );
 }

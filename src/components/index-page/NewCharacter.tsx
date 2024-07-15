@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import NewCharacterHook from './NewCharacterHook';
 import NewNicknameCondition from './NewNicknameCondition';
 import * as S from './style';
@@ -8,8 +7,8 @@ export default function NewCharacter() {
     <S.BackgroundColor
       backColor="#5F6F52"
       display="flex"
-      flexdirection="column"
-      alignitems="center">
+      flexDirection="column"
+      alignItems="center">
       <S.CreateCharacterText>캐릭터를 생성하세요!</S.CreateCharacterText>
       <S.InfoNewCharacter>
         <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/warning-icon.svg"></img>

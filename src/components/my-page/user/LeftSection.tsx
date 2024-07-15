@@ -9,7 +9,7 @@ import { userDataAtom, userCharacterChangeAtom } from '@/states/userAtoms';
 
 export default function LeftSection() {
   const [userData, setUserData] = useAtom(userDataAtom);
-  const [userCharacterChange] = useAtom(userCharacterChangeAtom);
+  const [userCharacterChange] = useAtom<boolean>(userCharacterChangeAtom);
 
   const getUserInfo = async () => {
     const response = await USER.getUserInfo(1); //유저 아이디

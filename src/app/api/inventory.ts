@@ -5,12 +5,17 @@ import { InventoryApiType } from '@/types/inventory';
 const INVENTORY = {
   path: `/inventory`,
   /** 인벤토리 아이템 불러오기 API */
-  async getInventoryItem(user: number, theme: string): Promise<any> {
+  async getInventoryItem(
+    user: number,
+    theme?: string,
+    status?: boolean,
+  ): Promise<any> {
     const result: AxiosResponse = await instance.get(
       `${INVENTORY.path}/users/${user}`,
       {
         params: {
           theme: theme,
+          status: status,
         },
       },
     );
@@ -38,7 +43,7 @@ const INVENTORY = {
     return response.data;
   },
   /** 인벤토리에 캐릭터 불러오기 API */
-  async getInventoryCharacter(user: number, type: string): Promise<any> {
+  async getInventoryCharacter(user: number, type?: string): Promise<any> {
     const result: AxiosResponse = await instance.get(
       `/character-locker/users/${user}`,
       {
