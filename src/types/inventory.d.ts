@@ -11,5 +11,6 @@ export interface InventoryItemType extends InventoryCharacterType {
   status: boolean;
   item: {
     image: string;
+    type?: string;
   };
 }

@@ -2,18 +2,14 @@ import * as S from './style';
 export default function MainPage() {
   return (
     <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }}>
-      <S.MainLogo
-        grid1={40 + '%'}
-        grid2={11 + '%'}
-        grid3={11 + '%'}
-        grid4={11 + '%'}>
-        <S.MainLogoText margintop="13%" fontSize="500%">
+      <S.MainLogo grid1="40%" grid2="11%" grid3="11%" grid4="11%">
+        <S.MainLogoText marginTop="13%" fontSize="500%">
           모던월드
         </S.MainLogoText>
         <S.LoginBtnLink
           href={`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=_udRI5pXQrnMsGMQKOZV&redirect_uri=${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/naver/auth/callback&state=test`}
           color="#03C75A"
-          textcolor="#ffffff"
+          textColor="#ffffff"
           img_width="35%"
           img_height="100%"
           img_margin_left=""
@@ -24,7 +20,7 @@ export default function MainPage() {
         <S.LoginBtnLink
           href="villagedog"
           color="#FEE500"
-          textcolor="#000000"
+          textColor="#000000"
           img_width="25%"
           img_height="80%"
           img_margin_right="6%"
@@ -36,7 +32,7 @@ export default function MainPage() {
         <S.LoginBtnLink
           href="newcharacter"
           color="#ffffff"
-          textcolor="#000000"
+          textColor="#000000"
           img_width="15%"
           img_height="50%"
           img_margin_right="4%"

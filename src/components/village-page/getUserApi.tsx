@@ -6,7 +6,8 @@ import { SortStateAtom } from './SortDiv';
 import { atom, useAtom } from 'jotai';
 import { PageNumber } from './Pagenation';
 import { searchValue } from './SearchBox';
-import { Village } from '@/app/api/village';
+import { VILLAGE } from '@/app/api/village';
+import { VillageData } from '@/types/village';
 
 export default function GetUserApi() {
   const [userNicknameArray, setuserNicknameArray] = useState([]);
@@ -35,7 +36,7 @@ export default function GetUserApi() {
   }
 
   async function getUser() {
-    const response = await Village.getVillageUser({
+    const response = await VILLAGE.getVillageUser({
       pageNo: page_num,
       take: 8,
       orderByField: sort,
@@ -53,33 +54,20 @@ export default function GetUserApi() {
 
   return (
     <>
-      {userNicknameArray.map(
-        (
-          e: {
-            accumulation: number;
-            characterLocker: Array<{ character: { image: string } }>;
-            createdAt: string;
-            description: string;
-            legend: { likeCount: number };
-            nickname: string;
-            accumulationPoint: number;
-          },
-          i: number,
-        ) => (
-          <S.UserBox key={e.nickname}>
-            <S.UserCharacter>
-              <img src={e.characterLocker[0].character.image}></img>
-            </S.UserCharacter>
-            {e.nickname}
-            <S.UserHeart>
-              <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></img>
-              {e.legend.likeCount}
-              <> point : {e.accumulationPoint}</>
-            </S.UserHeart>
-            <S.UserName>{e.nickname}</S.UserName>
-          </S.UserBox>
-        ),
-      )}
+      {userNicknameArray.map((e: VillageData) => (
+        <S.UserBox key={e.nickname}>
+          <S.UserCharacter>
+            <img src={e.characterLocker[0].character.image}></img>
+          </S.UserCharacter>
+          {e.nickname}
+          <S.UserHeart>
+            <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></img>
+            {e.legend.likeCount}
+            <> point : {e.accumulationPoint}</>
+          </S.UserHeart>
+          <S.UserName>{e.nickname}</S.UserName>
+        </S.UserBox>
+      ))}
     </>
   );
 }
