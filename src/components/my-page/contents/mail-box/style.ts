@@ -63,12 +63,37 @@ export const DelSection = styled.div`
 
 /** ItemImg 담을 섹션 */
 export const ItemImg = styled.div`
-  margin-bottom: 10vh;
+  margin-top: -3.5vh;
 `;
 
 /** font size 설정하는 div */
 export const FontSize = styled.div<StyleType>`
   font-size: ${(props) => props.fontSize};
+  margin: 1px;
+`;
+
+/** 아이템 상태 표시 div */
+export const StatusFont = styled.div<StyleType>`
+  font-size: ${(props) => props.fontSize};
+  display: flex;
+  justify-content: right;
+  margin: 0 1.5vw;
+  color: #535353;
+`;
+
+/** 아이템 수락/거절 div */
+export const ItemApprovalControls = styled.div<StyleType>`
+  font-size: ${(props) => props.fontSize};
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1.5vw;
+  & > div:first-child {
+    color: #3a3ea0;
+  }
+
+  & > div:last-child {
+    color: #ff5252;
+  }
 `;
 
 /** Item List 스크롤 div */
