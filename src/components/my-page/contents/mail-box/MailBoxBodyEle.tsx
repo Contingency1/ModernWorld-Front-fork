@@ -4,15 +4,15 @@ import ItemInfo from './ItemInfo';
 import Pagination from '../../pagination/Pagination';
 import ItemList from './ItemList';
 
-export default function MailBoxBodyEle(props: { title: string }) {
-    return (
-        <>
-            <S.MailBoxSection>
-                <GiftTitle title={props.title} />
-                <ItemInfo />
-                <Pagination width="70%" />
-                <ItemList title="test" />
-            </S.MailBoxSection>
-        </>
-    );
+export default function MailBoxBodyEle(props: any) {
+  return (
+    <>
+      <S.MailBoxSection>
+        <GiftTitle title={props.title} />
+        <ItemInfo title={props.title} />
+        <Pagination width="70%" title={props.title} />
+        <ItemList title={props.title} />
+      </S.MailBoxSection>
+    </>
+  );
 }
