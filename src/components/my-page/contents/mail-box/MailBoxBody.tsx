@@ -1,12 +1,34 @@
 'use client';
 
 import * as S from '@/components/my-page/contents/mail-box/style';
+import MAILBOX from '@/app/api/mailBox';
+import { useEffect } from 'react';
 import MailBoxBodyEle from './MailBoxBodyEle';
-import { useAtom } from 'jotai';
-import { selectMailBoxTypeAtom } from '@/states/mailboxAtoms';
+import { useAtomValue, useSetAtom } from 'jotai';
+import {
+  mailBoxSelectAtom,
+  senderDataAtom,
+  receiverDataAtom,
+} from '@/states/mailboxAtoms';
 
 export default function MailBoxBody() {
-  const [type] = useAtom(selectMailBoxTypeAtom);
+  const type = useAtomValue(mailBoxSelectAtom);
+  const setSenderData = useSetAtom(senderDataAtom);
+  const setReceiverData = useSetAtom(receiverDataAtom);
+
+  const getData = async (mailBoxType: number) => {
+    if (mailBoxType) {
+      setSenderData(await MAILBOX.getPostsList('senderNo'));
+      setReceiverData(await MAILBOX.getPostsList('receiverNo'));
+    } else {
+      setSenderData(await MAILBOX.getPresentsList('senderNo'));
+      setReceiverData(await MAILBOX.getPresentsList('receiverNo'));
+    }
+  };
+
+  useEffect(() => {
+    getData(type);
+  }, [type]);
 
   return (
     <>
