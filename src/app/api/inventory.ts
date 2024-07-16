@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
 
 const INVENTORY = {
-  path: `/inventory`,
+  path: `/users`,
   /** 인벤토리 아이템 불러오기 API */
   async getInventoryItem(
     user: number,
@@ -10,7 +10,7 @@ const INVENTORY = {
     status?: boolean,
   ): Promise<any> {
     const result: AxiosResponse = await instance.get(
-      `${INVENTORY.path}/users/${user}`,
+      `${INVENTORY.path}/${user}/items`,
       {
         params: {
           theme: theme,
@@ -33,7 +33,7 @@ const INVENTORY = {
     }
 
     const response: AxiosResponse = await instance.patch(
-      `${INVENTORY.path}/${itemNo}`,
+      `${INVENTORY.path}/my/items/${itemNo}`,
       {
         status: !status,
       },
@@ -44,7 +44,7 @@ const INVENTORY = {
   /** 인벤토리에 캐릭터 불러오기 API */
   async getInventoryCharacter(user: number, type?: string): Promise<any> {
     const result: AxiosResponse = await instance.get(
-      `/character-locker/users/${user}`,
+      `${INVENTORY.path}/${user}/characters`,
       {
         params: {
           species: type,
@@ -63,7 +63,7 @@ const INVENTORY = {
       return;
     }
     const response: AxiosResponse = await instance.patch(
-      `/character-locker/${characterNo}`,
+      `${INVENTORY.path}/my/characters/${characterNo}`,
       {
         status: true,
       },

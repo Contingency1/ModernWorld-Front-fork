@@ -51,6 +51,7 @@ export const MarginDiv = styled.div<StyleType>`
   margin: ${(props) => props.margin};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};
+  text-align: ${(props) => props.textAlign};
 `;
 
 /** ItemInfo 에 있는 삭제 버튼 담는 섹션 */

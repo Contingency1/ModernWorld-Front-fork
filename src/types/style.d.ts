@@ -11,6 +11,8 @@ interface Props {
   img: string;
   fontSize: string;
   inputcolor: string;
+  justifyContent: string;
+  textAlign: string;
   check: boolean;
   display: string;
   flexdirection: string;

@@ -2,10 +2,10 @@
 
 import * as S from '@/components/my-page/contents/style';
 import { useAtom } from 'jotai';
-import { selectMailBoxTypeAtom } from '@/states/mailboxAtoms';
+import { mailBoxSelectAtom } from '@/states/mailboxAtoms';
 
 export default function SideBookMark() {
-  const [type, setType] = useAtom(selectMailBoxTypeAtom);
+  const [type, setType] = useAtom(mailBoxSelectAtom);
 
   const typeClick = (index: number) => {
     if (index === 0) {
