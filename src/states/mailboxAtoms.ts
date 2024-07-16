@@ -1,5 +1,5 @@
 import { atom, WritableAtom } from 'jotai'; //읽기와 쓰기 모두 가능한 WritableAtom
-import { PresentListType, PresentInfo } from '@/types/mailBox';
+import { PresentListType, PresentInfo, PostType } from '@/types/mailBox';
 
 export const selectMailBoxTypeAtom = atom(1);
 export const senderPresentAtom = atom<PresentListType[]>([]);
@@ -10,7 +10,6 @@ PresentListType[] (상태 타입)
 [PresentListType[]] (업데이트 인수 타입, 배열로 감싸서 전달)
 void (업데이트 함수의 반환 타입)
 */
-
 const createViewNoAtom = (
   presentAtom: WritableAtom<PresentListType[], [PresentListType[]], void>,
 ) =>
