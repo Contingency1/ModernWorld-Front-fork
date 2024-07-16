@@ -1,20 +1,12 @@
+'use client';
+
 import * as S from '@/components/my-page/pagination/style';
-import {
-  viewSenderPresentNoAtom,
-  viewReceiverPresentNoAtom,
-  senderPresentAtom,
-  receiverPresentAtom,
-} from '@/states/mailboxAtoms';
 import { useSetAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export default function Pagination(props: any) {
   const [sendPage, setSendPage] = useState(0);
   const [receivePage, setReceivePage] = useState(0);
-  const setViewSenderPresentNo = useSetAtom(viewSenderPresentNoAtom);
-  const setViewReceiverPresentNo = useSetAtom(viewReceiverPresentNoAtom);
-  const senderPresents = useAtomValue(senderPresentAtom);
-  const receiverPresents = useAtomValue(receiverPresentAtom);
 
   const nextPage = () => {
     if (props.title === '보낸 선물') {
@@ -36,22 +28,6 @@ export default function Pagination(props: any) {
     }
   };
 
-  useEffect(() => {
-    if (receiverPresents.length > 0) {
-      setViewReceiverPresentNo(receiverPresents[receivePage]?.no);
-    }
-    if (senderPresents.length > 0) {
-      setViewSenderPresentNo(senderPresents[sendPage]?.no);
-    }
-  }, [
-    receivePage,
-    sendPage,
-    receiverPresents,
-    senderPresents,
-    setViewReceiverPresentNo,
-    setViewSenderPresentNo,
-  ]);
-
   return (
     <>
       <S.PageSection width={`${props.width}`}>
@@ -63,9 +39,9 @@ export default function Pagination(props: any) {
           />
         </div>
         {props.title === '보낸 선물' ? sendPage + 1 : receivePage + 1} /{' '}
-        {props.title === '보낸 선물'
-          ? senderPresents.length
-          : receiverPresents.length}
+        {props.title === '보낸 선물' || props.title === '보낸 편지'
+          ? '보낸갯수'
+          : '받은갯수'}
         <div onClick={nextPage}>
           <img
             src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"

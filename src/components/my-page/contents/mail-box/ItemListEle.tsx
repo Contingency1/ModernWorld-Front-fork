@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 export default function ItemListEle(props: any) {
   const [status, setStatus] = useState('');
   useEffect(() => {
-    switch (props.data.status) {
+    switch ('read') {
       case 'unread':
         setStatus('안읽음');
         break;
@@ -30,10 +30,7 @@ export default function ItemListEle(props: any) {
           width="18vw"
         />
         <S.MarginDiv margin="1vw" fontSize="18px">
-          {props.title === '받은 선물'
-            ? props.data.userPresentSenderNo.nickname
-            : props.data.userPresentReceiverNo.nickname}{' '}
-          님에게 {props.title === '보낸 선물' ? '보낸' : '받은'} 선물
+          {'@@'} 님에게 {props.title === '보낸 선물' ? '보낸' : '받은'} 선물
         </S.MarginDiv>
         <S.MarginDiv fontSize="12px" color="#909090">
           {status}

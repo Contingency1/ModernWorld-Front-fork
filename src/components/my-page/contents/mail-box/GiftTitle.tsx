@@ -1,29 +1,27 @@
 'use client';
 
 import * as S from '@/components/my-page/contents/mail-box/style';
+import { useEffect, useState } from 'react';
 import { useAtomValue } from 'jotai';
 import {
-  selectMailBoxTypeAtom,
-  senderPresentAtom,
-  receiverPresentAtom,
-  senderPresentInfoAtom,
-  receiverPresentInfoAtom,
+  mailBoxSelectAtom,
+  senderDataAtom,
+  receiverDataAtom,
+  viewPageAtom,
 } from '@/states/mailboxAtoms';
 
 export default function GiftTitle(props: { title: string }) {
-  const type = useAtomValue(selectMailBoxTypeAtom);
-  const senderPresent = useAtomValue(senderPresentAtom);
-  const receiverPresent = useAtomValue(receiverPresentAtom);
-  const senderPresentInfo = useAtomValue(senderPresentInfoAtom);
-  const receiverPresentInfo = useAtomValue(receiverPresentInfoAtom);
+  const type = useAtomValue(mailBoxSelectAtom);
+  const senderData = useAtomValue(senderDataAtom);
+  const receiverData = useAtomValue(receiverDataAtom);
+  const page = useAtomValue(viewPageAtom);
+  const [data] = useState(
+    props.title.includes('보낸') ? senderData : receiverData,
+  );
   return (
     <>
       <S.MarginDiv margin="0.5vh 0 1vh 0" fontSize="28px">
-        {props.title}(
-        {props.title === '보낸 선물'
-          ? senderPresent.length
-          : receiverPresent.length}
-        )
+        {props.title}({data.length})
       </S.MarginDiv>
       <S.UserInfo>
         <img
@@ -36,10 +34,8 @@ export default function GiftTitle(props: { title: string }) {
           width="20vw"
         />
         <S.MarginDiv margin="1vw">
-          {props.title === '보낸 선물'
-            ? senderPresentInfo.userPresentReceiverNo.nickname
-            : receiverPresentInfo.userPresentSenderNo.nickname}{' '}
-          님에게 {props.title === '보낸 선물' ? '보냈습니다.' : '받았습니다.'}
+          {'수정중'} 님에게{' '}
+          {props.title === '보낸 선물' ? '보냈습니다.' : '받았습니다.'}
         </S.MarginDiv>
       </S.UserInfo>
     </>

@@ -1,9 +1,11 @@
-export interface PresentListType {
+export interface PresentsType {
   no: number;
   status: string;
   createdAt: string;
   item: {
     name: string;
+    image: string;
+    description: string;
   };
   userPresentSenderNo: {
     no: number;
@@ -15,15 +17,7 @@ export interface PresentListType {
   };
 }
 
-export interface PresentInfo extends PresentListType {
-  item: {
-    name: string;
-    image: string;
-    description: string;
-  };
-}
-
-export interface PostType {
+export interface PostsType {
   no: number;
   check: boolean;
   createdAt: string;
