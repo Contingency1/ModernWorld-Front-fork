@@ -1,12 +1,14 @@
-export interface PresentsType {
+export interface MailBoxDataType {
   no: number;
   status: string;
+  check?: boolean;
   createdAt: string;
-  item: {
-    name: string;
-    image: string;
-    description: string;
+  item?: {
+    name?: string;
+    image?: string;
+    description?: string;
   };
+  content?: string;
   userPresentSenderNo: {
     no: number;
     nickname: string;
@@ -15,19 +17,6 @@ export interface PresentsType {
     no: number;
     nickname: string;
   };
-}
-
-export interface PostsType {
-  no: number;
-  check: boolean;
-  createdAt: string;
-  content: string;
-  userPostSenderNo: {
-    nickname: string;
-  };
-  userPostReceiverNo: {
-    nickname: string;
-  };
-  senderNo: number;
-  receiverNo: number;
+  senderNo?: number;
+  receiverNo?: number;
 }
