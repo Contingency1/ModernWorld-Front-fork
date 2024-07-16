@@ -22,3 +22,18 @@ export interface PresentInfo extends PresentListType {
     description: string;
   };
 }
+
+export interface PostType {
+  no: number;
+  check: boolean;
+  createdAt: string;
+  content: string;
+  userPostSenderNo: {
+    nickname: string;
+  };
+  userPostReceiverNo: {
+    nickname: string;
+  };
+  senderNo: number;
+  receiverNo: number;
+}

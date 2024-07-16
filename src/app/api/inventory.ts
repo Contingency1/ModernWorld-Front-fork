@@ -1,6 +1,5 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
-import { InventoryApiType } from '@/types/inventory';
 
 const INVENTORY = {
   path: `/inventory`,
