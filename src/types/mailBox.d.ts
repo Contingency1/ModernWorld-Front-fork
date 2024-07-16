@@ -17,6 +17,14 @@ export interface MailBoxDataType {
     no: number;
     nickname: string;
   };
+  userPostSenderNo: {
+    no: number;
+    nickname: string;
+  };
+  userPostReceiverNo: {
+    no: number;
+    nickname: string;
+  };
   senderNo?: number;
   receiverNo?: number;
 }

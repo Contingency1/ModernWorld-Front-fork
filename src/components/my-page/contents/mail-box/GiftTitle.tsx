@@ -19,36 +19,41 @@ export default function GiftTitle(props: { title: string }) {
   const [data, setData] = useState(
     /보낸/.test(props.title) ? senderData : receiverData,
   );
+  const [name, setName] = useState('');
 
-  useEffect(() => {
-    if (/보낸/.test(props.title)) {
-      setData(senderData);
+  const getName = () => {
+    if (!type) {
+      return props.title.includes('보낸')
+        ? senderData[page]?.userPostReceiverNo.nickname
+        : receiverData[page]?.userPostSenderNo.nickname;
     } else {
-      setData(receiverData);
+      return props.title.includes('보낸')
+        ? senderData[page]?.userPresentReceiverNo.nickname
+        : receiverData[page]?.userPresentSenderNo.nickname;
     }
-  }, [type, props.title]);
+  };
 
   const getData = async (type: number) => {
-    try {
-      if (type === 0) {
-        const senderPosts = await MAILBOX.getPostsList('senderNo');
-        const receiverPosts = await MAILBOX.getPostsList('receiverNo');
-        setSenderData(senderPosts);
-        setReceiverData(receiverPosts);
-      } else if (type === 1) {
-        const senderPresents = await MAILBOX.getPresentsList('senderNo');
-        const receiverPresents = await MAILBOX.getPresentsList('receiverNo');
-        setSenderData(senderPresents);
-        setReceiverData(receiverPresents);
-      }
-    } catch (error) {
-      console.error('Failed to fetch data:', error);
+    if (!type) {
+      setSenderData(await MAILBOX.getPostsList('senderNo'));
+      setReceiverData(await MAILBOX.getPostsList('receiverNo'));
+    } else {
+      setSenderData(await MAILBOX.getPresentsList('senderNo'));
+      setReceiverData(await MAILBOX.getPresentsList('receiverNo'));
     }
   };
 
   useEffect(() => {
     getData(type);
   }, [type]);
+
+  useEffect(() => {
+    setData(/보낸/.test(props.title) ? senderData : receiverData);
+  }, [getData]);
+
+  useEffect(() => {
+    setName(getName());
+  }, [data]);
 
   return (
     <>
@@ -66,7 +71,7 @@ export default function GiftTitle(props: { title: string }) {
           width="20vw"
         />
         <S.MarginDiv margin="1vw">
-          {'d'} 님에게{' '}
+          {name} 님에게{' '}
           {props.title === '보낸 선물' ? '보냈습니다.' : '받았습니다.'}
         </S.MarginDiv>
       </S.UserInfo>
