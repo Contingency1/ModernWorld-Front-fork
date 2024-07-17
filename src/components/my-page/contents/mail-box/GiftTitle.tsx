@@ -16,10 +16,10 @@ export default function GiftTitle(props: { title: string }) {
   const [senderData, setSenderData] = useAtom(senderDataAtom);
   const [receiverData, setReceiverData] = useAtom(receiverDataAtom);
   const page = useAtomValue(viewPageAtom);
+  const [name, setName] = useState('');
   const [data, setData] = useState(
     /보낸/.test(props.title) ? senderData : receiverData,
   );
-  const [name, setName] = useState('');
 
   const getName = () => {
     if (!type) {
@@ -33,23 +33,27 @@ export default function GiftTitle(props: { title: string }) {
     }
   };
 
-  const getData = async (type: number) => {
-    if (!type) {
-      setSenderData(await MAILBOX.getPostsList('senderNo'));
-      setReceiverData(await MAILBOX.getPostsList('receiverNo'));
-    } else {
-      setSenderData(await MAILBOX.getPresentsList('senderNo'));
-      setReceiverData(await MAILBOX.getPresentsList('receiverNo'));
-    }
+  const getPresents = async () => {
+    setSenderData(await MAILBOX.getPresentsList('senderNo'));
+    setReceiverData(await MAILBOX.getPresentsList('receiverNo'));
+  };
+
+  const getPosts = async () => {
+    setSenderData(await MAILBOX.getPostsList('senderNo'));
+    setReceiverData(await MAILBOX.getPostsList('receiverNo'));
   };
 
   useEffect(() => {
-    getData(type);
+    if (type === 0) {
+      getPosts();
+    } else {
+      getPresents();
+    }
   }, [type]);
 
   useEffect(() => {
     setData(/보낸/.test(props.title) ? senderData : receiverData);
-  }, [getData]);
+  }, [getPosts, getPresents]);
 
   useEffect(() => {
     setName(getName());
@@ -72,7 +76,7 @@ export default function GiftTitle(props: { title: string }) {
         />
         <S.MarginDiv margin="1vw">
           {name} 님에게{' '}
-          {props.title === '보낸 선물' ? '보냈습니다.' : '받았습니다.'}
+          {props.title.includes('보낸') ? '보냈습니다.' : '받았습니다.'}
         </S.MarginDiv>
       </S.UserInfo>
     </>

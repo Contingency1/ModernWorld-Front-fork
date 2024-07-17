@@ -1,12 +1,31 @@
+'use client';
 import * as S from '@/components/my-page/contents/mail-box/style';
+import {
+  receiverDataAtom,
+  senderDataAtom,
+  viewPageAtom,
+} from '@/states/mailboxAtoms';
+import { useAtomValue } from 'jotai';
+import { useEffect, useState } from 'react';
 
 export default function PostInfo(props: { title: string }) {
+  const page = useAtomValue(viewPageAtom);
+  const senderData = useAtomValue(senderDataAtom);
+  const receiverData = useAtomValue(receiverDataAtom);
+  const [data, setData] = useState(senderData);
+
+  useEffect(() => {
+    setData(/보낸/.test(props.title) ? senderData : receiverData);
+  }, []);
+
+  console.log(data);
+
   return (
     <>
       <S.ContentsView height="25vh">
         <S.ListScroll>
           <S.MarginDiv fontSize="18px" margin="3vh 2vw" textAlign="left">
-            {'편지 내용'}
+            {'data[page]?.content'}
           </S.MarginDiv>
         </S.ListScroll>
         <S.MarginDiv
