@@ -59,13 +59,13 @@ export default function GetUserApi() {
         <S.UserBox key={e.nickname}>
           <S.UserCharacter>
             <Link href="/previewVillageUsers">
-              <img src={e.characterLocker[0].character.image}></img>
+              <img src={e.characterLocker[0].character.image} />
             </Link>
           </S.UserCharacter>
           {e.nickname}
           <S.UserHeart>
             <Link href="" style={{ textDecoration: 'none' }}>
-              <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></img>
+              <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png" />
               {e.legend.likeCount}
               <> point : {e.accumulationPoint}</>
             </Link>

@@ -34,6 +34,7 @@ interface Props {
   margin_right: string;
   margin_top: string;
   z_index: number;
+  border: string;
 }
 
 export interface StyleType extends Partial<Props> {}

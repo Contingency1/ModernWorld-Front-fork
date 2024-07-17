@@ -4,7 +4,7 @@ import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
 /**
- * MyRoom 최상위 Div 입니다 나중에 필요하시면 이거 가져가시면 됩니다.
+ * MyRoom 최상위 Div 입니다
  */
 export const MyRoomRootDiv = styled.div<StyleType>`
   position: relative;
@@ -37,10 +37,11 @@ export const BackGroundGrid = styled(Grid)`
  * color에 해시값을 넣어 사용합니다
  * @color : 색깔 해시값
  */
-export const FloorAndWall = styled.div`
+export const FloorAndWall = styled.div<StyleType>`
   background-color: ${(props) => props.color};
   width: 100%;
   height: 100%;
+  border-radius: ${(props) => props.border};
 `;
 
 /**
