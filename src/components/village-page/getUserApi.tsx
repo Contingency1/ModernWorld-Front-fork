@@ -8,6 +8,7 @@ import { PageNumber } from './Pagenation';
 import { searchValue } from './SearchBox';
 import { VILLAGE } from '@/app/api/village';
 import { VillageData } from '@/types/village';
+import Link from 'next/link';
 
 export default function GetUserApi() {
   const [userNicknameArray, setuserNicknameArray] = useState([]);
@@ -43,8 +44,8 @@ export default function GetUserApi() {
       animal: 'cat',
       nickname: keyword,
     });
-    setuserNicknameArray(response);
-    setUserCount(response);
+    setuserNicknameArray(response.data);
+    setUserCount(response.data);
   }
 
   useEffect(() => {
@@ -57,13 +58,17 @@ export default function GetUserApi() {
       {userNicknameArray.map((e: VillageData) => (
         <S.UserBox key={e.nickname}>
           <S.UserCharacter>
-            <img src={e.characterLocker[0].character.image}></img>
+            <Link href="/previewVillageUsers">
+              <img src={e.characterLocker[0].character.image} />
+            </Link>
           </S.UserCharacter>
           {e.nickname}
           <S.UserHeart>
-            <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></img>
-            {e.legend.likeCount}
-            <> point : {e.accumulationPoint}</>
+            <Link href="" style={{ textDecoration: 'none' }}>
+              <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png" />
+              {e.legend.likeCount}
+              <> point : {e.accumulationPoint}</>
+            </Link>
           </S.UserHeart>
           <S.UserName>{e.nickname}</S.UserName>
         </S.UserBox>
