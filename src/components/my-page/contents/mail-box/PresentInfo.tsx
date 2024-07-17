@@ -1,17 +1,41 @@
 'use client';
 
+import MAILBOX from '@/app/api/mailBox';
 import * as S from '@/components/my-page/contents/mail-box/style';
 import {
   receiverDataAtom,
   senderDataAtom,
-  viewPageAtom,
+  viewSendPageAtom,
+  viewReceiverPageAtom,
+  listSetAtom,
 } from '@/states/mailboxAtoms';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 
 export default function PresentInfo(props: { title: string }) {
-  const page = useAtomValue(viewPageAtom);
+  const page = useAtomValue(
+    props.title.includes('보낸') ? viewSendPageAtom : viewReceiverPageAtom,
+  );
   const senderData = useAtomValue(senderDataAtom);
   const receiverData = useAtomValue(receiverDataAtom);
+  const [list, setList] = useAtom(listSetAtom);
+
+  const setPresentStatus = async (no: number) => {
+    if (no) {
+      await MAILBOX.setPresentStatus(no);
+      setList(!list);
+    }
+  };
+
+  useEffect(() => {
+    if (props.title.includes('보낸')) {
+      const number = senderData[page]?.no;
+      setPresentStatus(number);
+    } else {
+      const number = receiverData[page]?.no;
+      setPresentStatus(number);
+    }
+  }, [props.title, page]);
 
   const statusChange = (s: string) => {
     switch (s) {
@@ -67,7 +91,11 @@ export default function PresentInfo(props: { title: string }) {
           </S.FontSize>
 
           {props.title === '보낸 선물' || props.title === '보낸 편지' ? (
-            <S.StatusFont fontSize="18px">{'상태'}</S.StatusFont>
+            <S.StatusFont fontSize="18px">
+              {props.title.includes('보낸')
+                ? statusChange(senderData[page]?.status)
+                : statusChange(receiverData[page]?.status)}
+            </S.StatusFont>
           ) : (
             <S.ItemApprovalControls>
               <div>수락하기</div>

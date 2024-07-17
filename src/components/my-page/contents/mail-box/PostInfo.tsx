@@ -1,17 +1,37 @@
+import MAILBOX from '@/app/api/mailBox';
 import * as S from '@/components/my-page/contents/mail-box/style';
 import {
-  mailBoxSelectAtom,
   receiverDataAtom,
   senderDataAtom,
-  viewPageAtom,
+  viewSendPageAtom,
+  viewReceiverPageAtom,
+  listSetAtom,
 } from '@/states/mailboxAtoms';
-import { useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import { useEffect } from 'react';
 
 export default function PostInfo(props: { title: string }) {
-  const page = useAtomValue(viewPageAtom);
+  const page = useAtomValue(
+    props.title.includes('보낸') ? viewSendPageAtom : viewReceiverPageAtom,
+  );
   const senderData = useAtomValue(senderDataAtom);
   const receiverData = useAtomValue(receiverDataAtom);
+  const [list, setList] = useAtom(listSetAtom);
+
+  const setPostCheck = async (no: number) => {
+    if (no) {
+      await MAILBOX.setPostCheck(no);
+      setList(!list);
+    }
+  };
+
+  useEffect(() => {
+    if (props.title.includes('보낸')) {
+      setPostCheck(senderData[page]?.no);
+    } else {
+      setPostCheck(receiverData[page]?.no);
+    }
+  }, [props.title, page]);
 
   return (
     <>

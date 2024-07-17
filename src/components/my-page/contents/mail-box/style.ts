@@ -90,10 +90,12 @@ export const ItemApprovalControls = styled.div<StyleType>`
   margin: 0 1.5vw;
   & > div:first-child {
     color: #3a3ea0;
+    font-size: 18px;
   }
 
   & > div:last-child {
     color: #ff5252;
+    font-size: 18px;
   }
 `;
 

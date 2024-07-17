@@ -6,13 +6,16 @@ import {
   mailBoxSelectAtom,
   receiverDataAtom,
   senderDataAtom,
-  viewPageAtom,
+  viewSendPageAtom,
+  viewReceiverPageAtom,
 } from '@/states/mailboxAtoms';
 import { useEffect, useState } from 'react';
 
 export default function Title(props: { title: string }) {
   const type = useAtomValue(mailBoxSelectAtom);
-  const page = useAtomValue(viewPageAtom);
+  const page = useAtomValue(
+    props.title.includes('보낸') ? viewSendPageAtom : viewReceiverPageAtom,
+  );
   const senderData = useAtomValue(senderDataAtom);
   const receiverData = useAtomValue(receiverDataAtom);
 

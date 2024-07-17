@@ -13,6 +13,11 @@ export interface PostDataType {
 
 export interface PresentsDataType {
   status: string;
+  item: {
+    name: string;
+    image: string;
+    description: string;
+  };
   userPresentSenderNo: {
     no: number;
     nickname: string;
@@ -21,8 +26,8 @@ export interface PresentsDataType {
     no: number;
     nickname: string;
   };
-  senderNo?: number;
-  receiverNo?: number;
+  senderNo: number;
+  receiverNo: number;
 }
 
 export interface MailBoxDataType extends PostDataType, PresentsDataType {
