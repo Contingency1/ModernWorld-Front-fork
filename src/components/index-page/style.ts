@@ -1,31 +1,25 @@
 'use client';
 
-import { styleType } from '@/types/style';
+import { StyleType } from '@/types/style';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-interface BackgroundColor {
-  backgroundcolor?: string;
-  display?: string;
-  flexdirection?: string;
-  alignitems?: string;
-}
 /**
  * 배경색, 그리드 부여
  */
-export const BackgroundColor = styled.body<styleType>`
+export const BackgroundColor = styled.body<StyleType>`
   height: 100vh;
   width: 100vw;
   background-color: ${(props) => props.backColor};
   display: ${(props) => props.display};
-  flex-direction: ${(props) => props.flexdirection};
-  align-items: ${(props) => props.alignitems};
+  flex-direction: ${(props) => props.flexDirection};
+  align-items: ${(props) => props.alignItems};
 `;
 
 /**
  * 배경에 있는 커다란 새싹 백그라운드 이미지
  */
-export const MainLogo = styled.div<styleType>`
+export const MainLogo = styled.div<StyleType>`
   width: 95wh;
   height: 100vh;
   background-size: 90% 110%;
@@ -44,9 +38,9 @@ export const MainLogo = styled.div<styleType>`
  로그인 페이지 텍스트들
  @params width : number, height : number, font-size : number, margin-top : number 
  */
-export const MainLogoText = styled.h1<styleType>`
+export const MainLogoText = styled.div<StyleType>`
   font-size: ${(props) => props.fontSize};
-  margin-top: ${(props) => props.margintop};
+  margin-top: ${(props) => props.margin_top};
   text-shadow: 4px 4px white;
 `;
 
@@ -54,11 +48,11 @@ export const MainLogoText = styled.h1<styleType>`
  * selfmade login btn
  * @params color : string, textcolor : string, img_margin_right : string, img_width : string, img_height : string
  */
-export const LoginBtnLink = styled(Link)<styleType>`
+export const LoginBtnLink = styled(Link)<StyleType>`
   width: 18%;
   height: 90%;
   background-color: ${(props) => props.color};
-  color: ${(props) => props.textcolor};
+  color: ${(props) => props.textColor};
   margin-top: 5%;
   border-radius: 7px;
   font-family: 'Pretendard-Regular';
@@ -81,7 +75,7 @@ export const LoginBtnLink = styled(Link)<styleType>`
  소셜 로그인 성공시 생성되는 접속버튼
  @params width : string, height : string
  */
-export const MainPowerBtn = styled.div<styleType>`
+export const MainPowerBtn = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-position: center;
@@ -120,7 +114,7 @@ export const InfoNewCharacter = styled.div`
  메인박스
  */
 
-export const ChoiseCharacterBox = styled.div<styleType>`
+export const ChoiseCharacterBox = styled.div<StyleType>`
   width: 80%;
   height: 53%;
   background-color: white;
@@ -131,8 +125,8 @@ export const ChoiseCharacterBox = styled.div<styleType>`
   grid-template-columns: 18% 64% 18%;
   grid-template-rows: 30% 70%;
   place-items: center;
-  flex-direction: ${(props) => props.flexdirection};
-  align-items: ${(props) => props.alignitems};
+  flex-direction: ${(props) => props.flexDirection};
+  align-items: ${(props) => props.alignItems};
   margin-bottom: 2%;
 `;
 
@@ -187,13 +181,13 @@ export const NewNicknamecondition = styled.div`
 /**
  캐릭터 생성 박스
  */
-export const ShowFirstCharacterBox = styled.div<styleType>`
+export const ShowFirstCharacterBox = styled.div<StyleType>`
   width: 100%;
   height: 80%;
   border-radius: 33px;
   background-color: white;
-  flex-direction: ${(props) => props.flexdirection};
-  align-items: ${(props) => props.alignitems};
+  flex-direction: ${(props) => props.flexDirection};
+  align-items: ${(props) => props.alignItems};
   grid-area: center;
   margin-bottom: 2%;
 `;

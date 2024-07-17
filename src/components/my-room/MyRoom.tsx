@@ -5,13 +5,17 @@ import { Area1_4_5 } from './Area1_4_5';
 import { Area6_7_8 } from './Area6_7_8';
 import useCheckAreaHook from './useCheckAreaHook';
 
-export function MyRoom() {
+export function MyRoom(props: {
+  width: string;
+  height: string;
+  border: string;
+}) {
   return (
     <>
-      <S.MyRoomRootDiv width="100vw" height="100vh">
+      <S.MyRoomRootDiv width={props.width} height={props.height}>
         <S.BackGroundGrid>
-          <S.FloorAndWall color="#b5e4ff" />
-          <S.FloorAndWall color="#d5f0ff" />
+          <S.FloorAndWall color="#b5e4ff" border="30px 30px 0px 0px" />
+          <S.FloorAndWall color="#d5f0ff" border="0px 0px 30px 30px" />
         </S.BackGroundGrid>
         <S.ItemsGrid>
           <S.DivElement width="100%" height="100%" id="place_2">
