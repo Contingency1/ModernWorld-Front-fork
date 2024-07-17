@@ -1,12 +1,26 @@
 import * as S from '@/components/my-page/contents/mail-box/style';
+import {
+  mailBoxSelectAtom,
+  receiverDataAtom,
+  senderDataAtom,
+  viewPageAtom,
+} from '@/states/mailboxAtoms';
+import { useAtomValue } from 'jotai';
+import { useState } from 'react';
 
 export default function PostInfo(props: { title: string }) {
+  const page = useAtomValue(viewPageAtom);
+  const senderData = useAtomValue(senderDataAtom);
+  const receiverData = useAtomValue(receiverDataAtom);
+
   return (
     <>
       <S.ContentsView height="25vh">
         <S.ListScroll>
           <S.MarginDiv fontSize="18px" margin="3vh 2vw" textAlign="left">
-            {'편지 내용'}
+            {props.title.includes('보낸')
+              ? senderData[page]?.content
+              : receiverData[page]?.content}
           </S.MarginDiv>
         </S.ListScroll>
         <S.MarginDiv
@@ -14,7 +28,9 @@ export default function PostInfo(props: { title: string }) {
           margin="1vh 2vw 0 2vw"
           textAlign="left"
           color="#767676">
-          2024-07-16 14:43
+          {props.title.includes('보낸')
+            ? senderData[page]?.createdAt
+            : receiverData[page]?.createdAt}
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
         <S.MarginDiv margin="-1vh 2vw 0 0" textAlign="right">

@@ -1,20 +1,14 @@
-'use client';
-
-import * as S from '@/components/my-page/contents/mail-box/style';
-import MailBoxBodyEle from './MailBoxBodyEle';
-import { useAtomValue, useAtom } from 'jotai';
+import MAILBOX from '@/app/api/mailBox';
 import {
-  mailBoxSelectAtom,
   postReceiverDataAtom,
   postSenderDataAtom,
   presentReceiverDataAtom,
   presentSenderDataAtom,
 } from '@/states/mailboxAtoms';
-import MAILBOX from '@/app/api/mailBox';
+import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 
-export default function MailBoxBody() {
-  const type = useAtomValue(mailBoxSelectAtom);
+export default function useMailBoxData(type: number) {
   const [postSenderData, setPostSenderData] = useAtom(postSenderDataAtom);
   const [postReceiverData, setPostReceiverData] = useAtom(postReceiverDataAtom);
   const [presentSenderData, setPresentSenderData] = useAtom(
@@ -41,19 +35,11 @@ export default function MailBoxBody() {
       getPresents();
     }
   }, [type]);
-  /**
-  console.log(postSenderData);
-  console.log(postReceiverData);
-  console.log(presentReceiverData);
-  console.log(presentSenderData);
- */
 
-  return (
-    <>
-      <S.Grid>
-        <MailBoxBodyEle title={type ? '보낸 선물' : '보낸 편지'} />
-        <MailBoxBodyEle title={type ? '받은 선물' : '받은 편지'} />
-      </S.Grid>
-    </>
-  );
+  return {
+    postSenderData,
+    postReceiverData,
+    presentSenderData,
+    presentReceiverData,
+  };
 }

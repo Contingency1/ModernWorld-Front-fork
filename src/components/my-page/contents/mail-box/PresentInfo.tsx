@@ -1,8 +1,18 @@
 'use client';
 
 import * as S from '@/components/my-page/contents/mail-box/style';
+import {
+  receiverDataAtom,
+  senderDataAtom,
+  viewPageAtom,
+} from '@/states/mailboxAtoms';
+import { useAtomValue } from 'jotai';
 
 export default function PresentInfo(props: { title: string }) {
+  const page = useAtomValue(viewPageAtom);
+  const senderData = useAtomValue(senderDataAtom);
+  const receiverData = useAtomValue(receiverDataAtom);
+
   const statusChange = (s: string) => {
     switch (s) {
       case 'unread':
@@ -31,10 +41,30 @@ export default function PresentInfo(props: { title: string }) {
         </S.DelSection>
 
         <S.ItemImg>
-          <img src={'아이템 이미지'} alt="img" height="90vh" />
-          <S.FontSize fontSize="18px">{'아이템 이름'}</S.FontSize>
-          <S.FontSize fontSize="14px">{'아이템 설명'}</S.FontSize>
-          <S.FontSize fontSize="12px">{'아이템 날짜'}</S.FontSize>
+          <img
+            src={
+              props.title.includes('보낸')
+                ? senderData[page]?.item?.image
+                : receiverData[page]?.item?.image
+            }
+            alt="img"
+            height="70vh"
+          />
+          <S.FontSize fontSize="18px">
+            {props.title.includes('보낸')
+              ? senderData[page]?.item?.name
+              : receiverData[page]?.item?.name}
+          </S.FontSize>
+          <S.FontSize fontSize="14px">
+            {props.title.includes('보낸')
+              ? senderData[page]?.item?.description
+              : receiverData[page]?.item?.description}
+          </S.FontSize>
+          <S.FontSize fontSize="12px">
+            {props.title.includes('보낸')
+              ? senderData[page]?.createdAt
+              : receiverData[page]?.createdAt}
+          </S.FontSize>
 
           {props.title === '보낸 선물' || props.title === '보낸 편지' ? (
             <S.StatusFont fontSize="18px">{'상태'}</S.StatusFont>
