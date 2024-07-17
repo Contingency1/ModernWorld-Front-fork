@@ -4,12 +4,6 @@ import { StyleType } from '@/types/style';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-interface BackgroundColor {
-  backgroundcolor?: string;
-  display?: string;
-  flexdirection?: string;
-  alignitems?: string;
-}
 /**
  * 배경색, 그리드 부여
  */
@@ -18,8 +12,8 @@ export const BackgroundColor = styled.body<StyleType>`
   width: 100vw;
   background-color: ${(props) => props.backColor};
   display: ${(props) => props.display};
-  flex-direction: ${(props) => props.flexdirection};
-  align-items: ${(props) => props.alignitems};
+  flex-direction: ${(props) => props.flexDirection};
+  align-items: ${(props) => props.alignItems};
 `;
 
 /**
@@ -44,9 +38,9 @@ export const MainLogo = styled.div<StyleType>`
  로그인 페이지 텍스트들
  @params width : number, height : number, font-size : number, margin-top : number 
  */
-export const MainLogoText = styled.h1<StyleType>`
+export const MainLogoText = styled.div<StyleType>`
   font-size: ${(props) => props.fontSize};
-  margin-top: ${(props) => props.margintop};
+  margin-top: ${(props) => props.margin_top};
   text-shadow: 4px 4px white;
 `;
 
@@ -58,7 +52,7 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   width: 18%;
   height: 90%;
   background-color: ${(props) => props.color};
-  color: ${(props) => props.textcolor};
+  color: ${(props) => props.textColor};
   margin-top: 5%;
   border-radius: 7px;
   font-family: 'Pretendard-Regular';
@@ -131,8 +125,8 @@ export const ChoiseCharacterBox = styled.div<StyleType>`
   grid-template-columns: 18% 64% 18%;
   grid-template-rows: 30% 70%;
   place-items: center;
-  flex-direction: ${(props) => props.flexdirection};
-  align-items: ${(props) => props.alignitems};
+  flex-direction: ${(props) => props.flexDirection};
+  align-items: ${(props) => props.alignItems};
   margin-bottom: 2%;
 `;
 
@@ -192,8 +186,8 @@ export const ShowFirstCharacterBox = styled.div<StyleType>`
   height: 80%;
   border-radius: 33px;
   background-color: white;
-  flex-direction: ${(props) => props.flexdirection};
-  align-items: ${(props) => props.alignitems};
+  flex-direction: ${(props) => props.flexDirection};
+  align-items: ${(props) => props.alignItems};
   grid-area: center;
   margin-bottom: 2%;
 `;

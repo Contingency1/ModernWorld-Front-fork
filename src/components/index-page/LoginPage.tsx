@@ -3,7 +3,7 @@ export default function MainPage() {
   return (
     <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }}>
       <S.MainLogo grid1="40%" grid2="11%" grid3="11%" grid4="11%">
-        <S.MainLogoText marginTop="13%" fontSize="500%">
+        <S.MainLogoText margin_top="13%" fontSize="500%">
           모던월드
         </S.MainLogoText>
         <S.LoginBtnLink

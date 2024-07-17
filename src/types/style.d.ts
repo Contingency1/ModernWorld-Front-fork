@@ -15,9 +15,8 @@ interface Props {
   textAlign: string;
   check: boolean;
   display: string;
-  flexdirection: string;
-  alignitems: string;
-  textcolor: string;
+  flexDirection: string;
+  alignItems: string;
   img_width: string;
   img_height: string;
   img_margin_right: string;
@@ -35,6 +34,7 @@ interface Props {
   margin_top: string;
   z_index: number;
   border: string;
+  textColor: string;
 }
 
 export interface StyleType extends Partial<Props> {}
