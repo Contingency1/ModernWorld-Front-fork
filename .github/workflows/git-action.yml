@@ -1,0 +1,36 @@
+name: Front Ci
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+    types:
+        - merged
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: dockerHub login
+      uses: docker/login-action@v3
+      with: 
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+    - name: build and push
+      env:
+        NAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        REPO: frontdocker
+      run: |
+        docker build -t $NAME/$REPO:tagname .
+        docker push $NAME/$REPO:tagname
+
+      
+
+      
+
+    
