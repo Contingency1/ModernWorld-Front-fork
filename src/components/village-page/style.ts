@@ -58,7 +58,7 @@ export const SearchInput = styled.input<StyleType>`
   width: 80%;
   border-width: 0;
   outline: none;
-  background-color: ${({ inputcolor }) => inputcolor};
+  background-color: ${({ inputColor }) => inputColor};
   font-size: 4vh;
   margin-left: 6%;
 `;
