@@ -40,7 +40,7 @@ export const MainLogo = styled.div<StyleType>`
  */
 export const MainLogoText = styled.div<StyleType>`
   font-size: ${(props) => props.fontSize};
-  margin-top: ${(props) => props.margin_top};
+  margin-top: ${(props) => props.marginTop};
   text-shadow: 4px 4px white;
 `;
 
@@ -64,10 +64,10 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   display: flex;
   align-items: center;
   img {
-    margin-left: ${(props) => props.img_margin_left};
-    margin-right: ${(props) => props.img_margin_right};
-    width: ${(props) => props.img_width};
-    height: ${(props) => props.img_height};
+    margin-left: ${(props) => props.imgMarginLeft};
+    margin-right: ${(props) => props.imgMarginRight};
+    width: ${(props) => props.imgWidth};
+    height: ${(props) => props.imgHeight};
   }
 `;
 
