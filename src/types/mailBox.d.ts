@@ -21,11 +21,6 @@ export interface PresentsDataType {
     no: number;
     nickname: string;
   };
-  item?: {
-    name?: string;
-    image?: string;
-    description?: string;
-  };
   senderNo?: number;
   receiverNo?: number;
 }
