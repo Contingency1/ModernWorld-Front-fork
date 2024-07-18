@@ -25,6 +25,14 @@ const MAILBOX = {
     return result.data;
   },
 
+  /** 선물 삭제 API */
+  async delPresent(no: number): Promise<any> {
+    const result: AxiosResponse = await instance.delete(
+      `${MAILBOX.path}/presents/${no}`,
+    );
+    return result.data;
+  },
+
   /** 편지함 불러오기 API */
   async getPostsList(type: string): Promise<any> {
     const result: AxiosResponse = await instance.get(`${MAILBOX.path}/posts`, {
@@ -40,6 +48,33 @@ const MAILBOX = {
     const result: AxiosResponse = await instance.get(
       `${MAILBOX.path}/posts/${no}`,
     );
+    return result.data;
+  },
+
+  /** 편지 삭제 API */
+  async delPost(no: number): Promise<any> {
+    if (!window.confirm('편지를 삭제하시겠습니까?')) {
+      return; // 확인을 받지 못하면 함수 종료
+    }
+
+    try {
+      const result: AxiosResponse = await instance.delete(
+        `${MAILBOX.path}/posts/${no}`,
+      );
+      alert('삭제 되었습니다.');
+      return result.data;
+    } catch (error) {
+      console.error('편지 삭제를 실패하였습니다.', error);
+      alert('편지 삭제를 실패하였습니다.');
+      throw error;
+    }
+  },
+
+  /** 편지 생성 API */
+  async createPost(no: number, content: string): Promise<any> {
+    const result: AxiosResponse = await instance.post(`/user/${no}/posts`, {
+      body: content,
+    });
     return result.data;
   },
 };

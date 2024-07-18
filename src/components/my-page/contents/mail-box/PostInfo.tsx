@@ -5,10 +5,9 @@ import {
   senderDataAtom,
   viewSendPageAtom,
   viewReceiverPageAtom,
-  listSetAtom,
 } from '@/states/mailboxAtoms';
-import { useAtom, useAtomValue } from 'jotai';
-import { useEffect } from 'react';
+import { useAtomValue } from 'jotai';
+import { useEffect, useState } from 'react';
 
 export default function PostInfo(props: { title: string }) {
   const page = useAtomValue(
@@ -16,20 +15,61 @@ export default function PostInfo(props: { title: string }) {
   );
   const senderData = useAtomValue(senderDataAtom);
   const receiverData = useAtomValue(receiverDataAtom);
-  const [list, setList] = useAtom(listSetAtom);
+  const [sendPostNo, setSendPostNo] = useState(senderData[page]?.no);
+  const [receivePostNo, setReceivePostNo] = useState(receiverData[page]?.no);
+
+  const handleClickDelete = () => {
+    if (props.title.includes('보낸')) {
+      MAILBOX.delPost(sendPostNo);
+    } else {
+      MAILBOX.delPost(receivePostNo);
+    }
+  };
+
+  const sendPost = async () => {
+    setPostUi(
+      <S.Image
+        src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
+        alt="del"
+        width="33vw"
+        onClick={handleClickDelete}
+      />,
+    );
+  };
+
+  const [postUi, setPostUi] = useState(
+    <S.Image
+      src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
+      alt="del"
+      width="33vw"
+      onClick={handleClickDelete}
+    />,
+  );
 
   const setPostCheck = async (no: number) => {
     if (no) {
       await MAILBOX.setPostCheck(no);
-      setList(!list);
     }
+  };
+
+  const onClickHandle = () => {
+    setPostUi(
+      <S.Image
+        src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/free-icon-edit-button-7734280.png"
+        alt="post"
+        width="33vw"
+        onClick={sendPost}
+      />,
+    );
   };
 
   useEffect(() => {
     if (props.title.includes('보낸')) {
-      setPostCheck(senderData[page]?.no);
+      setSendPostNo(senderData[page]?.no);
+      setPostCheck(sendPostNo);
     } else {
-      setPostCheck(receiverData[page]?.no);
+      setReceivePostNo(receiverData[page]?.no);
+      setPostCheck(receivePostNo);
     }
   }, [props.title, page]);
 
@@ -38,9 +78,13 @@ export default function PostInfo(props: { title: string }) {
       <S.ContentsView height="25vh">
         <S.ListScroll>
           <S.MarginDiv fontSize="18px" margin="3vh 2vw" textAlign="left">
-            {props.title.includes('보낸')
-              ? senderData[page]?.content
-              : receiverData[page]?.content}
+            {props.title.includes('보낸') ? (
+              senderData[page]?.content
+            ) : (
+              <div onClick={onClickHandle}>
+                <S.PostTextarea defaultValue={receiverData[page]?.content} />
+              </div>
+            )}
           </S.MarginDiv>
         </S.ListScroll>
         <S.MarginDiv
@@ -54,11 +98,7 @@ export default function PostInfo(props: { title: string }) {
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
         <S.MarginDiv margin="-1vh 2vw 0 0" textAlign="right">
-          <img
-            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
-            alt="del"
-            width="33vw"
-          />
+          {postUi}
         </S.MarginDiv>
       </S.ContentsView>
     </>

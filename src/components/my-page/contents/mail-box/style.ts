@@ -111,3 +111,18 @@ export const ItemListEleDiv = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+/** 편지 답장 보낼 input 태그 */
+export const PostTextarea = styled.textarea`
+  width: 100%;
+  height: 7vh;
+  border: none;
+  resize: none;
+`;
+
+/** 편지함 휴지통 img 태그 */
+export const Image = styled.img`
+  &:hover {
+    cursor: pointer;
+  }
+`;

@@ -1,14 +1,8 @@
 'use client';
 
 import * as S from '@/components/my-page/contents/mail-box/style';
-import {
-  listSetAtom,
-  mailBoxSelectAtom,
-  viewReceiverPageAtom,
-  viewSendPageAtom,
-} from '@/states/mailboxAtoms';
-import { useAtom, useAtomValue } from 'jotai';
-import { list } from 'postcss';
+import { mailBoxSelectAtom } from '@/states/mailboxAtoms';
+import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export default function ItemListEle(props: any) {
@@ -16,7 +10,6 @@ export default function ItemListEle(props: any) {
   const [senderName, setSenderName] = useState('');
   const [receiverName, setReceiverName] = useState('');
   const [status, setStatus] = useState('');
-  const listSet = useAtomValue(listSetAtom);
 
   useEffect(() => {
     if (props.data) {
@@ -30,7 +23,7 @@ export default function ItemListEle(props: any) {
         getPresentStatus(props.data.status);
       }
     }
-  }, [props.data, listSet]);
+  }, [props.data]);
 
   const getPresentStatus = (status: string) => {
     switch (status) {

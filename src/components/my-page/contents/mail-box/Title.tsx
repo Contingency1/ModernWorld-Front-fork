@@ -34,7 +34,7 @@ export default function Title(props: { title: string }) {
 
   useEffect(() => {
     setName(getName());
-  }, [senderData, receiverData]);
+  }, [senderData, receiverData, page]);
 
   return (
     <>
