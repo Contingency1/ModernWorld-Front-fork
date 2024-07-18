@@ -72,10 +72,20 @@ const MAILBOX = {
 
   /** 편지 생성 API */
   async createPost(no: number, content: string): Promise<any> {
-    const result: AxiosResponse = await instance.post(`/user/${no}/posts`, {
-      body: content,
-    });
-    return result.data;
+    if (!window.confirm('편지를 보내시겠습니까?')) {
+      return; // 확인을 받지 못하면 함수 종료
+    }
+    try {
+      const result: AxiosResponse = await instance.post(`/users/${no}/posts`, {
+        content: content,
+      });
+      alert('편지를 보냈습니다.');
+      return result.data;
+    } catch (error) {
+      console.error('편지 생성을 실패하였습니다.', error);
+      alert('편지 보내기를 실패했습니다.');
+      throw error;
+    }
   },
 };
 

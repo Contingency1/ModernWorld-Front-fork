@@ -7,7 +7,7 @@ import {
   viewReceiverPageAtom,
 } from '@/states/mailboxAtoms';
 import { useAtomValue } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function PostInfo(props: { title: string }) {
   const page = useAtomValue(
@@ -17,12 +17,12 @@ export default function PostInfo(props: { title: string }) {
   const receiverData = useAtomValue(receiverDataAtom);
   const [sendPostNo, setSendPostNo] = useState(senderData[page]?.no);
   const [receivePostNo, setReceivePostNo] = useState(receiverData[page]?.no);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleClickDelete = () => {
-    if (props.title.includes('보낸')) {
-      MAILBOX.delPost(sendPostNo);
-    } else {
-      MAILBOX.delPost(receivePostNo);
+    const postNo = props.title.includes('보낸') ? sendPostNo : receivePostNo;
+    if (postNo) {
+      MAILBOX.delPost(postNo);
     }
   };
 
@@ -35,6 +35,7 @@ export default function PostInfo(props: { title: string }) {
         onClick={handleClickDelete}
       />,
     );
+    createPost();
   };
 
   const [postUi, setPostUi] = useState(
@@ -71,7 +72,12 @@ export default function PostInfo(props: { title: string }) {
       setReceivePostNo(receiverData[page]?.no);
       setPostCheck(receivePostNo);
     }
-  }, [props.title, page]);
+  }, [props.title, page, senderData, receiverData]);
+
+  const createPost = async () => {
+    const content = textareaRef.current?.value || '';
+    await MAILBOX.createPost(receiverData[page].userPostSenderNo.no, content);
+  };
 
   return (
     <>
@@ -82,7 +88,10 @@ export default function PostInfo(props: { title: string }) {
               senderData[page]?.content
             ) : (
               <div onClick={onClickHandle}>
-                <S.PostTextarea defaultValue={receiverData[page]?.content} />
+                <S.PostTextarea
+                  ref={textareaRef}
+                  defaultValue={receiverData[page]?.content}
+                />
               </div>
             )}
           </S.MarginDiv>
