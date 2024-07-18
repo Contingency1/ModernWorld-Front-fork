@@ -7,7 +7,6 @@ import {
   senderDataAtom,
   viewSendPageAtom,
   viewReceiverPageAtom,
-  listSetAtom,
 } from '@/states/mailboxAtoms';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -18,12 +17,10 @@ export default function PresentInfo(props: { title: string }) {
   );
   const senderData = useAtomValue(senderDataAtom);
   const receiverData = useAtomValue(receiverDataAtom);
-  const [list, setList] = useAtom(listSetAtom);
 
   const setPresentStatus = async (no: number) => {
     if (no) {
       await MAILBOX.setPresentStatus(no);
-      setList(!list);
     }
   };
 

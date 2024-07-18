@@ -41,12 +41,6 @@ export default function MailBoxBody() {
       getPresents();
     }
   }, [type]);
-  /**
-  console.log(postSenderData);
-  console.log(postReceiverData);
-  console.log(presentReceiverData);
-  console.log(presentSenderData);
- */
 
   return (
     <>

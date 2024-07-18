@@ -5,6 +5,7 @@ import { receiverDataAtom, senderDataAtom } from '@/states/mailboxAtoms';
 export default function ItemList(props: { title: string }) {
   const senderData = useAtomValue(senderDataAtom);
   const receiverData = useAtomValue(receiverDataAtom);
+
   return (
     <>
       <S.ContentsView height="20vh">
