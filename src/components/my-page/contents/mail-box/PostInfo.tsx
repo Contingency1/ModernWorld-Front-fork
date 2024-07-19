@@ -18,7 +18,8 @@ export default function PostInfo(props: { title: string }) {
   const [sendPostNo, setSendPostNo] = useState(senderData[page]?.no);
   const [receivePostNo, setReceivePostNo] = useState(receiverData[page]?.no);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [reply, setReply] = useState(null);
+  const [reply, setReply] = useState<string | null>(null);
+  const [postUi, setPostUi] = useState(true);
 
   const handleClickDelete = () => {
     const postNo = props.title.includes('보낸') ? sendPostNo : receivePostNo;
@@ -29,25 +30,9 @@ export default function PostInfo(props: { title: string }) {
 
   const sendPost = async () => {
     setReply(null);
-    setPostUi(
-      <S.Image
-        src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
-        alt="del"
-        width="33vw"
-        onClick={handleClickDelete}
-      />,
-    );
+    setPostUi(true);
     createPost();
   };
-
-  const [postUi, setPostUi] = useState(
-    <S.Image
-      src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
-      alt="del"
-      width="33vw"
-      onClick={handleClickDelete}
-    />,
-  );
 
   const setPostCheck = async (no: number) => {
     if (no) {
@@ -56,14 +41,7 @@ export default function PostInfo(props: { title: string }) {
   };
 
   const onClickHandle = () => {
-    setPostUi(
-      <S.Image
-        src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/free-icon-edit-button-7734280.png"
-        alt="post"
-        width="33vw"
-        onClick={sendPost}
-      />,
-    );
+    setPostUi(false);
     setReply('답장을 보내보세요!');
   };
 
@@ -112,7 +90,21 @@ export default function PostInfo(props: { title: string }) {
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
         <S.MarginDiv margin="-1vh 2vw 0 0" textAlign="right">
-          {postUi}
+          {postUi ? (
+            <S.Image
+              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
+              alt="del"
+              width="33vw"
+              onClick={handleClickDelete}
+            />
+          ) : (
+            <S.Image
+              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/free-icon-edit-button-7734280.png"
+              alt="post"
+              width="33vw"
+              onClick={sendPost}
+            />
+          )}
         </S.MarginDiv>
       </S.ContentsView>
     </>

@@ -122,6 +122,15 @@ export const PostTextarea = styled.textarea`
 
 /** 편지함 휴지통 img 태그 */
 export const Image = styled.img`
+  z-index: 1;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+/** AcceptRejectUi */
+export const AcceptRejectUi = styled.div`
   &:hover {
     cursor: pointer;
   }
