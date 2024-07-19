@@ -88,5 +88,4 @@ const MAILBOX = {
     }
   },
 };
-
 export default MAILBOX;

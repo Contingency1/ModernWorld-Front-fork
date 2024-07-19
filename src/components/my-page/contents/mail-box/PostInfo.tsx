@@ -18,6 +18,7 @@ export default function PostInfo(props: { title: string }) {
   const [sendPostNo, setSendPostNo] = useState(senderData[page]?.no);
   const [receivePostNo, setReceivePostNo] = useState(receiverData[page]?.no);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [reply, setReply] = useState(null);
 
   const handleClickDelete = () => {
     const postNo = props.title.includes('보낸') ? sendPostNo : receivePostNo;
@@ -27,6 +28,7 @@ export default function PostInfo(props: { title: string }) {
   };
 
   const sendPost = async () => {
+    setReply(null);
     setPostUi(
       <S.Image
         src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
@@ -62,6 +64,7 @@ export default function PostInfo(props: { title: string }) {
         onClick={sendPost}
       />,
     );
+    setReply('답장을 보내보세요!');
   };
 
   useEffect(() => {
@@ -103,7 +106,9 @@ export default function PostInfo(props: { title: string }) {
           color="#767676">
           {props.title.includes('보낸')
             ? senderData[page]?.createdAt
-            : receiverData[page]?.createdAt}
+            : reply
+              ? reply
+              : receiverData[page]?.createdAt}
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
         <S.MarginDiv margin="-1vh 2vw 0 0" textAlign="right">
