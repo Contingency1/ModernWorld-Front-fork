@@ -64,7 +64,7 @@ export default function PostInfo(props: { title: string }) {
     <>
       <S.ContentsView height="25vh">
         <S.ListScroll>
-          <S.MarginDiv fontSize="18px" margin="3vh 2vw" textAlign="left">
+          <S.MarginDiv $fontSize="18px" $margin="3vh 2vw" $textAlign="left">
             {props.title.includes('보낸') ? (
               senderData[page]?.content
             ) : (
@@ -78,9 +78,9 @@ export default function PostInfo(props: { title: string }) {
           </S.MarginDiv>
         </S.ListScroll>
         <S.MarginDiv
-          fontSize="18px"
-          margin="1vh 2vw 0 2vw"
-          textAlign="left"
+          $fontSize="18px"
+          $margin="1vh 2vw 0 2vw"
+          $textAlign="left"
           color="#767676">
           {props.title.includes('보낸')
             ? senderData[page]?.createdAt
@@ -89,7 +89,7 @@ export default function PostInfo(props: { title: string }) {
               : receiverData[page]?.createdAt}
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
-        <S.MarginDiv margin="-1vh 2vw 0 0" textAlign="right">
+        <S.MarginDiv $margin="-1vh 2vw 0 0" $textAlign="right">
           {postUi ? (
             <S.Image
               src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
