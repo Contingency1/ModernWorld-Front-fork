@@ -6,7 +6,7 @@ export const Area6_7_8 = () => {
   return (
     <>
       <S.Place_6_7_8>
-        <S.DivElement margin_right="20%" id="place_6">
+        <S.DivElement marginRight="20%" id="place_6">
           <S.ItemImageSize>
             <S.imagetest
               width="150px"
@@ -14,7 +14,7 @@ export const Area6_7_8 = () => {
               src={useCheckAreaHook(4)}></S.imagetest>
           </S.ItemImageSize>
         </S.DivElement>
-        <S.DivElement width="60%" height="60%" id="place_7" margin_top="18%">
+        <S.DivElement width="60%" height="60%" id="place_7" margintop="18%">
           <S.ItemImageSize>
             <S.imagetest
               width="200px"
@@ -23,7 +23,7 @@ export const Area6_7_8 = () => {
             <GetUserCharacter userNo={1}></GetUserCharacter>
           </S.ItemImageSize>
         </S.DivElement>
-        <S.DivElement margin_left="20%" id="place_8">
+        <S.DivElement marginLeft="20%" id="place_8">
           <S.ItemImageSize>
             <S.imagetest
               width="222px"

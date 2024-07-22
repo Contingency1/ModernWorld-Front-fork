@@ -26,7 +26,7 @@ export const MainLogo = styled.div<StyleType>`
   background-position: center;
   background-image: url('https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mainLogo.png');
   background-repeat: no-repeat;
-  grid-template-rows: ${(props) => props.grid1} ${(props) => props.grid2} ${(
+  grid-template-rows: ${(props) => props.$grid1} ${(props) => props.$grid2} ${(
       props,
     ) => props.grid3} ${(props) => props.grid4};
   display: grid;
@@ -40,7 +40,7 @@ export const MainLogo = styled.div<StyleType>`
  */
 export const MainLogoText = styled.div<StyleType>`
   font-size: ${(props) => props.fontSize};
-  margin-top: ${(props) => props.marginTop};
+  margin-top: ${(props) => props.margintop};
   text-shadow: 4px 4px white;
 `;
 
@@ -52,7 +52,7 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   width: 18%;
   height: 90%;
   background-color: ${(props) => props.color};
-  color: ${(props) => props.textColor};
+  color: ${(props) => props.textcolor};
   margin-top: 5%;
   border-radius: 7px;
   font-family: 'Pretendard-Regular';
@@ -64,10 +64,10 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   display: flex;
   align-items: center;
   img {
-    margin-left: ${(props) => props.imgMarginLeft};
-    margin-right: ${(props) => props.imgMarginRight};
-    width: ${(props) => props.imgWidth};
-    height: ${(props) => props.imgHeight};
+    margin-left: ${(props) => props.imgmarginleft};
+    margin-right: ${(props) => props.imgmarginright};
+    width: ${(props) => props.imgwidth};
+    height: ${(props) => props.imgheight};
   }
 `;
 

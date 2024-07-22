@@ -17,23 +17,23 @@ interface Props {
   display: string;
   flexDirection: string;
   alignItems: string;
-  imgWidth: string;
-  imgHeight: string;
-  imgMarginRight: string;
-  imgMarginLeft: string;
+  imgwidth: string;
+  imgheight: string;
+  imgmarginright: string;
+  imgmarginleft: string;
   font: string;
   props: string;
   //MainLogo
-  grid1: string;
-  grid2: string;
+  $grid1: string;
+  $grid2: string;
   grid3: string;
   grid4: string;
   marginLeft: string;
   marginRight: string;
-  marginTop: string;
+  margintop: string;
   z_index: number;
   border: string;
-  textColor: string;
+  textcolor: string;
 }
 
 export interface StyleType extends Partial<Props> {}
