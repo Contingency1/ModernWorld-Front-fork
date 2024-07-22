@@ -1,4 +1,4 @@
-import axios, { InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL,
@@ -6,7 +6,6 @@ const instance = axios.create({
   //withCredentials: true, //자격 증명(쿠키) 전송
   headers: {
     'X-Custom-Header': 'foobar',
-    'Content-Type': 'application/json',
     'http-equiv': 'Content-Security-Policy',
     content: 'upgrade-insecure-requests',
     accept: '*/*',
@@ -18,7 +17,6 @@ instance.interceptors.request.use(
   // 요청이 전달되기 전에 작업 수행
   (config) => {
     const accessToken = localStorage.getItem('key');
-    config.headers['Content-Type'] = 'application/json';
     config.headers['Authorization'] = `Bearer ${accessToken}`;
     return config;
   },

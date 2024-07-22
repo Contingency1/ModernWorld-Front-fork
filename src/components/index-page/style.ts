@@ -212,8 +212,8 @@ export const RightArrow = styled.div`
 export const FirstCharacter = styled.div`
   grid-area: center;
   img {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
   }
   z-index: 1;
 `;

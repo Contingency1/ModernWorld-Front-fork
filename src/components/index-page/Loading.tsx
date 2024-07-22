@@ -13,18 +13,12 @@ export const Loading = (props: { social: string }) => {
   const getUsersToken = async () => {
     try {
       const response = await Token.getToken(code, props.social);
-      const setAc = localStorage.setItem('ac', response.accessToken);
-      const setRc = localStorage.setItem('Rc', response.refreshToken);
+      const setAc = localStorage.setItem('AT', response.accessToken);
+      const setRc = localStorage.setItem('RT', response.refreshToken);
       const routerPush = router.push('/newcharacter');
-      if (props.social === 'naver') {
-        setAc;
-        setRc;
-        routerPush;
-      } else {
-        setAc;
-        setRc;
-        routerPush;
-      }
+      setAc;
+      setRc;
+      routerPush;
     } catch (err) {
       console.log(err);
     }
