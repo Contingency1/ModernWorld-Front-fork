@@ -65,9 +65,9 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   align-items: center;
   img {
     margin-left: ${(props) => props.imgmarginleft};
-    margin-right: ${(props) => props.imgmarginright};
-    width: ${(props) => props.imgwidth};
-    height: ${(props) => props.imgheight};
+    margin-right: ${(props) => props.$imgMarginRight};
+    width: ${(props) => props.$imgWidth};
+    height: ${(props) => props.$imgHeight};
   }
 `;
 

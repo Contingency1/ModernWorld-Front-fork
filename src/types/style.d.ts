@@ -17,9 +17,9 @@ interface Props {
   display: string;
   flexDirection: string;
   alignItems: string;
-  imgwidth: string;
-  imgheight: string;
-  imgmarginright: string;
+  $imgWidth: string;
+  $imgHeight: string;
+  $imgMarginRight: string;
   imgmarginleft: string;
   font: string;
   props: string;
