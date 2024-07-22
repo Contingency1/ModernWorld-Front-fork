@@ -58,7 +58,7 @@ export default function InventoryItemBox() {
 
   return (
     <>
-      <S.BookMarkBox height="65vh" backColor="#e9eff1">
+      <S.BookMarkBox height="65vh" $backColor="#e9eff1">
         {(selectedType === 'objects' ? userItem : userCharacter).map(
           (i: InventoryItemType) => (
             <div
