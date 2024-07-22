@@ -1,8 +1,43 @@
 'use client';
 
+import MAILBOX from '@/app/api/mailBox';
 import * as S from '@/components/my-page/contents/mail-box/style';
+import {
+  receiverDataAtom,
+  senderDataAtom,
+  viewSendPageAtom,
+  viewReceiverPageAtom,
+} from '@/states/mailboxAtoms';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useEffect, useState } from 'react';
 
 export default function PresentInfo(props: { title: string }) {
+  const page = useAtomValue(
+    props.title.includes('보낸') ? viewSendPageAtom : viewReceiverPageAtom,
+  );
+  const senderData = useAtomValue(senderDataAtom);
+  const receiverData = useAtomValue(receiverDataAtom);
+  const [sendPresentNo, setSendPresentNo] = useState(senderData[page]?.no);
+  const [receivePresentNo, setReceivePresentNo] = useState(
+    receiverData[page]?.no,
+  );
+
+  const setPresentStatus = async (no: number) => {
+    if (no) {
+      await MAILBOX.setPresentStatus(no);
+    }
+  };
+
+  useEffect(() => {
+    if (props.title.includes('보낸')) {
+      setSendPresentNo(senderData[page]?.no);
+      setPresentStatus(sendPresentNo);
+    } else {
+      setReceivePresentNo(receiverData[page]?.no);
+      setPresentStatus(receivePresentNo);
+    }
+  }, [props.title, page, senderData, receiverData]);
+
   const statusChange = (s: string) => {
     switch (s) {
       case 'unread':
@@ -19,29 +54,70 @@ export default function PresentInfo(props: { title: string }) {
     }
   };
 
+  const deleteHandle = () => {
+    if (props.title.includes('보낸') ? sendPresentNo : receivePresentNo) {
+      MAILBOX.delPresent(
+        props.title.includes('보낸') ? sendPresentNo : receivePresentNo,
+      );
+    }
+  };
+
+  const acceptRejectHandle = (s: string) => () => {
+    MAILBOX.updatePresentStatus(receivePresentNo, s);
+  };
+
   return (
     <>
       <S.ContentsView height="25vh">
         <S.DelSection>
-          <img
+          <S.Image
             src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png"
             alt="del"
             width="20vw"
+            onClick={deleteHandle}
           />
         </S.DelSection>
 
         <S.ItemImg>
-          <img src={'아이템 이미지'} alt="img" height="90vh" />
-          <S.FontSize fontSize="18px">{'아이템 이름'}</S.FontSize>
-          <S.FontSize fontSize="14px">{'아이템 설명'}</S.FontSize>
-          <S.FontSize fontSize="12px">{'아이템 날짜'}</S.FontSize>
+          <img
+            src={
+              props.title.includes('보낸')
+                ? senderData[page]?.item?.image
+                : receiverData[page]?.item?.image
+            }
+            alt="img"
+            height="70vh"
+          />
+          <S.FontSize $fontSize="18px">
+            {props.title.includes('보낸')
+              ? senderData[page]?.item?.name
+              : receiverData[page]?.item?.name}
+          </S.FontSize>
+          <S.FontSize $fontSize="14px">
+            {props.title.includes('보낸')
+              ? senderData[page]?.item?.description
+              : receiverData[page]?.item?.description}
+          </S.FontSize>
+          <S.FontSize $fontSize="12px">
+            {props.title.includes('보낸')
+              ? senderData[page]?.createdAt
+              : receiverData[page]?.createdAt}
+          </S.FontSize>
 
           {props.title === '보낸 선물' || props.title === '보낸 편지' ? (
-            <S.StatusFont fontSize="18px">{'상태'}</S.StatusFont>
+            <S.StatusFont $fontSize="18px">
+              {props.title.includes('보낸')
+                ? statusChange(senderData[page]?.status)
+                : statusChange(receiverData[page]?.status)}
+            </S.StatusFont>
           ) : (
             <S.ItemApprovalControls>
-              <div>수락하기</div>
-              <div>거절하기</div>
+              <S.AcceptRejectUi onClick={acceptRejectHandle('accept')}>
+                수락하기
+              </S.AcceptRejectUi>
+              <S.AcceptRejectUi onClick={acceptRejectHandle('reject')}>
+                거절하기
+              </S.AcceptRejectUi>
             </S.ItemApprovalControls>
           )}
         </S.ItemImg>

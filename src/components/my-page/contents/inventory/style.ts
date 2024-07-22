@@ -12,7 +12,7 @@ export const BookMarkBox = styled.div<StyleType>`
   padding: 5vh 10vw;
   width: 180vw;
   height: ${(props) => props.height};
-  background-color: ${(props) => props.backColor};
+  background-color: ${(props) => props.$backColor};
   /* background-color: #e9eff1; */
   border-radius: 20px;
 `;

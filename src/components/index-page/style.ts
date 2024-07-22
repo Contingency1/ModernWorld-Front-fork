@@ -10,10 +10,10 @@ import styled from 'styled-components';
 export const BackgroundColor = styled.body<StyleType>`
   height: 100vh;
   width: 100vw;
-  background-color: ${(props) => props.backColor};
+  background-color: ${(props) => props.$backColor};
   display: ${(props) => props.display};
-  flex-direction: ${(props) => props.flexDirection};
-  align-items: ${(props) => props.alignItems};
+  flex-direction: ${(props) => props.$flexDirection};
+  align-items: ${(props) => props.$alignItems};
 `;
 
 /**
@@ -28,7 +28,7 @@ export const MainLogo = styled.div<StyleType>`
   background-repeat: no-repeat;
   grid-template-rows: ${(props) => props.$grid1} ${(props) => props.$grid2} ${(
       props,
-    ) => props.grid3} ${(props) => props.grid4};
+    ) => props.$grid3} ${(props) => props.$grid4};
   display: grid;
   place-items: center;
   grid-gap: 1%;
@@ -39,8 +39,8 @@ export const MainLogo = styled.div<StyleType>`
  @params width : number, height : number, font-size : number, margin-top : number 
  */
 export const MainLogoText = styled.div<StyleType>`
-  font-size: ${(props) => props.fontSize};
-  margin-top: ${(props) => props.margintop};
+  font-size: ${(props) => props.$fontSize};
+  margin-top: ${(props) => props.$marginTop};
   text-shadow: 4px 4px white;
 `;
 
@@ -52,7 +52,7 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   width: 18%;
   height: 90%;
   background-color: ${(props) => props.color};
-  color: ${(props) => props.textcolor};
+  color: ${(props) => props.$textColor};
   margin-top: 5%;
   border-radius: 7px;
   font-family: 'Pretendard-Regular';
@@ -64,7 +64,7 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   display: flex;
   align-items: center;
   img {
-    margin-left: ${(props) => props.imgmarginleft};
+    margin-left: ${(props) => props.$imgMarginLeft};
     margin-right: ${(props) => props.$imgMarginRight};
     width: ${(props) => props.$imgWidth};
     height: ${(props) => props.$imgHeight};
@@ -125,8 +125,8 @@ export const ChoiseCharacterBox = styled.div<StyleType>`
   grid-template-columns: 18% 64% 18%;
   grid-template-rows: 30% 70%;
   place-items: center;
-  flex-direction: ${(props) => props.flexDirection};
-  align-items: ${(props) => props.alignItems};
+  flex-direction: ${(props) => props.$flexDirection};
+  align-items: ${(props) => props.$alignItems};
   margin-bottom: 2%;
 `;
 
@@ -186,8 +186,8 @@ export const ShowFirstCharacterBox = styled.div<StyleType>`
   height: 80%;
   border-radius: 33px;
   background-color: white;
-  flex-direction: ${(props) => props.flexDirection};
-  align-items: ${(props) => props.alignItems};
+  flex-direction: ${(props) => props.$flexDirection};
+  align-items: ${(props) => props.$alignItems};
   grid-area: center;
   margin-bottom: 2%;
 `;

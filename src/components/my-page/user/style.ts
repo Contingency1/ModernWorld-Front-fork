@@ -77,10 +77,10 @@ export const CategorySection = styled.div`
 
 /** 카테고리 요소들 */
 export const CategoryEle = styled.div<StyleType>`
-  border-top: ${(props) => props.borderTop};
-  border-bottom: ${(props) => props.borderBottom};
-  border-left: ${(props) => props.borderLeft};
-  border-right: ${(props) => props.borderRight};
+  border-top: ${(props) => props.$borderTop};
+  border-bottom: ${(props) => props.$borderBottom};
+  border-left: ${(props) => props.$borderLeft};
+  border-right: ${(props) => props.$borderRight};
   text-align: center;
   align-content: center;
 `;

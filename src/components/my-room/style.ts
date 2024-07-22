@@ -58,9 +58,9 @@ export const DivElement = styled.div<StyleType>`
   height: ${(props) => props.height};
   display: flex;
   justify-content: center;
-  margin-left: ${(props) => props.marginLeft};
-  margin-right: ${(props) => props.marginRight};
-  margin-top: ${(props) => props.margintop};
+  margin-left: ${(props) => props.$marginLeft};
+  margin-right: ${(props) => props.$marginRight};
+  margin-top: ${(props) => props.$marginTop};
   z-index: ${(props) => props.z_index};
 `;
 
@@ -104,7 +104,7 @@ export const ItemImageSize = styled.div<StyleType>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: ${(props) => props.margintop};
+  margin-top: ${(props) => props.$marginTop};
 `;
 
 /**

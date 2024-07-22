@@ -19,7 +19,7 @@ export function MyRoom(props: {
         </S.BackGroundGrid>
         <S.ItemsGrid>
           <S.DivElement width="100%" height="100%" id="place_2">
-            <S.ItemImageSize id="place_2" margintop="35%">
+            <S.ItemImageSize id="place_2" $marginTop="35%">
               <S.imagetest
                 width="350px"
                 height="350px"
@@ -28,7 +28,7 @@ export function MyRoom(props: {
           </S.DivElement>
           <Area1_4_5 />
           <S.DivElement width="100%" height="100%" id="place_3">
-            <S.ItemImageSize id="place_3" margintop="35%">
+            <S.ItemImageSize id="place_3" $marginTop="35%">
               <S.imagetest
                 width="350px"
                 height="350px"

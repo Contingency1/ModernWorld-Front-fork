@@ -1,0 +1,56 @@
+name: Front Ci
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+    types:
+        - merged
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: dockerHub login
+      uses: docker/login-action@v3
+      with: 
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+    - name: build and push
+      env:
+        NAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        REPO: frontdocker
+      run: |
+        docker build -t $NAME/$REPO:tagname .
+        docker push $NAME/$REPO:tagname
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+    - name: docker pull
+      run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/frontdocker:tagname
+
+    - name: docker stop container
+      run: sudo docker stop $(sudo docker ps -q) || true
+
+    - name: docker rm container
+      run: sudo docker rm $(sudo docker ps -q) || true
+
+    - name: docker run new container
+      run: sudo docker-compose up -d
+
+    - name: docker rmi images
+      run: sudo docker system prune -f
+
+      
+
+      
+
+    

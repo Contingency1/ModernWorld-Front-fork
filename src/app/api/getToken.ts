@@ -3,18 +3,16 @@ import instance from './axiosInstance';
 
 export const Token = {
   auth: '/auth',
-  async getNaverToken(code: string | null) {
+  async getToken(code: string | null, social: string) {
     const result: AxiosResponse = await instance.post(
-      `${Token.auth}/naver/login?code=${code}`,
+      `${Token.auth}/${social}/login?code=${code}`,
+      {
+        params: {
+          social: social,
+        },
+      },
     );
     console.log(result);
-    return result.data;
-  },
-
-  async getKakaoToken(code: string | null) {
-    const result: AxiosResponse = await instance.post(
-      `${Token.auth}/kakao/login?code=${code}`,
-    );
     return result.data;
   },
 };
