@@ -61,8 +61,8 @@ export const ModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,18 +72,25 @@ export const ModalBackground = styled.div`
 
 /** 모달창 body */
 export const ModalBody = styled.div`
-  width: 80%;
+  width: 100%;
   max-width: 600px;
-  height: auto;
+  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: 11.15vw;
+  margin-top: 5vh;
   border-radius: 30px;
-  background-color: rgba(255, 255, 255, 0.9); /* 모달 배경을 반투명으로 */
+  background-color: rgba(210, 197, 161, 0.7); /* 모달 배경을 반투명으로 */
   padding: 20px;
   z-index: 1001; /* 모달 배경 위에 위치 */
+  border: 1px solid #7b7b7b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 /** 모달창 안에 아이템 칸 */

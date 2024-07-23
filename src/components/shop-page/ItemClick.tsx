@@ -27,13 +27,25 @@ export default function ItemClick(props: { no: number }) {
     setCharacterInfo(response);
   };
 
+  const buyItem = async (no: number) => {
+    await SHOP.buyItem(no);
+  };
+
+  const buyCharacter = async (no: number) => {
+    await SHOP.buyCharacter(no);
+  };
+
+  const giftItemToUser = async (userNo: number, itemNo: number) => {
+    await SHOP.giftItemToUser(userNo, itemNo);
+  };
+
   useEffect(() => {
     if (selectItemType === 0) {
       getItemInfo(props.no);
     } else {
       getCharacterInfo(props.no);
     }
-  }, [selectItemType]); // selectItemType을 의존성 배열에 추가
+  }, [selectItemType]);
 
   return (
     <>
@@ -57,9 +69,24 @@ export default function ItemClick(props: { no: number }) {
             ? itemInfo?.description ?? ''
             : characterInfo?.description ?? ''}
         </S.ModalFont>
+        <S.ModalFont>
+          {selectItemType === 0
+            ? itemInfo?.price ?? ''
+            : characterInfo?.price ?? ''}
+          원
+        </S.ModalFont>
         <S.ModalButtonSection>
           <S.ModalInButton>선물하기</S.ModalInButton>
-          <S.ModalInButton>구매하기</S.ModalInButton>
+          <S.ModalInButton
+            onClick={() => {
+              buyItem(
+                selectItemType === 0
+                  ? itemInfo?.no ?? 0
+                  : characterInfo?.no ?? 0,
+              );
+            }}>
+            구매하기
+          </S.ModalInButton>
         </S.ModalButtonSection>
         <S.ModalExit
           img="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/exit.png"
