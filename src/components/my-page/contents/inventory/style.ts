@@ -113,6 +113,8 @@ export const ModalItemDiv = styled.div`
 export const ModalButtonSection = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-content: center;
 `;
 
 /** 모달창 안에 아이템 이름과 설명 div */
@@ -158,5 +160,23 @@ export const ModalExit = styled.div<StyleType>`
 
   &:hover {
     cursor: pointer;
+  }
+`;
+
+/** 선물 보낼 유저 입력 UI */
+export const GiftPageUserInput = styled.input`
+  width: 22vw;
+  height: 2.4vh;
+  background-color: #ffdede;
+  border: 2px solid #ffffff;
+  padding: 10px;
+  margin: 1vh;
+  font-size: 18px;
+  color: #696969;
+  outline: none;
+  border-radius: 15px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  &:focus {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   }
 `;
