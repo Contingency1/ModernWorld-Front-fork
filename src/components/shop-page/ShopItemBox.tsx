@@ -4,12 +4,14 @@ import SHOP from '@/app/api/shop';
 import * as S from '@/components/my-page/contents/inventory/style';
 import {
   charactersTypeAtom,
+  isModalOpenAtom,
   selectItemTypeAtom,
   themeTypeAtom,
 } from '@/states/shopAtoms';
 import { ShopDataType } from '@/types/shop';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
+import ItemClick from './ItemClick';
 
 export default function ShopItemBox() {
   const [items, setItems] = useState([]);
@@ -17,6 +19,9 @@ export default function ShopItemBox() {
   const selectItemType = useAtomValue(selectItemTypeAtom);
   const theme = useAtomValue(themeTypeAtom);
   const character = useAtomValue(charactersTypeAtom);
+
+  const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom);
+  const [modalNo, setModalNo] = useState<number | null>(null);
 
   const getCharacter = async (character: string) => {
     const response = await SHOP.getCharacters(character);
@@ -26,6 +31,16 @@ export default function ShopItemBox() {
   const getItems = async (theme: string) => {
     const response = await SHOP.getItems(theme);
     setItems(response);
+  };
+
+  const handleItemClick = (no: number) => {
+    setIsModalOpen(true);
+    setModalNo(no);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalNo(null);
   };
 
   useEffect(() => {
@@ -38,9 +53,10 @@ export default function ShopItemBox() {
 
   return (
     <>
+      {isModalOpen && modalNo !== null && <ItemClick no={modalNo} />}
       <S.BookMarkBox height="65vh" $backColor="#F5F0E2">
         {(selectItemType === 0 ? items : characters).map((i: ShopDataType) => (
-          <S.ItemDiv key={i.no}>
+          <S.ItemDiv key={i.no} onClick={() => handleItemClick(i.no)}>
             <S.Img img={i.image} />
           </S.ItemDiv>
         ))}
@@ -55,45 +71,3 @@ export default function ShopItemBox() {
     </>
   );
 }
-
-/*<>
-      <S.BookMarkBox height="65vh" $backColor="#e9eff1">
-        {(selectedType === 'objects' ? userItem : userCharacter).map(
-          (i: InventoryItemType) => (
-            <div
-              key={i.no}
-              onClick={(e) => {
-                selectedType === 'objects'
-                  ? setItemStatus(i.itemNo, i.status)
-                  : setCharacterStatus(i.characterNo, i.status);
-              }}
-              style={{ cursor: 'pointer' }}>
-              <S.ItemDiv key={i.no}>
-                {i.status ? (
-                  <S.StatusCheck color="#5A61E6" />
-                ) : (
-                  <S.StatusCheck color="#EC4A4A" />
-                )}
-                <S.Img
-                  img={
-                    selectedType === 'objects'
-                      ? i.item.image
-                      : i.character.image
-                  }
-                />
-              </S.ItemDiv>
-            </div>
-          ),
-        )}
-        {[
-          ...Array(
-            12 -
-              (selectedType === 'objects'
-                ? userItem.length
-                : userCharacter.length),
-          ),
-        ].map((_, index) => (
-          <S.ItemDiv key={`null-${index}`}></S.ItemDiv>
-        ))}
-      </S.BookMarkBox>
-    </>*/
