@@ -150,7 +150,7 @@ export const UserHeart = styled.div`
 `;
 
 export const SortCheckBox = styled.div<StyleType>`
-  background-color: ${(props) => (props.check ? 'pink' : 'grey')};
+  background-color: ${(props) => (props.$check ? 'pink' : 'grey')};
   width: 100px;
   height: 50px;
   border-radius: 20px;

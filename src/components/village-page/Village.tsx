@@ -3,7 +3,7 @@ import SearchBox from './SearchBox';
 import Link from 'next/link';
 import { Pagenation } from './Pagenation';
 
-export default function VillageDog() {
+export default function Village(props: { animal: string }) {
   return (
     <S.BackgroundDisplay color="#CACACA">
       <S.Title>
@@ -12,7 +12,7 @@ export default function VillageDog() {
       <S.TheBiggestBox color="#ffffff">
         <SearchBox inputColor="#ffffff"></SearchBox>
         <S.FlexBox>
-          <Pagenation></Pagenation>
+          <Pagenation animal={props.animal}></Pagenation>
         </S.FlexBox>
       </S.TheBiggestBox>
       <Link href="/villagedog">강쥐마을가기</Link>

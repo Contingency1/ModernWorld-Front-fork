@@ -3,7 +3,7 @@
 import { Token } from '@/app/api/getToken';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export const Loading = (props: { social: string }) => {
   const params = useSearchParams();
@@ -14,10 +14,10 @@ export const Loading = (props: { social: string }) => {
     try {
       const response = await Token.getToken(code, props.social);
       const setAc = localStorage.setItem('AT', response.accessToken);
-      const setRc = localStorage.setItem('RT', response.refreshToken);
+      // const setRc = localStorage.setItem('RT', response.refreshToken);
       const routerPush = router.push('/newcharacter');
       setAc;
-      setRc;
+      // setRc;
       routerPush;
     } catch (err) {
       console.log(err);

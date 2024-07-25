@@ -7,9 +7,9 @@ import { VillageParamsType } from '@/types/village';
  */
 export const VILLAGE = {
   async getVillageUser(params: VillageParamsType): Promise<any> {
-    const { pageNo, take, orderByField, animal, nickname } = params;
+    const { page, take, orderByField, animal, nickname } = params;
 
-    const queryParams: VillageParamsType = { pageNo, take, animal };
+    const queryParams: VillageParamsType = { page, take, animal };
 
     orderByField ? (queryParams.orderByField = orderByField) : null;
 

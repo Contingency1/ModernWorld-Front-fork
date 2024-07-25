@@ -1,5 +1,5 @@
 export interface VillageParamsType {
-  pageNo: number;
+  page: number;
   take: number;
   orderByField?: string;
   animal?: string;

@@ -1,13 +1,12 @@
 'use client';
 
 import * as S from '@/components/village-page/style';
-import { atom, useAtom } from 'jotai';
+import { searchValue } from '@/states/village';
+import { useAtom } from 'jotai';
 
 interface SearchBox {
   inputColor: string;
 }
-
-export const searchValue = atom('');
 
 export default function SearchBox(props: SearchBox) {
   const [inputValue, setInputValue] = useAtom(searchValue);

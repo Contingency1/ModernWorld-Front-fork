@@ -13,7 +13,7 @@ interface Props {
   $inputColor: string;
   $justifyContent: string;
   $textAlign: string;
-  check: boolean;
+  $check: boolean;
   display: string;
   $flexDirection: string;
   $alignItems: string;
