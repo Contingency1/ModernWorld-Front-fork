@@ -48,10 +48,10 @@ export const UserInfo = styled.div`
 
 /** margin 값을 줄 수 있는 div 스타일 */
 export const MarginDiv = styled.div<StyleType>`
-  margin: ${(props) => props.margin};
-  font-size: ${(props) => props.fontSize};
+  margin: ${(props) => props.$margin};
+  font-size: ${(props) => props.$fontSize};
   color: ${(props) => props.color};
-  text-align: ${(props) => props.textAlign};
+  text-align: ${(props) => props.$textAlign};
 `;
 
 /** ItemInfo 에 있는 삭제 버튼 담는 섹션 */
@@ -69,13 +69,13 @@ export const ItemImg = styled.div`
 
 /** font size 설정하는 div */
 export const FontSize = styled.div<StyleType>`
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.$fontSize};
   margin: 1px;
 `;
 
 /** 아이템 상태 표시 div */
 export const StatusFont = styled.div<StyleType>`
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.$fontSize};
   display: flex;
   justify-content: right;
   margin: 0 1.5vw;
@@ -84,7 +84,7 @@ export const StatusFont = styled.div<StyleType>`
 
 /** 아이템 수락/거절 div */
 export const ItemApprovalControls = styled.div<StyleType>`
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.$fontSize};
   display: flex;
   justify-content: space-between;
   margin: 0 1.5vw;
@@ -122,6 +122,15 @@ export const PostTextarea = styled.textarea`
 
 /** 편지함 휴지통 img 태그 */
 export const Image = styled.img`
+  z-index: 1;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+/** AcceptRejectUi */
+export const AcceptRejectUi = styled.div`
   &:hover {
     cursor: pointer;
   }

@@ -27,10 +27,53 @@ const MAILBOX = {
 
   /** 선물 삭제 API */
   async delPresent(no: number): Promise<any> {
-    const result: AxiosResponse = await instance.delete(
-      `${MAILBOX.path}/presents/${no}`,
-    );
-    return result.data;
+    if (!window.confirm('선물을 삭제하시겠습니까?')) {
+      return; // 확인을 받지 못하면 함수 종료
+    }
+
+    try {
+      const result: AxiosResponse = await instance.delete(
+        `${MAILBOX.path}/presents/${no}`,
+      );
+      alert('선물 삭제를 성공하였습니다.');
+      return result.data;
+    } catch (error) {
+      console.error('선물 삭제를 실패하였습니다.', error);
+      alert('선물 삭제를 실패하였습니다.');
+      throw error;
+    }
+  },
+
+  /** 선물 수락/거절 API */
+  async updatePresentStatus(no: number, status: string): Promise<any> {
+    if (status === 'accept') {
+      if (!window.confirm('선물을 수락하시겠습니까?')) {
+        return; // 확인을 받지 못하면 함수 종료
+      }
+    } else {
+      if (!window.confirm('선물을 거절하시겠습니까?')) {
+        return; // 확인을 받지 못하면 함수 종료
+      }
+    }
+    try {
+      const result: AxiosResponse = await instance.patch(
+        `${MAILBOX.path}/presents/${no}`,
+        {
+          status: status,
+        },
+      );
+      alert('성공했습니다.');
+      return result.data;
+    } catch (error: any) {
+      console.error('실패하였습니다.', error);
+      if (error.response.status === 403) {
+        alert(`이미 ${status} 된 선물입니다`);
+      } else {
+        alert('실패했습니다.');
+      }
+
+      throw error;
+    }
   },
 
   /** 편지함 불러오기 API */
@@ -88,5 +131,4 @@ const MAILBOX = {
     }
   },
 };
-
 export default MAILBOX;

@@ -51,11 +51,11 @@ export default function ItemListEle(props: any) {
             alt="img"
             width="18vw"
           />
-          <S.MarginDiv margin="1vw" fontSize="16px">
+          <S.MarginDiv $margin="1vw" $fontSize="16px">
             {props.title.includes('받은') ? receiverName : senderName} 님에게{' '}
             {props.title}
           </S.MarginDiv>
-          <S.MarginDiv fontSize="12px" color="#909090">
+          <S.MarginDiv $fontSize="12px" color="#909090">
             {status}
           </S.MarginDiv>
         </S.ItemListEleDiv>
