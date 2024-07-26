@@ -1,15 +1,24 @@
 module.exports = {
-    compiler: {
-        styledComponents: true,
-    },
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'wang0514.s3.ap-northeast-2.amazonaws.com',
-                port: '',
-                pathname: '/toonda-image/**',
-            },
-        ],
-    },
+  compiler: {
+    styledComponents: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'wang0514.s3.ap-northeast-2.amazonaws.com',
+        port: '',
+        pathname: '/toonda-image/**',
+      },
+    ],
+  },
 };
+
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  reactStrictMode: false,
+};
+
+module.exports = nextConfig;

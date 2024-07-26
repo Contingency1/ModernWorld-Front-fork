@@ -27,6 +27,10 @@ const USER = {
     );
     return result;
   },
+
+  async createNickname(): Promise<any> {
+    const result: AxiosResponse = await instance.post(`${USER.path}/`);
+  },
 };
 
 export default USER;
