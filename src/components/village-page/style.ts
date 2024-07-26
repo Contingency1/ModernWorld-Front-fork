@@ -58,7 +58,7 @@ export const SearchInput = styled.input<StyleType>`
   width: 80%;
   border-width: 0;
   outline: none;
-  background-color: ${({ inputColor }) => inputColor};
+  background-color: ${({ $inputColor }) => $inputColor};
   font-size: 4vh;
   margin-left: 6%;
 `;
@@ -150,7 +150,7 @@ export const UserHeart = styled.div`
 `;
 
 export const SortCheckBox = styled.div<StyleType>`
-  background-color: ${(props) => (props.check ? 'pink' : 'grey')};
+  background-color: ${(props) => (props.$check ? 'pink' : 'grey')};
   width: 100px;
   height: 50px;
   border-radius: 20px;

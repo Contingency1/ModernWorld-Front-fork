@@ -13,7 +13,7 @@ interface Props {
   $inputColor: string;
   $justifyContent: string;
   $textAlign: string;
-  check: boolean;
+  $check: boolean;
   display: string;
   $flexDirection: string;
   $alignItems: string;
@@ -24,10 +24,10 @@ interface Props {
   font: string;
   props: string;
   //MainLogo
-  grid1: string;
-  grid2: string;
-  grid3: string;
-  grid4: string;
+  $grid1: string;
+  $grid2: string;
+  $grid3: string;
+  $grid4: string;
   $marginLeft: string;
   $marginRight: string;
   $marginTop: string;
