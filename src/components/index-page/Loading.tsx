@@ -31,7 +31,7 @@ export const Loading = (props: { social: string }) => {
   const getUsersToken = async () => {
     try {
       const response = await Token.getToken(code, props.social);
-      setLocalStorageToken('AcessToken', response.acessToken);
+      setLocalStorageToken('AcessToken', response.accessToken);
       // setCookieToken('ads',response.acessToken)
       const routerPush = router.push('/newcharacter');
       // setRc;

@@ -31,7 +31,6 @@ const INVENTORY = {
         return; // 배치 확인을 받지 못하면 함수 종료
       }
     }
-
     const response: AxiosResponse = await instance.patch(
       `${INVENTORY.path}/my/items/${itemNo}`,
       {

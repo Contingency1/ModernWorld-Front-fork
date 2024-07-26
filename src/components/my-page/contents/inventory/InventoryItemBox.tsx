@@ -65,7 +65,7 @@ export default function InventoryItemBox() {
               key={i.no}
               onClick={(e) => {
                 selectedType === 'objects'
-                  ? setItemStatus(i.itemNo, i.status)
+                  ? setItemStatus(i.item.no, i.status)
                   : setCharacterStatus(i.characterNo, i.status);
               }}
               style={{ cursor: 'pointer' }}>
