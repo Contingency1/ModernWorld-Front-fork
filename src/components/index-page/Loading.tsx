@@ -10,13 +10,30 @@ export const Loading = (props: { social: string }) => {
   const router = useRouter();
   const code = params.get('code');
 
+  const setLocalStorageToken = (key: string, value: string) => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const setCookieToken = (value: string, key?: string) => {
+    try {
+      document.cookie = JSON.stringify(value);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console;
+
   const getUsersToken = async () => {
     try {
       const response = await Token.getToken(code, props.social);
-      const setAc = localStorage.setItem('AT', response.accessToken);
-      // const setRc = localStorage.setItem('RT', response.refreshToken);
+      setLocalStorageToken('AcessToken', response.acessToken);
+      // setCookieToken('ads',response.acessToken)
       const routerPush = router.push('/newcharacter');
-      setAc;
       // setRc;
       routerPush;
     } catch (err) {

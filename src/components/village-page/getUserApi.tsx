@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as S from '@/components/village-page/style';
 import { atom, useAtom } from 'jotai';
-import { searchValue } from './SearchBox';
 import { VILLAGE } from '@/app/api/village';
 import { VillageData } from '@/types/village';
 import Link from 'next/link';
 import {
   currentPageAtom,
+  searchValue,
   sortStateAtom,
   villageUsersArrayAtom,
 } from '@/states/village';
@@ -20,7 +20,6 @@ export default function GetUserApi(props: { animal: string }) {
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
   const [sortState] = useAtom(sortStateAtom);
   const [keyword] = useAtom(searchValue);
-  console.log(props.animal);
 
   async function getUser() {
     const response = await VILLAGE.getVillageUser({

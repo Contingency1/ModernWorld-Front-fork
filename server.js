@@ -2,7 +2,6 @@ const http = require('http');
 const { parse } = require('url');
 const next = require('next');
 
-const path = require('path');
 const https = require('https');
 const fs = require('fs');
 
