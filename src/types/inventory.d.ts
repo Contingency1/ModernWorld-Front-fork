@@ -10,6 +10,7 @@ export interface InventoryItemType extends InventoryCharacterType {
   itemNo: number;
   status: boolean;
   item: {
+    no: number;
     image: string;
     type?: string;
   };
