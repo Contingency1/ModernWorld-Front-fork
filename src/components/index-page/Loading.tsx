@@ -12,30 +12,30 @@ export const Loading = (props: { social: string }) => {
 
   const setLocalStorageToken = (key: string, value: string) => {
     try {
-      localStorage.setItem(key, JSON.stringify(value));
+      localStorage.setItem(key, value);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const setCookieToken = (value: string, key?: string) => {
+  const setCookieToken = (key: string, value: string) => {
     try {
-      document.cookie = JSON.stringify(value);
+      document.cookie = `${key}=${encodeURIComponent(value)}`;
     } catch (err) {
       console.log(err);
     }
   };
 
-  console;
+  const routeNewCharacterPage = () => {
+    router.push('/newcharacter');
+  };
 
   const getUsersToken = async () => {
     try {
       const response = await Token.getToken(code, props.social);
-      setLocalStorageToken('AcessToken', response.accessToken);
-      // setCookieToken('ads',response.acessToken)
-      const routerPush = router.push('/newcharacter');
-      // setRc;
-      routerPush;
+      setLocalStorageToken('accessToken', response.accessToken);
+      setCookieToken('refreshToken', response.refreshToken);
+      routeNewCharacterPage();
     } catch (err) {
       console.log(err);
     }

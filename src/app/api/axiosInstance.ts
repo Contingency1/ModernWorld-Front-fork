@@ -6,9 +6,7 @@ const instance = axios.create({
   //withCredentials: true, //자격 증명(쿠키) 전송
   headers: {
     'X-Custom-Header': 'foobar',
-    'http-equiv': 'Content-Security-Policy',
-    content: 'upgrade-insecure-requests',
-    accept: '*/*',
+    Accept: 'application/json',
   },
 });
 
@@ -16,8 +14,8 @@ const instance = axios.create({
 instance.interceptors.request.use(
   // 요청이 전달되기 전에 작업 수행
   (config) => {
-    const accessToken = localStorage.getItem('key');
-    config.headers['Authorization'] = `Bearer ${accessToken}`;
+    config.headers.Authorization =
+      'Bearer ' + localStorage.getItem('accessToken');
     return config;
   },
   // 요청 오류가 있는 작업 수행

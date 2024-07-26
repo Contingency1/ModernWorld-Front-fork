@@ -24,12 +24,12 @@ export default function InventoryItemBox() {
   const [selectedType] = useAtom<string>(selectedTypeAtom);
 
   const getInventoryItem = async () => {
-    const response = await INVENTORY.getInventoryItem(1, theme);
+    const response = await INVENTORY.getInventoryItem(36, theme);
     setUserItem(response);
   };
 
   const getInventoryCharacter = async () => {
-    const response = await INVENTORY.getInventoryCharacter(1, characterType);
+    const response = await INVENTORY.getInventoryCharacter(36, characterType);
     setUserCharacter(response);
   };
 

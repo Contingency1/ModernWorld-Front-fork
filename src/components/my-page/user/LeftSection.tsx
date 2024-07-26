@@ -12,7 +12,7 @@ export default function LeftSection() {
   const [userCharacterChange] = useAtom<boolean>(userCharacterChangeAtom);
 
   const getUserInfo = async () => {
-    const response = await USER.getUserInfo(1); //유저 아이디
+    const response = await USER.getUserInfo(36); //유저 아이디
     setUserData(response);
   };
 
