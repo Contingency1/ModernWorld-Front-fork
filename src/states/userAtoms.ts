@@ -1,10 +1,14 @@
-import { LeftUserInfoType } from '@/types/user';
+import { UserInfoType, UserLegendsType } from '@/types/user';
 import { atom } from 'jotai';
-export const userDataAtom = atom<LeftUserInfoType>({
+export const userDataAtom = atom<UserInfoType>({
   nickname: '',
   currentPoint: 0,
   accumulationPoint: 0,
-  legend: { likeCount: 0 },
+  description: '',
+  image: '',
+  legend: {
+    likeCount: 0,
+  },
   characterLocker: [
     {
       character: {

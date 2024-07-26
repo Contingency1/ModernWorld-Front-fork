@@ -19,7 +19,7 @@ export const Background = styled.div`
 export const UserImage = styled.img`
   width: 9vw;
   height: 9vw;
-  margin-top: -40vh;
+  margin-top: -45vh;
   border-radius: 50%;
   object-fit: cover;
   border: 15px solid white;
@@ -33,6 +33,7 @@ export const UserInfoContentSection = styled.div<StyleType>`
   position: absolute;
   flex-direction: row;
   margin-top: ${(props) => props.$marginTop};
+  margin-bottom: 5vh;
 `;
 
 export const UserInfoContent = styled.div<StyleType>`
