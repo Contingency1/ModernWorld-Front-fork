@@ -76,7 +76,7 @@ const SHOP = {
   },
 
   /** 특정 유저에게 아이템 선물하기 API */
-  async giftItemToUser(userNo: number, itemNo: number): Promise<any> {
+  async giftItemToUser(userNo: any, itemNo: number): Promise<any> {
     if (!window.confirm('선물하시겠습니까?')) {
       return; // 확인을 받지 못하면 함수 종료
     }

@@ -6,3 +6,4 @@ export const themeTypeAtom = atom<
 >('봄 테마');
 export const charactersTypeAtom = atom<'cat' | 'dog'>('dog');
 export const isModalOpenAtom = atom(false);
+export const isGiftPageOpenAtom = atom(false);
