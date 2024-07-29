@@ -1,14 +1,15 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import * as S from './style';
-import { userDataAtom } from '@/states/userAtoms';
+import { userDataAtom, userNoAtom } from '@/states/userAtoms';
 import { useEffect, useState } from 'react';
 import { UserLegendsType } from '@/types/user';
 import LEGENDS from '@/app/api/legends';
 import USER from '@/app/api/user';
 
 export default function MyPageIndex() {
+  const [updateFlag, setUpdateFlag] = useState(false);
   const [isEditDescription, setIsEditDescription] = useState(false);
   const [editDescriptionText, setEditDescriptionText] = useState('');
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
@@ -28,7 +29,12 @@ export default function MyPageIndex() {
 
   const editDescription = async () => {
     if (editDescriptionText) {
-      const response = await USER.editDescription(editDescriptionText);
+      await USER.editDescription(editDescriptionText);
+      setIndexUserInfo((prev) => ({
+        ...prev,
+        description: editDescriptionText,
+      }));
+      setIsEditDescription(false);
     }
   };
 

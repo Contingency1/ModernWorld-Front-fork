@@ -4,10 +4,15 @@ import PointInfo from './PointInfo';
 import Category from './Category';
 import USER from '@/app/api/user';
 import { useEffect } from 'react';
-import { useAtom } from 'jotai';
-import { userDataAtom, userCharacterChangeAtom } from '@/states/userAtoms';
+import { useAtom, useAtomValue } from 'jotai';
+import {
+  userDataAtom,
+  userCharacterChangeAtom,
+  userNoAtom,
+} from '@/states/userAtoms';
 
 export default function LeftSection() {
+  const userNo = useAtomValue(userNoAtom);
   const [userData, setUserData] = useAtom(userDataAtom);
   const [userCharacterChange] = useAtom<boolean>(userCharacterChangeAtom);
 
