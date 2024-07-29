@@ -49,6 +49,7 @@ export const UserInfoContent = styled.div<StyleType>`
   border: 0.8px solid
     ${(props) => (props.$backColor === '#D7E7FF' ? '#458FFF' : '#ff3131')};
   padding-left: ${(props) => (props.$textAlign === 'center' ? 'null' : '1vw')};
+  box-sizing: border-box;
 `;
 
 /** index Page info Section */
@@ -92,4 +93,28 @@ export const StatBadge = styled.div`
 /** 강조 텍스트 */
 export const AccentText = styled.div`
   font-size: 50px;
+`;
+
+/** edit Text Input UI */
+export const EditInput = styled.input<StyleType>`
+  width: ${(props) => props.width};
+  margin: 0 0.3vw;
+  height: 6vh;
+  background-color: ${(props) => props.$backColor};
+  border-radius: 15px;
+  border: 0.8px solid
+    ${(props) => (props.$backColor === '#D7E7FF' ? '#458FFF' : '#ff3131')};
+  padding-left: 1vw;
+  box-sizing: border-box;
+  outline: none;
+`;
+
+/** 수정 버튼 */
+export const EditText = styled.span`
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: #585858;
+  padding-right: 0.5vw;
+  cursor: pointer;
 `;

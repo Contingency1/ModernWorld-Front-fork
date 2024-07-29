@@ -5,10 +5,12 @@ import * as S from './style';
 import { userDataAtom } from '@/states/userAtoms';
 import { useEffect, useState } from 'react';
 import { UserLegendsType } from '@/types/user';
-import legends from '@/app/api/legends';
 import LEGENDS from '@/app/api/legends';
+import USER from '@/app/api/user';
 
 export default function MyPageIndex() {
+  const [isEditDescription, setIsEditDescription] = useState(false);
+  const [editDescriptionText, setEditDescriptionText] = useState('');
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
   const [userLegends, setUserLegends] = useState<UserLegendsType>({
     userNo: 0,
@@ -24,9 +26,19 @@ export default function MyPageIndex() {
     setUserLegends(response);
   };
 
+  const editDescription = async () => {
+    if (editDescriptionText) {
+      const response = await USER.editDescription(editDescriptionText);
+    }
+  };
+
   useEffect(() => {
     getUserLegends();
-  }, []);
+  }, [isEditDescription]);
+
+  const handleDescriptionChange = (event: any) => {
+    setEditDescriptionText(event.target.value);
+  };
 
   return (
     <>
@@ -51,11 +63,36 @@ export default function MyPageIndex() {
               $textAlign="center">
               자기소개
             </S.UserInfoContent>
-            <S.UserInfoContent width="30vw" $backColor="#D7E7FF">
-              {indexUserInfo.description
-                ? indexUserInfo.description
-                : '자기소개 없음'}
-            </S.UserInfoContent>
+            {isEditDescription ? (
+              <>
+                <S.EditInput
+                  defaultValue={
+                    indexUserInfo.description
+                      ? indexUserInfo.description
+                      : '자기소개 없음'
+                  }
+                  onChange={handleDescriptionChange}
+                  width="30vw"
+                  $backColor="#D7E7FF"
+                />
+                <S.EditText
+                  onClick={() => {
+                    editDescription();
+                    setIsEditDescription(false);
+                  }}>
+                  수정
+                </S.EditText>
+              </>
+            ) : (
+              <S.UserInfoContent
+                width="30vw"
+                $backColor="#D7E7FF"
+                onClick={() => setIsEditDescription(true)}>
+                {indexUserInfo.description
+                  ? indexUserInfo.description
+                  : '자기소개 없음'}
+              </S.UserInfoContent>
+            )}
           </S.UserInfoContentSection>
         </S.UserInfoSection>
         <S.StatSection>
