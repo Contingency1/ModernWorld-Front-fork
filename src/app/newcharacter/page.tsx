@@ -1,6 +1,6 @@
 import '../../style/globals.css';
-import NewCharacter from '@/components/index-page/NewCharacter';
+import NewUser from '@/components/index-page/NewUser';
 
 export default function CreateCharacter() {
-    return <NewCharacter></NewCharacter>;
+  return <NewUser></NewUser>;
 }

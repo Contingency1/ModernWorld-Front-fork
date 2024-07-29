@@ -1,11 +1,14 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import * as S from './style';
 import React, { useState, useEffect } from 'react';
+import { newUserNicknameAtom } from '@/states/newUserNickname';
 
 export default function NewNicknameCondition() {
   const [userInput, setUserInput] = useState('');
   const [checkCondition, setCheckCondition] = useState(false);
+  const [_, setNewUserNickname] = useAtom(newUserNicknameAtom);
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     setUserInput(e.target.value);
@@ -15,6 +18,7 @@ export default function NewNicknameCondition() {
     const REGEX_NICKNAME = /^[a-zA-Z가-힣0-9]{2,10}$/;
     const result = REGEX_NICKNAME.test(userInput);
     setCheckCondition(result);
+    setNewUserNickname(userInput);
   }, [userInput]);
 
   return (

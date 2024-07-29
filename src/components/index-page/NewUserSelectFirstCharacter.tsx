@@ -1,7 +1,9 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import * as S from './style';
 import React, { useState, useEffect } from 'react';
+import { newUserCharacterAtom } from '@/states/newUserNickname';
 
 const animalsURL = [
   {
@@ -22,9 +24,12 @@ const animalsURLmap = () =>
   });
 
 export default function NewCharacterHook() {
-  const [n1, setn1] = useState(0);
+  const [n1, setn1] = useState(1);
+  const [_, setNewUserCharacter] = useAtom(newUserCharacterAtom);
 
-  useEffect(() => {}, [n1]);
+  useEffect(() => {
+    setNewUserCharacter(n1);
+  }, [n1]);
 
   const plus = () => {
     n1 >= animalsURL.length - 1 ? setn1(0) : setn1(n1 + 1);
