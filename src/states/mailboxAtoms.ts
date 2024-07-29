@@ -1,7 +1,7 @@
 import { atom } from 'jotai';
 import { MailBoxDataType } from '@/types/mailBox';
 
-export const mailBoxSelectAtom = atom<number>(1);
+export const mailBoxSelectAtom = atom<number>(0);
 export const postSenderDataAtom = atom<MailBoxDataType[]>([]);
 export const postReceiverDataAtom = atom<MailBoxDataType[]>([]);
 export const presentSenderDataAtom = atom<MailBoxDataType[]>([]);
