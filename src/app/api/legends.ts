@@ -1,0 +1,14 @@
+import { AxiosResponse } from 'axios';
+import instance from './axiosInstance';
+
+const LEGENDS = {
+  path: `/users/my/legends`,
+
+  /** 유저 업적 현황 불러오기 API */
+  async getUserLegends(): Promise<any> {
+    const result: AxiosResponse = await instance.get(`${LEGENDS.path}`);
+    return result.data;
+  },
+};
+
+export default LEGENDS;
