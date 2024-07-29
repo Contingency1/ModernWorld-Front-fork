@@ -17,7 +17,7 @@ export default function GetUserApi(props: { animal: string }) {
   const [villageUsersArray, setVillageUsersArary] = useAtom(
     villageUsersArrayAtom,
   );
-  const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
+  const [currentPage] = useAtom(currentPageAtom);
   const [sortState] = useAtom(sortStateAtom);
   const [keyword] = useAtom(searchValue);
 

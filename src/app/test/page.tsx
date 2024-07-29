@@ -1,6 +1,6 @@
-import { MyRoom } from '@/components/my-room/MyRoom';
 import '../../style/globals.css';
+import EventSource from '../api/sse/eventsource';
 
-export default function CreateCharacter() {
-  return <MyRoom></MyRoom>;
+export default function VillageCat() {
+  return <div></div>;
 }

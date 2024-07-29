@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
+import { promises } from 'dns';
 
 const USER = {
   path: `/users`,
@@ -28,8 +29,24 @@ const USER = {
     return result;
   },
 
-  async createNickname(): Promise<any> {
-    const result: AxiosResponse = await instance.post(`${USER.path}/`);
+  async createNickname(nickname: string): Promise<any> {
+    const result: AxiosResponse = await instance.post(
+      `${USER.path}/my/nickname`,
+      {
+        nickname: nickname,
+      },
+    );
+    return result;
+  },
+
+  async createCharacter(characterNo: number): Promise<any> {
+    const result: AxiosResponse = await instance.post(
+      `${USER.path}/my/characters`,
+      {
+        characterNo: characterNo,
+      },
+    );
+    return result;
   },
 
   async editDescription(s: string): Promise<any> {

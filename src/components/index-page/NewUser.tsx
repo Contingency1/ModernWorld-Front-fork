@@ -1,8 +1,9 @@
-import NewCharacterHook from './NewCharacterHook';
+import NewCharacterHook from './NewUserSelectFirstCharacter';
 import NewNicknameCondition from './NewNicknameCondition';
+import { NewUserCreateNewname } from './NewUserCreateNickname';
 import * as S from './style';
 
-export default function NewCharacter() {
+export default function NewUser() {
   return (
     <S.BackgroundColor
       $backColor="#5F6F52"
@@ -24,16 +25,13 @@ export default function NewCharacter() {
           <S.TextNickname> 닉 네 임 ㅣ </S.TextNickname>
         </S.InputNicknameBox>
         <NewNicknameCondition></NewNicknameCondition>
-
         <NewCharacterHook></NewCharacterHook>
-
         <S.ShowFirstCharacterBox display="flex"></S.ShowFirstCharacterBox>
         <S.WarningText>
           동물은 한 번 선택 시 추후에도 동일한 동물 종류로만 캐릭터 변경이
           가능합니다.
         </S.WarningText>
-
-        <S.startButton href="/my-page">시작하기</S.startButton>
+        <NewUserCreateNewname></NewUserCreateNewname>
       </S.ChoiseCharacterBox>
     </S.BackgroundColor>
   );

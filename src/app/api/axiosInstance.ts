@@ -10,12 +10,15 @@ const instance = axios.create({
   },
 });
 
+const getAccessToken = () => {
+  return localStorage.getItem('accessToken');
+};
+
 // 요청 인터셉터 추가하기 (우선은 필요 없을 것 같아서 주석처리했습니다.)
 instance.interceptors.request.use(
   // 요청이 전달되기 전에 작업 수행
   (config) => {
-    config.headers.Authorization =
-      'Bearer ' + localStorage.getItem('accessToken');
+    config.headers['Authorization'] = `Bearer ${getAccessToken()}`;
     return config;
   },
   // 요청 오류가 있는 작업 수행
