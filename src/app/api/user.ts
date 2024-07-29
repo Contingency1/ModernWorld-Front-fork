@@ -48,6 +48,19 @@ const USER = {
     );
     return result;
   },
+
+  async editDescription(s: string): Promise<any> {
+    if (!window.confirm('자기소개를 수정하시겠습니까?')) {
+      return;
+    }
+    const result: AxiosResponse = await instance.put(
+      `${USER.path}/my/description`,
+      {
+        description: s,
+      },
+    );
+    return result;
+  },
 };
 
 export default USER;
