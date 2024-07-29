@@ -7,9 +7,10 @@ import { useEffect, useState } from 'react';
 import { UserLegendsType } from '@/types/user';
 import LEGENDS from '@/app/api/legends';
 import USER from '@/app/api/user';
+import { useRouter } from 'next/navigation';
 
 export default function MyPageIndex() {
-  const [updateFlag, setUpdateFlag] = useState(false);
+  const router = useRouter();
   const [isEditDescription, setIsEditDescription] = useState(false);
   const [editDescriptionText, setEditDescriptionText] = useState('');
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
@@ -108,12 +109,13 @@ export default function MyPageIndex() {
               {userLegends.likeCount ? userLegends.likeCount : '0'}
             </S.AccentText>
           </S.StatBadge>
-          <S.StatBadge>
+          <S.StatBadge onClick={() => router.push('/my-page/daily-check')}>
             출석
             <S.AccentText>
               {userLegends.attendanceCount ? userLegends.attendanceCount : '0'}
             </S.AccentText>
           </S.StatBadge>
+
           <S.StatBadge>
             아이템
             <S.AccentText>

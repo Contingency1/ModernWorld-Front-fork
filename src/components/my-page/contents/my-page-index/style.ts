@@ -88,6 +88,10 @@ export const StatBadge = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.3);
   z-index: 1;
+
+  &&:hover {
+    cursor: pointer;
+  }
 `;
 
 /** 강조 텍스트 */
