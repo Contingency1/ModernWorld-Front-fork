@@ -1,6 +1,8 @@
 'use client';
 
 import { Token } from '@/app/api/getToken';
+import { userNoAtom } from '@/states/userAtoms';
+import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -9,6 +11,7 @@ export const Loading = (props: { social: string }) => {
   const params = useSearchParams();
   const router = useRouter();
   const code = params.get('code');
+  const [userNo, setUserNo] = useAtom(userNoAtom);
 
   const setLocalStorageToken = (key: string, value: string) => {
     try {
@@ -35,6 +38,7 @@ export const Loading = (props: { social: string }) => {
       const response = await Token.getToken(code, props.social);
       setLocalStorageToken('accessToken', response.accessToken);
       setCookieToken('refreshToken', response.refreshToken);
+      setUserNo(response.userNo);
       routeNewCharacterPage();
     } catch (err) {
       console.log(err);

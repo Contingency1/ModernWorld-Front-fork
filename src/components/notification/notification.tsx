@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { NotificationDiv } from './style';
 
-const Notification = ({ message }: any) => {
+const Notification = (message?: string) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const Notification = ({ message }: any) => {
 
   if (!visible) return null;
 
-  return <NotificationDiv>{message}</NotificationDiv>;
+  return <div>{message}</div>;
 };
 
 export default Notification;

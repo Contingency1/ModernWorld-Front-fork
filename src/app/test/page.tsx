@@ -1,6 +1,6 @@
 import '../../style/globals.css';
-import Home from '../api/sse';
+import EventSource from '../api/sse/eventsource';
 
 export default function VillageCat() {
-  return <Home></Home>;
+  return <div></div>;
 }
