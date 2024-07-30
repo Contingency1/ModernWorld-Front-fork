@@ -1,21 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import * as S from './style';
 
-const Notification = (message?: string) => {
-  const [visible, setVisible] = useState(true);
+const Notification = (props: { message: any }) => {
+  const [modalTimeOut, setModalTimeOut] = useState<boolean>(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisible(false);
-    }, 5000); // 5초 후에 알림 숨김
+    setModalTimeOut(true);
+    const timeOutId = setTimeout(function () {
+      setModalTimeOut(false);
+    }, 3000);
+    return () => clearTimeout(timeOutId);
+  }, [props.message]);
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!visible) return null;
-
-  return <div>{message}</div>;
+  return (
+    <S.NotificationDiv display={true}>
+      알람이 왔어용 : {modalTimeOut ? props.message : null}
+    </S.NotificationDiv>
+  );
 };
 
 export default Notification;

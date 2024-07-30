@@ -39,7 +39,11 @@ export const Loading = (props: { social: string }) => {
       setLocalStorageToken('accessToken', response.accessToken);
       setCookieToken('refreshToken', response.refreshToken);
       setUserNo(response.userNo);
-      routeNewCharacterPage();
+      if (!response.nickname) {
+        router.push('/my-page');
+      } else {
+        routeNewCharacterPage();
+      }
     } catch (err) {
       console.log(err);
     }

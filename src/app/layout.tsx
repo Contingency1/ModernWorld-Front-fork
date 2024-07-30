@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import StyledComponentsRegistry from './lib/registry';
+import Notification from '@/components/notification/notification';
+import { CreateEventSource } from './api/sse/CreateEventSource';
 
 export const metadata: Metadata = {
   title: '모던월드',

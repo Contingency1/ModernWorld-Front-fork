@@ -1,8 +1,20 @@
+import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
-export const NotificationDiv = styled.div`
+interface type1 {
+  display: boolean;
+}
+
+export const NotificationDiv = styled.div<type1>`
+  display: ${({ display }) => (display ? 'flex' : 'none')};
+  width: 50vw;
+  height: 50vh;
+  border-radius: 10px;
+  background-color: green;
   position: absolute;
   z-index: 1000;
+  color: red;
+  font-size: 100px;
 `;
 
 export const ColumnReverseDiv = styled.div`

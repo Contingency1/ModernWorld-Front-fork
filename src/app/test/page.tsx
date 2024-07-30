@@ -1,6 +1,12 @@
-import '../../style/globals.css';
-import EventSource from '../api/sse/eventsource';
+'use client';
 
-export default function VillageCat() {
-  return <div></div>;
+import Notification from '@/components/notification/notification';
+import { CreateEventSource } from '../api/sse/CreateEventSource';
+
+export default function test() {
+  return (
+    <div>
+      <Notification message={CreateEventSource()}></Notification>
+    </div>
+  );
 }
