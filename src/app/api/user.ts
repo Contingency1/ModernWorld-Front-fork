@@ -61,6 +61,13 @@ const USER = {
     );
     return result;
   },
+
+  async getAttendance(): Promise<any> {
+    const result: AxiosResponse = await instance.get(
+      `${USER.path}/my/attendance`,
+    );
+    return result.data;
+  },
 };
 
 export default USER;

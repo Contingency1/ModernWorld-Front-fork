@@ -1,8 +1,38 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import DayCheckBox from './DayCheckBox';
 import EmojiKeyboard from './EmojiKeyboard';
 import * as S from './style';
+import USER from '@/app/api/user';
+import { UserAttendanceDataType } from '@/types/user';
 
 export default function CheckIn() {
+  const [attendanceData, setAttendanceData] = useState<UserAttendanceDataType>({
+    no: 0,
+    nickname: '',
+    attendance: {},
+  });
+
+  const days: Record<number, string> = {
+    0: '월',
+    1: '화',
+    2: '수',
+    3: '목',
+    4: '금',
+    5: '토',
+    6: '일',
+  };
+
+  const getAttendance = async () => {
+    const response = await USER.getAttendance();
+    setAttendanceData(response);
+  };
+
+  useEffect(() => {
+    getAttendance();
+  }, []);
+
   return (
     <>
       <S.Background width="100%" height="100%" $backColor="#e9eff1">
@@ -17,13 +47,21 @@ export default function CheckIn() {
             />
           </S.ContentSection>
           <S.ContentSection>
-            <DayCheckBox />
-            <DayCheckBox />
-            <DayCheckBox />
-            <DayCheckBox />
-            <DayCheckBox />
-            <DayCheckBox />
-            <DayCheckBox />
+            {Object.keys(days).map((key) => {
+              const dayKey = Number(key);
+              const attendance =
+                attendanceData.attendance && attendanceData.attendance[dayKey]
+                  ? attendanceData.attendance[dayKey]
+                  : [0, 0];
+
+              return (
+                <DayCheckBox
+                  key={dayKey}
+                  day={days[dayKey]} // 요일 이름
+                  attendance={attendance} // 출석 정보
+                />
+              );
+            })}
           </S.ContentSection>
           <S.MoodSelectorSection>
             <S.ColumnContainer $margin="0 2vw 0 0">
@@ -38,7 +76,7 @@ export default function CheckIn() {
                 />
               </S.CheckButton>
             </S.ColumnContainer>
-            <EmojiKeyboard></EmojiKeyboard>
+            <EmojiKeyboard />
           </S.MoodSelectorSection>
           <S.Hr></S.Hr>
         </S.Background>
