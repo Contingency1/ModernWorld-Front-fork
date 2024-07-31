@@ -2,35 +2,60 @@
 
 import { useEffect, useState } from 'react';
 import DayCheckBox from './DayCheckBox';
-import EmojiKeyboard from './EmojiKeyboard';
 import * as S from './style';
 import USER from '@/app/api/user';
 import { UserAttendanceDataType } from '@/types/user';
+import { days } from '@/utils/daysConstants';
+import { EMOJIS } from '@/utils/emojiConstants';
+import { bouncy } from 'ldrs';
 
 export default function CheckIn() {
-  const [attendanceData, setAttendanceData] = useState<UserAttendanceDataType>({
-    no: 0,
-    nickname: '',
-    attendance: {},
-  });
+  const [selectedEmoji, setSelectedEmoji] = useState<number | null>(null);
+  const [isCheck, setIsCheck] = useState(false);
+  const [currentDate, setCurrentDate] = useState('');
+  const [weekday, setWeekday] = useState(0);
+  const [attendanceData, setAttendanceData] =
+    useState<UserAttendanceDataType | null>(null);
 
-  const days: Record<number, string> = {
-    0: '월',
-    1: '화',
-    2: '수',
-    3: '목',
-    4: '금',
-    5: '토',
-    6: '일',
-  };
+  bouncy.register();
 
   const getAttendance = async () => {
     const response = await USER.getAttendance();
+    if (response) {
+      if (response.attendance[weekday][0] > 0) {
+        setIsCheck(true);
+        setSelectedEmoji(response.attendance[weekday][0]);
+      }
+    }
+
     setAttendanceData(response);
+  };
+
+  const setAttendance = async () => {
+    if (selectedEmoji) {
+      await USER.setAttendance(selectedEmoji);
+      setIsCheck(true);
+    } else {
+      alert('기분을 선택해주세요!');
+    }
   };
 
   useEffect(() => {
     getAttendance();
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+    });
+    const weekday = today
+      .toLocaleDateString('ko-KR', {
+        weekday: 'long',
+      })
+      .substring(0, 1);
+    setWeekday(days.indexOf(weekday));
+    setCurrentDate(formattedDate);
   }, []);
 
   return (
@@ -47,36 +72,56 @@ export default function CheckIn() {
             />
           </S.ContentSection>
           <S.ContentSection>
-            {Object.keys(days).map((key) => {
-              const dayKey = Number(key);
-              const attendance =
-                attendanceData.attendance && attendanceData.attendance[dayKey]
-                  ? attendanceData.attendance[dayKey]
-                  : [0, 0];
+            {attendanceData ? (
+              days.map((day, index) => {
+                if (day.trim() === '') {
+                  return null; // 빈 문자열인 경우 렌더링하지 않음
+                }
 
-              return (
-                <DayCheckBox
-                  key={dayKey}
-                  day={days[dayKey]} // 요일 이름
-                  attendance={attendance} // 출석 정보
-                />
-              );
-            })}
+                const attendance =
+                  attendanceData.attendance && attendanceData.attendance[index]
+                    ? attendanceData.attendance[index]
+                    : [0, 0];
+                return (
+                  <DayCheckBox key={index} day={day} attendance={attendance} />
+                );
+              })
+            ) : (
+              <l-bouncy size="45" speed="1.75" color="black"></l-bouncy>
+            )}
           </S.ContentSection>
           <S.MoodSelectorSection>
             <S.ColumnContainer $margin="0 2vw 0 0">
-              <S.Font $fontSize="15px" color="#737373">
-                오늘의 기분을 선택하세요!
+              <S.Font $fontSize="15px" color="#737373" $margin="0 0 -1vh 0">
+                {selectedEmoji
+                  ? '오늘은 ' + EMOJIS[selectedEmoji]
+                  : '오늘의 기분을 선택하세요!'}
               </S.Font>
-              <S.CheckButton>
-                <S.Font $margin="0 0.5vw 0 0">출석하기</S.Font>
+              <S.CheckButton onClick={setAttendance}>
+                <S.Font $margin="0 0.5vw 0 0">
+                  {isCheck ? '출석완료' : '출석하기'}
+                </S.Font>
                 <img
                   src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/check.png"
                   width={'12vw'}
                 />
               </S.CheckButton>
+              <S.Font $margin="2vh" color="#484848" $fontSize="18px">
+                {currentDate}
+              </S.Font>
             </S.ColumnContainer>
-            <EmojiKeyboard />
+            <S.EmojiContainer>
+              {EMOJIS.map((emoji, index) =>
+                emoji ? (
+                  <S.EmojiKey
+                    key={index}
+                    isSelected={selectedEmoji === index}
+                    onClick={() => setSelectedEmoji(index)}>
+                    {emoji}
+                  </S.EmojiKey>
+                ) : null,
+              )}
+            </S.EmojiContainer>
           </S.MoodSelectorSection>
           <S.Hr></S.Hr>
         </S.Background>

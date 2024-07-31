@@ -34,6 +34,7 @@ interface Props {
   z_index: number;
   border: string;
   $textColor: string;
+  isSelected: boolean;
 }
 
 export interface StyleType extends Partial<Props> {}

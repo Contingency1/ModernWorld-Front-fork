@@ -68,6 +68,23 @@ const USER = {
     );
     return result.data;
   },
+
+  async setAttendance(stickerNo: number): Promise<any> {
+    try {
+      const result: AxiosResponse = await instance.patch(
+        `${USER.path}/my/attendance`,
+        {
+          stickerNo: stickerNo,
+        },
+      );
+      alert('출석하였습니다.');
+      return result.data;
+    } catch (error) {
+      console.error('출석을 실패했습니다.', error);
+      alert('출석을 실패했습니다.');
+      throw error;
+    }
+  },
 };
 
 export default USER;
