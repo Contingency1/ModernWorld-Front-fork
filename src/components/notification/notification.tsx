@@ -1,24 +1,49 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import * as S from './style';
+import { Suspense, useEffect, useState } from 'react';
+import * as S from './styled';
 
-const Notification = (props: { message: any }) => {
-  const [modalTimeOut, setModalTimeOut] = useState<boolean>(true);
+export const Notification = () => {
+  const [eventContent, setEventContent] = useState({ title: '', content: '' });
+  const [modalTimeOut, setModalTimeOut] = useState(false);
 
   useEffect(() => {
-    setModalTimeOut(true);
-    const timeOutId = setTimeout(function () {
-      setModalTimeOut(false);
-    }, 3000);
-    return () => clearTimeout(timeOutId);
-  }, [props.message]);
+    const eventSource = new EventSource(`https://dev.modern-world.shop/sse/32`);
+
+    const eventContentHandler = (e: {
+      data: { title: string; content: string } | 'Connected';
+    }) => {
+      try {
+        const eventData = JSON.parse(
+          e.data as '{ title: string; content: string }' | 'Connected',
+        );
+        if (e.data !== 'Connected') {
+          setModalTimeOut(true);
+          setEventContent(eventData);
+          setTimeout(() => setModalTimeOut(false), 10000);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    eventSource.addEventListener('message', eventContentHandler);
+
+    return () => {
+      eventSource.removeEventListener('message', eventContentHandler);
+      eventSource.close();
+    };
+  });
 
   return (
-    <S.NotificationDiv display={true}>
-      알람이 왔어용 : {modalTimeOut ? props.message : null}
-    </S.NotificationDiv>
+    <Suspense fallback={<div>Loading</div>}>
+      {modalTimeOut ? (
+        <S.RootDiv>
+          <S.EventMessageDiv>{eventContent.content}</S.EventMessageDiv>
+        </S.RootDiv>
+      ) : (
+        <></>
+      )}
+    </Suspense>
   );
 };
-
-export default Notification;

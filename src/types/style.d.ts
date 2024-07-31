@@ -14,7 +14,7 @@ interface Props {
   $justifyContent: string;
   $textAlign: string;
   $check: boolean;
-  display: string;
+  display: string | boolean;
   $flexDirection: string;
   $alignItems: string;
   $imgWidth: string;
@@ -34,7 +34,6 @@ interface Props {
   z_index: number;
   border: string;
   $textColor: string;
-  display: boolean;
 }
 
 export interface StyleType extends Partial<Props> {}

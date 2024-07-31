@@ -7,7 +7,7 @@ export default function MainPage() {
           모던월드
         </S.MainLogoText>
         <S.LoginBtnLink
-          href={`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=_udRI5pXQrnMsGMQKOZV&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/naver/auth/callback&state=test&auth_type=reauthenticate`}
+          href={`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_NAVER_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/naver/auth/callback&state=test&auth_type=reauthenticate`}
           color="#03C75A"
           $textColor="#ffffff"
           $imgWidth="35%"
@@ -17,7 +17,7 @@ export default function MainPage() {
           네이버 로그인
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href={`https://kauth.kakao.com/oauth/authorize?client_id=96134462004a89d97aae97440496559e&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
+          href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
           color="#FEE500"
           $textColor="#000000"
           $imgWidth="25%"

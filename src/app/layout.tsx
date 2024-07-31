@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import StyledComponentsRegistry from './lib/registry';
-import Notification from '@/components/notification/notification';
-import { CreateEventSource } from './api/sse/CreateEventSource';
+import { Notification } from '@/components/notification/Notification';
 
 export const metadata: Metadata = {
   title: '모던월드',
@@ -18,6 +17,7 @@ export default function RootLayout({
     <html lang="ko">
       <StyledComponentsRegistry>
         <body>{children}</body>
+        <Notification></Notification>
       </StyledComponentsRegistry>
     </html>
   );
