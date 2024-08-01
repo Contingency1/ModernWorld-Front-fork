@@ -93,9 +93,11 @@ export default function CheckIn() {
                 return (
                   <DayCheckBox
                     key={index}
+                    dayNo={index}
                     day={day}
                     attendance={attendance}
                     color={weekday === index ? '#FF7070' : null}
+                    weekday={weekday}
                   />
                 );
               })

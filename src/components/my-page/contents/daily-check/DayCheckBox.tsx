@@ -8,7 +8,13 @@ export default function DayCheckBox(props: any) {
           {props.day}
         </S.Font>
         <S.EmojiViewer>
-          <S.Font $fontSize="40px">{EMOJIS[props.attendance[0]]}</S.Font>
+          <S.Font $fontSize="40px">
+            {props.attendance[0]
+              ? EMOJIS[props.attendance[0]]
+              : props.weekday > props.dayNo
+                ? '-'
+                : null}
+          </S.Font>
         </S.EmojiViewer>
       </S.DayCheckBoxSection>
     </>
