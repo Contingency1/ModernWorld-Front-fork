@@ -1,6 +1,6 @@
 'use client';
 
-import * as S from '@/components/village-page/style';
+import * as S from '@/components/village-page/styled';
 import { searchValue } from '@/states/village';
 import { useAtom } from 'jotai';
 

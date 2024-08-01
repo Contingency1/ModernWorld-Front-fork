@@ -17,7 +17,7 @@ export default function MainPage() {
           네이버 로그인
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
+          href={` https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
           color="#FEE500"
           $textColor="#000000"
           $imgWidth="25%"

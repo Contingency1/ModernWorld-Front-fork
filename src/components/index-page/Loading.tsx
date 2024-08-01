@@ -13,43 +13,42 @@ export const Loading = (props: { social: string }) => {
   const code = params.get('code');
   const [userNo, setUserNo] = useAtom(userNoAtom);
 
-  const setLocalStorageToken = (key: string, value: string) => {
-    try {
-      localStorage.setItem(key, value);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const setCookieToken = (key: string, value: string) => {
-    try {
-      document.cookie = `${key}=${encodeURIComponent(value)}`;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const routeNewCharacterPage = () => {
-    router.push('/newcharacter');
-  };
-
-  const getUsersToken = async () => {
-    try {
-      const response = await Token.getToken(code, props.social);
-      setLocalStorageToken('accessToken', response.accessToken);
-      setCookieToken('refreshToken', response.refreshToken);
-      setUserNo(response.userNo);
-      if (!response.nickname) {
-        router.push('/my-page');
-      } else {
-        routeNewCharacterPage();
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
+    const getUsersToken = async () => {
+      const setLocalStorageToken = (key: string, value: string) => {
+        try {
+          localStorage.setItem(key, value);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      const setCookieToken = (key: string, value: string) => {
+        try {
+          document.cookie = `${key}=${encodeURIComponent(value)}`;
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      const routeNewCharacterPage = () => {
+        router.push('/newcharacter');
+      };
+
+      try {
+        const response = await Token.getToken(code, props.social);
+        setLocalStorageToken('accessToken', response.accessToken);
+        setCookieToken('refreshToken', response.refreshToken);
+        setUserNo(response.userNo);
+        if (response.nickName) {
+          router.push('/my-page');
+        } else {
+          routeNewCharacterPage();
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     getUsersToken();
   }, []);
 

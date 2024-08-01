@@ -10,19 +10,6 @@ export default function PreviewVillageUsers() {
   const [like, setLike] = useState(0);
   const [likeState, setLikeState] = useState(false);
 
-  useEffect(() => {
-    async function getLike() {
-      const response = await USER.getUserInfo(2);
-      setLike(response.legend.likeCount);
-    }
-    getLike();
-  }, [likeState]);
-
-  /**
-   * 409에러 해결해야됨
-   * +++백에서 수정 해준다고 했음
-   */
-
   async function sendLike() {
     const response = await USER.sendLike(2);
     if (response === 409) {
@@ -35,6 +22,14 @@ export default function PreviewVillageUsers() {
     await USER.unLike(2);
     setLikeState(false);
   }
+
+  useEffect(() => {
+    async function getLike() {
+      const response = await USER.getUserInfo(2);
+      setLike(response.legend.likeCount);
+    }
+    getLike();
+  }, [likeState]);
 
   return (
     <S.RootDiv>
