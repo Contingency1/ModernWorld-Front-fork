@@ -60,7 +60,7 @@ export default function CheckIn() {
       .substring(0, 1);
     setWeekday(days.indexOf(weekday));
     setCurrentDate(formattedDate);
-  }, []);
+  }, [isCheck]);
 
   useEffect(() => {
     isCheckTrue();
@@ -91,7 +91,12 @@ export default function CheckIn() {
                     ? attendanceData.attendance[index]
                     : [0, 0];
                 return (
-                  <DayCheckBox key={index} day={day} attendance={attendance} />
+                  <DayCheckBox
+                    key={index}
+                    day={day}
+                    attendance={attendance}
+                    color={weekday === index ? '#FF7070' : null}
+                  />
                 );
               })
             ) : (
@@ -100,7 +105,7 @@ export default function CheckIn() {
           </S.ContentSection>
           <S.MoodSelectorSection>
             <S.ColumnContainer $margin="0 2vw 0 0">
-              <S.Font $fontSize="15px" color="#737373" $margin="0 0 -1vh 0">
+              <S.Font $fontSize="15px" color="#FF7070" $margin="0 0 -1vh 0">
                 {selectedEmoji !== null
                   ? '오늘은 ' + EMOJIS[selectedEmoji]
                   : '오늘의 기분을 선택하세요!'}
@@ -114,7 +119,7 @@ export default function CheckIn() {
                   width={'12vw'}
                 />
               </S.CheckButton>
-              <S.Font $margin="2vh" color="#484848" $fontSize="18px">
+              <S.Font $margin="2vh" color="#FF7070" $fontSize="18px">
                 {currentDate}
               </S.Font>
             </S.ColumnContainer>
