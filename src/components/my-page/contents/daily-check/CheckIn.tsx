@@ -21,14 +21,18 @@ export default function CheckIn() {
 
   const getAttendance = async () => {
     const response = await USER.getAttendance();
-    if (response) {
-      if (response.attendance[weekday][0] > 0) {
-        setIsCheck(true);
-        setSelectedEmoji(response.attendance[weekday][0]);
-      }
-    }
-
     setAttendanceData(response);
+  };
+
+  const isCheckTrue = () => {
+    if (
+      attendanceData?.attendance &&
+      attendanceData.attendance[weekday] &&
+      attendanceData.attendance[weekday][0] > 0
+    ) {
+      setIsCheck(true);
+      setSelectedEmoji(attendanceData.attendance[weekday][0] || null);
+    }
   };
 
   const setAttendance = async () => {
@@ -58,6 +62,10 @@ export default function CheckIn() {
     setCurrentDate(formattedDate);
   }, []);
 
+  useEffect(() => {
+    isCheckTrue();
+  }, [attendanceData]);
+
   return (
     <>
       <S.Background width="100%" height="100%" $backColor="#e9eff1">
@@ -75,7 +83,7 @@ export default function CheckIn() {
             {attendanceData ? (
               days.map((day, index) => {
                 if (day.trim() === '') {
-                  return null; // 빈 문자열인 경우 렌더링하지 않음
+                  return null;
                 }
 
                 const attendance =
@@ -93,11 +101,11 @@ export default function CheckIn() {
           <S.MoodSelectorSection>
             <S.ColumnContainer $margin="0 2vw 0 0">
               <S.Font $fontSize="15px" color="#737373" $margin="0 0 -1vh 0">
-                {selectedEmoji
+                {selectedEmoji !== null
                   ? '오늘은 ' + EMOJIS[selectedEmoji]
                   : '오늘의 기분을 선택하세요!'}
               </S.Font>
-              <S.CheckButton onClick={setAttendance}>
+              <S.CheckButton onClick={isCheck ? undefined : setAttendance}>
                 <S.Font $margin="0 0.5vw 0 0">
                   {isCheck ? '출석완료' : '출석하기'}
                 </S.Font>
@@ -116,7 +124,10 @@ export default function CheckIn() {
                   <S.EmojiKey
                     key={index}
                     isSelected={selectedEmoji === index}
-                    onClick={() => setSelectedEmoji(index)}>
+                    onClick={
+                      isCheck ? undefined : () => setSelectedEmoji(index)
+                    }
+                    style={{ cursor: isCheck ? 'not-allowed' : 'pointer' }}>
                     {emoji}
                   </S.EmojiKey>
                 ) : null,

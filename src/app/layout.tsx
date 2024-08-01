@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="ko">
       <StyledComponentsRegistry>
         <body>{children}</body>
-        <Notification></Notification>
+        {/* <Notification></Notification> */}
       </StyledComponentsRegistry>
     </html>
   );

@@ -3,21 +3,17 @@ import CharacterInfo from './CharacterInfo';
 import PointInfo from './PointInfo';
 import Category from './Category';
 import USER from '@/app/api/user';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
-import {
-  userDataAtom,
-  userCharacterChangeAtom,
-  userNoAtom,
-} from '@/states/userAtoms';
+import { userDataAtom, userCharacterChangeAtom } from '@/states/userAtoms';
 
 export default function LeftSection() {
-  const userNo = useAtomValue(userNoAtom);
+  const userNo = Number(localStorage.getItem('userNo'));
   const [userData, setUserData] = useAtom(userDataAtom);
   const [userCharacterChange] = useAtom<boolean>(userCharacterChangeAtom);
 
   const getUserInfo = async () => {
-    const response = await USER.getUserInfo(36); //유저 아이디
+    const response = await USER.getUserInfo(userNo);
     setUserData(response);
   };
 
