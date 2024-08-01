@@ -32,3 +32,11 @@ export interface UserLegendsType {
   presentCount: number;
   likeCount: number;
 }
+
+export interface UserAttendanceDataType {
+  no: number;
+  nickname: string;
+  attendance: {
+    [key: number]: [number, number];
+  };
+}

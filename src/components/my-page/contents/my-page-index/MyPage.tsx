@@ -1,14 +1,18 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import * as S from './style';
-import { userDataAtom } from '@/states/userAtoms';
+import { userDataAtom, userNoAtom } from '@/states/userAtoms';
 import { useEffect, useState } from 'react';
 import { UserLegendsType } from '@/types/user';
-import legends from '@/app/api/legends';
 import LEGENDS from '@/app/api/legends';
+import USER from '@/app/api/user';
+import { useRouter } from 'next/navigation';
 
 export default function MyPageIndex() {
+  const router = useRouter();
+  const [isEditDescription, setIsEditDescription] = useState(false);
+  const [editDescriptionText, setEditDescriptionText] = useState('');
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
   const [userLegends, setUserLegends] = useState<UserLegendsType>({
     userNo: 0,
@@ -24,9 +28,24 @@ export default function MyPageIndex() {
     setUserLegends(response);
   };
 
+  const editDescription = async () => {
+    if (editDescriptionText) {
+      await USER.editDescription(editDescriptionText);
+      setIndexUserInfo((prev) => ({
+        ...prev,
+        description: editDescriptionText,
+      }));
+      setIsEditDescription(false);
+    }
+  };
+
   useEffect(() => {
     getUserLegends();
-  }, []);
+  }, [isEditDescription]);
+
+  const handleDescriptionChange = (event: any) => {
+    setEditDescriptionText(event.target.value);
+  };
 
   return (
     <>
@@ -51,11 +70,36 @@ export default function MyPageIndex() {
               $textAlign="center">
               자기소개
             </S.UserInfoContent>
-            <S.UserInfoContent width="30vw" $backColor="#D7E7FF">
-              {indexUserInfo.description
-                ? indexUserInfo.description
-                : '자기소개 없음'}
-            </S.UserInfoContent>
+            {isEditDescription ? (
+              <>
+                <S.EditInput
+                  defaultValue={
+                    indexUserInfo.description
+                      ? indexUserInfo.description
+                      : '자기소개 없음'
+                  }
+                  onChange={handleDescriptionChange}
+                  width="30vw"
+                  $backColor="#D7E7FF"
+                />
+                <S.EditText
+                  onClick={() => {
+                    editDescription();
+                    setIsEditDescription(false);
+                  }}>
+                  수정
+                </S.EditText>
+              </>
+            ) : (
+              <S.UserInfoContent
+                width="30vw"
+                $backColor="#D7E7FF"
+                onClick={() => setIsEditDescription(true)}>
+                {indexUserInfo.description
+                  ? indexUserInfo.description
+                  : '자기소개 없음'}
+              </S.UserInfoContent>
+            )}
           </S.UserInfoContentSection>
         </S.UserInfoSection>
         <S.StatSection>
@@ -65,12 +109,13 @@ export default function MyPageIndex() {
               {userLegends.likeCount ? userLegends.likeCount : '0'}
             </S.AccentText>
           </S.StatBadge>
-          <S.StatBadge>
+          <S.StatBadge onClick={() => router.push('/my-page/daily-check')}>
             출석
             <S.AccentText>
               {userLegends.attendanceCount ? userLegends.attendanceCount : '0'}
             </S.AccentText>
           </S.StatBadge>
+
           <S.StatBadge>
             아이템
             <S.AccentText>

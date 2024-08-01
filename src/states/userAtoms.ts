@@ -1,4 +1,4 @@
-import { UserInfoType, UserLegendsType } from '@/types/user';
+import { UserInfoType } from '@/types/user';
 import { atom } from 'jotai';
 export const userDataAtom = atom<UserInfoType>({
   nickname: '',
@@ -27,4 +27,3 @@ export const userDataAtom = atom<UserInfoType>({
 });
 export const characterImage = atom<string>('');
 export const userCharacterChangeAtom = atom<boolean>(true);
-export const userNoAtom = atom<number>(0);
