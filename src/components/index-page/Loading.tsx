@@ -11,9 +11,8 @@ export const Loading = (props: { social: string }) => {
   const params = useSearchParams();
   const router = useRouter();
   const code = params.get('code');
-  const [userNo, setUserNo] = useAtom(userNoAtom);
 
-  const setLocalStorageToken = (key: string, value: string) => {
+  const setLocalStorageItem = (key: string, value: string) => {
     try {
       localStorage.setItem(key, value);
     } catch (err) {
@@ -33,13 +32,19 @@ export const Loading = (props: { social: string }) => {
     router.push('/newcharacter');
   };
 
+  console.log(code);
+
   const getUsersToken = async () => {
     try {
       const response = await Token.getToken(code, props.social);
-      setLocalStorageToken('accessToken', response.accessToken);
+      setLocalStorageItem('accessToken', response.accessToken);
       setCookieToken('refreshToken', response.refreshToken);
-      setUserNo(response.userNo);
-      routeNewCharacterPage();
+      setLocalStorageItem('userNo', response.userNo);
+      if (!response.nickname) {
+        router.push('/my-page');
+      } else {
+        routeNewCharacterPage();
+      }
     } catch (err) {
       console.log(err);
     }

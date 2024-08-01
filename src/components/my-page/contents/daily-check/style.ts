@@ -26,6 +26,7 @@ export const Font = styled.div<StyleType>`
   color: ${(props) => props.color};
   margin: ${(props) => props.$margin};
   text-align: center;
+  z-index: 1;
 `;
 
 export const CheckButton = styled.div`
@@ -39,6 +40,10 @@ export const CheckButton = styled.div`
   border: 4px solid #797979;
   border-radius: 20px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  &:active {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const DayCheckBoxSection = styled.div`
@@ -87,7 +92,7 @@ export const EmojiContainer = styled.div`
   max-width: 25vw;
 `;
 
-export const EmojiKey = styled.div`
+export const EmojiKey = styled.div<StyleType>`
   width: 4vw;
   height: 4vw;
   display: flex;
@@ -95,11 +100,12 @@ export const EmojiKey = styled.div`
   align-items: center;
   font-size: 35px;
   margin: 1vh;
-  border: 1px solid #8f8f8f;
+  border: ${(props) => (props.isSelected ? '6px' : '1px')} solid #8f8f8f;
   border-radius: 15px;
   box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-sizing: border-box;
 `;
-
 export const ColumnContainer = styled.div<StyleType>`
   margin: ${(props) => props.$margin};
   display: flex;
