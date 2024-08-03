@@ -7,12 +7,16 @@ import { useEffect, useState } from 'react';
 export default function useCheckAreaHook(AreaNumber: number) {
   const [item, setItem] = useState([]);
 
-  const getUserInventoryStatus = async () => {
-    const response = await INVENTORY.getInventoryItem(1, undefined, true);
-    setItem(response);
-  };
-
   useEffect(() => {
+    const userNo = Number(localStorage.getItem('userNo'));
+    const getUserInventoryStatus = async () => {
+      const response = await INVENTORY.getInventoryItem(
+        userNo,
+        undefined,
+        true,
+      );
+      setItem(response);
+    };
     getUserInventoryStatus();
   }, []);
 

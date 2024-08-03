@@ -35,7 +35,7 @@ export default function PreviewVillageUsers() {
     <S.RootDiv>
       <S.ContainerDiv>
         <S.previewRoomDiv>
-          <MyRoom width={'90%'} height={'90%'} border={'50px'}></MyRoom>
+          <MyRoom width={'90%'} height={'90%'}></MyRoom>
         </S.previewRoomDiv>
         <S.previewMenu>
           <S.MenuButton>친구 추가</S.MenuButton>

@@ -30,6 +30,7 @@ export const Grid = styled.div`
  */
 export const BackGroundGrid = styled(Grid)`
   grid-template-rows: 65% 35%;
+  align-items: center;
 `;
 
 /**
@@ -41,15 +42,15 @@ export const FloorAndWall = styled.div<StyleType>`
   background-color: ${(props) => props.color};
   width: 100%;
   height: 100%;
-  border-radius: ${(props) => props.border};
+  border-radius: ${(props) => props.$border};
 `;
 
 /**
  * 아이템을 정렬하기 위한 그리드립니다
  */
 export const ItemsGrid = styled(Grid)`
-  grid-template-columns: 33.3% 33.4% 33.3%;
-  grid-template-rows: 65%;
+  grid-template-columns: 33.3% 33.4% 33.33%;
+  grid-template-rows: 65% 35%;
   align-items: center;
 `;
 
@@ -73,6 +74,7 @@ export const Place_1_4_5 = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 100px;
 `;
 
 /**
@@ -82,12 +84,13 @@ export const Place_4_5 = styled.div`
   display: flex;
   width: 100%;
   height: 50%;
+  margin-bottom: 100px;
 `;
 
 /**
  * 6, 7, 8번을 포함하는 부모 div입니다
  */
-export const Place_6_7_8 = styled.div`
+export const Place_7_8_9 = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
@@ -99,8 +102,8 @@ export const Place_6_7_8 = styled.div`
  * @margin_top : string
  */
 export const ItemImageSize = styled.div<StyleType>`
-  width: 100px;
-  height: 100px;
+  width: 8%;
+  height: 8%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,9 +124,9 @@ export const imagetest = styled.img`
  * 캐릭터 크기를 조정해주기 위한 컴포넌트입니다.
  */
 export const CharacterImage = styled.img`
-  width: 250px;
-  height: 250px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   position: absolute;
-  z-index: 2;
-  margin-bottom: 50px;
+  z-index: 1000;
+  margin-bottom: 5%;
 `;
