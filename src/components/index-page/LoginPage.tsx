@@ -29,7 +29,7 @@ export default function MainPage() {
           카카오 로그인
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href="newcharacter"
+          href={`https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/google/auth/callback&scope=https://www.googleapis.com/auth/userinfo.profile`}
           color="#ffffff"
           $textColor="#000000"
           $imgWidth="15%"
