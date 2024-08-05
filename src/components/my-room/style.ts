@@ -113,7 +113,7 @@ export const ItemImageSize = styled.div<StyleType>`
 /**
  * item size test
  */
-export const imagetest = styled.img`
+export const ImageSize = styled.img`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;

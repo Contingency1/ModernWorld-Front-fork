@@ -4,7 +4,7 @@ import * as S from './style';
 import { Area1_4_5 } from './Area1_4_5';
 import { Area7_8_9 } from './Area7_8_9';
 import useCheckAreaHook from './useCheckAreaHook';
-import { itemSize } from '@/utils/itemSizeConstains';
+import useCheckItemSizeHook from './useCheckItemSizeHook';
 
 export function MyRoom(props: { width: string; height: string }) {
   return (
@@ -17,36 +17,36 @@ export function MyRoom(props: { width: string; height: string }) {
         <S.ItemsGrid>
           <S.DivElement width="100%" height="100%" id="place_2">
             <S.ItemImageSize id="place_2" $marginTop="100px">
-              <S.imagetest
-                width={itemSize.item1.width}
-                height={itemSize.item1.height}
-                src={useCheckAreaHook(2)}></S.imagetest>
+              <S.ImageSize
+                width={useCheckItemSizeHook(2, 'width')}
+                height={useCheckItemSizeHook(2, 'height')}
+                src={useCheckAreaHook(2)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <Area1_4_5 />
           <S.DivElement width="100%" height="100%" id="place_3">
             <S.ItemImageSize id="place_3" $marginTop="100px">
-              <S.imagetest
-                width={itemSize.item3.width}
-                height={itemSize.item3.height}
-                src={useCheckAreaHook(3)}></S.imagetest>
+              <S.ImageSize
+                width={useCheckItemSizeHook(3, 'width')}
+                height={useCheckItemSizeHook(3, 'height')}
+                src={useCheckAreaHook(3)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <S.DivElement id="place_6">
             <S.ItemImageSize>
-              <S.imagetest
-                width={itemSize.item6.width}
-                height={itemSize.item6.height}
-                src={useCheckAreaHook(6)}></S.imagetest>
+              <S.ImageSize
+                width={useCheckItemSizeHook(6, 'width')}
+                height={useCheckItemSizeHook(6, 'height')}
+                src={useCheckAreaHook(6)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <Area7_8_9 />
           <S.DivElement id="palce_10">
             <S.ItemImageSize>
-              <S.imagetest
-                width={itemSize.item10.width}
-                height={itemSize.item10.width}
-                src={useCheckAreaHook(10)}></S.imagetest>
+              <S.ImageSize
+                width={useCheckItemSizeHook(10, 'width')}
+                height={useCheckItemSizeHook(10, 'height')}
+                src={useCheckAreaHook(10)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
         </S.ItemsGrid>
