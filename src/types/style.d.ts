@@ -32,7 +32,7 @@ interface Props {
   $marginRight: string;
   $marginTop: string;
   z_index: number;
-  border: string;
+  $border: string;
   $textColor: string;
   isSelected: boolean;
 }

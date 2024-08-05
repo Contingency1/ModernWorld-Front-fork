@@ -1,4 +1,6 @@
-import * as S from '@/components/village-page/style';
+'use client';
+
+import * as S from '@/components/village-page/styled';
 import SearchBox from './SearchBox';
 import Link from 'next/link';
 import { Pagenation } from './Pagenation';

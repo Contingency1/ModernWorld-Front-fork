@@ -1,14 +1,19 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
-import * as S from './styled';
+import styles from './Notification.module.css';
 
-export const Notification = () => {
-  const [eventContent, setEventContent] = useState({ title: '', content: '' });
+const NotificationComponent = () => {
+  const [eventContent, setEventContent] = useState({
+    title: '',
+    content: '',
+  });
   const [modalTimeOut, setModalTimeOut] = useState(false);
 
   useEffect(() => {
-    const eventSource = new EventSource(`https://dev.modern-world.shop/sse/32`);
+    const eventSource = new EventSource(
+      `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/sse/39`,
+    );
 
     const eventContentHandler = (e: {
       data: { title: string; content: string } | 'Connected';
@@ -33,17 +38,17 @@ export const Notification = () => {
       eventSource.removeEventListener('message', eventContentHandler);
       eventSource.close();
     };
-  });
+  }, [eventContent]);
 
   return (
     <Suspense fallback={<div>Loading</div>}>
       {modalTimeOut ? (
-        <S.RootDiv>
-          <S.EventMessageDiv>{eventContent.content}</S.EventMessageDiv>
-        </S.RootDiv>
-      ) : (
-        <></>
-      )}
+        <div className={styles.rootDiv}>
+          <div className={styles.eventMessageDiv}>{eventContent.content}</div>
+        </div>
+      ) : null}
     </Suspense>
   );
 };
+
+export default NotificationComponent;

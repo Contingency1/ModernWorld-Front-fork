@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import StyledComponentsRegistry from './lib/registry';
-import { Notification } from '@/components/notification/Notification';
+import { Notification } from '@/components/notification/DynamicNotification';
 
 export const metadata: Metadata = {
   title: '모던월드',

@@ -15,3 +15,17 @@ export interface InventoryItemType extends InventoryCharacterType {
     type?: string;
   };
 }
+
+export interface UsersCharacterLockerType {
+  no: number;
+  characterNo: number;
+  userNo: number;
+  status: boolean;
+  character: {
+    name: string;
+    description: string;
+    image: string;
+    species: string;
+    price: number;
+  };
+}

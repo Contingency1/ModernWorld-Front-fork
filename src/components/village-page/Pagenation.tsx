@@ -1,6 +1,6 @@
 'use client';
 
-import * as S from '@/components/village-page/style';
+import * as S from '@/components/village-page/styled';
 import RadioSort from './SortDiv';
 import GetUserApi from './getUserApi';
 import { useAtom } from 'jotai';

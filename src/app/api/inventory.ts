@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
+import { UsersCharacterLockerType } from '@/types/inventory';
 
 const INVENTORY = {
   path: `/users`,
@@ -69,6 +70,15 @@ const INVENTORY = {
     );
 
     return response.data;
+  },
+
+  async getUsersCharacterLocker(
+    characterNo: number,
+  ): Promise<UsersCharacterLockerType> {
+    const result: AxiosResponse = await instance.get(
+      `${this.path}/${characterNo}/characters`,
+    );
+    return result.data[0];
   },
 };
 
