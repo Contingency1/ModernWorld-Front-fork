@@ -1,5 +1,5 @@
 import * as S from './style';
-export default function MainPage() {
+export default function LoginPage() {
   return (
     <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }}>
       <S.MainLogo $grid1="40%" $grid2="11%" $grid3="11%" $grid4="11%">
