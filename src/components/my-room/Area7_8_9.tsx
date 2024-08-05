@@ -15,7 +15,7 @@ export const Area7_8_9 = () => {
               src={useCheckAreaHook(7)}></S.ImageSize>
           </S.ItemImageSize>
         </S.DivElement>
-        <S.DivElement width="60%" height="60%" id="place_8" $marginTop="100px">
+        <S.DivElement width="60%" height="60%" id="place_8" $marginTop="75px">
           <S.ItemImageSize>
             <S.ImageSize
               width={useCheckItemSizeHook(8, 'width')}
