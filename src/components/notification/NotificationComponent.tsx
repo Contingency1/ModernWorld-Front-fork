@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import * as S from './style';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 const NotificationComponent = () => {
   const [eventContent, setEventContent] = useState({
@@ -12,7 +11,15 @@ const NotificationComponent = () => {
   });
   const [modalTimeOut, setModalTimeOut] = useState(false);
   const [redirect, setRedirect] = useState('/');
+  const [special, setSpecial] = useState(false);
   const route = useRouter();
+  const pathName = usePathname();
+
+  const isSpecialPage = () => {
+    if (pathName === '/') {
+      setSpecial(true);
+    }
+  };
 
   useEffect(() => {
     const userNo = localStorage.getItem('userNo');
@@ -64,6 +71,8 @@ const NotificationComponent = () => {
       }
     };
 
+    isSpecialPage();
+
     eventSource.addEventListener('message', eventContentHandler);
 
     return () => {
@@ -77,9 +86,9 @@ const NotificationComponent = () => {
   };
 
   return (
-    <S.OnclickDiv>
+    <>
       {modalTimeOut ? (
-        <S.RootDiv>
+        <S.RootDiv $display={special}>
           <S.CrossImage
             src={
               'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/cross-small_4338828.svg'
@@ -95,7 +104,7 @@ const NotificationComponent = () => {
           </div>
         </S.RootDiv>
       ) : null}
-    </S.OnclickDiv>
+    </>
   );
 };
 

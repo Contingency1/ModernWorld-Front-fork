@@ -1,10 +1,8 @@
+import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
-export const OnclickDiv = styled.div`
-  cursor: pointer;
-`;
-
-export const RootDiv = styled.div`
+export const RootDiv = styled.div<StyleType>`
+  display: ${(props) => (props.$display ? 'none' : 'initial')};
   position: absolute;
   align-items: center;
   justify-content: center;
@@ -16,6 +14,7 @@ export const RootDiv = styled.div`
   border-radius: 15px;
   opacity: 0.8;
   animation: slideInOut 3s ease-in-out forwards;
+  cursor: pointer;
 `;
 
 export const CrossAndTitleDiv = styled.div`
