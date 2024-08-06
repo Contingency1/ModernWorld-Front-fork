@@ -8,7 +8,7 @@ import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function PreviewVillageUsers(userNo: number) {
+export default function PreviewVillageUsers(props: { userNo: any }) {
   const [like, setLike] = useState(0);
   const [likeState, setLikeState] = useState(false);
   const route = useRouter();
@@ -41,25 +41,27 @@ export default function PreviewVillageUsers(userNo: number) {
   }
 
   useEffect(() => {
-    async function getLike() {
-      const response = await USER.getUserInfo(2);
+    async function getLike(userNo: number) {
+      const response = await USER.getUserInfo(userNo);
       setLike(response.legend.likeCount);
     }
-    getLike();
+    getLike(props.userNo);
   }, [likeState]);
 
   return (
     <S.RootDiv>
       <S.ContainerDiv>
         <S.previewRoomDiv>
-          <MyRoom width={'90%'} height={'90%'}></MyRoom>
+          <MyRoom width={'90%'} height={'90%'} userNo={props.userNo}></MyRoom>
         </S.previewRoomDiv>
       </S.ContainerDiv>
       <S.previewMenu>
-        <S.MenuButton onClick={() => addFriend(userNo)}>친구 추가</S.MenuButton>
+        <S.MenuButton onClick={() => addFriend(props.userNo)}>
+          친구 추가
+        </S.MenuButton>
         <S.MenuButton
           onClick={() => {
-            !likeState ? sendLike(userNo) : cancelLike(userNo);
+            !likeState ? sendLike(props.userNo) : cancelLike(props.userNo);
           }}>
           <S.HeartAndExistImg
             $marginRight="5%"
@@ -69,7 +71,7 @@ export default function PreviewVillageUsers(userNo: number) {
         <S.HeartAndExistImg
           $marginLeft="10%"
           src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/exit.png"
-          onClick={() => route.push('/villagecat')}></S.HeartAndExistImg>
+          onClick={() => route.push('/village/cat')}></S.HeartAndExistImg>
       </S.previewMenu>
     </S.RootDiv>
   );

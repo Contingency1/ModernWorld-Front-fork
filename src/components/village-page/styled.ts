@@ -9,6 +9,15 @@ export const BackgroundDisplay = styled.div<StyleType>`
   background-color: ${(props) => props.color};
 `;
 
+export const ExitButton = styled.img`
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+`;
+
 /**
  * 마을이름
  */
