@@ -4,11 +4,13 @@ import USER from '@/app/api/user';
 import { MyRoom } from '@/components/my-room/MyRoom';
 import * as S from '@/components/village-page/preview/style';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function PreviewVillageUsers() {
   const [like, setLike] = useState(0);
   const [likeState, setLikeState] = useState(false);
+  const route = useRouter();
 
   async function sendLike() {
     const response = await USER.sendLike(2);
@@ -37,23 +39,23 @@ export default function PreviewVillageUsers() {
         <S.previewRoomDiv>
           <MyRoom width={'90%'} height={'90%'}></MyRoom>
         </S.previewRoomDiv>
-        <S.previewMenu>
-          <S.MenuButton>친구 추가</S.MenuButton>
-          <S.MenuButton>
-            <S.HeartImg
-              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"
-              onClick={() => {
-                !likeState ? sendLike() : cancelLike();
-              }}></S.HeartImg>
-            {like}
-          </S.MenuButton>
-          <S.MenuButton>
-            <Link href="/villagecat" style={{ textDecoration: 'none' }}>
-              나가기
-            </Link>
-          </S.MenuButton>
-        </S.previewMenu>
       </S.ContainerDiv>
+      <S.previewMenu>
+        <S.MenuButton>친구 추가</S.MenuButton>
+        <S.MenuButton
+          onClick={() => {
+            !likeState ? sendLike() : cancelLike();
+          }}>
+          <S.HeartAndExistImg
+            $marginRight="5%"
+            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></S.HeartAndExistImg>
+          {like}
+        </S.MenuButton>
+        <S.HeartAndExistImg
+          $marginLeft="10%"
+          src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/exit.png"
+          onClick={() => route.push('/villagecat')}></S.HeartAndExistImg>
+      </S.previewMenu>
     </S.RootDiv>
   );
 }
