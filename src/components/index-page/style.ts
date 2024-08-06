@@ -11,7 +11,6 @@ export const BackgroundColor = styled.body<StyleType>`
   height: 100vh;
   width: 100vw;
   background-color: ${(props) => props.$backColor};
-  display: ${(props) => props.display};
   flex-direction: ${(props) => props.$flexDirection};
   align-items: ${(props) => props.$alignItems};
 `;

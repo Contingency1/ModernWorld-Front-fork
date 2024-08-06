@@ -38,7 +38,6 @@ export const Loading = (props: { social: string }) => {
       setLocalStorageItem('accessToken', response.accessToken);
       setCookieToken('refreshToken', response.refreshToken);
       setLocalStorageItem('userNo', response.userNo);
-      console.log(response);
       if (response.nickname) {
         router.push('/my-page');
       } else {
