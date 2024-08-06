@@ -1,4 +1,3 @@
-import { itemSize } from '@/utils/itemSizeConstains';
 import * as S from './style';
 import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';

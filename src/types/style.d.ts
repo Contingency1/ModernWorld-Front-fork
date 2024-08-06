@@ -14,7 +14,7 @@ interface Props {
   $justifyContent: string;
   $textAlign: string;
   $check: boolean;
-  display: string | boolean;
+  $display: string | boolean;
   $flexDirection: string;
   $alignItems: string;
   $imgWidth: string;
