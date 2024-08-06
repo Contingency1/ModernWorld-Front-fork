@@ -9,6 +9,7 @@ export const RootDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 `;
 
 export const ContainerDiv = styled.div`

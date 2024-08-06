@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import * as S from '@/components/village-page/style';
+import * as S from '@/components/village-page/styled';
 import { atom, useAtom } from 'jotai';
 import { VILLAGE } from '@/app/api/village';
 import { VillageData } from '@/types/village';

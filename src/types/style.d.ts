@@ -14,7 +14,7 @@ interface Props {
   $justifyContent: string;
   $textAlign: string;
   $check: boolean;
-  display: string | boolean;
+  $display: string | boolean;
   $flexDirection: string;
   $alignItems: string;
   $imgWidth: string;
@@ -32,7 +32,7 @@ interface Props {
   $marginRight: string;
   $marginTop: string;
   z_index: number;
-  border: string;
+  $border: string;
   $textColor: string;
   isSelected: boolean;
   flex: string;

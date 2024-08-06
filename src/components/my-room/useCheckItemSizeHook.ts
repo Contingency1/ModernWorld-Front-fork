@@ -3,9 +3,13 @@
 import INVENTORY from '@/app/api/inventory';
 import { InventoryItemType } from '@/types/inventory';
 import { useEffect, useState } from 'react';
+import { itemSize } from '@/utils/itemSizeConstains';
 
-export default function useCheckAreaHook(AreaNumber: number) {
-  const [item, setItem] = useState([]);
+export default function useCheckItemSizeHook(
+  AreaNumber: number,
+  WidthorHeight?: string,
+) {
+  const [inventoryItem, setInventoryItem] = useState<[]>([]);
 
   useEffect(() => {
     const userNo = Number(localStorage.getItem('userNo'));
@@ -15,14 +19,22 @@ export default function useCheckAreaHook(AreaNumber: number) {
         undefined,
         true,
       );
-      setItem(response);
+      setInventoryItem(response);
     };
     getUserInventoryStatus();
   }, []);
 
-  return (
-    item.filter(
+  const filteredItem = (
+    inventoryItem.filter(
       (e: InventoryItemType) => e.item.type === `${AreaNumber}번 타입`,
     )[0] as InventoryItemType
-  )?.item.image;
+  )?.item.no;
+
+  if (filteredItem !== undefined) {
+    return WidthorHeight === 'width'
+      ? itemSize[filteredItem - 1]?.width
+      : itemSize[filteredItem - 1]?.height;
+  }
+
+  return WidthorHeight === 'width' ? '100%' : '10%';
 }

@@ -1,5 +1,5 @@
 import * as S from './style';
-export default function MainPage() {
+export default function LoginPage() {
   return (
     <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }}>
       <S.MainLogo $grid1="40%" $grid2="11%" $grid3="11%" $grid4="11%">
@@ -17,7 +17,7 @@ export default function MainPage() {
           네이버 로그인
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
+          href={` https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
           color="#FEE500"
           $textColor="#000000"
           $imgWidth="25%"
@@ -29,7 +29,7 @@ export default function MainPage() {
           카카오 로그인
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href="newcharacter"
+          href={`https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/google/auth/callback&scope=https://www.googleapis.com/auth/userinfo.profile`}
           color="#ffffff"
           $textColor="#000000"
           $imgWidth="15%"

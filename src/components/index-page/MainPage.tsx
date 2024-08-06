@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import * as S from './style';
-export default function LoginPage() {
+export default function MainPage() {
   return (
     <body style={{ backgroundColor: '#5F6F52' }}>
       <S.MainLogo $grid1="40%" $grid2="30%" $grid3="30%">
@@ -8,7 +8,7 @@ export default function LoginPage() {
           모던월드
         </S.MainLogoText>
         <S.MainLogoText $fontSize="2%">님 환영합니다 :)</S.MainLogoText>
-        <Link href="/newcharacter">
+        <Link href="/my-page">
           <S.MainPowerBtn width="80px" height="80px"></S.MainPowerBtn>
         </Link>
       </S.MainLogo>

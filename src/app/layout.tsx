@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import StyledComponentsRegistry from './lib/registry';
-import { Notification } from '@/components/notification/Notification';
+import { ClientOnly } from '@/utils/clientOnly';
+import NotificationComponent from '@/components/notification/NotificationComponent';
 
 export const metadata: Metadata = {
   title: '모던월드',
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="ko">
       <StyledComponentsRegistry>
         <body>{children}</body>
-        {/* <Notification></Notification> */}
+        <ClientOnly>
+          <NotificationComponent></NotificationComponent>
+        </ClientOnly>
       </StyledComponentsRegistry>
     </html>
   );

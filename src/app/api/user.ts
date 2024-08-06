@@ -1,6 +1,5 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
-import { promises } from 'dns';
 
 const USER = {
   path: `/users`,
