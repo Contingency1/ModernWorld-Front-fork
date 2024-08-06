@@ -16,7 +16,7 @@ export default function Category() {
           <S.LinkBox href="/shop">상점</S.LinkBox>
         </S.CategoryEle>
         <S.CategoryEle $borderTop="1px solid #A2A2A2">
-          <S.LinkBox href="/my-page">이웃</S.LinkBox>
+          <S.LinkBox href="/my-page/neighbor">이웃</S.LinkBox>
         </S.CategoryEle>
         <S.CategoryEle
           $borderRight="1px solid #A2A2A2"

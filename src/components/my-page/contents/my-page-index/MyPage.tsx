@@ -116,7 +116,7 @@ export default function MyPageIndex() {
             </S.AccentText>
           </S.StatBadge>
 
-          <S.StatBadge>
+          <S.StatBadge onClick={() => router.push('/my-page/inventory')}>
             아이템
             <S.AccentText>
               {userLegends.itemCount ? userLegends.itemCount : '0'}
