@@ -7,7 +7,7 @@ const NEIGHBOR = {
   /** 친구 요청 보내기 API */
   async sendFriendRequest(userNo: number): Promise<any> {
     const result: AxiosResponse = await instance.post(
-      `/users/${userNo}/${NEIGHBOR.path}`,
+      `/users/${userNo}${NEIGHBOR.path}`,
     );
     return result.data;
   },
