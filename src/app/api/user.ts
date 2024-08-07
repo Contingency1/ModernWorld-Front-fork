@@ -9,6 +9,17 @@ const USER = {
     const result: AxiosResponse = await instance.get(`${USER.path}/${userNo}`);
     return result.data;
   },
+  /**  */
+  async searchUser(nickname: string): Promise<any> {
+    const result: AxiosResponse = await instance.get(`${USER.path}`, {
+      params: {
+        page: 1,
+        take: 1,
+        nickname: nickname,
+      },
+    });
+    return result.data;
+  },
 
   async sendLike(userId: number): Promise<any> {
     try {

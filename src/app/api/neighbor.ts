@@ -7,21 +7,21 @@ const NEIGHBOR = {
   /** 친구 요청 보내기 API */
   async sendFriendRequest(userNo: number): Promise<any> {
     const result: AxiosResponse = await instance.post(
-      `/users/${userNo}/${NEIGHBOR.path}`,
+      `/users/${userNo}${NEIGHBOR.path}`,
     );
     return result.data;
   },
 
   /** 이웃 목록 불러오기 API */
-  async getNeighbor(
+  async getNeighbors(
     page: number,
     take: number,
-    orderBy: string,
     status: boolean,
-    type: string,
+    type?: string,
+    orderBy?: string,
   ): Promise<any> {
     const result: AxiosResponse = await instance.get(
-      `/users/my/${NEIGHBOR.path}`,
+      `/users/my${NEIGHBOR.path}`,
       {
         params: {
           page: page,
@@ -37,12 +37,12 @@ const NEIGHBOR = {
 
   /** 이웃 신청 승인 API */
   async acceptNeighborRequest(neighborNo: number): Promise<any> {
-    if (!window.confirm('승인하시겠습니까?')) {
+    if (!window.confirm('수락하시겠습니까?')) {
       return; // 확인을 받지 못하면 함수 종료
     }
     try {
       const result: AxiosResponse = await instance.patch(
-        `/users/my/${NEIGHBOR.path}/${neighborNo}`,
+        `/users/my${NEIGHBOR.path}/${neighborNo}`,
       );
       alert('성공했습니다.');
       return result.data;
@@ -55,12 +55,12 @@ const NEIGHBOR = {
 
   /** 이웃 신청 거절 API */
   async deleteNeighborRequest(neighborNo: number): Promise<any> {
-    if (!window.confirm('승인 거절하시겠습니까?')) {
+    if (!window.confirm('거절하시겠습니까?')) {
       return; // 확인을 받지 못하면 함수 종료
     }
     try {
       const result: AxiosResponse = await instance.delete(
-        `/users/my/${NEIGHBOR.path}/${neighborNo}`,
+        `/users/my${NEIGHBOR.path}/${neighborNo}`,
       );
       alert('성공했습니다.');
       return result.data;

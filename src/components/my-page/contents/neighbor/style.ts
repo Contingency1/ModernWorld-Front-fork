@@ -59,7 +59,7 @@ export const FontSection = styled.div`
 /** font css */
 export const Font = styled.div<StyleType>`
   font-size: ${(props) => props.$fontSize};
-  color: #454545;
+  color: ${(props) => (props.color ? props.color : '#454545')};
   margin: ${(props) => props.$margin};
 `;
 

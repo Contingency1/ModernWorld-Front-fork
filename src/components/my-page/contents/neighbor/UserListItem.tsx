@@ -1,23 +1,63 @@
 import * as S from './style';
-export default function UserListItem() {
-  return (
+import { useAtomValue } from 'jotai';
+import { pageViewTypeAtom } from '@/states/neighbor';
+import NEIGHBOR from '@/app/api/neighbor';
+
+export default function UserListItem(props: any) {
+  const pageViewType = useAtomValue(pageViewTypeAtom);
+
+  const acceptNeighborRequest = () => {
+    NEIGHBOR.acceptNeighborRequest(props.userData.no);
+  };
+  const deleteNeighborRequest = () => {
+    NEIGHBOR.deleteNeighborRequest(props.userData.no);
+  };
+
+  return props.userData ? (
     <>
-      <S.UserImg></S.UserImg>
+      <S.UserImg src={props.userData.neighbor.image}></S.UserImg>
       <S.FontSection>
         <S.RowDiv>
-          <S.Font $fontSize="24px">사용자</S.Font>
-          <S.Font $fontSize="18px" $margin="0 0 0 0.3vw">
-            (업적)
+          <S.Font $fontSize="24px">{props.userData.neighbor.nickname}</S.Font>
+          <S.Font
+            color={
+              props.userData.neighbor.userAchievement[0]?.achievement?.level ===
+              'one'
+                ? '#B8860B'
+                : props.userData.neighbor.userAchievement[0]?.achievement
+                      ?.level === 'two'
+                  ? '#006400'
+                  : props.userData.neighbor.userAchievement[0]?.achievement
+                        ?.level === 'three'
+                    ? '#65000B'
+                    : ''
+            }
+            $fontSize="16px"
+            $margin="0 0 0 0.3vw">
+            {props.userData.neighbor.userAchievement[0]?.achievement?.title
+              ? `(${props.userData.neighbor.userAchievement[0]?.achievement?.title})`
+              : '(-)'}
           </S.Font>
         </S.RowDiv>
         <S.Font $fontSize="18px" $margin="1vw 0 0 0">
-          안녕하세요~ 반가워요
+          {props.userData.neighbor.description}
         </S.Font>
       </S.FontSection>
       <S.ColumnSection>
-        <S.Button>편지 보내기</S.Button>
-        <S.Button>방 보러가기</S.Button>
+        {pageViewType === 'list' ? (
+          <>
+            <S.Button>편지 보내기</S.Button>
+            <S.Button>방 보러가기</S.Button>
+          </>
+        ) : (
+          <>
+            <S.Button onClick={acceptNeighborRequest}>친구 수락</S.Button>
+            <S.Button onClick={deleteNeighborRequest}>친구 거절</S.Button>
+          </>
+        )}
       </S.ColumnSection>
     </>
+  ) : (
+    <></>
   );
 }
