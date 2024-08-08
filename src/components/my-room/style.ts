@@ -108,16 +108,18 @@ export const ItemImageSize = styled.div<StyleType>`
   justify-content: center;
   align-items: center;
   margin-top: ${(props) => props.$marginTop};
+  border: none;
 `;
 
 /**
  * item size test
  */
-export const ImageSize = styled.img`
+export const ImageSize = styled.img<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;
   z-index: 1;
+  display: ${(props) => (props.$hasError ? 'block' : 'none')};
 `;
 
 /**

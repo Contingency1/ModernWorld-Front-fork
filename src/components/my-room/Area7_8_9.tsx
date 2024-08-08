@@ -3,33 +3,36 @@ import * as S from './style';
 import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';
 
-export const Area7_8_9 = () => {
+export const Area7_8_9 = (props: { userNo?: number }) => {
   return (
     <>
       <S.Place_7_8_9>
         <S.DivElement $marginRight="20%" id="place_7">
           <S.ItemImageSize>
             <S.ImageSize
-              width={useCheckItemSizeHook(7, 'width')}
-              height={useCheckItemSizeHook(7, 'height')}
-              src={useCheckAreaHook(7)}></S.ImageSize>
+              width={useCheckItemSizeHook(7, 'width', props.userNo)}
+              height={useCheckItemSizeHook(7, 'height', props.userNo)}
+              src={useCheckAreaHook(7, props.userNo)}
+              $hasError={useCheckAreaHook(7, props.userNo)}></S.ImageSize>
           </S.ItemImageSize>
         </S.DivElement>
         <S.DivElement width="60%" height="60%" id="place_8" $marginTop="75px">
           <S.ItemImageSize>
             <S.ImageSize
-              width={useCheckItemSizeHook(8, 'width')}
-              height={useCheckItemSizeHook(8, 'height')}
-              src={useCheckAreaHook(8)}></S.ImageSize>
+              width={useCheckItemSizeHook(8, 'width', props.userNo)}
+              height={useCheckItemSizeHook(8, 'height', props.userNo)}
+              src={useCheckAreaHook(8, props.userNo)}
+              $hasError={useCheckAreaHook(8, props.userNo)}></S.ImageSize>
             <GetUserCharacter></GetUserCharacter>
           </S.ItemImageSize>
         </S.DivElement>
         <S.DivElement $marginLeft="20%" id="place_9">
           <S.ItemImageSize>
             <S.ImageSize
-              width={useCheckItemSizeHook(9, 'width')}
-              height={useCheckItemSizeHook(9, 'height')}
-              src={useCheckAreaHook(9)}></S.ImageSize>
+              width={useCheckItemSizeHook(9, 'width', props.userNo)}
+              height={useCheckItemSizeHook(9, 'height', props.userNo)}
+              src={useCheckAreaHook(9, props.userNo)}
+              $hasError={useCheckAreaHook(9, props.userNo)}></S.ImageSize>
           </S.ItemImageSize>
         </S.DivElement>
       </S.Place_7_8_9>

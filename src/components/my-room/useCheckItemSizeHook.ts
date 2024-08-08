@@ -8,6 +8,7 @@ import { itemSize } from '@/utils/itemSizeConstains';
 export default function useCheckItemSizeHook(
   AreaNumber: number,
   WidthorHeight?: string,
+  userNumber?: number,
 ) {
   const [inventoryItem, setInventoryItem] = useState<[]>([]);
 
@@ -15,7 +16,7 @@ export default function useCheckItemSizeHook(
     const userNo = Number(localStorage.getItem('userNo'));
     const getUserInventoryStatus = async () => {
       const response = await INVENTORY.getInventoryItem(
-        userNo,
+        userNumber || userNo,
         undefined,
         true,
       );
@@ -30,11 +31,13 @@ export default function useCheckItemSizeHook(
     )[0] as InventoryItemType
   )?.item.no;
 
+  console.log(inventoryItem);
+
   if (filteredItem !== undefined) {
     return WidthorHeight === 'width'
       ? itemSize[filteredItem - 1]?.width
       : itemSize[filteredItem - 1]?.height;
   }
 
-  return WidthorHeight === 'width' ? '100%' : '10%';
+  return WidthorHeight === 'width' ? '10%' : '10%';
 }

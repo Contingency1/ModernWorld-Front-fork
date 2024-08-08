@@ -1,4 +1,4 @@
-import '../../style/globals.css';
+import '../../../style/globals.css';
 import Village from '@/components/village-page/Village';
 
 export default function VillageCat() {
