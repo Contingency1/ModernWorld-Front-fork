@@ -4,14 +4,17 @@ import INVENTORY from '@/app/api/inventory';
 import { InventoryItemType } from '@/types/inventory';
 import { useEffect, useState } from 'react';
 
-export default function useCheckAreaHook(AreaNumber: number) {
+export default function useCheckAreaHook(
+  AreaNumber: number,
+  userNumber?: number,
+) {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
     const userNo = Number(localStorage.getItem('userNo'));
     const getUserInventoryStatus = async () => {
       const response = await INVENTORY.getInventoryItem(
-        userNo,
+        userNumber || userNo,
         undefined,
         true,
       );

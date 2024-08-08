@@ -34,6 +34,7 @@ interface Props {
   z_index: number;
   $border: string;
   $textColor: string;
+  $hasError: string;
   isSelected: boolean;
   flex: string;
 }

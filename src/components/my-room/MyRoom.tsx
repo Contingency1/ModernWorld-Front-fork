@@ -6,7 +6,11 @@ import { Area7_8_9 } from './Area7_8_9';
 import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';
 
-export function MyRoom(props: { width: string; height: string }) {
+export function MyRoom(props: {
+  width: string;
+  height: string;
+  userNo?: number;
+}) {
   return (
     <>
       <S.MyRoomRootDiv width={props.width} height={props.height}>
@@ -18,35 +22,39 @@ export function MyRoom(props: { width: string; height: string }) {
           <S.DivElement width="100%" height="100%" id="place_2">
             <S.ItemImageSize id="place_2" $marginTop="100px">
               <S.ImageSize
-                width={useCheckItemSizeHook(2, 'width')}
-                height={useCheckItemSizeHook(2, 'height')}
-                src={useCheckAreaHook(2)}></S.ImageSize>
+                width={useCheckItemSizeHook(2, 'width', props.userNo)}
+                height={useCheckItemSizeHook(2, 'height', props.userNo)}
+                src={useCheckAreaHook(2, props.userNo)}
+                $hasError={useCheckAreaHook(2, props.userNo)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
-          <Area1_4_5 />
+          <Area1_4_5 userNo={props.userNo} />
           <S.DivElement width="100%" height="100%" id="place_3">
             <S.ItemImageSize id="place_3" $marginTop="100px">
               <S.ImageSize
-                width={useCheckItemSizeHook(3, 'width')}
-                height={useCheckItemSizeHook(3, 'height')}
-                src={useCheckAreaHook(3)}></S.ImageSize>
+                width={useCheckItemSizeHook(3, 'width', props.userNo)}
+                height={useCheckItemSizeHook(3, 'height', props.userNo)}
+                src={useCheckAreaHook(3, props.userNo)}
+                $hasError={useCheckAreaHook(3, props.userNo)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <S.DivElement id="place_6">
             <S.ItemImageSize>
               <S.ImageSize
-                width={useCheckItemSizeHook(6, 'width')}
-                height={useCheckItemSizeHook(6, 'height')}
-                src={useCheckAreaHook(6)}></S.ImageSize>
+                width={useCheckItemSizeHook(6, 'width', props.userNo)}
+                height={useCheckItemSizeHook(6, 'height', props.userNo)}
+                src={useCheckAreaHook(6, props.userNo)}
+                $hasError={useCheckAreaHook(6, props.userNo)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
-          <Area7_8_9 />
+          <Area7_8_9 userNo={props.userNo} />
           <S.DivElement id="palce_10">
             <S.ItemImageSize>
               <S.ImageSize
-                width={useCheckItemSizeHook(10, 'width')}
-                height={useCheckItemSizeHook(10, 'height')}
-                src={useCheckAreaHook(10)}></S.ImageSize>
+                width={useCheckItemSizeHook(10, 'width', props.userNo)}
+                height={useCheckItemSizeHook(10, 'height', props.userNo)}
+                src={useCheckAreaHook(10, props.userNo)}
+                $hasError={useCheckAreaHook(10, props.userNo)}></S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
         </S.ItemsGrid>

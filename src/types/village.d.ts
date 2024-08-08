@@ -7,6 +7,7 @@ export interface VillageParamsType {
 }
 
 export interface VillageData {
+  no: number;
   accumulation: number;
   characterLocker: Array<{ character: { image: string } }>;
   createdAt: string;
