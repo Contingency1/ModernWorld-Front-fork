@@ -24,16 +24,21 @@ export default function NeighborBody() {
     null,
   );
 
-  const getNeighbors = async (page: number, take: number, status: boolean) => {
-    const response = await NEIGHBOR.getNeighbors(page, take, status);
+  const getNeighbors = async (
+    page: number,
+    take: number,
+    status: boolean,
+    type: undefined | string,
+  ) => {
+    const response = await NEIGHBOR.getNeighbors(page, take, status, type);
     setNeighborsData(response);
   };
 
   useEffect(() => {
     if (pageViewType === 'management') {
-      getNeighbors(page, 1, false);
+      getNeighbors(page, 1, false, 'receiverNo');
     } else {
-      getNeighbors(page, 3, true);
+      getNeighbors(page, 3, true, undefined);
     }
   }, [page, pageViewType]);
 

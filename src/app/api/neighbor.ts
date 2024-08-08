@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
 
 const NEIGHBOR = {
@@ -6,10 +6,25 @@ const NEIGHBOR = {
 
   /** 친구 요청 보내기 API */
   async sendFriendRequest(userNo: number): Promise<any> {
-    const result: AxiosResponse = await instance.post(
-      `/users/${userNo}${NEIGHBOR.path}`,
-    );
-    return result.data;
+    if (!window.confirm('이웃 요청을 보내시겠습니까?')) {
+      return; // 확인을 받지 못하면 함수 종료
+    }
+    try {
+      const result: AxiosResponse = await instance.post(
+        `/users/${userNo}${NEIGHBOR.path}`,
+      );
+      return result.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          if (error.response.status === 409) {
+            return alert('이미 이웃이거나 이웃 요청을 보냈습니다.');
+          } else if (error.response.status === 403) {
+            return alert('본인에게는 이웃 요청할 수 없습니다.');
+          }
+        }
+      }
+    }
   },
 
   /** 이웃 목록 불러오기 API */

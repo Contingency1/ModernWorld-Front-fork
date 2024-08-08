@@ -9,7 +9,7 @@ const USER = {
     const result: AxiosResponse = await instance.get(`${USER.path}/${userNo}`);
     return result.data;
   },
-  /**  */
+  /** 유저 검색하기 */
   async searchUser(nickname: string): Promise<any> {
     const result: AxiosResponse = await instance.get(`${USER.path}`, {
       params: {

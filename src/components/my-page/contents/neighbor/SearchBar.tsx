@@ -4,29 +4,78 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import USER from '@/app/api/user';
 import { UserSearchResult } from '@/types/user';
+import { useDebounce } from '@uidotdev/usehooks';
+import { dotWave } from 'ldrs';
+import NEIGHBOR from '@/app/api/neighbor';
 
 export default function SearchBar() {
   const [nickname, setNickname] = useState<string>('');
   const [searchResult, setSearchResult] = useState<null | UserSearchResult>(
     null,
   );
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [displayMessage, setDisplayMessage] = useState<JSX.Element | string>(
+    '? 님께',
+  );
+  const debouncedSearch = useDebounce(nickname, 2000);
+  dotWave.register();
 
   const getUser = async () => {
-    if (nickname) {
-      const response = await USER.searchUser(nickname);
-      setSearchResult(response);
+    if (debouncedSearch) {
+      try {
+        const response = await USER.searchUser(debouncedSearch);
+        setSearchResult(response);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      setSearchResult(null);
     }
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(event.target.value);
+    const trimmedValue = event.target.value.trim();
+    setNickname(trimmedValue);
   };
 
-  console.log(searchResult ? searchResult.data[0].nickname : '없음');
-
+  // 초기값
   useEffect(() => {
-    getUser();
+    if (nickname === '') {
+      setDisplayMessage('? 님께');
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+      setDisplayMessage(
+        <l-dot-wave size="47" speed="1" color="black"></l-dot-wave>,
+      );
+    }
   }, [nickname]);
+
+  // 검색
+  useEffect(() => {
+    if (debouncedSearch) {
+      getUser();
+    }
+  }, [debouncedSearch]);
+
+  // 검색 결과에 따라 message 값 업데이트
+  useEffect(() => {
+    if (!isLoading) {
+      if (searchResult && searchResult.data[0]?.nickname === nickname) {
+        setDisplayMessage(`${searchResult.data[0].nickname} 님께`);
+      } else if (nickname !== '') {
+        setDisplayMessage('? 님께');
+      }
+    }
+  }, [isLoading, searchResult, nickname]);
+
+  const sendFriendRequest = async () => {
+    if (searchResult) {
+      const response = await NEIGHBOR.sendFriendRequest(
+        searchResult?.data[0].no,
+      );
+    }
+  };
 
   return (
     <>
@@ -37,21 +86,10 @@ export default function SearchBar() {
             onChange={handleInputChange}
           />
           <S.DisplayDiv flex="row" $margin="1vw">
-            {searchResult ? (
-              <>
-                <S.Font $fontSize="18px" $margin="0 1vw">
-                  * 님께
-                </S.Font>
-                <S.Button>요청 보내기</S.Button>
-              </>
-            ) : (
-              <>
-                <S.Font $fontSize="18px" $margin="0 1vw">
-                  ? 님께
-                </S.Font>
-                <S.Button>요청 보내기</S.Button>
-              </>
-            )}
+            <S.Font $fontSize="18px" $margin="0 1vw">
+              {displayMessage}
+            </S.Font>
+            <S.Button onClick={sendFriendRequest}>요청 보내기</S.Button>
           </S.DisplayDiv>
         </S.ColumnSection>
       </S.ManageSection>

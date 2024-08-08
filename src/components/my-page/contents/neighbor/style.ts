@@ -75,7 +75,7 @@ export const ColumnSection = styled.div<StyleType>`
 `;
 
 /** 버튼 css */
-export const Button = styled.div`
+export const Button = styled.button`
   width: 8vw;
   height: 2.3vw;
   margin: 0.1vw;
