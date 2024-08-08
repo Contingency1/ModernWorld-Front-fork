@@ -13,27 +13,26 @@ export default function UserListItem(props: any) {
     NEIGHBOR.deleteNeighborRequest(props.userData.no);
   };
 
+  const getColor = () => {
+    const achievementLevel =
+      props.userData.neighbor.userAchievement[0]?.achievement?.level;
+
+    const colorObj: Record<string, string> = {
+      one: '#B8860B',
+      two: '#006400',
+      three: '#65000B',
+    };
+
+    return colorObj[achievementLevel] ?? '';
+  };
+
   return props.userData ? (
     <>
       <S.UserImg src={props.userData.neighbor.image}></S.UserImg>
       <S.FontSection>
         <S.RowDiv>
           <S.Font $fontSize="24px">{props.userData.neighbor.nickname}</S.Font>
-          <S.Font
-            color={
-              props.userData.neighbor.userAchievement[0]?.achievement?.level ===
-              'one'
-                ? '#B8860B'
-                : props.userData.neighbor.userAchievement[0]?.achievement
-                      ?.level === 'two'
-                  ? '#006400'
-                  : props.userData.neighbor.userAchievement[0]?.achievement
-                        ?.level === 'three'
-                    ? '#65000B'
-                    : ''
-            }
-            $fontSize="16px"
-            $margin="0 0 0 0.3vw">
+          <S.Font color={getColor()} $fontSize="16px" $margin="0 0 0 0.3vw">
             {props.userData.neighbor.userAchievement[0]?.achievement?.title
               ? `(${props.userData.neighbor.userAchievement[0]?.achievement?.title})`
               : '(-)'}

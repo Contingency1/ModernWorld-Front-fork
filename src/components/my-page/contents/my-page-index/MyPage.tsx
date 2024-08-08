@@ -2,7 +2,7 @@
 
 import { useAtom, useAtomValue } from 'jotai';
 import * as S from './style';
-import { userDataAtom, userNoAtom } from '@/states/userAtoms';
+import { userDataAtom } from '@/states/userAtoms';
 import { useEffect, useState } from 'react';
 import { UserLegendsType } from '@/types/user';
 import LEGENDS from '@/app/api/legends';

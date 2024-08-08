@@ -9,11 +9,11 @@ import { dotWave } from 'ldrs';
 import NEIGHBOR from '@/app/api/neighbor';
 
 export default function SearchBar() {
-  const [nickname, setNickname] = useState<string>('');
+  const [nickname, setNickname] = useState('');
   const [searchResult, setSearchResult] = useState<null | UserSearchResult>(
     null,
   );
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [displayMessage, setDisplayMessage] = useState<JSX.Element | string>(
     '? 님께',
   );

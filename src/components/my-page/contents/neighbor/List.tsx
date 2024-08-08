@@ -1,9 +1,10 @@
+import { NeighborsDataType } from '@/types/neighbors';
 import Pagination from './Pagination';
 import UserListItem from './UserListItem';
 import * as S from './style';
 import { bouncy } from 'ldrs';
 
-export default function List(props: any) {
+export default function List(props: { userData: null | NeighborsDataType }) {
   bouncy.register();
 
   return props.userData ? (
