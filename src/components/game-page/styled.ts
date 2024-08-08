@@ -3,6 +3,8 @@
 import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
+const IconSircleShadowValue = 'inset 1px 1.5px 4px rgba(0, 0, 0, 0.5)';
+
 export const BackGroundDiv = styled.div<StyleType>`
   width: 100vw;
   height: 100vh;
@@ -127,21 +129,22 @@ export const LoadingDiv = styled.div`
   margin-top: 50%;
 `;
 
-export const IconSircle = styled.div`
+export const IconSircle = styled.div<StyleType>`
   width: 6vw;
   height: 6vw;
   border-radius: 50%;
-  background-color: ${(props) => (props.color ? '#D9D9D9' : '#ffffff')};
+  background-color: ${(props) => (props.$check ? '#D9D9D9' : '#ffffff')};
+  box-shadow: ${(props) => (props.$check ? IconSircleShadowValue : 'none')};
   margin-top: 9%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   filter: drop-shadow(0px 3px 0.3px #a9a9a9);
-  /* &:hover {
+  &:hover {
     background-color: #d9d9d9;
     box-shadow: inset 1px 1.5px 4px rgba(0, 0, 0, 0.5);
-  } */
+  }
 `;
 
 export const IconBackColor = styled.div`

@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '../styled';
 import { GAME } from '@/app/api/game';
+import { RockSicssorsPaperImgArray } from '@/utils/rockScissorsPaper';
+import USER from '@/app/api/user';
 
 const UserSection = () => {
   const [hand, setHand] = useState(3);
@@ -14,6 +16,12 @@ const UserSection = () => {
     return response;
   };
 
+  const getUserNo = async () => {
+    const userNo = localStorage.getItem('userNo');
+    userNo ? userNo : null;
+    const response = await USER.getUserInfo(userNo);
+  };
+
   return (
     <S.SectionRootDiv $right="0">
       <S.ProfileCircle>
@@ -23,33 +31,17 @@ const UserSection = () => {
           }></S.ProfileImg>
       </S.ProfileCircle>
       <S.UserNameDiv>나</S.UserNameDiv>
-      <S.IconSircle>
-        <S.IconBackColor>
-          <S.IconImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EA%B0%80%EC%9C%84%EB%B0%94%EC%9C%84%EB%B3%B4/%EA%B0%80%EC%9C%84.svg'
-            }
-            onClick={() => setHand(0)}></S.IconImg>
-        </S.IconBackColor>
-      </S.IconSircle>
-      <S.IconSircle>
-        <S.IconBackColor>
-          <S.IconImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EA%B0%80%EC%9C%84%EB%B0%94%EC%9C%84%EB%B3%B4/%EB%B0%94%EC%9C%84.svg'
-            }
-            onClick={() => setHand(1)}></S.IconImg>
-        </S.IconBackColor>
-      </S.IconSircle>
-      <S.IconSircle>
-        <S.IconBackColor>
-          <S.IconImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EA%B0%80%EC%9C%84%EB%B0%94%EC%9C%84%EB%B3%B4/%EB%B3%B4.svg'
-            }
-            onClick={() => setHand(2)}></S.IconImg>
-        </S.IconBackColor>
-      </S.IconSircle>
+      {RockSicssorsPaperImgArray.map((img, index) => (
+        <S.IconSircle $check={index === hand}>
+          <S.IconBackColor>
+            <S.IconImg
+              src={img}
+              onClick={() => {
+                setHand(index);
+              }}></S.IconImg>
+          </S.IconBackColor>
+        </S.IconSircle>
+      ))}
       <button
         onClick={() => {
           postUsersHand();
