@@ -59,7 +59,7 @@ export const FontSection = styled.div`
 /** font css */
 export const Font = styled.div<StyleType>`
   font-size: ${(props) => props.$fontSize};
-  color: #454545;
+  color: ${(props) => (props.color ? props.color : '#454545')};
   margin: ${(props) => props.$margin};
 `;
 
@@ -75,7 +75,7 @@ export const ColumnSection = styled.div<StyleType>`
 `;
 
 /** 버튼 css */
-export const Button = styled.div`
+export const Button = styled.button`
   width: 8vw;
   height: 2.3vw;
   margin: 0.1vw;

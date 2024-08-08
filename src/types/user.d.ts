@@ -40,3 +40,35 @@ export interface UserAttendanceDataType {
     [key: number]: [number, number];
   };
 }
+
+export interface UserSearchResult {
+  data: {
+    no: number;
+    nickname: string;
+    description: string;
+    accumulationPoint: number;
+    createdAt: string;
+    legend: {
+      likeCount: number;
+    };
+    characterLocker: {
+      character: {
+        no: number;
+        image: string;
+      };
+    }[];
+    userAchievement: {
+      achievement: {
+        title: string;
+        level: string;
+      };
+    }[];
+    chance: number;
+  }[];
+  meta: {
+    page: number;
+    take: number;
+    totalCount: number;
+    totalPage: number;
+  };
+}

@@ -1,9 +1,11 @@
+'use client';
+
 import * as S from '@/components/my-page/contents/style';
 import { pageViewTypeAtom } from '@/states/neighbor';
 import { useAtom } from 'jotai';
 
 export default function SideBookMark() {
-  const [type, setType] = useAtom(pageViewTypeAtom);
+  const [type, setType] = useAtom<'list' | 'management'>(pageViewTypeAtom);
 
   const typeClick = (num: number) => {
     if (num === 0) {
