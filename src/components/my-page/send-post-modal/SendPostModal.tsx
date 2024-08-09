@@ -5,9 +5,11 @@ import * as S from './style';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import MAILBOX from '@/app/api/mailBox';
+import { isNeighborSendModalAtom } from '@/states/neighbor';
 
 export default function SendPostModal() {
   const setIsSendMailModal = useSetAtom(isSendMailModalAtom);
+  const setIsNeighborSendMailModal = useSetAtom(isNeighborSendModalAtom);
   const sendMailData = useAtomValue(sendMailDataAtom);
   const [contents, setContents] = useState('');
 
@@ -15,8 +17,11 @@ export default function SendPostModal() {
     setContents(event.target.value);
   };
 
+  console.log(sendMailData);
+
   const onClickExit = () => {
     setIsSendMailModal(false);
+    setIsNeighborSendMailModal(false);
   };
 
   const sendMail = async () => {

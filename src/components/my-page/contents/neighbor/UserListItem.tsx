@@ -1,10 +1,24 @@
+'use client';
+
 import * as S from './style';
-import { useAtomValue } from 'jotai';
-import { pageViewTypeAtom } from '@/states/neighbor';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { isNeighborSendModalAtom, pageViewTypeAtom } from '@/states/neighbor';
 import NEIGHBOR from '@/app/api/neighbor';
+import { sendMailDataAtom } from '@/states/mailboxAtoms';
 
 export default function UserListItem(props: any) {
+  const setIsSendMailModal = useSetAtom(isNeighborSendModalAtom);
+  const [sendMailModalData, setSendMailModalData] = useAtom(sendMailDataAtom);
   const pageViewType = useAtomValue(pageViewTypeAtom);
+
+  const handleModal = () => {
+    setIsSendMailModal(true);
+    setSendMailModalData({
+      no: props.userData.neighbor.no,
+      nickname: props.userData.neighbor.nickname,
+    });
+    console.log(sendMailModalData);
+  };
 
   const acceptNeighborRequest = () => {
     NEIGHBOR.acceptNeighborRequest(props.userData.no);
@@ -45,7 +59,7 @@ export default function UserListItem(props: any) {
       <S.ColumnSection>
         {pageViewType === 'list' ? (
           <>
-            <S.Button>편지 보내기</S.Button>
+            <S.Button onClick={handleModal}>편지 보내기</S.Button>
             <S.Button>방 보러가기</S.Button>
           </>
         ) : (
