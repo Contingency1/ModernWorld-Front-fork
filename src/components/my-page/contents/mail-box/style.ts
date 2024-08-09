@@ -52,6 +52,7 @@ export const MarginDiv = styled.div<StyleType>`
   font-size: ${(props) => props.$fontSize};
   color: ${(props) => props.color};
   text-align: ${(props) => props.$textAlign};
+  cursor: ${(props) => props.cursor};
 `;
 
 /** ItemInfo 에 있는 삭제 버튼 담는 섹션 */
@@ -67,7 +68,7 @@ export const ItemImg = styled.div`
   margin-top: -3.5vh;
 `;
 
-/** font size 설정하는 div */
+/** font 설정하는 div */
 export const FontSize = styled.div<StyleType>`
   font-size: ${(props) => props.$fontSize};
   margin: 1px;
@@ -134,4 +135,12 @@ export const AcceptRejectUi = styled.div`
   &:hover {
     cursor: pointer;
   }
+`;
+
+/** 받은 편지일 때 답장하기, 휴지통 담는 Div */
+export const ReceiverMailFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2vw;
 `;

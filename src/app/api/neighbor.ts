@@ -6,7 +6,6 @@ const NEIGHBOR = {
 
   /** 친구 요청 보내기 API */
   async sendFriendRequest(userNo: number): Promise<any> {
-<<<<<<< HEAD
     if (!window.confirm('이웃 요청을 보내시겠습니까?')) {
       return; // 확인을 받지 못하면 함수 종료
     }
@@ -26,12 +25,6 @@ const NEIGHBOR = {
         }
       }
     }
-=======
-    const result: AxiosResponse = await instance.post(
-      `/users/${userNo}${NEIGHBOR.path}`,
-    );
-    return result.data;
->>>>>>> 35c1b13107e50a6c0865d5a38980d30145b6c68e
   },
 
   /** 이웃 목록 불러오기 API */
