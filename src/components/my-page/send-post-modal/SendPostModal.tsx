@@ -3,7 +3,7 @@
 import { isSendMailModalAtom, sendMailDataAtom } from '@/states/mailboxAtoms';
 import * as S from './style';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import MAILBOX from '@/app/api/mailBox';
 import { isNeighborSendModalAtom } from '@/states/neighbor';
 
@@ -16,8 +16,6 @@ export default function SendPostModal() {
   const onChangeHandle = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
   };
-
-  console.log(sendMailData);
 
   const onClickExit = () => {
     setIsSendMailModal(false);
