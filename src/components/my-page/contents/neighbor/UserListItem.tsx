@@ -17,7 +17,6 @@ export default function UserListItem(props: any) {
       no: props.userData.neighbor.no,
       nickname: props.userData.neighbor.nickname,
     });
-    console.log(sendMailModalData);
   };
 
   const acceptNeighborRequest = () => {
