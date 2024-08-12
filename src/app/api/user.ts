@@ -7,7 +7,7 @@ const USER = {
   /** 유저 정보 불러오기 API */
   async getUserInfo(userNo: number): Promise<any> {
     const result: AxiosResponse = await instance.get(`${USER.path}/${userNo}`);
-    return result.data;
+    return result;
   },
 
   async sendLike(userId: number): Promise<any> {

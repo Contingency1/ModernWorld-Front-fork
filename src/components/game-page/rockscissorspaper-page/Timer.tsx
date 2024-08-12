@@ -1,22 +1,76 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import RockScissorsPaper from './RockScissorsPaper';
+import { GAME } from '@/app/api/game';
+import {
+  gameResultAtom,
+  CurrentSecAtom,
+  SelectHandAtom,
+  ShowResultAtom,
+  StartTimerAtom,
+  userHandAtom,
+} from '@/states/gameAtom';
+import { useAtom } from 'jotai';
+import { useState } from 'react';
 
 const Timer = () => {
-  const [timer, setTimer] = useState(3);
+  const [hand, setHand] = useAtom(userHandAtom);
+  // 게임 결과
+  const [gameResult, setGameResult] = useAtom(gameResultAtom);
+  // 타이머 시작
+  const [startTimer, setStartTimer] = useAtom(StartTimerAtom);
 
-  const CountDown = setTimeout(() => {
+  const [timer, setTimer] = useAtom(CurrentSecAtom);
+  //유저의 손을 선택
+  const [selectHand, setSelectHand] = useAtom(SelectHandAtom);
+  // 결과를 보여주는 boolean
+  const [showResult, setShowResult] = useAtom(ShowResultAtom);
+  const [userInfo, setUserInfo] = useState<{
+    data: {
+      image: string;
+      chance: number;
+      currentPoint: number;
+      nickname: string;
+    };
+  }>();
+  // 로컬스토리지에 있는 유저넘버 가져오기
+  const getUserNo = () => {
+    const userNo = localStorage.getItem('userNo');
+    return Number(userNo);
+  };
+  // API 요청
+  const postUsersHand = async () => {
+    const response = await GAME.PostUsersHand(hand);
+    return setGameResult(response);
+  };
+
+  const down = () => {
     setTimer(timer - 1);
-  }, 1000);
+  };
+  const setTimeOutCountDown = () => {
+    const intervalID = setInterval(down, 1000);
+    return intervalID;
+  };
 
-  useEffect(() => {
-    timer === 0 ? clearTimeout(CountDown) : CountDown;
-  }, [timer]);
-
-  console.log(timer);
-
-  return <RockScissorsPaper timer={timer}></RockScissorsPaper>;
+  // 3초 뒤에 요청 API 요청, 타이머 초기화, 결과창 확인, 손 자동 초기화
+  const delayedPostUsersHand = () => {
+    const resetUserHand = () => {
+      setHand(3);
+    };
+    const showResultFoo = () => {
+      setShowResult(true);
+    };
+    const setTimeOutSelectHand = () => {
+      setSelectHand(false);
+    };
+    // 타이머 초기화
+    const clearTimer = () => {
+      setStartTimer(false);
+      setTimer(3);
+    };
+    setStartTimer(true);
+    // setTimeout(3000);
+    setTimeout(setTimeOutSelectHand, 3000);
+    setTimeout(postUsersHand, 3000);
+    setTimeout(clearTimer, 3000);
+    setTimeout(resetUserHand, 3000);
+    setTimeout(showResultFoo, 3000);
+  };
 };
-
-export default Timer;

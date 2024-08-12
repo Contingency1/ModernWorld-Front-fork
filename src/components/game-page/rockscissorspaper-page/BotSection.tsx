@@ -2,8 +2,17 @@
 
 import { dotPulse } from 'ldrs';
 import * as S from '../styled';
+import {
+  RockSicssorsPaperArray,
+  RockSicssorsPaperImgArray,
+} from '@/utils/rockScissorsPaper';
+import { useAtom } from 'jotai';
+import { BotHandAtom, gameResultAtom, userHandAtom } from '@/states/gameAtom';
 
 const BotSection = () => {
+  const [gameResult] = useAtom(gameResultAtom);
+  const [bothand, setBotHand] = useAtom(BotHandAtom);
+  setBotHand(gameResult.computerChoice);
   dotPulse.register();
   return (
     <S.SectionRootDiv>
@@ -14,9 +23,22 @@ const BotSection = () => {
           }></S.ProfileImg>
       </S.ProfileCircle>
       <S.UserNameDiv>상대 (봇)</S.UserNameDiv>
-      <S.LoadingDiv>
-        <l-dot-pulse size="43" speed="1.3" color="black"></l-dot-pulse>
-      </S.LoadingDiv>
+
+      {gameResult.computerChoice ? (
+        RockSicssorsPaperImgArray.map((img, index) => (
+          <S.IconSircle
+            key={img}
+            $check={index === RockSicssorsPaperArray.indexOf(bothand)}>
+            <S.IconBackColor>
+              <S.IconImg src={img}></S.IconImg>
+            </S.IconBackColor>
+          </S.IconSircle>
+        ))
+      ) : (
+        <S.LoadingDiv>
+          <l-dot-pulse size="43" speed="1.3" color="black"></l-dot-pulse>
+        </S.LoadingDiv>
+      )}
     </S.SectionRootDiv>
   );
 };

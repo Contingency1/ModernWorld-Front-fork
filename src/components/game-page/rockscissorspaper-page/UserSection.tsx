@@ -5,34 +5,43 @@ import * as S from '../styled';
 import { GAME } from '@/app/api/game';
 import { RockSicssorsPaperImgArray } from '@/utils/rockScissorsPaper';
 import USER from '@/app/api/user';
+import { useAtom } from 'jotai';
+import { userHandAtom } from '@/states/gameAtom';
 
 const UserSection = () => {
-  const [hand, setHand] = useState(3);
-  const [clickButton, setClickButton] = useState('');
-
-  const postUsersHand = async () => {
-    const response = await GAME.PostUsersHand(hand);
-    console.log(response);
-    return response;
-  };
-
-  const getUserNo = async () => {
+  const [hand, setHand] = useAtom(userHandAtom);
+  // 게임 결과
+  const [userInfo, setUserInfo] = useState<{
+    data: {
+      image: string;
+      chance: number;
+      currentPoint: number;
+      nickname: string;
+    };
+  }>();
+  // 로컬스토리지에 있는 유저넘버 가져오기
+  const getUserNo = () => {
     const userNo = localStorage.getItem('userNo');
-    userNo ? userNo : null;
-    const response = await USER.getUserInfo(userNo);
+    return Number(userNo);
   };
+  useEffect(() => {
+    // 유저의 정보를 가져옴 @userNo : 유저 넘버
+    const getUserInfo = async (userNo: number) => {
+      const response = await USER.getUserInfo(userNo);
+      setUserInfo(response);
+      return;
+    };
+    getUserInfo(getUserNo());
+  }, [userInfo?.data.currentPoint]);
 
   return (
     <S.SectionRootDiv $right="0">
       <S.ProfileCircle>
-        <S.ProfileImg
-          src={
-            'https://i.pinimg.com/originals/b3/17/ac/b317accc09ff9abbabb699900aafae67.gif'
-          }></S.ProfileImg>
+        <S.ProfileImg src={userInfo?.data.image}></S.ProfileImg>
       </S.ProfileCircle>
-      <S.UserNameDiv>나</S.UserNameDiv>
+      <S.UserNameDiv>{userInfo?.data.nickname}</S.UserNameDiv>
       {RockSicssorsPaperImgArray.map((img, index) => (
-        <S.IconSircle $check={index === hand}>
+        <S.IconSircle $check={index === hand} key={img}>
           <S.IconBackColor>
             <S.IconImg
               src={img}
@@ -42,13 +51,9 @@ const UserSection = () => {
           </S.IconBackColor>
         </S.IconSircle>
       ))}
-      <button
-        onClick={() => {
-          postUsersHand();
-        }}>
-        시작하기
-      </button>
-      <div style={{ marginTop: '8%' }}>my point : 2500</div>
+      <div style={{ marginTop: '8%' }}>
+        my point : {userInfo?.data.currentPoint}
+      </div>
     </S.SectionRootDiv>
   );
 };

@@ -38,6 +38,8 @@ interface Props {
   isSelected: boolean;
   flex: string;
   $right: string;
+  $hover?: boolean;
+  $pointerClick: boolean;
 }
 
 export interface StyleType extends Partial<Props> {}

@@ -3,11 +3,11 @@ import BotSection from './BotSection';
 import MiddleSection from './MiddleSection';
 import UserSection from './UserSection';
 
-const RockScissorsPaper = ({ timer }: { timer: any }) => {
+const RockScissorsPaper = () => {
   return (
     <S.BackGroundDiv>
       <BotSection></BotSection>
-      <MiddleSection timer={timer}></MiddleSection>
+      <MiddleSection></MiddleSection>
       <UserSection></UserSection>
     </S.BackGroundDiv>
   );
