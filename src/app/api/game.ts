@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
-import { day, month, year } from '@/utils/date';
+import { day, month, UTChours, year } from '@/utils/date';
 
 export const GAME = {
   users: 'users',
@@ -16,9 +16,22 @@ export const GAME = {
   },
 
   async GetUsersLecord(userNo: number, date?: string) {
-    const result: AxiosResponse = await instance.get(
-      `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${day}` : date}`,
-    );
-    return result.data;
+    if (Number(UTChours) > 15) {
+      const result: AxiosResponse = await instance.get(
+        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${Number(day) - 1}` : date}`,
+      );
+      console.log(
+        date,
+        UTChours,
+        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${Number(day) - 1}` : date}`,
+      );
+
+      return result.data;
+    } else {
+      const result: AxiosResponse = await instance.get(
+        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${day}` : date}`,
+      );
+      return result.data;
+    }
   },
 };

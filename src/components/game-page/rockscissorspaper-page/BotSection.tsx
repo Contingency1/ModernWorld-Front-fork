@@ -7,7 +7,7 @@ import {
   RockSicssorsPaperImgArray,
 } from '@/utils/rockScissorsPaper';
 import { useAtom } from 'jotai';
-import { BotHandAtom, gameResultAtom, userHandAtom } from '@/states/gameAtom';
+import { BotHandAtom, gameResultAtom } from '@/states/gameAtom';
 import { useEffect } from 'react';
 
 const BotSection = () => {

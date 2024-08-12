@@ -18,6 +18,8 @@ import { RockSicssorsPaperImgArray } from '@/utils/rockScissorsPaper';
 import { RecordModal } from './RecordModal';
 import { TimerIfYouWantPlay } from './TimerIfYouWantPlay';
 import USER from '@/app/api/user';
+import { minify } from 'next/dist/build/swc';
+import { hours, minutes } from '@/utils/date';
 
 const MiddleSection = () => {
   // 유저의 손
@@ -55,7 +57,9 @@ const MiddleSection = () => {
       setUserInfo(response);
     };
     getUserInfo(getUserNo());
-  }, [userInfo]);
+  }, []);
+
+  console.log(minutes, hours);
 
   // API 요청
   const postUsersHand = async () => {
@@ -99,8 +103,6 @@ const MiddleSection = () => {
       });
     }, 1000);
   };
-
-  console.log(showResult);
 
   return (
     <S.GameInfoRootDiv $pointerClick={showResult}>

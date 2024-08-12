@@ -21,6 +21,7 @@ export const RecordModal = () => {
     const getUserRecord = async () => {
       const response = await GAME.GetUsersLecord(getUserNo());
       setGameResult(response[response.length - 1].result);
+      console.log(gameResult);
     };
     getUserRecord();
   }, []);

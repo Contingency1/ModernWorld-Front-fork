@@ -33,8 +33,6 @@ const UserSection = () => {
     getUserInfo(getUserNo());
   }, [userInfo?.data.currentPoint]);
 
-  console.log(hand);
-
   return (
     <S.SectionRootDiv $right="0">
       <S.ProfileCircle>
