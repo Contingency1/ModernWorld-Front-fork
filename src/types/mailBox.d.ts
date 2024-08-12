@@ -34,3 +34,8 @@ export interface MailBoxDataType extends PostDataType, PresentsDataType {
   no: number;
   createdAt: string;
 }
+
+export interface SendMailDataType {
+  no: number;
+  nickname: string;
+}

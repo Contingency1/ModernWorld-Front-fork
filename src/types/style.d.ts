@@ -37,6 +37,7 @@ interface Props {
   $hasError: string;
   isSelected: boolean;
   flex: string;
+  cursor: string;
   $right: string;
 }
 

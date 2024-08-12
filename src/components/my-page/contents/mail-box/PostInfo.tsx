@@ -5,9 +5,11 @@ import {
   senderDataAtom,
   viewSendPageAtom,
   viewReceiverPageAtom,
+  isSendMailModalAtom,
+  sendMailDataAtom,
 } from '@/states/mailboxAtoms';
-import { useAtomValue } from 'jotai';
-import { useEffect, useRef, useState } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import { useEffect, useState } from 'react';
 
 export default function PostInfo(props: { title: string }) {
   const page = useAtomValue(
@@ -17,9 +19,8 @@ export default function PostInfo(props: { title: string }) {
   const receiverData = useAtomValue(receiverDataAtom);
   const [sendPostNo, setSendPostNo] = useState(senderData[page]?.no);
   const [receivePostNo, setReceivePostNo] = useState(receiverData[page]?.no);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [reply, setReply] = useState<string | null>(null);
-  const [postUi, setPostUi] = useState(true);
+  const [isSendMailModal, setIsSendMailModal] = useAtom(isSendMailModalAtom);
+  const [sendMailData, setSendMailData] = useAtom(sendMailDataAtom);
 
   const handleClickDelete = () => {
     const postNo = props.title.includes('보낸') ? sendPostNo : receivePostNo;
@@ -28,21 +29,19 @@ export default function PostInfo(props: { title: string }) {
     }
   };
 
-  const sendPost = async () => {
-    setReply(null);
-    setPostUi(true);
-    createPost();
+  const handleClickModal = () => {
+    setIsSendMailModal(true);
+    if (props.title.includes('받은 편지')) {
+      setSendMailData(receiverData[page].userPostSenderNo);
+    } else if (props.title.includes('보낸 편지')) {
+      setSendMailData(senderData[page].userPostReceiverNo);
+    }
   };
 
   const setPostCheck = async (no: number) => {
     if (no) {
       await MAILBOX.setPostCheck(no);
     }
-  };
-
-  const onClickHandle = () => {
-    setPostUi(false);
-    setReply('답장을 보내보세요!');
   };
 
   useEffect(() => {
@@ -53,28 +52,16 @@ export default function PostInfo(props: { title: string }) {
       setReceivePostNo(receiverData[page]?.no);
       setPostCheck(receivePostNo);
     }
-  }, [props.title, page, senderData, receiverData]);
-
-  const createPost = async () => {
-    const content = textareaRef.current?.value || '';
-    await MAILBOX.createPost(receiverData[page].userPostSenderNo.no, content);
-  };
+  }, [props.title, page, senderData, receiverData, isSendMailModal]);
 
   return (
     <>
       <S.ContentsView height="25vh">
         <S.ListScroll>
           <S.MarginDiv $fontSize="18px" $margin="3vh 2vw" $textAlign="left">
-            {props.title.includes('보낸') ? (
-              senderData[page]?.content
-            ) : (
-              <div onClick={onClickHandle}>
-                <S.PostTextarea
-                  ref={textareaRef}
-                  defaultValue={receiverData[page]?.content}
-                />
-              </div>
-            )}
+            {props.title.includes('보낸')
+              ? senderData[page]?.content
+              : receiverData[page]?.content}
           </S.MarginDiv>
         </S.ListScroll>
         <S.MarginDiv
@@ -84,27 +71,26 @@ export default function PostInfo(props: { title: string }) {
           color="#767676">
           {props.title.includes('보낸')
             ? senderData[page]?.createdAt
-            : reply
-              ? reply
-              : receiverData[page]?.createdAt}
+            : receiverData[page]?.createdAt}
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
         <S.MarginDiv $margin="-1vh 2vw 0 0" $textAlign="right">
-          {postUi ? (
+          <S.ReceiverMailFooter>
+            <S.MarginDiv
+              onClick={() => handleClickModal()}
+              $fontSize="18px"
+              $margin="0 0 0.2vw 2.5vw"
+              color="#3A3EA0"
+              cursor="pointer">
+              {props.title.includes('받은 편지') ? '답장하기' : '다시 보내기'}
+            </S.MarginDiv>
             <S.Image
               src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
               alt="del"
               width="33vw"
               onClick={handleClickDelete}
             />
-          ) : (
-            <S.Image
-              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/free-icon-edit-button-7734280.png"
-              alt="post"
-              width="33vw"
-              onClick={sendPost}
-            />
-          )}
+          </S.ReceiverMailFooter>
         </S.MarginDiv>
       </S.ContentsView>
     </>
