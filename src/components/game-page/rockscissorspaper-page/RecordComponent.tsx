@@ -1,15 +1,23 @@
 'use client';
 
-import { BotHandAtom, ShowResultAtom, userHandAtom } from '@/states/gameAtom';
+import {
+  BotHandAtom,
+  SelectHandAtom,
+  ShowResultAtom,
+  userHandAtom,
+} from '@/states/gameAtom';
 import * as S from '../styled';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { GAME } from '@/app/api/game';
+import { day, month, year } from '@/utils/date';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
+  const [selectHand, setSelectHand] = useAtom(SelectHandAtom);
   const [userHand, setUserHand] = useAtom(userHandAtom);
   const [_, setBotHand] = useAtom(BotHandAtom);
+  const [date, setDate] = useState(`${month}-${day}`);
   const [userRecord, setUserRecord] = useState<
     [
       {
@@ -42,30 +50,45 @@ const RecordComponent = () => {
 
   useEffect(() => {
     const getUserRecord = async () => {
-      const response = await GAME.GetUsersLecord(getUserNo());
+      const response = await GAME.GetUsersLecord(
+        getUserNo(),
+        `${year}-${date}`,
+      );
       setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
       setUserHandRecord(response.map((hand: any) => hand.userChoice));
       setRecord(response.map((hand: any) => hand.result));
-      return setUserRecord(response);
+      setUserRecord(response);
     };
     getUserRecord();
-  }, []);
+  }, [date]);
+
+  console.log(computerHandRecord, userHandRecord, record, userRecord);
 
   const resetUserHand = () => {
     setUserHand(3);
   };
 
+  const userInputDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDate(event.target.value);
+  };
+
   return (
     <S.RecordRootDiv $pointerClick={!showResult}>
       <S.RecordHeader>
-        <S.TodayMatch> 오늘의 대전</S.TodayMatch>
+        <S.InputDateTodayMatchDiv>
+          <S.InputDate
+            placeholder={`${month}-${day}`}
+            $pointerClick={!showResult}
+            onChange={userInputDate}></S.InputDate>
+          <S.TodayMatch>의 대전</S.TodayMatch>
+        </S.InputDateTodayMatchDiv>
         <S.RetryText
+          $pointerClick={!showResult}
           onClick={() => {
             setShowResult(false);
-            resetUserHand();
-            setBotHand('reset');
+            setSelectHand(false);
           }}>
-          다시하기
+          게임하기
         </S.RetryText>
       </S.RecordHeader>
       <S.RecordBody>

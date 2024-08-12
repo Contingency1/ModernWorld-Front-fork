@@ -166,7 +166,8 @@ export const IconImg = styled.img`
 /**
  * 게임 정보 섹션
  */
-export const GameInfoRootDiv = styled.div`
+export const GameInfoRootDiv = styled.div<StyleType>`
+  pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
   width: 60vw;
   height: 100vh;
 `;
@@ -215,6 +216,14 @@ export const IfYouDontPlayText = styled.div`
   margin-bottom: 10vh;
 `;
 
+export const ShowRecordText = styled.div`
+  position: absolute;
+  cursor: pointer;
+  bottom: 30%;
+  right: 30%;
+  color: #2e53b8;
+`;
+
 export const ChanceText = styled.div`
   position: absolute;
   left: 22%;
@@ -259,6 +268,13 @@ export const RecordHeader = styled.div`
   border-radius: 15px 15px 0 0;
 `;
 
+export const InputDateTodayMatchDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15vw;
+`;
+
 export const TodayMatch = styled.div`
   display: flex;
   justify-content: center;
@@ -268,12 +284,29 @@ export const TodayMatch = styled.div`
   font-size: 1.5em;
 `;
 
+export const InputDate = styled.input<StyleType>`
+  border-radius: 10px;
+  box-shadow: inset 0px 3px 3px rgba(100, 100, 100, 0.5);
+  width: 4vw;
+  height: 5vh;
+  outline: none;
+  border-width: 0;
+  text-align: center;
+  margin-right: 10px;
+  pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
+  &::placeholder {
+    color: #000000;
+    font-size: 16px;
+  }
+`;
+
 export const RetryText = styled.div<StyleType>`
   width: 10%;
   height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10vw;
   color: #2e53b8;
   font-size: 0.7em;
   pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
@@ -300,7 +333,6 @@ export const ArrowImg = styled.img`
   width: 2vw;
   height: 2vw;
   cursor: pointer;
-  /* pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')}; */
 `;
 
 export const UserAndBotText = styled.div`

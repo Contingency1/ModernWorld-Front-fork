@@ -4,10 +4,13 @@ import * as S from '../styled';
 import { useEffect, useState } from 'react';
 import RecordComponent from './RecordComponent';
 import { GAME } from '@/app/api/game';
+import { BeforeStartGameAtom } from '@/states/gameAtom';
+import { useAtom } from 'jotai';
 
 export const RecordModal = () => {
   const [resultText, setResultText] = useState('');
   const [gameResult, setGameResult] = useState('');
+  const [beforeGameStart] = useAtom(BeforeStartGameAtom);
 
   const getUserNo = () => {
     const userNo = localStorage.getItem('userNo');
@@ -21,8 +24,6 @@ export const RecordModal = () => {
     };
     getUserRecord();
   }, []);
-
-  console.log(gameResult);
 
   return (
     <>

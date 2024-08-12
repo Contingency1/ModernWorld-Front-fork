@@ -10,6 +10,7 @@ import {
   ShowResultAtom,
   StartTimerAtom,
   userHandAtom,
+  BeforeStartGameAtom,
 } from '@/states/gameAtom';
 import { GAME } from '@/app/api/game';
 import { useEffect, useState } from 'react';
@@ -31,6 +32,8 @@ const MiddleSection = () => {
   const [selectHand, setSelectHand] = useAtom(SelectHandAtom);
   // 결과를 보여주는 boolean
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
+  // 게임 시작 전 상태 전적보기 버튼은 보이고 화면을 클릭하면 시작한다는 문구가 나오는 상태
+  const [beforeGameStart, setBeforeGameStart] = useAtom(BeforeStartGameAtom);
 
   const [userInfo, setUserInfo] = useState<{
     data: {
@@ -50,11 +53,9 @@ const MiddleSection = () => {
     const getUserInfo = async (userNo: number) => {
       const response = await USER.getUserInfo(userNo);
       setUserInfo(response);
-      return;
     };
     getUserInfo(getUserNo());
-    setTimer(3);
-  }, [showResult]);
+  }, [userInfo]);
 
   // API 요청
   const postUsersHand = async () => {
@@ -64,23 +65,26 @@ const MiddleSection = () => {
 
   // 3초 뒤에 요청 API 요청, 타이머 초기화, 결과창 확인, 손 자동 초기화
   const delayedPostUsersHand = () => {
-    //결과창 확인
-    const showResultFoo = () => {
-      setShowResult(true);
-    };
-    // 유저의 손을 초기화
-    const setTimeOutSelectHand = () => {
-      setSelectHand(false);
-    };
-    // 타이머 초기화
-    const clearTimer = () => {
-      setStartTimer(false);
-    };
-    setStartTimer(true);
-    setTimeout(setTimeOutSelectHand, 3000);
-    setTimeout(postUsersHand, 3000);
-    setTimeout(clearTimer, 3000);
-    setTimeout(showResultFoo, 3000);
+    if (!showResult) {
+      setTimer(3);
+      //결과창 확인
+      const showResultFoo = () => {
+        setShowResult(true);
+      };
+      // 유저의 손을 초기화
+      const setTimeOutSelectHand = () => {
+        setSelectHand(false);
+      };
+      // 타이머 초기화
+      const clearTimer = () => {
+        setStartTimer(false);
+      };
+      setStartTimer(true);
+      setTimeout(setTimeOutSelectHand, 3000);
+      setTimeout(postUsersHand, 3000);
+      setTimeout(clearTimer, 3000);
+      setTimeout(showResultFoo, 3000);
+    }
   };
 
   const startCountdown = () => {
@@ -96,8 +100,10 @@ const MiddleSection = () => {
     }, 1000);
   };
 
+  console.log(showResult);
+
   return (
-    <S.GameInfoRootDiv>
+    <S.GameInfoRootDiv $pointerClick={showResult}>
       <S.GameInfoHeader>
         <S.Flexdiv
           $marginTop={'0'}
@@ -129,6 +135,7 @@ const MiddleSection = () => {
         ) : (
           <RecordModal></RecordModal>
         )}
+        {/* <S.ShowRecordText>전적 보기</S.ShowRecordText> */}
         <S.ChanceText>남은 기회 : {userInfo?.data.chance}/10</S.ChanceText>
         <Link href="/my-page">
           <S.ExistImg

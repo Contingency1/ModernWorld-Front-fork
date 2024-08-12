@@ -22,4 +22,5 @@ export const StartTimerAtom = atom<boolean>(false);
 export const CurrentSecAtom = atom<number>(3);
 export const SelectHandAtom = atom<boolean>(false);
 export const ShowResultAtom = atom<boolean>(false);
+export const BeforeStartGameAtom = atom<boolean>(false);
 export const BotHandAtom = atom('');

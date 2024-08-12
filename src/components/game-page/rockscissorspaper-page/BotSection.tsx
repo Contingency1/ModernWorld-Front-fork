@@ -8,10 +8,12 @@ import {
 } from '@/utils/rockScissorsPaper';
 import { useAtom } from 'jotai';
 import { BotHandAtom, gameResultAtom, userHandAtom } from '@/states/gameAtom';
+import { useEffect } from 'react';
 
 const BotSection = () => {
   const [gameResult] = useAtom(gameResultAtom);
   const [bothand, setBotHand] = useAtom(BotHandAtom);
+  useEffect(() => {}, []);
   setBotHand(gameResult.computerChoice);
   dotPulse.register();
   return (

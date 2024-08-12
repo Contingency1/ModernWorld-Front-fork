@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
+import { day, month, year } from '@/utils/date';
 
 export const GAME = {
   users: 'users',
@@ -14,9 +15,9 @@ export const GAME = {
     return result.data;
   },
 
-  async GetUsersLecord(userNo: number) {
+  async GetUsersLecord(userNo: number, date?: string) {
     const result: AxiosResponse = await instance.get(
-      `${this.users}/${userNo}/${this.RSP}`,
+      `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${day}` : date}`,
     );
     return result.data;
   },

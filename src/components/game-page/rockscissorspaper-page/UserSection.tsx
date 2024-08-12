@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import * as S from '../styled';
-import { GAME } from '@/app/api/game';
 import { RockSicssorsPaperImgArray } from '@/utils/rockScissorsPaper';
 import USER from '@/app/api/user';
 import { useAtom } from 'jotai';
@@ -33,6 +32,8 @@ const UserSection = () => {
     };
     getUserInfo(getUserNo());
   }, [userInfo?.data.currentPoint]);
+
+  console.log(hand);
 
   return (
     <S.SectionRootDiv $right="0">
