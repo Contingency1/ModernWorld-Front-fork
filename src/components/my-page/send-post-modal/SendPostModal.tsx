@@ -29,6 +29,7 @@ export default function SendPostModal() {
       alert('편지 내용을 적어주세요!');
     }
     setIsSendMailModal(false);
+    setIsNeighborSendMailModal(false);
   };
 
   return (

@@ -15,15 +15,59 @@ export const Background = styled.div`
   border-radius: 20px;
 `;
 
-/** index page 유저 사진 */
-export const UserImage = styled.img`
+interface UserImageContainerProps {
+  isProfileClick?: boolean;
+}
+
+/** 유저 사진 띄워 주는 콘테이너 */
+export const UserImageContainer = styled.div<UserImageContainerProps>`
+  position: relative;
   width: 9vw;
   height: 9vw;
   margin-top: -45vh;
   border-radius: 50%;
-  object-fit: cover;
   border: 15px solid white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: ${(props) =>
+      props.isProfileClick
+        ? 'brightness(50%)'
+        : 'brightness(100%)'}; // 클릭 상태에 따른 필터 적용
+  }
+
+  .button-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    div {
+      width: 5rem;
+      height: 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 3px solid #c8c8c8;
+      border-radius: 5px;
+      padding: 0.3rem;
+      cursor: pointer;
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.5;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
 `;
 
 export const UserInfoContentSection = styled.div<StyleType>`
@@ -38,7 +82,7 @@ export const UserInfoContentSection = styled.div<StyleType>`
 
 export const UserInfoContent = styled.div<StyleType>`
   width: ${(props) => props.width};
-  margin: 0 0.3vw;
+  margin: ${(props) => (props.$margin ? props.$margin : '0 0.3vw')};
   display: flex;
   justify-content: ${(props) =>
     props.$textAlign === 'center' ? 'center' : 'flex-start'};
@@ -121,4 +165,32 @@ export const EditText = styled.span`
   color: #585858;
   padding-right: 0.5vw;
   cursor: pointer;
+`;
+
+/** 설명 나오게 하는 img 태그 */
+export const Arrow = styled.img<StyleType>`
+  width: ${(props) => props.width};
+  margin-left: auto;
+  margin-right: 1vw;
+`;
+
+/** font css */
+export const Font = styled.div<StyleType>`
+  font-size: ${(props) => props.$fontSize};
+  color: ${(props) => props.color};
+  margin: ${(props) => props.$margin};
+  cursor: ${(props) => props.cursor};
+`;
+
+/** 서비스 정보 페이지에 있는 서비스 내용들 들어갈 div */
+export const ServiceInfoContainer = styled.div`
+  width: 45vw;
+  height: 30vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: -25vh;
+  padding: 1vw;
+  overflow-y: auto;
 `;
