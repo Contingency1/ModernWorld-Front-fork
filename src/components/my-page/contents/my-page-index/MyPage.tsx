@@ -14,6 +14,7 @@ export default function MyPageIndex() {
   const [isEditDescription, setIsEditDescription] = useState(false);
   const [editDescriptionText, setEditDescriptionText] = useState('');
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
+  const [isProfileClick, setIsProfileClick] = useState(false);
   const [userLegends, setUserLegends] = useState<UserLegendsType>({
     userNo: 0,
     attendanceCount: 0,
@@ -22,6 +23,10 @@ export default function MyPageIndex() {
     presentCount: 0,
     likeCount: 0,
   });
+
+  const handleProfileClick = () => {
+    setIsProfileClick(!isProfileClick);
+  };
 
   const getUserLegends = async () => {
     const response = await LEGENDS.getUserLegends();
@@ -51,7 +56,21 @@ export default function MyPageIndex() {
     <>
       <S.Background>
         <S.UserInfoSection>
-          <S.UserImage src={indexUserInfo.image}></S.UserImage>
+          <S.UserImageContainer
+            onClick={handleProfileClick}
+            isProfileClick={isProfileClick}>
+            <img src={indexUserInfo.image} alt="User Profile" />
+            {isProfileClick && (
+              <div className="button-container">
+                <div onClick={() => alert('이미지업데이트구현전')}>
+                  이미지 업데이트
+                </div>
+                <div onClick={() => router.push('/my-page/service-info')}>
+                  서비스 정보
+                </div>
+              </div>
+            )}
+          </S.UserImageContainer>
           <S.UserInfoContentSection>
             <S.UserInfoContent
               width="8vw"
@@ -61,6 +80,18 @@ export default function MyPageIndex() {
             </S.UserInfoContent>
             <S.UserInfoContent width="30vw" $backColor="#FFDEDE">
               {indexUserInfo.nickname ? indexUserInfo.nickname : '이름 없음'}
+              <S.Font
+                $fontSize="16px"
+                color="#FF3131"
+                $margin="0 0.5vw"
+                cursor="pointer"
+                onClick={() => router.push('/my-page/achievement-settings')}>
+                (
+                {indexUserInfo.userAchievement[0].achievement.title
+                  ? indexUserInfo.userAchievement[0].achievement.title
+                  : '업적 없음'}
+                )
+              </S.Font>
             </S.UserInfoContent>
           </S.UserInfoContentSection>
           <S.UserInfoContentSection $marginTop="16vh">
