@@ -7,12 +7,13 @@ import {
   RockSicssorsPaperImgArray,
 } from '@/utils/rockScissorsPaper';
 import { useAtom } from 'jotai';
-import { BotHandAtom, gameResultAtom } from '@/states/gameAtom';
+import { BotHandAtom, gameResultAtom, StartTimerAtom } from '@/states/gameAtom';
 import { useEffect } from 'react';
 
 const BotSection = () => {
   const [gameResult] = useAtom(gameResultAtom);
   const [bothand, setBotHand] = useAtom(BotHandAtom);
+  const [startTimer] = useAtom(StartTimerAtom);
   useEffect(() => {}, []);
   setBotHand(gameResult.computerChoice);
   dotPulse.register();
@@ -26,7 +27,7 @@ const BotSection = () => {
       </S.ProfileCircle>
       <S.UserNameDiv>상대 (봇)</S.UserNameDiv>
 
-      {gameResult.computerChoice ? (
+      {!startTimer ? (
         RockSicssorsPaperImgArray.map((img, index) => (
           <S.IconSircle
             key={img}

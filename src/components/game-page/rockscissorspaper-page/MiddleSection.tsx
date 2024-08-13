@@ -10,7 +10,7 @@ import {
   ShowResultAtom,
   StartTimerAtom,
   userHandAtom,
-  BeforeStartGameAtom,
+  onlyResultAtom,
 } from '@/states/gameAtom';
 import { GAME } from '@/app/api/game';
 import { useEffect, useState } from 'react';
@@ -18,8 +18,6 @@ import { RockSicssorsPaperImgArray } from '@/utils/rockScissorsPaper';
 import { RecordModal } from './RecordModal';
 import { TimerIfYouWantPlay } from './TimerIfYouWantPlay';
 import USER from '@/app/api/user';
-import { minify } from 'next/dist/build/swc';
-import { hours, minutes } from '@/utils/date';
 
 const MiddleSection = () => {
   // 유저의 손
@@ -34,8 +32,8 @@ const MiddleSection = () => {
   const [selectHand, setSelectHand] = useAtom(SelectHandAtom);
   // 결과를 보여주는 boolean
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
-  // 게임 시작 전 상태 전적보기 버튼은 보이고 화면을 클릭하면 시작한다는 문구가 나오는 상태
-  const [beforeGameStart, setBeforeGameStart] = useAtom(BeforeStartGameAtom);
+  // 결과만 보여주는 boolean
+  const [onlyResult, setOnlyResult] = useAtom(onlyResultAtom);
 
   const [userInfo, setUserInfo] = useState<{
     data: {
@@ -57,37 +55,43 @@ const MiddleSection = () => {
       setUserInfo(response);
     };
     getUserInfo(getUserNo());
-  }, []);
+  }, [startTimer]);
 
-  console.log(minutes, hours);
+  useEffect(() => {
+    if (!startTimer && timer === 0) {
+      postUsersHand(hand);
+    }
+  }, [startTimer, timer]);
 
   // API 요청
-  const postUsersHand = async () => {
+  const postUsersHand = async (hand: number) => {
     const response = await GAME.PostUsersHand(hand);
+    console.log(hand, 'post');
     return setGameResult(response);
   };
 
   // 3초 뒤에 요청 API 요청, 타이머 초기화, 결과창 확인, 손 자동 초기화
   const delayedPostUsersHand = () => {
-    if (!showResult) {
-      setTimer(3);
-      //결과창 확인
-      const showResultFoo = () => {
-        setShowResult(true);
-      };
-      // 유저의 손을 초기화
-      const setTimeOutSelectHand = () => {
-        setSelectHand(false);
-      };
-      // 타이머 초기화
-      const clearTimer = () => {
-        setStartTimer(false);
-      };
-      setStartTimer(true);
-      setTimeout(setTimeOutSelectHand, 3000);
-      setTimeout(postUsersHand, 3000);
-      setTimeout(clearTimer, 3000);
-      setTimeout(showResultFoo, 3000);
+    if (!startTimer) {
+      if (!showResult) {
+        setTimer(3);
+        //결과창 확인
+        const showResultFoo = () => {
+          setShowResult(true);
+        };
+        // 유저의 손을 초기화
+        const setTimeOutSelectHand = () => {
+          setSelectHand(false);
+        };
+        // 타이머 초기화
+        const clearTimer = () => {
+          setStartTimer(false);
+        };
+        setStartTimer(true);
+        setTimeout(setTimeOutSelectHand, 3000);
+        setTimeout(clearTimer, 3000);
+        setTimeout(showResultFoo, 3000);
+      }
     }
   };
 
@@ -137,7 +141,11 @@ const MiddleSection = () => {
         ) : (
           <RecordModal></RecordModal>
         )}
-        {/* <S.ShowRecordText>전적 보기</S.ShowRecordText> */}
+        {!startTimer && !showResult ? (
+          <S.ShowRecordText onClick={() => setOnlyResult(!onlyResult)}>
+            전적 보기
+          </S.ShowRecordText>
+        ) : null}
         <S.ChanceText>남은 기회 : {userInfo?.data.chance}/10</S.ChanceText>
         <Link href="/my-page">
           <S.ExistImg

@@ -9,6 +9,7 @@ import { userHandAtom } from '@/states/gameAtom';
 
 const UserSection = () => {
   const [hand, setHand] = useAtom(userHandAtom);
+
   // 게임 결과
   const [userInfo, setUserInfo] = useState<{
     data: {
@@ -45,6 +46,7 @@ const UserSection = () => {
             <S.IconImg
               src={img}
               onClick={() => {
+                console.log(hand, 'user');
                 setHand(index);
               }}></S.IconImg>
           </S.IconBackColor>

@@ -6,6 +6,7 @@ export const GAME = {
   users: 'users',
   RSP: 'rock-scissors-paper',
   async PostUsersHand(userHand: number) {
+    console.log(userHand, 'axios');
     const result: AxiosResponse = await instance.post(
       `/${this.users}/my/${this.RSP}`,
       {
