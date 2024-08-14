@@ -39,6 +39,9 @@ interface Props {
   flex: string;
   cursor: string;
   $right: string;
+  $hover?: boolean;
+  $pointerClick: boolean;
+  $cursor: string;
 }
 
 export interface StyleType extends Partial<Props> {}
