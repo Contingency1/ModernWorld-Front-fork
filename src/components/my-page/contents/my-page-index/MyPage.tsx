@@ -55,6 +55,9 @@ export default function MyPageIndex() {
   return (
     <>
       <S.Background>
+        <S.Font $margin="1vh 1vw 0 auto" $fontSize="30px" color="#A1B1B7">
+          ☰
+        </S.Font>
         <S.UserInfoSection>
           <S.UserImageContainer
             onClick={handleProfileClick}
