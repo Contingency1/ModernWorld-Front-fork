@@ -1,5 +1,6 @@
 'use client';
 
+import { COMMENT } from '@/app/api/comment';
 import NEIGHBOR from '@/app/api/neighbor';
 import USER from '@/app/api/user';
 import { MyRoom } from '@/components/my-room/MyRoom';
@@ -41,11 +42,18 @@ export default function PreviewVillageUsers(props: { userNo: any }) {
     }
   }
 
+  async function getComments(userNo: number) {
+    const response = await COMMENT.getComments(userNo);
+    console.log(response);
+    setComment(response.data.length);
+  }
+
   useEffect(() => {
     async function getLike(userNo: number) {
       const response = await USER.getUserInfo(userNo);
       setLike(response.data.legend.likeCount);
     }
+    getComments(props.userNo);
     getLike(props.userNo);
   }, [likeState]);
 
