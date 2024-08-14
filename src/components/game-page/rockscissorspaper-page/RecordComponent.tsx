@@ -14,7 +14,7 @@ import * as S from '../styled';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { GAME } from '@/app/api/game';
-import { day, month, UTChours, year } from '@/utils/date';
+import { getTime } from '@/utils/date';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
@@ -22,7 +22,7 @@ const RecordComponent = () => {
   const [startTimer] = useAtom(StartTimerAtom);
   const [timer, setTimer] = useAtom(CurrentSecAtom);
   const [_, setBotHand] = useAtom(BotHandAtom);
-  const [date, setDate] = useState(`${month}-${day}`);
+  const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
   const [userRecord, setUserRecord] = useState<
     [
       {
@@ -56,10 +56,10 @@ const RecordComponent = () => {
 
   useEffect(() => {
     const getUserRecord = async () => {
-      if (Number(UTChours) > 15) {
+      if (Number(getTime().UTChours) > 15) {
         const response = await GAME.GetUsersLecord(
           getUserNo(),
-          `${year}-${Number(date) - 1}`,
+          `${getTime().year}-${Number(date) - 1}`,
         );
         setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
         setUserHandRecord(response.map((hand: any) => hand.userChoice));
@@ -68,7 +68,7 @@ const RecordComponent = () => {
       } else {
         const response = await GAME.GetUsersLecord(
           getUserNo(),
-          `${year}-${date}`,
+          `${getTime().year}-${date}`,
         );
         setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
         setUserHandRecord(response.map((hand: any) => hand.userChoice));
@@ -79,8 +79,6 @@ const RecordComponent = () => {
     getUserRecord();
   }, [startTimer, timer]);
 
-  console.log(startTimer, 11);
-
   const userInputDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
   };
@@ -90,7 +88,7 @@ const RecordComponent = () => {
       <S.RecordHeader>
         <S.InputDateTodayMatchDiv>
           <S.InputDate
-            placeholder={`${Number(UTChours) > 15 ? `${month}-${Number(day) - 1}` : `${month}-${day}`}`}
+            placeholder={`${Number(getTime().UTChours) > 15 ? `${getTime().month}-${Number(getTime().day) - 1}` : `${getTime().month}-${getTime().day}`}`}
             $pointerClick={!showResult}
             onChange={userInputDate}></S.InputDate>
           <S.TodayMatch>의 대전</S.TodayMatch>

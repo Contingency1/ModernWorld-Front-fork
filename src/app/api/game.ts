@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
-import { day, month, UTChours, year } from '@/utils/date';
+import { getTime } from '@/utils/date';
 
 export const GAME = {
   users: 'users',
@@ -17,20 +17,14 @@ export const GAME = {
   },
 
   async GetUsersLecord(userNo: number, date?: string) {
-    if (Number(UTChours) > 15) {
+    if (Number(getTime().UTChours) > 15) {
       const result: AxiosResponse = await instance.get(
-        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${Number(day) - 1}` : date}`,
+        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${getTime().year}-${getTime().month}-${Number(getTime().day) - 1}` : date}`,
       );
-      console.log(
-        date,
-        UTChours,
-        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${Number(day) - 1}` : date}`,
-      );
-
       return result.data;
     } else {
       const result: AxiosResponse = await instance.get(
-        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${year}-${month}-${day}` : date}`,
+        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${getTime().year}-${getTime().month}-${getTime().day}` : date}`,
       );
       return result.data;
     }
