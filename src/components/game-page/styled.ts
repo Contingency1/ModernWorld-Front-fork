@@ -139,7 +139,7 @@ export const IconSircle = styled.div<StyleType>`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.$cursor ? 'pointer' : 'none')};
   filter: drop-shadow(0px 3px 0.3px #a9a9a9);
   /* &:hover {
     background-color: #d9d9d9;
@@ -227,7 +227,7 @@ export const ShowRecordText = styled.div`
 export const ChanceText = styled.div`
   position: absolute;
   left: 22%;
-  bottom: 4.5%;
+  bottom: 2.5%;
   width: 13vw;
   height: 3vh;
 `;

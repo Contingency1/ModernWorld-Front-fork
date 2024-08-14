@@ -2,8 +2,12 @@
 
 import {
   BotHandAtom,
+  CurrentSecAtom,
+  gameResultAtom,
+  RecordAtom,
   SelectHandAtom,
   ShowResultAtom,
+  StartTimerAtom,
   userHandAtom,
 } from '@/states/gameAtom';
 import * as S from '../styled';
@@ -15,7 +19,8 @@ import { day, month, UTChours, year } from '@/utils/date';
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
   const [selectHand, setSelectHand] = useAtom(SelectHandAtom);
-  const [userHand, setUserHand] = useAtom(userHandAtom);
+  const [startTimer] = useAtom(StartTimerAtom);
+  const [timer, setTimer] = useAtom(CurrentSecAtom);
   const [_, setBotHand] = useAtom(BotHandAtom);
   const [date, setDate] = useState(`${month}-${day}`);
   const [userRecord, setUserRecord] = useState<
@@ -42,6 +47,7 @@ const RecordComponent = () => {
   const [computerHandRecord, setComputerHandRecord] = useState([]);
   const [userHandRecord, setUserHandRecord] = useState([]);
   const [record, setRecord] = useState([]);
+  const [recordAtom111] = useAtom(RecordAtom);
 
   const getUserNo = () => {
     const userNo = localStorage.getItem('userNo');
@@ -71,11 +77,9 @@ const RecordComponent = () => {
       }
     };
     getUserRecord();
-  }, [date]);
+  }, [startTimer, timer]);
 
-  const resetUserHand = () => {
-    setUserHand(3);
-  };
+  console.log(startTimer, 11);
 
   const userInputDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
@@ -109,11 +113,11 @@ const RecordComponent = () => {
           <S.UserAndBotText>봇</S.UserAndBotText>
           <S.Line></S.Line>
           <S.RecordLegendDiv>
-            {computerHandRecord.map((hand) => (
-              <>
+            {computerHandRecord.map((hand, index) => (
+              <div key={index + 1}>
                 {hand === 'Rock' ? '바위' : hand === 'Scissors' ? '가위' : '보'}
                 <br />
-              </>
+              </div>
             ))}
           </S.RecordLegendDiv>
         </S.BotAndUserRecordDiv>
@@ -146,8 +150,8 @@ const RecordComponent = () => {
         </S.ScoreDiv>
         <S.BotAndUserRecordDiv>
           <S.RecordLegendDiv>
-            {userHandRecord.map((hand) => (
-              <>
+            {userHandRecord.map((hand, index) => (
+              <div key={index + 1}>
                 {hand === 'Rock'
                   ? '바위'
                   : hand === 'Scissors'
@@ -156,7 +160,7 @@ const RecordComponent = () => {
                       ? '보'
                       : '-'}
                 <br />
-              </>
+              </div>
             ))}
           </S.RecordLegendDiv>
           <S.Line></S.Line>

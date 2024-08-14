@@ -10,7 +10,6 @@ import * as S from '../styled';
 
 export const TimerIfYouWantPlay = () => {
   const [timer] = useAtom(CurrentSecAtom);
-  const [selectHand] = useAtom(SelectHandAtom);
   const [startTimer] = useAtom(StartTimerAtom);
 
   return (

@@ -40,6 +40,7 @@ interface Props {
   $right: string;
   $hover?: boolean;
   $pointerClick: boolean;
+  $cursor: string;
 }
 
 export interface StyleType extends Partial<Props> {}

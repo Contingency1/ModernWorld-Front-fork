@@ -11,6 +11,7 @@ import {
   StartTimerAtom,
   userHandAtom,
   onlyResultAtom,
+  RecordAtom,
 } from '@/states/gameAtom';
 import { GAME } from '@/app/api/game';
 import { useEffect, useState } from 'react';
@@ -34,6 +35,8 @@ const MiddleSection = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
   // 결과만 보여주는 boolean
   const [onlyResult, setOnlyResult] = useAtom(onlyResultAtom);
+
+  const [record, setRecord] = useAtom(RecordAtom);
 
   const [userInfo, setUserInfo] = useState<{
     data: {
@@ -63,10 +66,17 @@ const MiddleSection = () => {
     }
   }, [startTimer, timer]);
 
+  useEffect(() => {
+    const getUserRecord = async () => {
+      const response = await GAME.GetUsersLecord(getUserNo());
+      setRecord(response);
+    };
+    getUserRecord();
+  }, [startTimer, timer]);
+
   // API 요청
   const postUsersHand = async (hand: number) => {
     const response = await GAME.PostUsersHand(hand);
-    console.log(hand, 'post');
     return setGameResult(response);
   };
 

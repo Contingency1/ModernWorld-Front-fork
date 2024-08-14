@@ -41,7 +41,7 @@ const UserSection = () => {
       </S.ProfileCircle>
       <S.UserNameDiv>{userInfo?.data.nickname}</S.UserNameDiv>
       {RockSicssorsPaperImgArray.map((img, index) => (
-        <S.IconSircle $check={index === hand} key={img}>
+        <S.IconSircle $cursor={'true'} $check={index === hand} key={img}>
           <S.IconBackColor>
             <S.IconImg
               src={img}

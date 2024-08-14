@@ -24,3 +24,4 @@ export const SelectHandAtom = atom<boolean>(false);
 export const ShowResultAtom = atom<boolean>(false);
 export const onlyResultAtom = atom<boolean>(false);
 export const BotHandAtom = atom('');
+export const RecordAtom = atom<any>([]);
