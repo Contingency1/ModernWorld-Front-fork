@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 export default function PreviewVillageUsers(props: { userNo: any }) {
   const [like, setLike] = useState(0);
   const [likeState, setLikeState] = useState(false);
+  const [comment, setComment] = useState(0);
   const route = useRouter();
 
   async function sendLike(userNo: number) {
@@ -43,7 +44,7 @@ export default function PreviewVillageUsers(props: { userNo: any }) {
   useEffect(() => {
     async function getLike(userNo: number) {
       const response = await USER.getUserInfo(userNo);
-      setLike(response.legend.likeCount);
+      setLike(response.data.legend.likeCount);
     }
     getLike(props.userNo);
   }, [likeState]);
@@ -52,27 +53,55 @@ export default function PreviewVillageUsers(props: { userNo: any }) {
     <S.RootDiv>
       <S.ContainerDiv>
         <S.previewRoomDiv>
-          <MyRoom width={'90%'} height={'90%'} userNo={props.userNo}></MyRoom>
+          <MyRoom width={'95%'} height={'90%'} userNo={props.userNo}></MyRoom>
         </S.previewRoomDiv>
       </S.ContainerDiv>
-      <S.previewMenu>
-        <S.MenuButton onClick={() => addFriend(props.userNo)}>
-          친구 추가
-        </S.MenuButton>
-        <S.MenuButton
-          onClick={() => {
-            !likeState ? sendLike(props.userNo) : cancelLike(props.userNo);
-          }}>
-          <S.HeartAndExistImg
-            $marginRight="5%"
-            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"></S.HeartAndExistImg>
-          {like}
-        </S.MenuButton>
-        <S.HeartAndExistImg
-          $marginLeft="10%"
-          src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/exit.png"
-          onClick={() => route.push('/village/cat')}></S.HeartAndExistImg>
-      </S.previewMenu>
+      <S.previewMenuContainer>
+        <S.previewMenuDiv>
+          <S.MenuButtonDiv
+            width="15vw"
+            onClick={() => {
+              !likeState ? sendLike(props.userNo) : cancelLike(props.userNo);
+            }}
+            $marginLeft="15%">
+            <S.ImgStyle
+              $marginRight="5%"
+              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"
+              width="20px"
+              height="20px"></S.ImgStyle>
+            좋아요 {like}
+          </S.MenuButtonDiv>
+          <S.MenuButtonDiv width="14vw" $marginLeft="10%">
+            <S.ImgStyle
+              $marginRight="5%"
+              src={
+                'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addComment.png'
+              }
+              width="20px"
+              height="20px"></S.ImgStyle>
+            방명록 남기기 {comment}
+          </S.MenuButtonDiv>
+          <S.MenuButtonDiv
+            width="12vw"
+            $marginLeft="10%"
+            onClick={() => addFriend(props.userNo)}>
+            <S.ImgStyle
+              $marginRight="5%"
+              src={
+                'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addFriend.png'
+              }
+              width="20px"
+              height="20px"></S.ImgStyle>
+            친구 추가
+          </S.MenuButtonDiv>
+          <S.ImgStyle
+            width="40px"
+            height="40px"
+            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/exit.png"
+            onClick={() => route.push('/village/cat')}
+            $marginLeft="20%"></S.ImgStyle>
+        </S.previewMenuDiv>
+      </S.previewMenuContainer>
     </S.RootDiv>
   );
 }
