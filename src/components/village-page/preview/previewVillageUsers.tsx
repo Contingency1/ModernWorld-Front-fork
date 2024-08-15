@@ -44,7 +44,6 @@ export default function PreviewVillageUsers(props: { userNo: any }) {
 
   async function getComments(userNo: number) {
     const response = await COMMENT.getComments(userNo);
-    console.log(response);
     setComment(response.data.length);
   }
 
