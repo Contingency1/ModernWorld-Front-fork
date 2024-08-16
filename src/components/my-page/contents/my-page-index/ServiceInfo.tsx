@@ -62,7 +62,7 @@ export default function ServiceInfo() {
               backColor: '#D7E7FF',
             },
           ].map(({ label, isVisible, toggle, content, backColor }, index) => (
-            <div key={index} style={{ margin: '0 0 1vw 0' }}>
+            <div key={index} style={{ margin: '0.5vw 0 0.5vw 0' }}>
               <S.UserInfoContent width="40vw" $backColor={backColor}>
                 {label}
                 <S.Arrow
