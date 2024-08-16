@@ -16,7 +16,7 @@ export const RootDiv = styled.div`
   width: 90vw;
   height: 83vh;
   background-color: #fbf9e4;
-  border-radius: 15px;
+  border-radius: 30px;
   box-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
@@ -24,8 +24,8 @@ export const RootDiv = styled.div`
 `;
 
 export const ExistButton = styled.img`
-  width: 3.5vw;
-  height: 3.5vw;
+  width: 2.5vw;
+  height: 2.5vw;
   position: absolute;
   top: 11%;
   right: 6.5%;
@@ -34,7 +34,7 @@ export const ExistButton = styled.img`
 export const UserName = styled.div`
   width: 11vw;
   height: 3.5vw;
-  font-size: 150%;
+  font-size: 125%;
   position: absolute;
   top: 13%;
   right: 12%;
@@ -69,7 +69,6 @@ export const CommentInputRootDiv = styled.div`
 export const CommentInput = styled.input`
   width: 75%;
   height: 90%;
-  padding-left: 10px;
   font-size: 18px;
   background-color: #daedf8;
   border-width: 0;
@@ -89,7 +88,7 @@ export const CommentRootDiv = styled.div`
   height: 8vh;
   background-color: #ffffff;
   border-radius: 25px;
-  margin-top: 1.5%;
+  margin-top: 1%;
   display: flex;
   flex-direction: row;
   align-items: center;
