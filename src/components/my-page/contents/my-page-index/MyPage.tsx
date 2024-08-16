@@ -10,6 +10,7 @@ import USER from '@/app/api/user';
 import { useRouter } from 'next/navigation';
 
 export default function MyPageIndex() {
+  const userNo = Number(localStorage.getItem('userNo'));
   const router = useRouter();
   const [isEditDescription, setIsEditDescription] = useState(false);
   const [editDescriptionText, setEditDescriptionText] = useState('');
@@ -90,8 +91,8 @@ export default function MyPageIndex() {
                 cursor="pointer"
                 onClick={() => router.push('/my-page/achievement-settings')}>
                 (
-                {indexUserInfo.userAchievement[0].achievement.title
-                  ? indexUserInfo.userAchievement[0].achievement.title
+                {indexUserInfo.userAchievement[0]?.achievement?.title
+                  ? indexUserInfo.userAchievement[0]?.achievement?.title
                   : '업적 없음'}
                 )
               </S.Font>
