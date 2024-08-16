@@ -2,6 +2,9 @@
 
 import { COMMENT } from '@/app/api/comment';
 import * as S from '@/components/village-page/comment/styled';
+import { commentRefreshAtom } from '@/states/commentRefresh';
+import { UserSelectedAtom } from '@/states/village';
+import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export const ShowCommentList = () => {
@@ -17,31 +20,37 @@ export const ShowCommentList = () => {
   >([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-  const [totalCommentCount, setTotalCommentCount] = useState(1);
+  const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
+  const [userSelected] = useAtom(UserSelectedAtom);
 
   const getCommentList = async () => {
     const response = await COMMENT.getComments(
-      39,
+      Number(userSelected),
       currentPage,
       3,
       'desc',
       'receiverNo',
     );
     setTotalPage(response.meta.totalPage);
-    setTotalCommentCount(response.meta.totalCount);
     return setCommentList(response.data);
   };
 
   const deleteComments = async (commentNo: number) => {
     if (confirm('삭제하시겠습니까?')) {
       const response = await COMMENT.deleteComments(commentNo);
+      try {
+        alert('성공적으로 삭제되었습니다');
+        setCommentRefresh(!commentRefresh);
+      } catch (err) {
+        alert('유효하지 않은 요청입니다');
+      }
       return response;
     }
   };
 
   useEffect(() => {
     getCommentList();
-  }, [currentPage, totalCommentCount]);
+  }, [currentPage, commentRefresh]);
 
   const nextPage = () => {
     totalPage > currentPage
@@ -66,9 +75,9 @@ export const ShowCommentList = () => {
             : {content}
           </S.CommentNicknameDiv>
           <S.CommentDateDiv>
-            {createdAt ? createdAt.match(regex)[1] : null}
+            {createdAt ? createdAt.match(regex)?.[1] : null}
             <> </>
-            {createdAt ? createdAt.match(regex)[2] : null}
+            {createdAt ? createdAt.match(regex)?.[2] : null}
           </S.CommentDateDiv>
           <S.PencilImg
             src={

@@ -33,7 +33,7 @@ export const ExistButton = styled.img`
 `;
 
 export const UserNameDiv = styled.div`
-  width: 11vw;
+  width: 15vw;
   height: 3.5vw;
   font-size: 125%;
   position: absolute;

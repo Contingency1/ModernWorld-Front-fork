@@ -11,7 +11,15 @@ export const COMMENT = {
     type?: string,
   ): Promise<any> {
     const result: AxiosResponse = await instance.get(
-      `/users/${userNo}/${this.path}?page=${page}&take=${take}&orderBy=${orderBy}&type=${type}`,
+      `/users/${userNo}/${this.path}`,
+      {
+        params: {
+          page: page,
+          take: take,
+          orderBy: orderBy,
+          type: type,
+        },
+      },
     );
     return result.data;
   },
@@ -22,13 +30,13 @@ export const COMMENT = {
         content: content,
       },
     );
-    return result.data;
+    return result;
   },
 
   async deleteComments(no: number) {
     const result: AxiosResponse = await instance.delete(
       `/users/my/${this.path}/${no}`,
     );
-    return result.data;
+    return result;
   },
 };

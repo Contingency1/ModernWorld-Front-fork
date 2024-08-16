@@ -78,7 +78,11 @@ export default function PreviewVillageUsers(props: { userNo: any }) {
               height="20px"></S.ImgStyle>
             좋아요 {like}
           </S.MenuButtonDiv>
-          <S.MenuButtonDiv width="14vw" $marginLeft="10%">
+
+          <S.MenuButtonDiv
+            width="14vw"
+            $marginLeft="10%"
+            onClick={() => route.push(`${props.userNo}/comment`)}>
             <S.ImgStyle
               $marginRight="5%"
               src={

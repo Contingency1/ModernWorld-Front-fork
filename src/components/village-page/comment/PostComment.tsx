@@ -2,14 +2,29 @@
 
 import { COMMENT } from '@/app/api/comment';
 import * as S from '@/components/village-page/comment/styled';
+import { commentRefreshAtom } from '@/states/commentRefresh';
+import { UserSelectedAtom } from '@/states/village';
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 
 export const PostComment = () => {
   const [userComment, setUserComment] = useState('');
+  const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
+  const [userSelected] = useAtom(UserSelectedAtom);
 
   const postComments = async (userNo: number, content: string) => {
-    const response = await COMMENT.postComments(userNo, content);
-    return response;
+    if (confirm('방명록을 작성하시겠습니까?')) {
+      const response = await COMMENT.postComments(userNo, content);
+      try {
+        if (response.status === 201) {
+          setCommentRefresh(!commentRefresh);
+          return alert('작성이 완료되었습니다');
+        }
+      } catch (err) {
+        alert('유효하지 않은 요청입니다');
+      }
+      return response;
+    }
   };
 
   const commentEventTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +43,9 @@ export const PostComment = () => {
         width="2vw"
         height="2vw"
         $marginLeft="15%"
-        onClick={() => postComments(39, userComment)}></S.PencilImg>
+        onClick={() =>
+          postComments(Number(userSelected), userComment)
+        }></S.PencilImg>
     </S.CommentInputRootDiv>
   );
 };
