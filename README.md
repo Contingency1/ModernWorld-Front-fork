@@ -1,20 +1,16 @@
+<<<<<<< HEAD
 # ModernWorld-Front
 
 모던애자일 7기 모던월드 프론트 레포지토리
+=======
+# Modern Agile 7 term, Main Project
+>>>>>>> 4b5ecdc42c03009ea4b3cd22cb0271b51b1cca59
 
-## 커밋 메시지 컨벤션
+## Project : Modern World
 
-- `feat` : 새로운 기능 추가
-- `modify` : 기능 수정
-- `fix` : 버그 수정
-- `docs` : 문서 수정
-- `style` : 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
-- `refactor` : 코드 리펙토링
-- `test` : 테스트 코드, 리펙토링 테스트 코드 추가
-- `chore` : 빌드 업무 수정, 패키지 매니저 수정
-- `conflict`: 충돌 해결
-- `publish` : 페이지 퍼블리싱
+### 7기 메인프로젝트 백 저장소
 
+<<<<<<< HEAD
 ## 기술 스택
 
 - typescript, next.js
@@ -22,3 +18,91 @@
 ## 브랜치 전략
 
 - feature/기능이름/(#이슈번호)
+=======
+---
+
+### <span style='background-color:#ffdce0'> FRONT - END </span>
+
+#### 김은우 | Eun-woo, Kim
+
+<a href="https://github.com/dmsdnWkd1234">
+<img alt="Static Badge" src="https://img.shields.io/badge/Profile-%23181717?style=for-the-badge&logo=github">
+</a>
+
+#### 김진 | Jin, Kim
+
+<a href="https://github.com/chamjin">
+<img alt="Static Badge" src="https://img.shields.io/badge/Profile-%23181717?style=for-the-badge&logo=github">
+</a>
+
+---
+
+### <span style='background-color:#ffdce0'> BACK - END </span>
+
+#### 김준우 | Jun-woo, Kim
+
+<a href="https://github.com/cyoure">
+<img alt="Static Badge" src="https://img.shields.io/badge/Profile-%23181717?style=for-the-badge&logo=github">
+</a>
+
+#### 안진우 | Jin-woo, Ahn
+
+<a href="https://github.com/jinwoo0207">
+<img alt="Static Badge" src="https://img.shields.io/badge/Profile-%23181717?style=for-the-badge&logo=github">
+</a>
+
+#### 조영은 | Young-eun, Jo
+
+<a href="https://github.com/Contingency1">
+<img alt="Static Badge" src="https://img.shields.io/badge/Profile-%23181717?style=for-the-badge&logo=github">
+</a>
+
+---
+
+## Branch Strategy
+
+**이슈 생성 시 `Assignees`, `Labels`, `Project` 꼭 할당**
+
+### Default Branch
+
+| Name | Description                    |
+| ---- | ------------------------------ |
+| main | repository default branch      |
+| dev  | development environment branch |
+
+### Branch Example
+
+-   feature/titme/#issueNo
+
+예시
+
+-   feature/comment/#1
+
+## Commit Convention
+
+### Commit Example
+
+**{type}/#{issue-number}: 작업한 사항(띄어쓰기 허용)**
+
+예시
+
+-   setting/#3: project set up
+
+### Commit Type
+
+| Type             | Description       |
+| ---------------- | ----------------- |
+| 🌏deploy         | 배포 관련         |
+| ⚙ Setting       | 개발 환경 셋팅    |
+| 🐞 BugFix        | 버그 수정         |
+| 💻 CrossBrowsing | 브라우저 호환성   |
+| ❌ Delete        | 기능, 코드 삭제   |
+| 📃 Docs          | 문서 작성 및 수정 |
+| ✨ Feature       | 기능 개발         |
+| 📬 API           | API 통신          |
+| 📝 Modify        | 기능, 코드 수정   |
+| 🔨 Refactor      | 코드 리팩토링     |
+| ✅ Test          | test 관련         |
+| 🙋‍♂️ Question      | 질문 & 요청 사항  |
+| 🎨 Publish       | 마크업 & 스타일링 |
+>>>>>>> 4b5ecdc42c03009ea4b3cd22cb0271b51b1cca59

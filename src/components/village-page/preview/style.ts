@@ -16,49 +16,64 @@ export const RootDiv = styled.div`
 export const ContainerDiv = styled.div`
   margin-top: 2%;
   width: 90vw;
-  height: 90vh;
-  background-color: #ffffff;
-  border-radius: 50px;
+  height: 70vh;
+  background-color: #fbf9e4;
+  border-radius: 30px;
+  box-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.3);
 `;
 
 export const previewRoomDiv = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 25px;
+  border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const previewMenu = styled.div`
-  width: 80%;
-  height: 20%;
+export const previewMenuContainer = styled.div`
+  width: 90%;
+  height: 13%;
   display: flex;
+  border-radius: 10px;
+  background-color: #ffffff;
   align-items: center;
   justify-content: center;
-  margin-left: 10.65%;
+  margin-top: 2%;
+  box-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.3);
 `;
 
-export const MenuButton = styled.div`
-  width: 40%;
-  height: 60%;
-  margin: 2%;
-  background-color: #d9d9d9;
-  border-radius: 50px;
+export const previewMenuDiv = styled.div`
+  width: 98.5%;
+  height: 84%;
+  background-color: #fbf9e4;
+  border-radius: 10px;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MenuButtonDiv = styled.div<StyleType>`
+  width: ${(props) => props.width};
+  margin-left: ${(props) => props.$marginLeft};
+  height: 3vh;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  opacity: 0.5;
   &:hover {
-    background-color: #ffffff;
-    transition: 0.5s;
+    opacity: 1;
   }
 `;
 
-export const HeartAndExistImg = styled.img<StyleType>`
-  width: 40px;
-  height: 40px;
+export const ImgStyle = styled.img<StyleType>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   margin-left: ${(props) => props.$marginLeft};
   margin-right: ${(props) => props.$marginRight};
   cursor: pointer;
+  justify-self: center;
 `;
