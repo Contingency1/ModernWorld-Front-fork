@@ -10,6 +10,7 @@ import USER from '@/app/api/user';
 import { useRouter } from 'next/navigation';
 
 export default function MyPageIndex() {
+  const userNo = Number(localStorage.getItem('userNo'));
   const router = useRouter();
   const [isEditDescription, setIsEditDescription] = useState(false);
   const [editDescriptionText, setEditDescriptionText] = useState('');
@@ -55,6 +56,9 @@ export default function MyPageIndex() {
   return (
     <>
       <S.Background>
+        <S.Font $margin="1vh 1vw 0 auto" $fontSize="30px" color="#A1B1B7">
+          ☰
+        </S.Font>
         <S.UserInfoSection>
           <S.UserImageContainer
             onClick={handleProfileClick}
@@ -87,8 +91,8 @@ export default function MyPageIndex() {
                 cursor="pointer"
                 onClick={() => router.push('/my-page/achievement-settings')}>
                 (
-                {indexUserInfo.userAchievement[0].achievement.title
-                  ? indexUserInfo.userAchievement[0].achievement.title
+                {indexUserInfo.userAchievement[0]?.achievement?.title
+                  ? indexUserInfo.userAchievement[0]?.achievement?.title
                   : '업적 없음'}
                 )
               </S.Font>

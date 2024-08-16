@@ -1,9 +1,24 @@
+<<<<<<< HEAD
+# ModernWorld-Front
+
+모던애자일 7기 모던월드 프론트 레포지토리
+=======
 # Modern Agile 7 term, Main Project
+>>>>>>> 4b5ecdc42c03009ea4b3cd22cb0271b51b1cca59
 
 ## Project : Modern World
 
 ### 7기 메인프로젝트 백 저장소
 
+<<<<<<< HEAD
+## 기술 스택
+
+- typescript, next.js
+
+## 브랜치 전략
+
+- feature/기능이름/(#이슈번호)
+=======
 ---
 
 ### <span style='background-color:#ffdce0'> FRONT - END </span>
@@ -90,3 +105,4 @@
 | ✅ Test          | test 관련         |
 | 🙋‍♂️ Question      | 질문 & 요청 사항  |
 | 🎨 Publish       | 마크업 & 스타일링 |
+>>>>>>> 4b5ecdc42c03009ea4b3cd22cb0271b51b1cca59
