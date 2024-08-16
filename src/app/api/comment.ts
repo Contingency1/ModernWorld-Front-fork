@@ -24,4 +24,11 @@ export const COMMENT = {
     );
     return result.data;
   },
+
+  async deleteComments(no: number) {
+    const result: AxiosResponse = await instance.delete(
+      `/users/my/${this.path}/${no}`,
+    );
+    return result.data;
+  },
 };

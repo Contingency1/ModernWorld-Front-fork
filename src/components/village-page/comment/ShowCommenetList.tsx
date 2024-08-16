@@ -12,10 +12,12 @@ export const ShowCommentList = () => {
       content: string;
       commentSender: { nickname: string };
       createdAt: string;
+      no: number;
     }[]
   >([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
+  const [totalCommentCount, setTotalCommentCount] = useState(1);
 
   const getCommentList = async () => {
     const response = await COMMENT.getComments(
@@ -26,14 +28,20 @@ export const ShowCommentList = () => {
       'receiverNo',
     );
     setTotalPage(response.meta.totalPage);
+    setTotalCommentCount(response.meta.totalCount);
     return setCommentList(response.data);
   };
 
-  console.log(commentList);
+  const deleteComments = async (commentNo: number) => {
+    if (confirm('삭제하시겠습니까?')) {
+      const response = await COMMENT.deleteComments(commentNo);
+      return response;
+    }
+  };
 
   useEffect(() => {
     getCommentList();
-  }, [currentPage]);
+  }, [currentPage, totalCommentCount]);
 
   const nextPage = () => {
     totalPage > currentPage
@@ -49,7 +57,7 @@ export const ShowCommentList = () => {
 
   return (
     <>
-      {commentList.map(({ content, commentSender, createdAt }, index) => (
+      {commentList.map(({ content, commentSender, createdAt, no }, index) => (
         <S.CommentRootDiv key={index + 1}>
           <S.CommentNicknameDiv>
             <div style={{ color: '#A1A1A1', fontSize: '1vw' }}>
@@ -67,7 +75,10 @@ export const ShowCommentList = () => {
               'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png'
             }
             width="1.8vw"
-            height="1.8vw"></S.PencilImg>
+            height="1.8vw"
+            onClick={() => {
+              deleteComments(no);
+            }}></S.PencilImg>
         </S.CommentRootDiv>
       ))}
       <S.PageNationDiv>
