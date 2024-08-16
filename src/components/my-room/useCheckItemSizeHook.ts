@@ -31,8 +31,6 @@ export default function useCheckItemSizeHook(
     )[0] as InventoryItemType
   )?.item.no;
 
-  console.log(inventoryItem);
-
   if (filteredItem !== undefined) {
     return WidthorHeight === 'width'
       ? itemSize[filteredItem - 1]?.width
