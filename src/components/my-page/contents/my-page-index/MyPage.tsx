@@ -30,6 +30,9 @@ export default function MyPageIndex() {
   };
 
   const profileUpdate = async () => {
+    if (!window.confirm('프로필 사진을 업데이트 하시겠습니까?')) {
+      return;
+    }
     const response = await USER.profileUpdate();
     setIndexUserInfo((prev) => ({
       ...prev,
