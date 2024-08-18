@@ -17,6 +17,7 @@ export const Background = styled.div`
 
 interface UserImageContainerProps {
   isProfileClick?: boolean;
+  marginTop?: string;
 }
 
 /** 유저 사진 띄워 주는 콘테이너 */
@@ -24,7 +25,7 @@ export const UserImageContainer = styled.div<UserImageContainerProps>`
   position: relative;
   width: 9vw;
   height: 9vw;
-  margin-top: -45vh;
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : '-45vh')};
   border-radius: 50%;
   border: 15px solid white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -97,9 +98,9 @@ export const UserInfoContent = styled.div<StyleType>`
 `;
 
 /** index Page info Section */
-export const UserInfoSection = styled.div`
+export const UserInfoSection = styled.div<StyleType>`
   width: 80%;
-  height: 55%;
+  height: ${(props) => (props.height ? props.height : '55%')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,6 +173,9 @@ export const Arrow = styled.img<StyleType>`
   width: ${(props) => props.width};
   margin-left: auto;
   margin-right: 1vw;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+  cursor: pointer;
 `;
 
 /** font css */
@@ -180,6 +184,7 @@ export const Font = styled.div<StyleType>`
   color: ${(props) => props.color};
   margin: ${(props) => props.$margin};
   cursor: ${(props) => props.cursor};
+  line-height: 1.8;
 `;
 
 /** 서비스 정보 페이지에 있는 서비스 내용들 들어갈 div */
@@ -193,4 +198,89 @@ export const ServiceInfoContainer = styled.div`
   margin-bottom: -25vh;
   padding: 1vw;
   overflow-y: auto;
+`;
+
+/** 서비스 설명 container */
+export const ServiceDescriptionContainer = styled.div`
+  width: 38vw;
+  padding: 0.5vw;
+`;
+
+/** 나의 업적 표시 container */
+export const AchievementViewContainer = styled.div`
+  width: 45vw;
+  height: 35vh;
+  margin-bottom: -35vh;
+  padding: 0.5vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
+
+/** 업적 1개 container */
+export const AchievementEleContainer = styled.div`
+  position: absolute;
+  width: 45vw;
+  height: 33vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: -16vh;
+  overflow-y: auto;
+`;
+
+/** flex 방향 */
+export const DirectionDiv = styled.div<StyleType>`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: ${(props) => props.flex};
+  margin: ${(props) => props.$margin};
+`;
+
+/** 업적명 들어가는 동그라미 div */
+export const AchievementBadge = styled.div`
+  width: 8vh;
+  height: 8vh;
+  background-color: #fff;
+  border: 10px solid #b3daf1;
+  font-size: 18px;
+  color: #363a8d;
+  border-radius: 50%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+/** 체크버튼 */
+export const CheckUi = styled.div`
+  width: 1vh;
+  height: 1vh;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  border: 1px solid #5b5b5b;
+  margin: 0.5vw 0.5vw 0 0;
+`;
+
+/** 체크 버튼 옆 font UI */
+export const AchievementListFont = styled.div<StyleType>`
+  font-size: ${(props) => props.$fontSize};
+  color: ${(props) => props.color};
+  margin: 0.5vw 1vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+`;
+
+/** 체크 표시 img */
+export const CheckImg = styled.img`
+  position: relative;
+  width: 2vh;
+  height: 2vh;
+  margin-left: -0.9vw;
+  z-index: 1;
 `;
