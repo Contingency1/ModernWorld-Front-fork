@@ -13,7 +13,7 @@ export const UserName = () => {
   useEffect(() => {
     const getUserNickname = async (userNo: number) => {
       const response = await USER.getUserInfo(userNo);
-      return setNickname(response.data.nickname);
+      return setNickname(response.nickname);
     };
     getUserNickname(Number(userSelected));
   }, []);

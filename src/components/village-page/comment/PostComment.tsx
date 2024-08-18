@@ -15,14 +15,7 @@ export const PostComment = () => {
   const postComments = async (userNo: number, content: string) => {
     if (confirm('방명록을 작성하시겠습니까?')) {
       const response = await COMMENT.postComments(userNo, content);
-      try {
-        if (response.status === 201) {
-          setCommentRefresh(!commentRefresh);
-          return alert('작성이 완료되었습니다');
-        }
-      } catch (err) {
-        alert('유효하지 않은 요청입니다');
-      }
+      setCommentRefresh(!commentRefresh);
       return response;
     }
   };

@@ -39,7 +39,6 @@ export const ShowCommentList = () => {
     if (confirm('삭제하시겠습니까?')) {
       const response = await COMMENT.deleteComments(commentNo);
       try {
-        alert('성공적으로 삭제되었습니다');
         setCommentRefresh(!commentRefresh);
       } catch (err) {
         alert('유효하지 않은 요청입니다');

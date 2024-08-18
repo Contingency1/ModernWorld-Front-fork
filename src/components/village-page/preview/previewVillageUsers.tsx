@@ -50,7 +50,7 @@ export default function PreviewVillageUsers(props: { userNo: any }) {
   useEffect(() => {
     async function getLike(userNo: number) {
       const response = await USER.getUserInfo(userNo);
-      setLike(response.data.legend.likeCount);
+      setLike(response.legend.likeCount);
     }
     getComments(props.userNo);
     getLike(props.userNo);
