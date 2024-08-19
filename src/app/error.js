@@ -1,7 +1,5 @@
 'use client';
 
-// app/error.js
-
 import React from 'react';
 
 export default function Error({ error, reset }) {

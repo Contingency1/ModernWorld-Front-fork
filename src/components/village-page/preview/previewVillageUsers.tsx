@@ -5,7 +5,6 @@ import NEIGHBOR from '@/app/api/neighbor';
 import USER from '@/app/api/user';
 import { MyRoom } from '@/components/my-room/MyRoom';
 import * as S from '@/components/village-page/preview/style';
-import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 

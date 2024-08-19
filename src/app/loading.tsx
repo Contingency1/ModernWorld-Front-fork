@@ -1,8 +1,19 @@
 'use client';
 
 import { bouncy } from 'ldrs';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const loading = () => {
+  const route = useRouter();
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      route.replace('/not-found');
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [route]);
+
   bouncy.register();
   return (
     <div
