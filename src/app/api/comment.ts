@@ -1,12 +1,68 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
 
+interface ErrorType extends Error {
+  response?: {
+    status: number;
+  };
+}
+
 export const COMMENT = {
   path: 'comments',
-  async getComments(userNo: number): Promise<any> {
+  async getComments(
+    userNo: number,
+    page?: number,
+    take?: number,
+    orderBy?: string,
+    type?: string,
+  ): Promise<any> {
     const result: AxiosResponse = await instance.get(
       `/users/${userNo}/${this.path}`,
+      {
+        params: {
+          page: page,
+          take: take,
+          orderBy: orderBy,
+          type: type,
+        },
+      },
     );
     return result.data;
+  },
+  async postComments(userNo: number, content: string) {
+    try {
+      const result: AxiosResponse = await instance.post(
+        `/users/${userNo}/${this.path}`,
+        {
+          content: content,
+        },
+      );
+      alert('성공적으로 작성되었습니다');
+      return result;
+    } catch (err) {
+      const Error = err as ErrorType;
+      if (Error.response?.status === 400) {
+        alert('댓글은 1자 이상 100자 이하로 입력해야 합니다');
+      }
+    }
+  },
+
+  async deleteComments(no: number) {
+    try {
+      const result: AxiosResponse = await instance.delete(
+        `/users/my/${this.path}/${no}`,
+      );
+      alert('성공적으로 삭제되었습니다');
+      return result;
+    } catch (err) {
+      const Error = err as ErrorType;
+      if (Error.response?.status === 403) {
+        alert('작성자만 삭제할 수 있습니다');
+      } else if (Error.response?.status === 404) {
+        alert('이미 삭제되었거나 존재하지 않는 댓글입니다');
+      } else {
+        alert('유효하지 않은 요청입니다');
+      }
+    }
   },
 };

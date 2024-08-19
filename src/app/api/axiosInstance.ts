@@ -11,7 +11,9 @@ const instance = axios.create({
 });
 
 const getAccessToken = () => {
-  return localStorage.getItem('accessToken');
+  if (typeof window !== undefined) {
+    return localStorage.getItem('accessToken');
+  }
 };
 
 // 요청 인터셉터 추가하기 (우선은 필요 없을 것 같아서 주석처리했습니다.)
