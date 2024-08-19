@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './style';
 import { usePathname, useRouter } from 'next/navigation';
+import { EventSourcePolyfill } from 'event-source-polyfill';
 
 const NotificationComponent = () => {
   const [eventContent, setEventContent] = useState({
@@ -21,10 +22,14 @@ const NotificationComponent = () => {
     }
   };
 
+  const accessToken = localStorage.getItem('accessToken');
+
   useEffect(() => {
-    const userNo = localStorage.getItem('userNo');
-    const eventSource = new EventSource(
-      `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/sse/${userNo}`,
+    const eventSource = new EventSourcePolyfill(
+      `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}sse`,
+      {
+        headers: { Authorization: `Bearer ${accessToken ? accessToken : ''}` },
+      },
     );
 
     const eventContentHandler = (e: {

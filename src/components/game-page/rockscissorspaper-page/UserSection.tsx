@@ -12,12 +12,10 @@ const UserSection = () => {
 
   // 게임 결과
   const [userInfo, setUserInfo] = useState<{
-    data: {
-      image: string;
-      chance: number;
-      currentPoint: number;
-      nickname: string;
-    };
+    image: string;
+    chance: number;
+    currentPoint: number;
+    nickname: string;
   }>();
   // 로컬스토리지에 있는 유저넘버 가져오기
   const getUserNo = () => {
@@ -32,29 +30,26 @@ const UserSection = () => {
       return;
     };
     getUserInfo(getUserNo());
-  }, [userInfo?.data.currentPoint]);
+  }, [userInfo?.currentPoint]);
 
   return (
     <S.SectionRootDiv $right="0">
       <S.ProfileCircle>
-        <S.ProfileImg src={userInfo?.data.image}></S.ProfileImg>
+        <S.ProfileImg src={userInfo?.image}></S.ProfileImg>
       </S.ProfileCircle>
-      <S.UserNameDiv>{userInfo?.data.nickname}</S.UserNameDiv>
+      <S.UserNameDiv>{userInfo?.nickname}</S.UserNameDiv>
       {RockSicssorsPaperImgArray.map((img, index) => (
         <S.IconSircle $cursor={'true'} $check={index === hand} key={img}>
           <S.IconBackColor>
             <S.IconImg
               src={img}
               onClick={() => {
-                console.log(hand, 'user');
                 setHand(index);
               }}></S.IconImg>
           </S.IconBackColor>
         </S.IconSircle>
       ))}
-      <div style={{ marginTop: '8%' }}>
-        my point : {userInfo?.data.currentPoint}
-      </div>
+      <div style={{ marginTop: '8%' }}>my point : {userInfo?.currentPoint}</div>
     </S.SectionRootDiv>
   );
 };
