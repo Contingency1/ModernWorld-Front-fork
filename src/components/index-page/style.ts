@@ -10,6 +10,7 @@ import styled from 'styled-components';
 export const BackgroundColor = styled.body<StyleType>`
   height: 100vh;
   width: 100vw;
+  display: flex;
   background-color: ${(props) => props.$backColor};
   flex-direction: ${(props) => props.$flexDirection};
   align-items: ${(props) => props.$alignItems};
@@ -19,7 +20,7 @@ export const BackgroundColor = styled.body<StyleType>`
  * 배경에 있는 커다란 새싹 백그라운드 이미지
  */
 export const MainLogo = styled.div<StyleType>`
-  width: 95wh;
+  width: 95vw;
   height: 100vh;
   background-size: 90% 110%;
   background-position: center;
@@ -38,8 +39,14 @@ export const MainLogo = styled.div<StyleType>`
  @params width : number, height : number, font-size : number, margin-top : number 
  */
 export const MainLogoText = styled.div<StyleType>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 30vh;
   font-size: ${(props) => props.$fontSize};
   margin-top: ${(props) => props.$marginTop};
+  margin-left: ${(props) => props.$marginLeft};
   text-shadow: 4px 4px white;
 `;
 

@@ -9,7 +9,7 @@ import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function PreviewVillageUsers(props: { userNo: any }) {
+export default function PreviewVillageUsers(props: { userNo: number }) {
   const [like, setLike] = useState(0);
   const [likeState, setLikeState] = useState(false);
   const [comment, setComment] = useState(0);
@@ -29,17 +29,7 @@ export default function PreviewVillageUsers(props: { userNo: any }) {
   }
 
   async function addFriend(userNo: number) {
-    confirm('친구 요청을 보내시겠습니까?');
-    try {
-      await NEIGHBOR.sendFriendRequest(userNo);
-      alert('친구 요청을 성공적으로 보냈습니다');
-    } catch (err) {
-      console.log(err);
-      if (isAxiosError(err) && err.response) {
-        if (err.response.status === 409)
-          alert('이미 친구요청을 보낸 상대입니다');
-      }
-    }
+    await NEIGHBOR.sendFriendRequest(userNo);
   }
 
   async function getComments(userNo: number) {

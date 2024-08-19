@@ -1,5 +1,7 @@
 import { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
+import { ErrorType } from '@/types/error';
+import { HTTP_STATUS } from '@/utils/httpStatusCode';
 
 const USER = {
   path: `/users`,
@@ -27,26 +29,55 @@ const USER = {
         `${USER.path}/${userId}/likes`,
       );
       return result;
-    } catch (error: any) {
-      return error.response.status;
+    } catch (err) {
+      const Error = err as ErrorType;
+      switch (Error.response?.status) {
+        case HTTP_STATUS.BAD_REQUEST:
+        case HTTP_STATUS.NOT_FOUND:
+          alert('존재하지 않는 유저입니다');
+          break;
+
+        case HTTP_STATUS.FORBIDDEN:
+          alert('본인에게는 좋아요할 수 없습니다');
+          break;
+
+        case HTTP_STATUS.CONFLICT:
+          alert('이미 좋아요한 유저입니다');
+          break;
+      }
     }
   },
 
   async unLike(userId: number): Promise<any> {
-    const result: AxiosResponse = await instance.delete(
-      `${USER.path}/${userId}/likes`,
-    );
-    return result;
+    try {
+      const result: AxiosResponse = await instance.delete(
+        `${USER.path}/${userId}/likes`,
+      );
+      return result;
+    } catch (err) {
+      const Error = err as ErrorType;
+      switch (Error.response?.status) {
+        case HTTP_STATUS.BAD_REQUEST:
+          alert('존재하지 않는 유저입니다');
+          break;
+
+        case HTTP_STATUS.NOT_FOUND:
+          alert('본인에게는 좋아요를 할 수 없습니다');
+          break;
+      }
+    }
   },
 
   async createNickname(nickname: string): Promise<any> {
-    const result: AxiosResponse = await instance.post(
-      `${USER.path}/my/nickname`,
-      {
-        nickname: nickname,
-      },
-    );
-    return result;
+    try {
+      const result: AxiosResponse = await instance.post(
+        `${USER.path}/my/nickname`,
+        {
+          nickname: nickname,
+        },
+      );
+      return result;
+    } catch (err) {}
   },
 
   async createCharacter(characterNo: number): Promise<any> {
