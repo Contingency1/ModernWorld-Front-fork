@@ -220,14 +220,16 @@ export const AchievementViewContainer = styled.div`
 /** 업적 1개 container */
 export const AchievementEleContainer = styled.div`
   position: absolute;
-  width: 45vw;
-  height: 33vh;
+  width: 700px;
+  height: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-bottom: -16vh;
   overflow-y: auto;
+  box-sizing: border-box;
+  padding-top: 15vw;
 `;
 
 /** flex 방향 */
@@ -245,7 +247,7 @@ export const AchievementBadge = styled.div`
   height: 8vh;
   background-color: #fff;
   border: 10px solid #b3daf1;
-  font-size: 18px;
+  font-size: calc(0.8vw + 0.8vh);
   color: #363a8d;
   border-radius: 50%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -267,7 +269,7 @@ export const CheckUi = styled.div`
 
 /** 체크 버튼 옆 font UI */
 export const AchievementListFont = styled.div<StyleType>`
-  font-size: ${(props) => props.$fontSize};
+  font-size: calc(0.8vw + 0.8vh);
   color: ${(props) => props.color};
   margin: 0.5vw 1vw;
   display: flex;

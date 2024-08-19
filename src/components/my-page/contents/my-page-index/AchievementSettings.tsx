@@ -2,24 +2,45 @@
 
 import * as S from './style';
 import { useAtom } from 'jotai';
-import { userDataAtom } from '@/states/userAtoms';
+import { achievementColorAtom, userDataAtom } from '@/states/userAtoms';
 import { useRouter } from 'next/navigation';
-import AchievementEle from './AchievementEle';
 import { useEffect, useState } from 'react';
 import { ACHIEVEMENTS } from '@/app/api/achievement';
+import { achievementTitles, levelColors } from '@/utils/achievements';
+import { AchievementDataType } from '@/types/achievement';
+
+const padTitle = (title: string) => {
+  if (title.length >= 5) return title;
+  return title + '　'.repeat(5 - title.length);
+};
 
 export default function AchievementSettings() {
   const router = useRouter();
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
-  const [achievementData, setAchievementData] = useState();
+  const [achievementData, setAchievementData] = useState<
+    Record<string, AchievementDataType[]>
+  >({});
+  const [achievementColor, setAchievementColor] = useAtom(achievementColorAtom);
 
-  const getAchievements = async () => {
-    const response = await ACHIEVEMENTS.getAchievements();
+  const getAchievements = async (title: string) => {
+    const response = await ACHIEVEMENTS.getAchievements(title);
+    setAchievementData((prev) => ({
+      ...prev,
+      [title]: response,
+    }));
   };
 
   useEffect(() => {
-    getAchievements();
-  }, []);
+    achievementTitles.flat().forEach((title) => getAchievements(title));
+  }, [achievementColor]);
+
+  const handleItemClick = async (data: AchievementDataType) => {
+    const response = await ACHIEVEMENTS.setAchievements(
+      data.achievementNo,
+      data.achievement.title,
+    );
+    setAchievementColor(data.achievement.level);
+  };
 
   return (
     <>
@@ -34,45 +55,31 @@ export default function AchievementSettings() {
             <S.Font>나의 업적 선택하기</S.Font>
           </S.AchievementViewContainer>
           <S.AchievementEleContainer>
-            <S.DirectionDiv flex="column" $margin="0 0 5vw 0">
-              <S.DirectionDiv flex="row" $margin="1vw 0">
-                <S.DirectionDiv flex="row" $margin="0 1vw">
-                  <S.AchievementBadge>소통왕</S.AchievementBadge>
-                  <S.DirectionDiv flex="column">
-                    <S.AchievementListFont color="#B8860B">
-                      <S.CheckUi />
-                      <S.CheckImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/check.png" />
-                      어쩌구
-                    </S.AchievementListFont>
-                    <S.AchievementListFont color="#006400">
-                      <S.CheckUi />
-                      어쩌구
-                    </S.AchievementListFont>
-                    <S.AchievementListFont color="#65000B">
-                      <S.CheckUi />
-                      어쩌구
-                    </S.AchievementListFont>
-                  </S.DirectionDiv>
-                  <S.DirectionDiv flex="row" $margin="0 1vw">
-                    <S.AchievementBadge>소통왕</S.AchievementBadge>
+            {achievementTitles.map((pair, index) => (
+              <S.DirectionDiv flex="row" $margin="1vw 0" key={index}>
+                {pair.map((title) => (
+                  <S.DirectionDiv flex="row" $margin="0 1vw" key={title}>
+                    <S.AchievementBadge>{padTitle(title)}</S.AchievementBadge>
                     <S.DirectionDiv flex="column">
-                      <S.AchievementListFont color="#B8860B">
-                        <S.CheckUi />
-                        어쩌구
-                      </S.AchievementListFont>
-                      <S.AchievementListFont color="#006400">
-                        <S.CheckUi />
-                        어쩌구
-                      </S.AchievementListFont>
-                      <S.AchievementListFont color="#65000B">
-                        <S.CheckUi />
-                        어쩌구
-                      </S.AchievementListFont>
+                      {achievementData[title]?.map(
+                        (data: AchievementDataType) => (
+                          <S.AchievementListFont
+                            key={data.achievementNo}
+                            color={levelColors[data.achievement.level]}
+                            onClick={() => handleItemClick(data)}>
+                            <S.CheckUi />
+                            {data.status && (
+                              <S.CheckImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/check.png" />
+                            )}
+                            {padTitle(data.achievement.title)}
+                          </S.AchievementListFont>
+                        ),
+                      )}
                     </S.DirectionDiv>
                   </S.DirectionDiv>
-                </S.DirectionDiv>
+                ))}
               </S.DirectionDiv>
-            </S.DirectionDiv>
+            ))}
           </S.AchievementEleContainer>
         </S.UserInfoSection>
       </S.Background>

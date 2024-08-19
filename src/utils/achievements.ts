@@ -56,3 +56,15 @@ export const achievementDescriptions: DescriptionType[] = [
     ],
   },
 ];
+
+export const achievementTitles = [
+  ['소통왕', '인기왕'],
+  ['출석왕', '수집왕'],
+  ['선물왕', '게임왕'],
+];
+
+export const levelColors: Record<string, string> = {
+  one: '#B8860B',
+  two: '#006400',
+  three: '#65000B',
+};
