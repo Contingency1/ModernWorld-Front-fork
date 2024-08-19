@@ -39,12 +39,10 @@ const MiddleSection = () => {
   const [record, setRecord] = useAtom(RecordAtom);
 
   const [userInfo, setUserInfo] = useState<{
-    data: {
-      image: string;
-      chance: number;
-      currentPoint: number;
-      nickname: string;
-    };
+    image: string;
+    chance: number;
+    currentPoint: number;
+    nickname: string;
   }>();
 
   const getUserNo = () => {
@@ -156,7 +154,7 @@ const MiddleSection = () => {
             전적 보기
           </S.ShowRecordText>
         ) : null}
-        <S.ChanceText>남은 기회 : {userInfo?.data.chance}/10</S.ChanceText>
+        <S.ChanceText>남은 기회 : {userInfo?.chance}/10</S.ChanceText>
         <Link href="/my-page">
           <S.ExistImg
             src={

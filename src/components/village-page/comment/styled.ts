@@ -29,10 +29,11 @@ export const ExistButton = styled.img`
   position: absolute;
   top: 11%;
   right: 6.5%;
+  cursor: pointer;
 `;
 
-export const UserName = styled.div`
-  width: 11vw;
+export const UserNameDiv = styled.div`
+  width: 15vw;
   height: 3.5vw;
   font-size: 125%;
   position: absolute;
@@ -81,6 +82,7 @@ export const PencilImg = styled.img<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin-left: ${(props) => props.$marginLeft};
+  cursor: pointer;
 `;
 
 export const CommentRootDiv = styled.div`

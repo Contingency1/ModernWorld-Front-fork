@@ -13,6 +13,7 @@
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "env": "^0.0.2",
+    "event-source-polyfill": "^1.0.31",
     "jotai": "^2.8.0",
     "ldrs": "^1.0.2",
     "mkcert": "^3.2.0",
@@ -22,6 +23,8 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
+    "@types/event-source-polyfill": "^1.0.5",
+    "@types/eventsource": "^1.1.15",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
