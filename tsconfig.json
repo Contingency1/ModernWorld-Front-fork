@@ -27,7 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "server.js",
-    "src/app/api/sse/CreateEventSource.tsx"
+    "src/app/api/sse/CreateEventSource.tsx",
+    "src/app/error.js"
   ],
   "exclude": ["node_modules"]
 }
