@@ -156,11 +156,9 @@ export default function ItemClick(props: { no: number }) {
           </S.ModalInButton>
           <S.ModalInButton
             onClick={() => {
-              buyItem(
-                selectItemType === 0
-                  ? itemInfo?.no ?? 0
-                  : characterInfo?.no ?? 0,
-              );
+              selectItemType === 0
+                ? buyItem(itemInfo?.no ?? 0)
+                : buyCharacter(characterInfo?.no ?? 0);
             }}>
             구매하기
           </S.ModalInButton>
