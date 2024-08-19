@@ -1,6 +1,6 @@
 'use client';
 
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import * as S from './style';
 import { userDataAtom } from '@/states/userAtoms';
 import { useEffect, useState } from 'react';
@@ -24,6 +24,7 @@ export default function MyPageIndex() {
     presentCount: 0,
     likeCount: 0,
   });
+  const [isAchievementModal, setIsAchievementModal] = useState(false);
 
   const handleProfileClick = () => {
     setIsProfileClick(!isProfileClick);
@@ -98,11 +99,15 @@ export default function MyPageIndex() {
                 color="#FF3131"
                 $margin="0 0.5vw"
                 cursor="pointer"
-                onClick={() => router.push('/my-page/achievement-settings')}>
+                onClick={() => router.push('/my-page/achievement-settings')}
+                onMouseEnter={() => setIsAchievementModal(true)}
+                onMouseLeave={() => setIsAchievementModal(false)}>
                 (
-                {indexUserInfo.userAchievement[0]?.achievement?.title
-                  ? indexUserInfo.userAchievement[0]?.achievement?.title
-                  : '업적 없음'}
+                {isAchievementModal
+                  ? '업적 설정 페이지 이동'
+                  : indexUserInfo.userAchievement[0]?.achievement?.title
+                    ? indexUserInfo.userAchievement[0]?.achievement?.title
+                    : '업적 없음'}
                 )
               </S.Font>
             </S.UserInfoContent>

@@ -40,6 +40,10 @@ export const CharacterInfo = styled.div<StyleType>`
 
 /** 캐릭터 이름 표시 */
 export const NameSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 2vh;
 `;
 
@@ -98,4 +102,12 @@ export const LinkBox = styled(Link)<StyleType>`
 /** 구분선 */
 export const PointHr = styled.hr`
   width: 80%;
+`;
+
+/** 업적 font */
+export const Font = styled.div<StyleType>`
+  margin-left: 0.5vw;
+  font-size: 14px;
+  color: ${(props) => props.color};
+  cursor: pointer;
 `;

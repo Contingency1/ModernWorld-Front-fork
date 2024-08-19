@@ -27,3 +27,4 @@ export const userDataAtom = atom<UserInfoType>({
 });
 export const characterImage = atom<string>('');
 export const userCharacterChangeAtom = atom<boolean>(true);
+export const achievementColorAtom = atom<'one' | 'two' | 'three' | null>(null);
