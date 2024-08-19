@@ -34,7 +34,6 @@ export default function ShopItemBox() {
   };
 
   const handleItemClick = (no: number) => {
-    console.log(no);
     setIsModalOpen(true);
     setModalNo(no);
   };

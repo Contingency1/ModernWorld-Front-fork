@@ -37,8 +37,6 @@ export default function InventoryItemBox() {
     setUserCharacter(response);
   };
 
-  console.log(userCharacter);
-
   const setItemStatus = async (no: number, status: boolean) => {
     await INVENTORY.setItemStatus(no, status);
     statusView === '착용' ? setStatusView('미착용') : setStatusView('착용');
