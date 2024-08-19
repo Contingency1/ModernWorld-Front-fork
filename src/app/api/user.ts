@@ -95,6 +95,14 @@ const USER = {
       throw error;
     }
   },
+
+  async profileUpdate(): Promise<any> {
+    if (!window.confirm('프로필 사진을 업데이트 하시겠습니까?')) {
+      return;
+    }
+    const result: AxiosResponse = await instance.patch(`/auth/updateProfile`);
+    return result.data;
+  },
 };
 
 export default USER;

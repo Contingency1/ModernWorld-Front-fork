@@ -29,6 +29,17 @@ export default function MyPageIndex() {
     setIsProfileClick(!isProfileClick);
   };
 
+  const profileUpdate = async () => {
+    if (!window.confirm('프로필 사진을 업데이트 하시겠습니까?')) {
+      return;
+    }
+    const response = await USER.profileUpdate();
+    setIndexUserInfo((prev) => ({
+      ...prev,
+      image: response.userProfileImage,
+    }));
+  };
+
   const getUserLegends = async () => {
     const response = await LEGENDS.getUserLegends();
     setUserLegends(response);
@@ -66,9 +77,7 @@ export default function MyPageIndex() {
             <img src={indexUserInfo.image} alt="User Profile" />
             {isProfileClick && (
               <div className="button-container">
-                <div onClick={() => alert('이미지업데이트구현전')}>
-                  이미지 업데이트
-                </div>
+                <div onClick={() => profileUpdate()}>이미지 업데이트</div>
                 <div onClick={() => router.push('/my-page/service-info')}>
                   서비스 정보
                 </div>
