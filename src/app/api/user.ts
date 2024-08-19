@@ -77,7 +77,17 @@ const USER = {
         },
       );
       return result;
-    } catch (err) {}
+    } catch (err) {
+      const Error = err as ErrorType;
+      switch (Error.response?.status) {
+        case HTTP_STATUS.BAD_REQUEST:
+          alert('조건에 따라 닉네임을 작성해주세요');
+          break;
+        case HTTP_STATUS.CONFLICT:
+          alert('이미 존재하는 닉네임입니다');
+          break;
+      }
+    }
   },
 
   async createCharacter(characterNo: number): Promise<any> {

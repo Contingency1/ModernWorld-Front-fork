@@ -235,7 +235,7 @@ export const WarningText = styled.div`
 /**
  * 시작하기 버튼
  */
-export const startButton = styled(Link)`
+export const startButton = styled.div`
   grid-area: right;
   color: #ffffff;
   margin-top: 135%;
