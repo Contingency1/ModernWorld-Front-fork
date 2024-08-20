@@ -175,3 +175,38 @@ export const SortCheckBox = styled.div<StyleType>`
     transition: 0.5s;
   }
 `;
+
+//디폴트 마을 페이지
+
+export const RootDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+`;
+
+export const HarfDiv = styled.div`
+  width: 50vw;
+  height: 100vh;
+  background-color: ${(props) => props.color};
+  display: grid;
+  place-items: center;
+`;
+
+export const Outline = styled.div`
+  width: 85%;
+  height: 90%;
+  border: 15px solid white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ChoiceImg = styled.img<StyleType>`
+  width: ${(props) => props.width};
+  height: 165px;
+`;
