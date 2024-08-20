@@ -6,8 +6,7 @@ import * as S from './style';
 export default function NewUser() {
   return (
     <S.BackgroundColor
-      $backColor="#5F6F52"
-      display="flex"
+      $backColor="rgb(95, 111, 82)"
       $flexDirection="column"
       $alignItems="center">
       <S.CreateCharacterText>캐릭터를 생성하세요!</S.CreateCharacterText>
@@ -26,7 +25,7 @@ export default function NewUser() {
         </S.InputNicknameBox>
         <NewNicknameCondition></NewNicknameCondition>
         <NewCharacterHook></NewCharacterHook>
-        <S.ShowFirstCharacterBox display="flex"></S.ShowFirstCharacterBox>
+        <S.ShowFirstCharacterBox></S.ShowFirstCharacterBox>
         <S.WarningText>
           동물은 한 번 선택 시 추후에도 동일한 동물 종류로만 캐릭터 변경이
           가능합니다.

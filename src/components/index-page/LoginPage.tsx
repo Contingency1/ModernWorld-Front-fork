@@ -14,7 +14,7 @@ export default function LoginPage() {
           $imgHeight="100%"
           font="110%">
           <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EC%95%84%EC%9D%B4%EC%BD%98+%EB%A1%9C%EA%B3%A0+%EB%AA%A8%EC%9D%8C/n%EB%A1%9C%EA%B3%A0-removebg-preview.png"></img>
-          네이버 로그인
+          <div>네이버 로그인</div>
         </S.LoginBtnLink>
         <S.LoginBtnLink
           href={` https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
@@ -26,10 +26,10 @@ export default function LoginPage() {
           $imgMarginLeft="4%"
           font="110%">
           <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EC%95%84%EC%9D%B4%EC%BD%98+%EB%A1%9C%EA%B3%A0+%EB%AA%A8%EC%9D%8C/%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A1%9C%EA%B3%A0-removebg-preview.png"></img>
-          카카오 로그인
+          <div>카카오 로그인</div>
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href={`https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/google/auth/callback&scope=https://www.googleapis.com/auth/userinfo.profile`}
+          href={`https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/google/auth/callback&scope=https://www.googleapis.com/auth/userinfo.profile&prompt=consent`}
           color="#ffffff"
           $textColor="#000000"
           $imgWidth="15%"
@@ -38,7 +38,7 @@ export default function LoginPage() {
           $imgMarginLeft="8%"
           font="110%">
           <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EC%95%84%EC%9D%B4%EC%BD%98+%EB%A1%9C%EA%B3%A0+%EB%AA%A8%EC%9D%8C/%EA%B5%AC%EA%B8%80%EB%A1%9C%EA%B3%A02-removebg-preview.png"></img>
-          Google 계정으로 로그인
+          <div style={{ marginLeft: '8%' }}>Google 로그인</div>
         </S.LoginBtnLink>
       </S.MainLogo>
     </S.BackgroundColor>

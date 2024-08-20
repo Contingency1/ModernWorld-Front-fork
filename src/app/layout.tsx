@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import StyledComponentsRegistry from './lib/registry';
 import { ClientOnly } from '@/utils/clientOnly';
 import NotificationComponent from '@/components/notification/NotificationComponent';
+import { Suspense } from 'react';
+import Loading from './Loading';
 
 export const metadata: Metadata = {
   title: '모던월드',
@@ -16,12 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <StyledComponentsRegistry>
-        <body>{children}</body>
-        <ClientOnly>
-          <NotificationComponent></NotificationComponent>
-        </ClientOnly>
-      </StyledComponentsRegistry>
+      <body>
+        <StyledComponentsRegistry>
+          {children}
+          <ClientOnly>
+            <NotificationComponent />
+          </ClientOnly>
+        </StyledComponentsRegistry>
+      </body>
     </html>
   );
 }

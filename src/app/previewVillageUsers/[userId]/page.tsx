@@ -11,5 +11,5 @@ export default function previewVillageUsersPage() {
   const [_, setUserSelectedAtom] = useAtom(UserSelectedAtom);
   setUserSelectedAtom(pathName);
 
-  return <PreviewVillageUsers userNo={pathName}></PreviewVillageUsers>;
+  return <PreviewVillageUsers userNo={Number(pathName)}></PreviewVillageUsers>;
 }

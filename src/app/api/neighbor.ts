@@ -1,28 +1,37 @@
 import axios, { AxiosResponse } from 'axios';
 import instance from './axiosInstance';
+import { ErrorType } from '@/types/error';
+import { HTTP_STATUS } from '@/utils/httpStatusCode';
 
 const NEIGHBOR = {
   path: `/neighbors`,
 
   /** 친구 요청 보내기 API */
   async sendFriendRequest(userNo: number): Promise<any> {
-    if (!window.confirm('이웃 요청을 보내시겠습니까?')) {
+    if (!window.confirm('친구 요청을 보내시겠습니까?')) {
       return; // 확인을 받지 못하면 함수 종료
     }
     try {
       const result: AxiosResponse = await instance.post(
         `/users/${userNo}${NEIGHBOR.path}`,
       );
+      alert('성공적으로 친구 요청을 보냈습니다');
       return result.data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          if (error.response.status === 409) {
-            return alert('이미 이웃이거나 이웃 요청을 보냈습니다.');
-          } else if (error.response.status === 403) {
-            return alert('본인에게는 이웃 요청할 수 없습니다.');
-          }
-        }
+    } catch (err) {
+      const Error = err as ErrorType;
+      switch (Error.response?.status) {
+        case HTTP_STATUS.BAD_REQUEST:
+        case HTTP_STATUS.NOT_FOUND:
+          alert('존재하지 않는 이웃입니다');
+          break;
+
+        case HTTP_STATUS.FORBIDDEN:
+          alert('본인에게 이웃 신청할 수 없습니다');
+          break;
+
+        case HTTP_STATUS.CONFLICT:
+          alert('이미 친구요청을 보냈거나 친구인 이웃입니다');
+          break;
       }
     }
   },
