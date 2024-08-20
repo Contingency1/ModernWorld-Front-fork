@@ -23,12 +23,12 @@ export default function Title(props: { title: string }) {
   const getName = () => {
     if (!type) {
       return props.title.includes('보낸')
-        ? senderData[page]?.userPostReceiverNo?.nickname
-        : receiverData[page]?.userPostSenderNo?.nickname;
+        ? senderData[page]?.userPostReceiverNo?.nickname ?? '(탈퇴한 유저)'
+        : receiverData[page]?.userPostSenderNo?.nickname ?? '(탈퇴한 유저)';
     } else {
       return props.title.includes('보낸')
-        ? senderData[page]?.userPresentReceiverNo?.nickname
-        : receiverData[page]?.userPresentSenderNo?.nickname;
+        ? senderData[page]?.userPresentReceiverNo?.nickname ?? '(탈퇴한 유저)'
+        : receiverData[page]?.userPresentSenderNo?.nickname ?? '(탈퇴한 유저)';
     }
   };
 

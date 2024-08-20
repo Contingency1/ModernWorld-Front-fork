@@ -6,8 +6,9 @@ import PresentInfo from './PresentInfo';
 import PostInfo from './PostInfo';
 import { useAtomValue } from 'jotai';
 import { mailBoxSelectAtom } from '@/states/mailboxAtoms';
+import { MailBoxBodyEleProps } from '@/types/mailBox';
 
-export default function MailBoxBodyEle(props: any) {
+export default function MailBoxBodyEle(props: MailBoxBodyEleProps) {
   const type = useAtomValue(mailBoxSelectAtom);
 
   return (

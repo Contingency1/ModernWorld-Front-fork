@@ -11,7 +11,6 @@ export default function ItemListEle(props: any) {
   const [receiverName, setReceiverName] = useState('');
   const [status, setStatus] = useState('');
 
-  console.log(props);
   useEffect(() => {
     if (props.data) {
       if (type === 0) {
