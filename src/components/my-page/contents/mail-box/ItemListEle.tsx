@@ -11,15 +11,16 @@ export default function ItemListEle(props: any) {
   const [receiverName, setReceiverName] = useState('');
   const [status, setStatus] = useState('');
 
+  console.log(props);
   useEffect(() => {
     if (props.data) {
       if (type === 0) {
-        setSenderName(props.data.userPostReceiverNo.nickname);
-        setReceiverName(props.data.userPostSenderNo.nickname);
+        setSenderName(props.data.userPostReceiverNo?.nickname);
+        setReceiverName(props.data.userPostSenderNo?.nickname);
         setStatus(props.data.check ? '읽음' : '안읽음');
       } else {
-        setSenderName(props.data.userPresentReceiverNo.nickname);
-        setReceiverName(props.data.userPresentSenderNo.nickname);
+        setSenderName(props.data.userPresentReceiverNo?.nickname);
+        setReceiverName(props.data.userPresentSenderNo?.nickname);
         getPresentStatus(props.data.status);
       }
     }
