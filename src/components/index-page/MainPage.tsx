@@ -11,20 +11,18 @@ export default function MainPage() {
 
   const getUserName = async () => {
     const userNo = Number(localStorage.getItem('userNo'));
-    const response = await USER.getUserInfo(userNo);
-    setName(response.nickname);
-    return;
-  };
-
-  const routingNotUsers = () => {
-    if (!localStorage.getItem('userNo')) {
+    try {
+      const response = await USER.getUserInfo(userNo);
+      setName(response.nickname);
+      return;
+    } catch (err) {
+      alert('로그인이 필요합니다');
       return route.push('/loginpage');
     }
   };
 
   useEffect(() => {
     getUserName();
-    routingNotUsers();
   }, []);
 
   return (

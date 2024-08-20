@@ -62,10 +62,8 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   margin-top: 5%;
   border-radius: 7px;
   font-family: 'Pretendard-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
-    format('woff');
   text-decoration-line: none;
-  font-size: ${(props) => props.font + '%'};
+  font-size: ${(props) => props.font};
   font-weight: bolder;
   display: flex;
   align-items: center;

@@ -4,19 +4,23 @@ import { bouncy } from 'ldrs';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-const loading = () => {
+const Loading = () => {
   const route = useRouter();
 
   useEffect(() => {
+    try {
+      bouncy.register();
+    } catch (error) {
+      console.error('Error registering bouncy:', error);
+    }
     const timeout = setTimeout(() => {
       route.replace('/not-found');
     }, 5000);
     return () => clearTimeout(timeout);
   }, [route]);
 
-  bouncy.register();
   return (
-    <div
+    <main
       style={{
         width: '95vw',
         height: '95vh',
@@ -24,8 +28,8 @@ const loading = () => {
         placeContent: 'center',
       }}>
       <l-bouncy size="45" speed="1.75" color="black"></l-bouncy>
-    </div>
+    </main>
   );
 };
 
-export default loading;
+export default Loading;
