@@ -2,12 +2,13 @@
 
 import { useAtom } from 'jotai';
 import * as S from './style';
-import { userDataAtom } from '@/states/userAtoms';
+import { isMyPageMenuModalAtom, userDataAtom } from '@/states/userAtoms';
 import { useEffect, useState } from 'react';
 import { UserLegendsType } from '@/types/user';
 import LEGENDS from '@/app/api/legends';
 import USER from '@/app/api/user';
 import { useRouter } from 'next/navigation';
+import MenuModal from '../menu/MenuModal';
 
 export default function MyPageIndex() {
   const userNo = Number(localStorage.getItem('userNo'));
@@ -16,6 +17,7 @@ export default function MyPageIndex() {
   const [editDescriptionText, setEditDescriptionText] = useState('');
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
   const [isProfileClick, setIsProfileClick] = useState(false);
+  const [isMenuModal, setIsMenuModal] = useAtom(isMyPageMenuModalAtom);
   const [userLegends, setUserLegends] = useState<UserLegendsType>({
     userNo: 0,
     attendanceCount: 0,
@@ -57,6 +59,10 @@ export default function MyPageIndex() {
     }
   };
 
+  const handleOnClickMenu = () => {
+    setIsMenuModal(true);
+  };
+
   useEffect(() => {
     getUserLegends();
   }, [isEditDescription]);
@@ -67,8 +73,14 @@ export default function MyPageIndex() {
 
   return (
     <>
+      {isMenuModal ? <MenuModal /> : <></>}
       <S.Background>
-        <S.Font $margin="1vh 1vw 0 auto" $fontSize="30px" color="#A1B1B7">
+        <S.Font
+          $margin="1vh 1vw 0 auto"
+          $fontSize="30px"
+          color="#A1B1B7"
+          cursor="pointer"
+          onClick={handleOnClickMenu}>
           ☰
         </S.Font>
         <S.UserInfoSection>
