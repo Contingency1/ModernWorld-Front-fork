@@ -30,7 +30,7 @@ export const Pagenation = (props: { animal: string }) => {
   return (
     <>
       <S.LeftSection>
-        <S.BackgroundArrowCircle $marginTop="9vh">
+        <S.BackgroundArrowCircle $marginTop="13vh">
           <S.LeftArrow onClick={() => PrevPage()}>
             <img src={IMAGE.leftArrow}></img>
           </S.LeftArrow>

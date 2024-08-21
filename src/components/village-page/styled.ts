@@ -200,6 +200,7 @@ export const SortCheckDiv = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 10%;
+  cursor: pointer;
 `;
 
 export const SortCheckBox = styled.div<StyleType>`

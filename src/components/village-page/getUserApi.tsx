@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import * as S from '@/components/village-page/styled';
-import { atom, useAtom, useSetAtom } from 'jotai';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { VILLAGE } from '@/app/api/village';
 import { VillageData } from '@/types/village';
 import {
@@ -14,16 +14,20 @@ import {
 } from '@/states/village';
 import { useRouter } from 'next/navigation';
 import { IMAGE } from '@/utils/image';
+import { useDebounce } from '@uidotdev/usehooks';
 
 export default function GetUserApi(props: { animal: string }) {
   const [villageUsersArray, setVillageUsersArary] = useAtom(
     villageUsersArrayAtom,
   );
-  const [currentPage] = useAtom(currentPageAtom);
-  const [sortState] = useAtom(sortStateAtom);
-  const [keyword] = useAtom(searchValue);
+  const { currentPage, sortState, keyword, route } = {
+    currentPage: useAtomValue(currentPageAtom),
+    sortState: useAtomValue(sortStateAtom),
+    keyword: useAtomValue(searchValue),
+    route: useRouter(),
+  };
   const setPages = useSetAtom(PagesAtom);
-  const route = useRouter();
+  const debounceSearchValue = useDebounce(keyword, 1000);
 
   async function getUser() {
     const response = await VILLAGE.getVillageUser({
@@ -31,7 +35,7 @@ export default function GetUserApi(props: { animal: string }) {
       take: 8,
       animal: props.animal,
       orderByField: sortState,
-      nickname: keyword,
+      nickname: debounceSearchValue,
     });
     setVillageUsersArary(response.data);
     setPages({ page: response.meta.page, totalPage: response.meta.totalPage });
@@ -39,7 +43,7 @@ export default function GetUserApi(props: { animal: string }) {
 
   useEffect(() => {
     getUser();
-  }, [sortState, keyword, currentPage]);
+  }, [sortState, debounceSearchValue, currentPage]);
 
   return (
     <>
