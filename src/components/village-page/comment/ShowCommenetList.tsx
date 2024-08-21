@@ -21,6 +21,9 @@ export const ShowCommentList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
+  const [editCommentState, setEditCommentState] = useState(false);
+  const [editCommentValue, setEditCommentValue] = useState('');
+  const [editCommentNo, setEditCommentNo] = useState(0);
   const [userSelected] = useAtom(UserSelectedAtom);
 
   const getCommentList = async () => {
@@ -63,16 +66,45 @@ export const ShowCommentList = () => {
       : setCurrentPage(currentPage - 1);
   };
 
+  const editComment = async (commentNo: number, comment: string) => {
+    setEditCommentState(!editCommentState);
+    setEditCommentNo(commentNo);
+    if (editCommentState) {
+      const response = await COMMENT.editCooments(commentNo, comment);
+      setCommentRefresh(!commentRefresh);
+      setEditCommentState(!editCommentState);
+      setEditCommentNo(0);
+      return response;
+    }
+  };
+
+  const editCommentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditCommentValue(e.target.value);
+  };
+
   return (
     <>
       {commentList.map(({ content, commentSender, createdAt, no }, index) => (
         <S.CommentRootDiv key={index + 1}>
           <S.CommentNicknameDiv>
-            <div style={{ color: '#A1A1A1', fontSize: '1vw' }}>
+            <S.CommentSenderNicknameDiv>
               {commentSender.nickname}
-            </div>{' '}
-            : {content}
+            </S.CommentSenderNicknameDiv>
+            {no !== editCommentNo ? (
+              <S.CommentValueDiv>{content}</S.CommentValueDiv>
+            ) : (
+              <S.CommentEditInput
+                defaultValue={content}
+                onChange={editCommentHandler}></S.CommentEditInput>
+            )}
           </S.CommentNicknameDiv>
+          <S.EditButton
+            onClick={() => {
+              editComment(no, editCommentValue);
+            }}
+            $pointerClick={!editCommentState || no === editCommentNo}>
+            {no === editCommentNo ? '완료' : '수정'}
+          </S.EditButton>
           <S.CommentDateDiv>
             {createdAt ? createdAt.match(regex)?.[1] : null}
             <> </>
@@ -84,6 +116,7 @@ export const ShowCommentList = () => {
             }
             width="1.8vw"
             height="1.8vw"
+            $marginRight="1vw"
             onClick={() => {
               deleteComments(no);
             }}></S.PencilImg>

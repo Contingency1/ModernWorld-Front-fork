@@ -61,4 +61,33 @@ export const COMMENT = {
       }
     }
   },
+
+  async editCooments(no: number, content: string) {
+    try {
+      if (confirm('수정하시겠습니까?')) {
+        const result: AxiosResponse = await instance.patch(
+          `users/my/${this.path}/${no}`,
+          {
+            content: content,
+          },
+        );
+        return result;
+      }
+    } catch (err) {
+      const Error = err as ErrorType;
+      switch (Error.response?.status) {
+        case HTTP_STATUS.BAD_REQUEST:
+          alert('1글자 이상 100글자 이하로 입력해주세요');
+          break;
+
+        case HTTP_STATUS.FORBIDDEN:
+          alert('본인의 댓글만 수정 가능합니다');
+          break;
+
+        case HTTP_STATUS.NOT_FOUND:
+          alert('유효하지 않은 요청입니다');
+          break;
+      }
+    }
+  },
 };
