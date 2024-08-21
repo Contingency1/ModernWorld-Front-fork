@@ -152,7 +152,7 @@ export const PageNationDiv = styled.div`
   justify-content: space-around;
 `;
 
-export const EditButton = styled.div`
+export const EditButton = styled.div<StyleType>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,4 +160,5 @@ export const EditButton = styled.div`
   font-size: 15px;
   margin-left: 1vw;
   cursor: pointer;
+  pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
 `;

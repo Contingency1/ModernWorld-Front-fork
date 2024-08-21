@@ -82,8 +82,6 @@ export const ShowCommentList = () => {
     setEditCommentValue(e.target.value);
   };
 
-  console.log(editCommentState);
-
   return (
     <>
       {commentList.map(({ content, commentSender, createdAt, no }, index) => (
@@ -103,7 +101,8 @@ export const ShowCommentList = () => {
           <S.EditButton
             onClick={() => {
               editComment(no, editCommentValue);
-            }}>
+            }}
+            $pointerClick={!editCommentState || no === editCommentNo}>
             {no === editCommentNo ? '완료' : '수정'}
           </S.EditButton>
           <S.CommentDateDiv>
