@@ -21,6 +21,7 @@ export const ShowCommentList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
+  const [editCommentState, setEditCommentState] = useState(false);
   const [userSelected] = useAtom(UserSelectedAtom);
 
   const getCommentList = async () => {
@@ -63,16 +64,33 @@ export const ShowCommentList = () => {
       : setCurrentPage(currentPage - 1);
   };
 
+  const editComment = async (commentNo: number, comment: string) => {
+    setEditCommentState(!editCommentState);
+    const response = await COMMENT.editCooments(commentNo, comment);
+    setCommentRefresh(!commentRefresh);
+    return response;
+  };
+
   return (
     <>
       {commentList.map(({ content, commentSender, createdAt, no }, index) => (
         <S.CommentRootDiv key={index + 1}>
           <S.CommentNicknameDiv>
-            <div style={{ color: '#A1A1A1', fontSize: '1vw' }}>
+            <S.CommentSenderNicknameDiv>
               {commentSender.nickname}
-            </div>{' '}
-            : {content}
+            </S.CommentSenderNicknameDiv>
+            {!editCommentState ? (
+              <S.CommentValueDiv>{content}</S.CommentValueDiv>
+            ) : (
+              <S.CommentEditInput value={content}></S.CommentEditInput>
+            )}
           </S.CommentNicknameDiv>
+          <S.EditButton
+            onClick={() => {
+              editComment(no, '수정된 댓글');
+            }}>
+            {editCommentState ? '완료' : '수정'}
+          </S.EditButton>
           <S.CommentDateDiv>
             {createdAt ? createdAt.match(regex)?.[1] : null}
             <> </>
@@ -84,6 +102,7 @@ export const ShowCommentList = () => {
             }
             width="1.8vw"
             height="1.8vw"
+            $marginRight="1vw"
             onClick={() => {
               deleteComments(no);
             }}></S.PencilImg>
