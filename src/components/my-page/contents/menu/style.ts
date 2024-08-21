@@ -24,7 +24,7 @@ export const MenuModalBody = styled.div<StyleType>`
 `;
 
 export const DisplayDiv = styled.div<StyleType>`
-  position: relative;
+  position: ${(props) => (props.position ? props.position : 'relative')};
   display: flex;
   justify-content: ${(props) => props.$justifyContent};
   align-items: ${(props) => props.$alignItems};
@@ -37,6 +37,7 @@ export const Font = styled.div<StyleType>`
   color: ${(props) => props.color};
   margin: ${(props) => props.$margin};
   cursor: ${(props) => props.cursor};
+  position: ${(props) => props.position};
 `;
 
 export const UserImg = styled.img`
@@ -94,6 +95,9 @@ export const ContentContainer = styled.div`
 export const Img = styled.img<StyleType>`
   width: ${(props) => props.width};
   height: auto;
+  margin: ${(props) => props.$margin};
+  opacity: ${(props) => props.opacity};
+  cursor: ${(props) => props.cursor};
 `;
 
 export const LogoutButtonUi = styled.div<StyleType>`
@@ -116,4 +120,36 @@ export const LogoutButtonUi = styled.div<StyleType>`
   &:hover {
     opacity: 1;
   }
+`;
+
+export const RightModalExit = styled.div`
+  position: absolute;
+  font-size: 1.5vw;
+  color: #7f7f7f;
+  margin-left: 22vw;
+  margin-top: 2vw;
+  z-index: 100;
+  cursor: pointer;
+`;
+
+export const AlarmListEleBox = styled.div<StyleType>`
+  width: ${(props) => props.width};
+  height: 6vh;
+  margin: ${(props) => props.$margin};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.$backColor};
+  border: 4px solid #dfdfdf;
+  border-radius: 10px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  font-size: 11px;
+  color: #343434;
+  cursor: ${(props) => props.cursor};
+  padding: 0.5vw;
+  box-sizing: border-box;
+`;
+
+export const Margin = styled.div<StyleType>`
+  margin: ${(props) => props.$margin};
 `;
