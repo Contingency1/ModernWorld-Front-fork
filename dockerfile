@@ -3,7 +3,7 @@ FROM node:20-alpine As base
 # 의존성 설치
 FROM base As deps 
 
-RUN apk add --no-cache lib6-compat
+RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
