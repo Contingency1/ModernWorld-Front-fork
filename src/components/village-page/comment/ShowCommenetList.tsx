@@ -98,6 +98,13 @@ export const ShowCommentList = () => {
                 onChange={editCommentHandler}></S.CommentEditInput>
             )}
           </S.CommentNicknameDiv>
+          <S.PencilImg
+            src={
+              'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addComment.png'
+            }
+            width="1.8vw"
+            height="1.8vw"
+            $marginLeft="1vw"></S.PencilImg>
           <S.EditButton
             onClick={() => {
               editComment(no, editCommentValue);
