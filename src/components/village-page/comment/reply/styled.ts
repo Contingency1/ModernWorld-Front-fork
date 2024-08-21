@@ -1,5 +1,6 @@
 'use client';
 
+import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
 export const PageDarkDiv = styled.div`
@@ -87,7 +88,44 @@ export const PostRepliesInput = styled.input`
   border: none;
 `;
 
-export const DeleteReply = styled.img`
-  width: 20px;
-  height: 20px;
+export const Images = styled.img<StyleType>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin-left: ${(props) => props.$marginLeft};
+  margin-right: ${(props) => props.$marginRight};
+  cursor: pointer;
+`;
+
+export const PagesDiv = styled.div`
+  width: 10vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ReplyValueDiv = styled.div`
+  width: 20vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+`;
+
+export const ReplyValueInput = styled.input`
+  width: 20vw;
+  height: 90%;
+  display: flex;
+  background-color: #f5f0bb;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  border: none;
+`;
+
+export const EditBtn = styled.div<StyleType>`
+  pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
+  font-size: 10px;
 `;

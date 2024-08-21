@@ -20,15 +20,15 @@ export const ReplyModalHeader = () => {
   return (
     <>
       <S.ModalHeader>
-        <S.HeaderUserName>{123}</S.HeaderUserName>
+        <S.HeaderUserName>김은우01</S.HeaderUserName>
         <S.CloseBtn
           src={
             'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png'
           }></S.CloseBtn>
       </S.ModalHeader>
       <S.CommentDiv>
-        똥 치우러 왔슴데 똥 치우러 왔슴데 똥 치우러 왔슴데 똥 치우러 왔슴데 똥
-        치우러 왔슴데 똥 치우러 왔슴데 똥 치우러 왔슴데 똥 치우러 왔슴데
+        100글자100글자100글자100글자100글자100글자100글자 100글자 100글자
+        100글자 100글자 100글자 100글자 100글자 100글자
       </S.CommentDiv>
     </>
   );
