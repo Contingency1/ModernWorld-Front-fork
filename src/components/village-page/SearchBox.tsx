@@ -2,6 +2,7 @@
 
 import * as S from '@/components/village-page/styled';
 import { searchValue } from '@/states/village';
+import { IMAGE } from '@/utils/image';
 import { useAtom } from 'jotai';
 
 interface SearchBox {
@@ -17,7 +18,7 @@ export default function SearchBox(props: SearchBox) {
 
   return (
     <S.SearchDiv>
-      <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EB%8F%8B%EB%B3%B4%EA%B8%B0" />
+      <img src={IMAGE.magnifier} />
       <S.SearchInput
         placeholder="닉네임으로 검색"
         $inputColor={props.inputColor}

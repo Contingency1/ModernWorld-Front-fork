@@ -1,17 +1,19 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '@/components/village-page/styled';
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useSetAtom } from 'jotai';
 import { VILLAGE } from '@/app/api/village';
 import { VillageData } from '@/types/village';
 import {
   currentPageAtom,
+  PagesAtom,
   searchValue,
   sortStateAtom,
   villageUsersArrayAtom,
 } from '@/states/village';
 import { useRouter } from 'next/navigation';
+import { IMAGE } from '@/utils/image';
 
 export default function GetUserApi(props: { animal: string }) {
   const [villageUsersArray, setVillageUsersArary] = useAtom(
@@ -20,6 +22,7 @@ export default function GetUserApi(props: { animal: string }) {
   const [currentPage] = useAtom(currentPageAtom);
   const [sortState] = useAtom(sortStateAtom);
   const [keyword] = useAtom(searchValue);
+  const setPages = useSetAtom(PagesAtom);
   const route = useRouter();
 
   async function getUser() {
@@ -31,6 +34,7 @@ export default function GetUserApi(props: { animal: string }) {
       nickname: keyword,
     });
     setVillageUsersArary(response.data);
+    setPages({ page: response.meta.page, totalPage: response.meta.totalPage });
   }
 
   useEffect(() => {
@@ -46,13 +50,13 @@ export default function GetUserApi(props: { animal: string }) {
           <S.UserCharacter>
             <img src={e.characterLocker[0]?.character.image} />
           </S.UserCharacter>
-          {e.nickname}
-          <S.UserHeart>
-            <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png" />
-            {e.legend?.likeCount}
-            <> point : {e.accumulationPoint}</>
-          </S.UserHeart>
-          <S.UserName>{e.nickname}</S.UserName>
+          <S.ShowUserNickname>{e.nickname}</S.ShowUserNickname>
+          <S.ShowUserHeartDiv>
+            <S.UserHeart>
+              <img src={IMAGE.heart} />
+            </S.UserHeart>
+            {e.legend?.likeCount} / point:{e.accumulationPoint}
+          </S.ShowUserHeartDiv>
         </S.UserBox>
       ))}
     </>

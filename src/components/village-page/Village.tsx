@@ -4,6 +4,7 @@ import * as S from '@/components/village-page/styled';
 import SearchBox from './SearchBox';
 import { Pagenation } from './Pagenation';
 import Link from 'next/link';
+import { IMAGE } from '@/utils/image';
 
 export default function Village(props: { animal: string }) {
   return (
@@ -11,16 +12,11 @@ export default function Village(props: { animal: string }) {
       <S.Title>
         <img
           src={
-            props.animal === 'cat'
-              ? 'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/KakaoTalk_20240509_151108128.png'
-              : 'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EA%B0%95%EC%95%84%EC%A7%80+%EB%A7%88%EC%9D%84.png'
+            props.animal === 'cat' ? IMAGE.catVillageLogo : IMAGE.dogVillageLogo
           }></img>
       </S.Title>
       <Link href="/my-page">
-        <S.ExitButton
-          src={
-            'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/exit.png'
-          }></S.ExitButton>
+        <S.ExitButton src={IMAGE.exit}></S.ExitButton>
       </Link>
       <S.TheBiggestBox color={props.animal === 'cat' ? '#ffffff' : '#FFFBEE'}>
         <SearchBox
