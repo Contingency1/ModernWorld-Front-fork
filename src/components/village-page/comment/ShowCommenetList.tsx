@@ -22,6 +22,8 @@ export const ShowCommentList = () => {
   const [totalPage, setTotalPage] = useState(1);
   const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
   const [editCommentState, setEditCommentState] = useState(false);
+  const [editCommentValue, setEditCommentValue] = useState('');
+  const [editCommentNo, setEditCommentNo] = useState(0);
   const [userSelected] = useAtom(UserSelectedAtom);
 
   const getCommentList = async () => {
@@ -66,10 +68,21 @@ export const ShowCommentList = () => {
 
   const editComment = async (commentNo: number, comment: string) => {
     setEditCommentState(!editCommentState);
-    const response = await COMMENT.editCooments(commentNo, comment);
-    setCommentRefresh(!commentRefresh);
-    return response;
+    setEditCommentNo(commentNo);
+    if (editCommentState) {
+      const response = await COMMENT.editCooments(commentNo, comment);
+      setCommentRefresh(!commentRefresh);
+      setEditCommentState(!editCommentState);
+      setEditCommentNo(0);
+      return response;
+    }
   };
+
+  const editCommentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditCommentValue(e.target.value);
+  };
+
+  console.log(editCommentState);
 
   return (
     <>
@@ -79,17 +92,19 @@ export const ShowCommentList = () => {
             <S.CommentSenderNicknameDiv>
               {commentSender.nickname}
             </S.CommentSenderNicknameDiv>
-            {!editCommentState ? (
+            {no !== editCommentNo ? (
               <S.CommentValueDiv>{content}</S.CommentValueDiv>
             ) : (
-              <S.CommentEditInput value={content}></S.CommentEditInput>
+              <S.CommentEditInput
+                defaultValue={content}
+                onChange={editCommentHandler}></S.CommentEditInput>
             )}
           </S.CommentNicknameDiv>
           <S.EditButton
             onClick={() => {
-              editComment(no, '수정된 댓글');
+              editComment(no, editCommentValue);
             }}>
-            {editCommentState ? '완료' : '수정'}
+            {no === editCommentNo ? '완료' : '수정'}
           </S.EditButton>
           <S.CommentDateDiv>
             {createdAt ? createdAt.match(regex)?.[1] : null}

@@ -159,4 +159,5 @@ export const EditButton = styled.div`
   width: 2.5vw;
   font-size: 15px;
   margin-left: 1vw;
+  cursor: pointer;
 `;
