@@ -76,6 +76,10 @@ export const COMMENT = {
     } catch (err) {
       const Error = err as ErrorType;
       switch (Error.response?.status) {
+        case HTTP_STATUS.BAD_REQUEST:
+          alert('1글자 이상 100글자 이하로 입력해주세요');
+          break;
+
         case HTTP_STATUS.FORBIDDEN:
           alert('본인의 댓글만 수정 가능합니다');
           break;
