@@ -73,18 +73,6 @@ export const ShowCommentList = () => {
       : setCurrentPage(currentPage - 1);
   };
 
-  // const editComment = async (commentNo: number, comment: string) => {
-  //   setEditCommentState(!editCommentState);
-  //   setEditCommentNo(commentNo);
-  //   if (editCommentState) {
-  //     const response = await COMMENT.editCooments(commentNo, comment);
-  //     setCommentRefresh(!commentRefresh);
-  //     setEditCommentState(!editCommentState);
-  //     setEditCommentNo(0);
-  //     return response;
-  //   }
-  // };
-
   const editCommentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditCommentValue(e.target.value);
   };

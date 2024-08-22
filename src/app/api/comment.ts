@@ -25,6 +25,12 @@ export const COMMENT = {
     );
     return result.data;
   },
+  async getSingleComment(commentNo: number): Promise<any> {
+    const result: AxiosResponse = await instance.get(
+      `/${this.path}/${commentNo}`,
+    );
+    return result.data;
+  },
   async postComments(userNo: number, content: string) {
     try {
       const result: AxiosResponse = await instance.post(

@@ -77,10 +77,21 @@ export const CommentRootDiv = styled.div`
 `;
 
 export const CommentDiv = styled.div`
+  margin-top: 2%;
   width: 88%;
   height: 88%;
   font-size: 20px;
   position: relative;
+`;
+
+export const CommentEditInput = styled.textarea`
+  width: 88%;
+  height: 40%;
+  font-size: 20px;
+  position: relative;
+  border: none;
+  margin-bottom: 6.3%;
+  resize: none;
 `;
 
 export const RepliesRootDiv = styled.div`
