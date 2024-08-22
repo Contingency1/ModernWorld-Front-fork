@@ -5,9 +5,10 @@ import styled from 'styled-components';
 export const RootDiv = styled.div`
   width: 100vw;
   height: 100vh;
-  position: fixed;
+  position: absolute;
   right: 0;
   bottom: 0;
+  z-index: 0;
 `;
 
 export const ModalRootDiv = styled.div`
@@ -21,7 +22,8 @@ export const ModalRootDiv = styled.div`
   position: relative;
   margin-left: 4%;
   margin-top: 10%;
-  z-index: 10000;
+  position: absolute;
+  z-index: 3;
 `;
 
 export const TitleDiv = styled.div`
@@ -36,6 +38,7 @@ export const CloseButton = styled.div`
   position: absolute;
   top: 2%;
   right: 5%;
+  cursor: pointer;
 `;
 
 export const LikeListRootDiv = styled.div`

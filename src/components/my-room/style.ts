@@ -118,7 +118,7 @@ export const ImageSize = styled.img<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   display: ${(props) => (props.$hasError ? 'block' : 'none')};
 `;
 
