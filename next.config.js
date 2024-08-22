@@ -10,9 +10,9 @@ module.exports = {
 
 const nextConfig = {
   output: 'standalone',
-  experimental: {
-    appDir: true,
-  },
+  // experimental: {
+  //   appDir: true,
+  // },
   reactStrictMode: false,
 };
 
