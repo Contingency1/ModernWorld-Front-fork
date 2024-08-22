@@ -42,6 +42,10 @@ interface Props {
   $hover?: boolean;
   $pointerClick: boolean;
   $cursor: string;
+  $defaultOpacity: string;
+  position: string;
+  opacity: string;
+  $zIndex: string;
 }
 
 export interface StyleType extends Partial<Props> {}
