@@ -7,11 +7,13 @@ const Reply = () => {
   return (
     <>
       <S.PageDarkDiv>
-        <S.ModalDiv>
-          <ReplyModalHeader />
-          <PostReply />
-          <ReplyModalBody />
-        </S.ModalDiv>
+        <S.ModalContainer>
+          <S.ModalDiv>
+            <ReplyModalHeader />
+            <PostReply />
+            <ReplyModalBody />
+          </S.ModalDiv>
+        </S.ModalContainer>
       </S.PageDarkDiv>
     </>
   );
