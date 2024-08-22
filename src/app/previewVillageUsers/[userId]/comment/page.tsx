@@ -6,7 +6,7 @@ export default function commentPage() {
   return (
     <>
       <Comment></Comment>
-      <Reply></Reply>
+      {/* <Reply></Reply> */}
     </>
   );
 }

@@ -32,9 +32,17 @@ export default function PreviewVillageUsers(props: { userNo: number }) {
   }
 
   async function getComments(userNo: number) {
-    const response = await COMMENT.getComments(userNo);
-    setComment(response.data.length);
+    const response = await COMMENT.getComments(
+      userNo,
+      1,
+      1,
+      'asc',
+      'receiverNo',
+    );
+    console.log(response.meta);
+    setComment(response.meta.totalCount);
   }
+  console.log(comment);
 
   useEffect(() => {
     async function getLike(userNo: number) {
