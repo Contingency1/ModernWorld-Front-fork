@@ -50,7 +50,11 @@ export const ReplyModalBody = () => {
   }, [refresh, currentPage]);
 
   const nextPage = () => {
-    setCurrentPage(currentPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    } else {
+      alert('마지막 페이지입니다');
+    }
   };
 
   const prevPage = () => {
@@ -95,18 +99,14 @@ export const ReplyModalBody = () => {
       ))}
       <S.PagesDiv>
         <S.Images
-          src={
-            'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png'
-          }
+          src={IMAGE.leftArrow}
           width="20px"
           height="20px"
           $marginRight="30px"
           onClick={() => prevPage()}></S.Images>
         {currentPage} / {totalPages}
         <S.Images
-          src={
-            'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png'
-          }
+          src={IMAGE.rightArrow}
           width="20px"
           height="20px"
           $marginLeft="30px"

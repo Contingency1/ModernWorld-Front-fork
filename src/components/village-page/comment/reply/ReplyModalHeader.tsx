@@ -2,6 +2,7 @@
 
 import * as S from '@/components/village-page/comment/reply/styled';
 import { ModalStateAtom } from '@/states/reply';
+import { IMAGE } from '@/utils/image';
 import { useSetAtom } from 'jotai';
 
 export const ReplyModalHeader = () => {
@@ -12,9 +13,7 @@ export const ReplyModalHeader = () => {
       <S.ModalHeader>
         <S.HeaderUserName>김은우01</S.HeaderUserName>
         <S.CloseBtn
-          src={
-            'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png'
-          }
+          src={IMAGE.remove}
           onClick={() => setModalState(false)}></S.CloseBtn>
       </S.ModalHeader>
       <S.CommentRootDiv>

@@ -5,7 +5,6 @@ import * as S from '@/components/village-page/comment/reply/styled';
 import { RefreshReplyAtom } from '@/states/reply';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
-import { Images } from '../styled';
 import { IMAGE } from '@/utils/image';
 
 export const PostReply = () => {

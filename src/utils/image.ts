@@ -16,4 +16,5 @@ export const IMAGE = {
     'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/%EC%97%B0%ED%95%84.png',
   comment:
     'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addComment.png',
+  remove: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png',
 };
