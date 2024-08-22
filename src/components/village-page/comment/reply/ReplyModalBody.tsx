@@ -2,9 +2,9 @@
 
 import { REPLY } from '@/app/api/reply';
 import * as S from '@/components/village-page/comment/reply/styled';
-import { RefreshReplyAtom } from '@/states/reply';
+import { CommentNumberAtom, RefreshReplyAtom } from '@/states/reply';
 import { IMAGE } from '@/utils/image';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export const ReplyModalBody = () => {
@@ -22,15 +22,16 @@ export const ReplyModalBody = () => {
   const [editReplyState, setEditReplyState] = useState(false);
   const [replyEventTarget, setReplyEventTarget] = useState('');
   const [editReplyNo, setEditReplyNo] = useState(1);
+  const commentNo = useAtomValue(CommentNumberAtom);
 
   const getReplies = async () => {
-    const response = await REPLY.getReplies(430, currentPage, 5);
+    const response = await REPLY.getReplies(commentNo, currentPage, 5);
     setTotalPages(response.meta.totalPage);
     setRepliesArray(response.data);
   };
 
   const deleteReplies = async (replyNo: number) => {
-    const response = await REPLY.deleteReplies(430, replyNo);
+    const response = await REPLY.deleteReplies(commentNo, replyNo);
     setRefresh(!refresh);
   };
 
@@ -38,7 +39,7 @@ export const ReplyModalBody = () => {
     setEditReplyNo(replyNo);
     setEditReplyState(!editReplyState);
     if (editReplyState) {
-      const response = await REPLY.editReplies(430, replyNo, replyValue);
+      const response = await REPLY.editReplies(commentNo, replyNo, replyValue);
       setRefresh(!refresh);
       setEditReplyNo(1);
       return response;

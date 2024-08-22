@@ -63,10 +63,6 @@ export const ReplyModalHeader = (props: { userId: number }) => {
     }
   };
 
-  const editCommentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditCommentValue(e.target.value);
-  };
-
   return (
     <>
       <S.ModalHeader>
