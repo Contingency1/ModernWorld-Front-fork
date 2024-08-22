@@ -1,12 +1,26 @@
 'use client';
 
+import { COMMENT } from '@/app/api/comment';
 import * as S from '@/components/village-page/comment/reply/styled';
 import { ModalStateAtom } from '@/states/reply';
 import { IMAGE } from '@/utils/image';
 import { useSetAtom } from 'jotai';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export const ReplyModalHeader = () => {
+export const ReplyModalHeader = (props: { userId: number }) => {
   const setModalState = useSetAtom(ModalStateAtom);
+  const [userComment, setUserComment] = useState([]);
+
+  const getComment = async () => {
+    const response = await COMMENT.getComments(props.userId);
+    setUserComment(response);
+    return;
+  };
+
+  useEffect(() => {
+    getComment();
+  }, []);
 
   return (
     <>
