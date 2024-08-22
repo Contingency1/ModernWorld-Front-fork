@@ -1,23 +1,28 @@
 'use client';
 
 import * as S from '@/components/village-page/styled';
-import { searchValue } from '@/states/village';
-import { useAtom } from 'jotai';
+import { currentPageAtom, searchValue } from '@/states/village';
+import { IMAGE } from '@/utils/image';
+import { useDebounce } from '@uidotdev/usehooks';
+import { useAtom, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 
 interface SearchBox {
   inputColor: string;
 }
 
 export default function SearchBox(props: SearchBox) {
-  const [inputValue, setInputValue] = useAtom(searchValue);
+  const setInputValue = useSetAtom(searchValue);
+  const clearPage = useSetAtom(currentPageAtom);
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
+    clearPage(1);
   };
 
   return (
     <S.SearchDiv>
-      <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EB%8F%8B%EB%B3%B4%EA%B8%B0" />
+      <img src={IMAGE.magnifier} />
       <S.SearchInput
         placeholder="닉네임으로 검색"
         $inputColor={props.inputColor}

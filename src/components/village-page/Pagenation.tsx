@@ -3,12 +3,18 @@
 import * as S from '@/components/village-page/styled';
 import RadioSort from './SortDiv';
 import GetUserApi from './getUserApi';
-import { useAtom } from 'jotai';
-import { currentPageAtom, villageUsersArrayAtom } from '@/states/village';
+import { useAtom, useAtomValue } from 'jotai';
+import {
+  currentPageAtom,
+  PagesAtom,
+  villageUsersArrayAtom,
+} from '@/states/village';
+import { IMAGE } from '@/utils/image';
 
 export const Pagenation = (props: { animal: string }) => {
   const [currentPage, setCurrentPage] = useAtom<number>(currentPageAtom);
   const [villageUsersArray] = useAtom(villageUsersArrayAtom);
+  const pages = useAtomValue(PagesAtom);
 
   const NextPage = () => {
     villageUsersArray.length < 8
@@ -23,18 +29,25 @@ export const Pagenation = (props: { animal: string }) => {
   };
   return (
     <>
-      <S.LeftArrow onClick={() => PrevPage()}>
-        <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"></img>
-      </S.LeftArrow>
+      <S.LeftSection>
+        <S.BackgroundArrowCircle $marginTop="13vh">
+          <S.LeftArrow onClick={() => PrevPage()}>
+            <img src={IMAGE.leftArrow}></img>
+          </S.LeftArrow>
+        </S.BackgroundArrowCircle>
+        <S.PagesDiv>{`${pages.page} / ${pages.totalPage}`}</S.PagesDiv>
+      </S.LeftSection>
       <S.GreyBox>
         <GetUserApi animal={props.animal}></GetUserApi>
       </S.GreyBox>
-      <S.RightArrow_SortDiv>
-        <S.RightArrow onClick={() => NextPage()}>
-          <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"></img>
-        </S.RightArrow>
+      <S.RightSectionDiv>
+        <S.BackgroundArrowCircle $marginTop="25vh">
+          <S.RightArrow onClick={() => NextPage()}>
+            <img src={IMAGE.rightArrow}></img>
+          </S.RightArrow>
+        </S.BackgroundArrowCircle>
         <RadioSort></RadioSort>
-      </S.RightArrow_SortDiv>
+      </S.RightSectionDiv>
     </>
   );
 };

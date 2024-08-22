@@ -11,10 +11,10 @@ export const BackgroundDisplay = styled.div<StyleType>`
 
 export const ExitButton = styled.img`
   position: absolute;
-  top: 2%;
-  right: 2%;
-  width: 40px;
-  height: 40px;
+  top: 18%;
+  right: 6%;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
 `;
 
@@ -74,9 +74,22 @@ export const SearchInput = styled.input<StyleType>`
 /**
  * 왼쪽 화살표
  */
+
+export const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2%;
+  width: 8vw;
+  height: 75vh;
+`;
+
 export const LeftArrow = styled.div`
-  margin-top: 14%;
-  padding-left: 5%;
+  img {
+    width: 75px;
+    height: 75px;
+  }
   cursor: pointer;
 `;
 /**
@@ -84,22 +97,25 @@ export const LeftArrow = styled.div`
  */
 export const GreyBox = styled.div`
   width: 75%;
-  height: 92%;
+  height: 85%;
   border-radius: 30px;
   background-color: #e5e5e5;
   margin-left: 1%;
-  margin-top: 1%;
+  margin-top: 1.5%;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  align-items: center;
+  place-items: center;
 `;
 /**
  * 오른쪽 화살표
  */
 export const RightArrow = styled.div`
-  margin-top: 200%;
-  margin-left: 12%;
+  img {
+    width: 75px;
+    height: 75px;
+    margin-left: 10%;
+  }
   cursor: pointer;
 `;
 
@@ -107,12 +123,31 @@ export const RightArrow = styled.div`
  * 유저 한명의 박스
  */
 export const UserBox = styled.div`
-  width: 70%;
-  height: 70%;
+  width: 65%;
+  height: 65%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 15px;
+  cursor: pointer;
 `;
+
+export const ShowUserNickname = styled.div`
+  width: 10vw;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 15px;
+`;
+
+export const ShowUserHeartDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  font-size: 15px;
+`;
+
 /**
  * 유저 박스 안에 들어있는 캐릭터 사진
  */
@@ -124,7 +159,6 @@ export const UserCharacter = styled.div`
   border-radius: 20px;
   background-color: #ffffff;
   box-shadow: inset 0px 1.5px 1.5px 1px #868e96;
-  margin-left: 15%;
   img {
     margin-top: 20%;
     width: 70%;
@@ -158,20 +192,88 @@ export const UserHeart = styled.div`
   }
 `;
 
-export const SortCheckBox = styled.div<StyleType>`
-  background-color: ${(props) => (props.$check ? 'pink' : 'grey')};
-  width: 100px;
-  height: 50px;
-  border-radius: 20px;
-  margin-top: 10%;
-  margin-left: 10%;
+export const SortCheckDiv = styled.div`
+  width: 120px;
+  height: 32px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  margin-top: 10%;
   cursor: pointer;
-  border-style: 1px solid black;
-  &:hover {
-    background-color: 'red';
-    transition: 0.5s;
-  }
+`;
+
+export const SortCheckBox = styled.div<StyleType>`
+  background-color: ${(props) => (props.$check ? 'black' : 'grey')};
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+`;
+
+//디폴트 마을 페이지
+
+export const RootDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+`;
+
+export const HarfDiv = styled.div`
+  width: 50vw;
+  height: 100vh;
+  background-color: ${(props) => props.color};
+  display: grid;
+  place-items: center;
+`;
+
+export const Outline = styled.div`
+  width: 85%;
+  height: 90%;
+  border: 15px solid white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ChoiceImg = styled.img<StyleType>`
+  width: ${(props) => props.width};
+  height: 165px;
+`;
+
+export const BackgroundArrowCircle = styled.div<StyleType>`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 1.5px 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.3);
+  background-color: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: ${(props) => props.$marginTop};
+`;
+
+export const RightSectionDiv = styled.div`
+  width: 10vw;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+`;
+
+export const PagesDiv = styled.div`
+  margin-top: 15vh;
+  width: 8vw;
+  height: 5vh;
+  box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
