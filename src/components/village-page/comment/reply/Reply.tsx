@@ -3,7 +3,7 @@ import { ReplyModalHeader } from './ReplyModalHeader';
 import { ReplyModalBody } from './ReplyModalBody';
 import { PostReply } from './PostReply';
 
-export const Reply = () => {
+const Reply = () => {
   return (
     <>
       <S.PageDarkDiv>
@@ -16,3 +16,5 @@ export const Reply = () => {
     </>
   );
 };
+
+export default Reply;

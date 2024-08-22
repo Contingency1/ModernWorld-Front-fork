@@ -39,10 +39,8 @@ export default function PreviewVillageUsers(props: { userNo: number }) {
       'asc',
       'receiverNo',
     );
-    console.log(response.meta);
     setComment(response.meta.totalCount);
   }
-  console.log(comment);
 
   useEffect(() => {
     async function getLike(userNo: number) {
