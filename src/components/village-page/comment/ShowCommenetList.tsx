@@ -3,8 +3,9 @@
 import { COMMENT } from '@/app/api/comment';
 import * as S from '@/components/village-page/comment/styled';
 import { commentRefreshAtom } from '@/states/commentRefresh';
+import { ModalStateAtom } from '@/states/reply';
 import { UserSelectedAtom } from '@/states/village';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export const ShowCommentList = () => {
@@ -16,6 +17,9 @@ export const ShowCommentList = () => {
       commentSender: { nickname: string };
       createdAt: string;
       no: number;
+      _count: {
+        reply: number;
+      };
     }[]
   >([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,6 +29,7 @@ export const ShowCommentList = () => {
   const [editCommentValue, setEditCommentValue] = useState('');
   const [editCommentNo, setEditCommentNo] = useState(0);
   const [userSelected] = useAtom(UserSelectedAtom);
+  const modalState = useSetAtom(ModalStateAtom);
 
   const getCommentList = async () => {
     const response = await COMMENT.getComments(
@@ -84,60 +89,75 @@ export const ShowCommentList = () => {
 
   return (
     <>
-      {commentList.map(({ content, commentSender, createdAt, no }, index) => (
-        <S.CommentRootDiv key={index + 1}>
-          <S.CommentNicknameDiv>
-            <S.CommentSenderNicknameDiv>
-              {commentSender.nickname}
-            </S.CommentSenderNicknameDiv>
-            {no !== editCommentNo ? (
-              <S.CommentValueDiv>{content}</S.CommentValueDiv>
-            ) : (
-              <S.CommentEditInput
-                defaultValue={content}
-                onChange={editCommentHandler}></S.CommentEditInput>
-            )}
-          </S.CommentNicknameDiv>
-          <S.EditButton
-            onClick={() => {
-              editComment(no, editCommentValue);
-            }}
-            $pointerClick={!editCommentState || no === editCommentNo}>
-            {no === editCommentNo ? '완료' : '수정'}
-          </S.EditButton>
-          <S.CommentDateDiv>
-            {createdAt ? createdAt.match(regex)?.[1] : null}
-            <> </>
-            {createdAt ? createdAt.match(regex)?.[2] : null}
-          </S.CommentDateDiv>
-          <S.PencilImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png'
-            }
-            width="1.8vw"
-            height="1.8vw"
-            $marginRight="1vw"
-            onClick={() => {
-              deleteComments(no);
-            }}></S.PencilImg>
-        </S.CommentRootDiv>
-      ))}
+      {commentList.map(
+        ({ content, commentSender, createdAt, no, _count }, index) => (
+          <S.CommentRootDiv key={index + 1}>
+            <S.CommentNicknameDiv>
+              <S.CommentSenderNicknameDiv>
+                {commentSender.nickname}
+              </S.CommentSenderNicknameDiv>
+              {no !== editCommentNo ? (
+                <S.CommentValueDiv>{content}</S.CommentValueDiv>
+              ) : (
+                <S.CommentEditInput
+                  defaultValue={content}
+                  onChange={editCommentHandler}></S.CommentEditInput>
+              )}
+            </S.CommentNicknameDiv>
+            <S.ReplyDiv>
+              <S.Images
+                src={
+                  'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addComment.png'
+                }
+                width="1.8vw"
+                height="1.8vw"
+                $marginLeft="1vw"
+                onClick={() => {
+                  modalState(true);
+                }}></S.Images>
+              <S.ReplyCountDiv>{_count.reply}</S.ReplyCountDiv>
+            </S.ReplyDiv>
+            <S.EditButton
+              onClick={() => {
+                editComment(no, editCommentValue);
+              }}
+              $pointerClick={!editCommentState || no === editCommentNo}>
+              {no === editCommentNo ? '완료' : '수정'}
+            </S.EditButton>
+            <S.CommentDateDiv>
+              {createdAt ? createdAt.match(regex)?.[1] : null}
+              <> </>
+              {createdAt ? createdAt.match(regex)?.[2] : null}
+            </S.CommentDateDiv>
+            <S.Images
+              src={
+                'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png'
+              }
+              width="1.8vw"
+              height="1.8vw"
+              $marginRight="1vw"
+              onClick={() => {
+                deleteComments(no);
+              }}></S.Images>
+          </S.CommentRootDiv>
+        ),
+      )}
       <S.PageNationDiv>
-        <S.PencilImg
+        <S.Images
           src={
             'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png'
           }
           width="1vw"
           height="1vw"
-          onClick={() => prevPage()}></S.PencilImg>
+          onClick={() => prevPage()}></S.Images>
         {currentPage} / {totalPage}
-        <S.PencilImg
+        <S.Images
           src={
             'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png'
           }
           width="1vw"
           height="1vw"
-          onClick={() => nextPage()}></S.PencilImg>
+          onClick={() => nextPage()}></S.Images>
       </S.PageNationDiv>
     </>
   );
