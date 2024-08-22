@@ -43,9 +43,7 @@ export const Loading = (props: { social: string }) => {
       } else {
         routeNewCharacterPage();
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

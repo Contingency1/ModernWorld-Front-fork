@@ -78,10 +78,37 @@ export const CommentInput = styled.input`
   color: #494949;
 `;
 
+export const CommentValueDiv = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-left: 1%;
+  width: 50vw;
+`;
+
+export const CommentEditInput = styled.input`
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-left: 1%;
+  width: 50vw;
+  border: none;
+`;
+
+export const CommentSenderNicknameDiv = styled.div`
+  color: #a1a1a1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  width: 8vw;
+`;
+
 export const PencilImg = styled.img<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin-left: ${(props) => props.$marginLeft};
+  margin-right: ${(props) => props.$marginRight};
   cursor: pointer;
 `;
 
@@ -106,13 +133,13 @@ export const CommentNicknameDiv = styled.div`
 `;
 
 export const CommentDateDiv = styled.div`
-  width: 15%;
+  width: 13%;
   height: 80%;
   color: #b7b7b7;
-  font-size: 80%;
+  font-size: 65%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 `;
 
 export const PageNationDiv = styled.div`
@@ -123,4 +150,15 @@ export const PageNationDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+`;
+
+export const EditButton = styled.div<StyleType>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5vw;
+  font-size: 15px;
+  margin-left: 1vw;
+  cursor: pointer;
+  pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
 `;
