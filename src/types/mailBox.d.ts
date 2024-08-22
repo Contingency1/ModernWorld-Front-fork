@@ -39,3 +39,21 @@ export interface SendMailDataType {
   no: number;
   nickname: string;
 }
+export interface MailBoxBodyEleProps {
+  title: string;
+  data?: {
+    check: boolean;
+    content: string;
+    createdAt: string;
+    no: number;
+    userPostReceiverNo: {
+      no: number;
+      nickname: string;
+    };
+    userPostSenderNo: {
+      no: number;
+      nickname: string;
+    };
+    title: string;
+  }[];
+}

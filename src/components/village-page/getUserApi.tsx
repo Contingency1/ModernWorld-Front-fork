@@ -1,26 +1,33 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '@/components/village-page/styled';
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { VILLAGE } from '@/app/api/village';
 import { VillageData } from '@/types/village';
 import {
   currentPageAtom,
+  PagesAtom,
   searchValue,
   sortStateAtom,
   villageUsersArrayAtom,
 } from '@/states/village';
 import { useRouter } from 'next/navigation';
+import { IMAGE } from '@/utils/image';
+import { useDebounce } from '@uidotdev/usehooks';
 
 export default function GetUserApi(props: { animal: string }) {
   const [villageUsersArray, setVillageUsersArary] = useAtom(
     villageUsersArrayAtom,
   );
-  const [currentPage] = useAtom(currentPageAtom);
-  const [sortState] = useAtom(sortStateAtom);
-  const [keyword] = useAtom(searchValue);
-  const route = useRouter();
+  const { currentPage, sortState, keyword, route } = {
+    currentPage: useAtomValue(currentPageAtom),
+    sortState: useAtomValue(sortStateAtom),
+    keyword: useAtomValue(searchValue),
+    route: useRouter(),
+  };
+  const setPages = useSetAtom(PagesAtom);
+  const debounceSearchValue = useDebounce(keyword, 1000);
 
   async function getUser() {
     const response = await VILLAGE.getVillageUser({
@@ -28,14 +35,15 @@ export default function GetUserApi(props: { animal: string }) {
       take: 8,
       animal: props.animal,
       orderByField: sortState,
-      nickname: keyword,
+      nickname: debounceSearchValue,
     });
     setVillageUsersArary(response.data);
+    setPages({ page: response.meta.page, totalPage: response.meta.totalPage });
   }
 
   useEffect(() => {
     getUser();
-  }, [sortState, keyword, currentPage]);
+  }, [sortState, debounceSearchValue, currentPage]);
 
   return (
     <>
@@ -46,13 +54,13 @@ export default function GetUserApi(props: { animal: string }) {
           <S.UserCharacter>
             <img src={e.characterLocker[0]?.character.image} />
           </S.UserCharacter>
-          {e.nickname}
-          <S.UserHeart>
-            <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png" />
-            {e.legend?.likeCount}
-            <> point : {e.accumulationPoint}</>
-          </S.UserHeart>
-          <S.UserName>{e.nickname}</S.UserName>
+          <S.ShowUserNickname>{e.nickname}</S.ShowUserNickname>
+          <S.ShowUserHeartDiv>
+            <S.UserHeart>
+              <img src={IMAGE.heart} />
+            </S.UserHeart>
+            {e.legend?.likeCount} / point:{e.accumulationPoint}
+          </S.ShowUserHeartDiv>
         </S.UserBox>
       ))}
     </>

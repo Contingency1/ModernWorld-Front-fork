@@ -21,6 +21,7 @@ const INVENTORY = {
     );
     return result.data;
   },
+
   /** 아이템 배치 상태 업데이트 */
   async setItemStatus(itemNo: number, status: boolean): Promise<any> {
     if (status) {
@@ -32,14 +33,26 @@ const INVENTORY = {
         return; // 배치 확인을 받지 못하면 함수 종료
       }
     }
-    const response: AxiosResponse = await instance.patch(
-      `${INVENTORY.path}/my/items/${itemNo}`,
-      {
-        status: !status,
-      },
-    );
 
-    return response.data;
+    try {
+      const response: AxiosResponse = await instance.patch(
+        `${INVENTORY.path}/my/items/${itemNo}`,
+        {
+          status: !status,
+        },
+      );
+
+      const result = response.data;
+
+      if (window.confirm('펫 방으로 이동하시겠습니까?')) {
+        window.location.href = '/my-page/pet-room';
+      }
+
+      return result;
+    } catch (error) {
+      console.error('아이템 상태 업데이트 중 오류 발생:', error);
+      throw error;
+    }
   },
   /** 인벤토리에 캐릭터 불러오기 API */
   async getInventoryCharacter(user: number, type?: string): Promise<any> {
