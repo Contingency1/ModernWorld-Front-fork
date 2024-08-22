@@ -29,7 +29,7 @@ export const PostComment = () => {
       <S.CommentInput
         placeholder="방명록을 남겨보세요~"
         onChange={commentEventTarget}></S.CommentInput>
-      <S.PencilImg
+      <S.Images
         src={
           'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/%EC%97%B0%ED%95%84.png'
         }
@@ -38,7 +38,7 @@ export const PostComment = () => {
         $marginLeft="15%"
         onClick={() =>
           postComments(Number(userSelected), userComment)
-        }></S.PencilImg>
+        }></S.Images>
     </S.CommentInputRootDiv>
   );
 };

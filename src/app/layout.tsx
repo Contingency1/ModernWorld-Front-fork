@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import StyledComponentsRegistry from './lib/registry';
 import { ClientOnly } from '@/utils/clientOnly';
 import NotificationComponent from '@/components/notification/NotificationComponent';
-import { Suspense } from 'react';
-import Loading from './Loading';
 
 export const metadata: Metadata = {
   title: '모던월드',

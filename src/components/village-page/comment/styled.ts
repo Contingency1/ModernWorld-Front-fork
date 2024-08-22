@@ -104,7 +104,7 @@ export const CommentSenderNicknameDiv = styled.div`
   width: 8vw;
 `;
 
-export const PencilImg = styled.img<StyleType>`
+export const Images = styled.img<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin-left: ${(props) => props.$marginLeft};
@@ -158,7 +158,29 @@ export const EditButton = styled.div<StyleType>`
   justify-content: center;
   width: 2.5vw;
   font-size: 15px;
-  margin-left: 1vw;
   cursor: pointer;
   pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
+`;
+
+export const ReplyCountDiv = styled.div`
+  width: 15px;
+  height: 15px;
+  border-radius: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  color: white;
+  font-size: 13px;
+  margin-top: 30%;
+  margin-left: 60%;
+  position: absolute;
+`;
+
+export const ReplyDiv = styled.div`
+  position: relative;
+  width: 4vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
