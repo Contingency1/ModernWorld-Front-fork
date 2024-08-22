@@ -1,6 +1,7 @@
 import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
+/** 메뉴 모달창 뒤에 검은 배경 */
 export const MenuModalBackground = styled.div`
   width: 73.7%;
   height: 100%;
@@ -13,6 +14,7 @@ export const MenuModalBackground = styled.div`
   z-index: 1000;
 `;
 
+/** 메뉴 모달 창 바디 */
 export const MenuModalBody = styled.div<StyleType>`
   width: ${(props) => (props.width ? props.width : '25vw')};
   height: 70vh;
@@ -23,6 +25,7 @@ export const MenuModalBody = styled.div<StyleType>`
   margin: ${(props) => props.$margin};
 `;
 
+/** display flex css 주기 위한 스타일 컴포넌트 */
 export const DisplayDiv = styled.div<StyleType>`
   position: ${(props) => (props.position ? props.position : 'relative')};
   display: flex;
@@ -33,7 +36,9 @@ export const DisplayDiv = styled.div<StyleType>`
   overflow-y: ${(props) => props.$overFlowY};
 `;
 
+/** 폰트 사용시 필요한 컴포넌트 */
 export const Font = styled.div<StyleType>`
+  width: ${(props) => props.width};
   font-size: ${(props) => props.$fontSize};
   color: ${(props) => props.color};
   margin: ${(props) => props.$margin};
@@ -41,21 +46,24 @@ export const Font = styled.div<StyleType>`
   position: ${(props) => props.position};
 `;
 
-export const UserImg = styled.img`
-  width: 6vw;
-  height: 6vw;
-  margin: 2vw 0 -1vw 0;
+/** 유저 이미지 보여주는 태그 */
+export const UserImg = styled.img<StyleType>`
+  width: ${(props) => (props.width ? props.width : '6vw')};
+  height: ${(props) => (props.width ? props.width : '6vw')};
+  margin: ${(props) => (props.$margin ? props.$margin : '2vw 0 -1vw 0')};
   border-radius: 50%;
-  border: 15px solid white;
+  border: ${(props) => (props.$border ? props.$border : '15px solid white')};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
+/** UI img 태그 */
 export const UiImg = styled.img`
   width: 2vw;
   height: 2vw;
   margin: 0.5vw;
 `;
 
+/** 버튼 Ui 가 들어가는 div */
 export const ButtonUi = styled.div<StyleType>`
   width: 22vw;
   height: 12vh;
@@ -80,6 +88,7 @@ export const ButtonUi = styled.div<StyleType>`
   }
 `;
 
+/** 콘텐츠 들어가는 콘테이너 */
 export const ContentContainer = styled.div`
   width: 22vw;
   height: 49.5vh;
@@ -93,6 +102,7 @@ export const ContentContainer = styled.div`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 `;
 
+/** 이미지 태그로 사용 */
 export const Img = styled.img<StyleType>`
   width: ${(props) => props.width};
   height: auto;
@@ -101,6 +111,7 @@ export const Img = styled.img<StyleType>`
   cursor: ${(props) => props.cursor};
 `;
 
+/** 로그아웃 버튼 UI */
 export const LogoutButtonUi = styled.div<StyleType>`
   width: 18vw;
   height: 6vh;
@@ -123,6 +134,7 @@ export const LogoutButtonUi = styled.div<StyleType>`
   }
 `;
 
+/** 옆에 x */
 export const RightModalExit = styled.div`
   position: absolute;
   font-size: 1.5vw;
@@ -133,6 +145,7 @@ export const RightModalExit = styled.div`
   cursor: pointer;
 `;
 
+/** 알람 모달창 리스트 하나의 요소 */
 export const AlarmListEleBox = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: 6vh;
@@ -151,18 +164,67 @@ export const AlarmListEleBox = styled.div<StyleType>`
   box-sizing: border-box;
 `;
 
+/** 마진값 주는 css */
 export const Margin = styled.div<StyleType>`
   margin: ${(props) => props.$margin};
 `;
 
+/** 좋아요 리스트 들어가는 섹션 */
+export const LikeListSection = styled.div`
+  width: 90%;
+  height: 50vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+`;
+
+/** 좋아요 리스트 하나의 요소 콘테이너 */
 export const LikeListContainer = styled.div<StyleType>`
-  width: 25vw;
-  height: 10vh;
+  width: 26vw;
   margin: 0.5vw 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f6f6f6;
+  border-radius: 15px;
+  box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  max-height: 10.5vh;
+  min-height: 10.5vh;
+`;
+
+/** 좋아요 리스트 방 보러가기 버튼 UI */
+export const GoToRoomButton = styled.div`
+  position: fixed;
+  width: 5vw;
+  height: 4vh;
+  flex-grow: 1;
+  max-width: 5vw;
+  min-width: 5vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f6f6f6;
+  margin-left: 19.6vw;
+  background-color: #fff;
+  border: 3px solid #c9d7dd;
   border-radius: 10px;
-  box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  color: #454545;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+`;
+
+/** 좋아요 표시 할 hr 태그 */
+export const Hr = styled.hr<StyleType>`
+  border: none;
+  height: 0.5vh;
+  width: 9.7vw;
+  background-color: #6e6e6e;
+  margin: ${(props) =>
+    props.$margin === 'receiver' ? '-1vw 0 1.5vw 4vw' : '-1vw 0 1.5vw 16.2vw'};
+  opacity: 0.7;
+  border-radius: 1px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 `;
