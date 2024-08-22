@@ -1,5 +1,7 @@
 FROM node:20-alpine As base
 
+
+# 수정해야 할 부분
 WORKDIR /app
 
 COPY package.json ./
@@ -9,6 +11,8 @@ RUN npm install
 COPY . .
 
 CMD [ "npm", "run", "dev" ]
+
+# 여기까지
 
 # 의존성 설치
 # FROM base As deps 
@@ -39,6 +43,7 @@ CMD [ "npm", "run", "dev" ]
 
 # WORKDIR /app
 
+# 실행 될지 확인 필요
 # ENV NODE_ENV=production
 
 # RUN addgroup --system --gid 1001 nodejs
