@@ -21,10 +21,10 @@ export default function Category() {
         <S.CategoryEle
           $borderRight="1px solid #A2A2A2"
           $borderTop="1px solid #A2A2A2">
-          <S.LinkBox href="/villagecat">마을</S.LinkBox>
+          <S.LinkBox href="/village/cat">마을</S.LinkBox>
         </S.CategoryEle>
         <S.CategoryEle $borderTop="1px solid #A2A2A2">
-          <S.LinkBox href="/my-page">펫 방</S.LinkBox>
+          <S.LinkBox href="/my-page/pet-room">펫 방</S.LinkBox>
         </S.CategoryEle>
       </S.CategorySection>
     </>
