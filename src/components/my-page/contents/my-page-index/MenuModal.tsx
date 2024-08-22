@@ -1,16 +1,15 @@
 'use client';
 
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import * as S from './style';
+import * as S from '../my-page-index-modal/style';
 import {
   isAlarmModalAtom,
   isLogoutModalAtom,
   isMyPageMenuModalAtom,
   userDataAtom,
 } from '@/states/userAtoms';
-import { useState } from 'react';
-import LogoutModal from './LogoutModal';
-import AlarmModal from './AlarmModal';
+import LogoutModal from '../my-page-index-modal/LogoutModal';
+import AlarmModal from '../my-page-index-modal/AlarmModal';
 
 export default function MenuModal() {
   const setIsMenuModal = useSetAtom(isMyPageMenuModalAtom);

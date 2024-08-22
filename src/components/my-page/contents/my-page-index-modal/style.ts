@@ -14,7 +14,7 @@ export const MenuModalBackground = styled.div`
 `;
 
 export const MenuModalBody = styled.div<StyleType>`
-  width: 25vw;
+  width: ${(props) => (props.width ? props.width : '25vw')};
   height: 70vh;
   background-color: #e9eff1;
   border: 1px solid #626262;
@@ -30,6 +30,7 @@ export const DisplayDiv = styled.div<StyleType>`
   align-items: ${(props) => props.$alignItems};
   margin: ${(props) => props.$margin};
   flex-direction: ${(props) => props.$flexDirection};
+  overflow-y: ${(props) => props.$overFlowY};
 `;
 
 export const Font = styled.div<StyleType>`
@@ -152,4 +153,16 @@ export const AlarmListEleBox = styled.div<StyleType>`
 
 export const Margin = styled.div<StyleType>`
   margin: ${(props) => props.$margin};
+`;
+
+export const LikeListContainer = styled.div<StyleType>`
+  width: 25vw;
+  height: 10vh;
+  margin: 0.5vw 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.1);
 `;

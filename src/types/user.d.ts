@@ -31,6 +31,7 @@ export interface UserLegendsType {
   itemCount: number;
   presentCount: number;
   likeCount: number;
+  RSPWinCount: number;
 }
 
 export interface UserAttendanceDataType {
