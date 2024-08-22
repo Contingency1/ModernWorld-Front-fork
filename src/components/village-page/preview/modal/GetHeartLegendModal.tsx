@@ -6,14 +6,12 @@ import LEGENDS from '@/app/api/legends';
 import { useEffect, useState } from 'react';
 import { useSetAtom } from 'jotai';
 import { IsModalStateAtom } from '@/states/village';
+import { userHeartLegendType } from '@/types/legend';
 
 const GetHearLegendtModal = (props: { userNo: number }) => {
-  const [heartLegendList, setHeartLegendList] = useState<
-    {
-      no: string;
-      sender: { no: number; nickname: string; image: string };
-    }[]
-  >([]);
+  const [heartLegendList, setHeartLegendList] = useState<userHeartLegendType[]>(
+    [],
+  );
   const closeModal = useSetAtom(IsModalStateAtom);
 
   const getUserHeartList = async () => {
@@ -25,9 +23,13 @@ const GetHearLegendtModal = (props: { userNo: number }) => {
     getUserHeartList();
   }, []);
 
+  const handleModalClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <S.RootDiv onClick={() => closeModal(false)}>
-      <S.ModalRootDiv>
+      <S.ModalRootDiv onClick={handleModalClick}>
         <S.TitleDiv>좋아요</S.TitleDiv>
         <S.CloseButton onClick={() => closeModal(false)}>x</S.CloseButton>
         <S.LikeListRootDiv>
