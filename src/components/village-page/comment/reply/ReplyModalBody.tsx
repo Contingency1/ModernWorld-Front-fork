@@ -3,6 +3,7 @@
 import { REPLY } from '@/app/api/reply';
 import * as S from '@/components/village-page/comment/reply/styled';
 import { RefreshReplyAtom } from '@/states/reply';
+import { IMAGE } from '@/utils/image';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
@@ -23,7 +24,7 @@ export const ReplyModalBody = () => {
   const [editReplyNo, setEditReplyNo] = useState(1);
 
   const getReplies = async () => {
-    const response = await REPLY.getReplies(430, currentPage, 6);
+    const response = await REPLY.getReplies(430, currentPage, 5);
     setTotalPages(response.meta.totalPage);
     setRepliesArray(response.data);
   };
@@ -70,7 +71,12 @@ export const ReplyModalBody = () => {
     <>
       {repliesArray.map(({ content, no, createdAt, user }) => (
         <S.RepliesRootDiv>
-          {user.nickname} /{' '}
+          <S.Images src={IMAGE.comment} width="30px" height="30px"></S.Images>
+          <S.ReplyNickname>
+            {user.nickname}
+            <S.ReplyCreatedAt>{createdAt}</S.ReplyCreatedAt>
+          </S.ReplyNickname>
+          /
           {no !== editReplyNo ? (
             <S.ReplyValueDiv>{content}</S.ReplyValueDiv>
           ) : (
@@ -78,19 +84,13 @@ export const ReplyModalBody = () => {
               defaultValue={content}
               onChange={replyEventTargetHandler}></S.ReplyValueInput>
           )}
-          <S.Images
-            width="20px"
-            height="20px"
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png'
-            }
-            onClick={() => deleteReplies(no)}></S.Images>
-          <div
+          <S.EditBtn
             onClick={() => {
               editReplies(no, replyEventTarget);
             }}>
             {no !== editReplyNo ? '수정' : '완료'}
-          </div>
+          </S.EditBtn>
+          /<S.DeleteBtn onClick={() => deleteReplies(no)}>삭제</S.DeleteBtn>
         </S.RepliesRootDiv>
       ))}
       <S.PagesDiv>
@@ -100,14 +100,16 @@ export const ReplyModalBody = () => {
           }
           width="20px"
           height="20px"
+          $marginRight="30px"
           onClick={() => prevPage()}></S.Images>
-        {currentPage}/{totalPages}
+        {currentPage} / {totalPages}
         <S.Images
           src={
             'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png'
           }
           width="20px"
           height="20px"
+          $marginLeft="30px"
           onClick={() => nextPage()}></S.Images>
       </S.PagesDiv>
     </>
