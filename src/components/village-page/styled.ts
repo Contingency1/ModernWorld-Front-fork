@@ -54,10 +54,6 @@ export const SearchDiv = styled.div`
   height: 5%;
   border-bottom: 3px solid black;
   display: flex;
-  img {
-    width: 10%;
-    height: 100%;
-  }
 `;
 
 /**
@@ -86,10 +82,9 @@ export const LeftSection = styled.div`
 `;
 
 export const LeftArrow = styled.div`
-  img {
-    width: 75px;
-    height: 75px;
-  }
+  position: relative;
+  width: 75px;
+  height: 75px;
   cursor: pointer;
 `;
 /**
@@ -111,11 +106,10 @@ export const GreyBox = styled.div`
  * 오른쪽 화살표
  */
 export const RightArrow = styled.div`
-  img {
-    width: 75px;
-    height: 75px;
-    margin-left: 10%;
-  }
+  position: relative;
+  width: 75px;
+  height: 75px;
+  margin-left: 10%;
   cursor: pointer;
 `;
 
@@ -159,11 +153,16 @@ export const UserCharacter = styled.div`
   border-radius: 20px;
   background-color: #ffffff;
   box-shadow: inset 0px 1.5px 1.5px 1px #868e96;
-  img {
-    margin-top: 20%;
-    width: 70%;
-    height: 70%;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const UserCharacterImgDiv = styled.div`
+  width: 70%;
+  height: 70%;
+  margin-top: 20%;
+  position: fixed;
 `;
 /**
  *

@@ -15,6 +15,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { IMAGE } from '@/utils/image';
 import { useDebounce } from '@uidotdev/usehooks';
+import Image from 'next/image';
 
 export default function GetUserApi(props: { animal: string }) {
   const [villageUsersArray, setVillageUsersArary] = useAtom(
@@ -52,7 +53,13 @@ export default function GetUserApi(props: { animal: string }) {
           key={e.nickname}
           onClick={() => route.push(`/previewVillageUsers/${e.no}`)}>
           <S.UserCharacter>
-            <img src={e.characterLocker[0]?.character.image} />
+            <S.UserCharacterImgDiv>
+              <Image
+                fill
+                alt="유저 캐릭터 이미지"
+                src={e.characterLocker[0]?.character.image}
+              />
+            </S.UserCharacterImgDiv>
           </S.UserCharacter>
           <S.ShowUserNickname>{e.nickname}</S.ShowUserNickname>
           <S.ShowUserHeartDiv>
