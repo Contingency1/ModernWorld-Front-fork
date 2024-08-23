@@ -2,10 +2,11 @@
 
 import { COMMENT } from '@/app/api/comment';
 import * as S from '@/components/village-page/comment/reply/styled';
+import { commentRefreshAtom } from '@/states/commentRefresh';
 import { CommentNumberAtom, ModalStateAtom } from '@/states/reply';
 import { singleCommentType } from '@/types/comment';
 import { IMAGE } from '@/utils/image';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export const ReplyModalHeader = (props: { userId: number }) => {
@@ -30,6 +31,7 @@ export const ReplyModalHeader = (props: { userId: number }) => {
   const [editCommentState, setEditCommentState] = useState(false);
   const [editCommentValue, setEditCommentValue] = useState(userComment.content);
   const [refresh, setRefresh] = useState(false);
+  const [refreshComment, setRefreshComment] = useAtom(commentRefreshAtom);
 
   const getComment = async () => {
     const response = await COMMENT.getSingleComment(commentNo);
@@ -55,6 +57,7 @@ export const ReplyModalHeader = (props: { userId: number }) => {
     if (confirm('삭제하시겠습니까?')) {
       const response = await COMMENT.deleteComments(commentNo);
       try {
+        setRefreshComment(!refreshComment);
         setModalState(false);
       } catch (err) {
         alert('유효하지 않은 요청입니다');

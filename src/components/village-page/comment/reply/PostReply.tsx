@@ -6,15 +6,19 @@ import { CommentNumberAtom, RefreshReplyAtom } from '@/states/reply';
 import { useAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { IMAGE } from '@/utils/image';
+import { commentRefreshAtom } from '@/states/commentRefresh';
 
 export const PostReply = () => {
   const [userReplyValue, setUserReplyValue] = useState('');
   const [refresh, setRefresh] = useAtom(RefreshReplyAtom);
   const commentNo = useAtomValue(CommentNumberAtom);
+  const [refreshComment, setRefreshComment] = useAtom(commentRefreshAtom);
 
   const postReply = async () => {
     const response = await REPLY.postReplies(commentNo, userReplyValue);
     setRefresh(!refresh);
+    setRefreshComment(!refreshComment);
+
     return response;
   };
 

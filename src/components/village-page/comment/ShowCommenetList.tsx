@@ -26,7 +26,6 @@ export const ShowCommentList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
-  const [editCommentState, setEditCommentState] = useState(false);
   const [editCommentValue, setEditCommentValue] = useState('');
   const [editCommentNo, setEditCommentNo] = useState(0);
   const [userSelected] = useAtom(UserSelectedAtom);

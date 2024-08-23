@@ -21,13 +21,6 @@ export const CrossAndTitleDiv = styled.div`
   display: flex;
 `;
 
-export const TitleDiv = styled.div`
-  position: absolute;
-  font-weight: bold;
-  left: 10px;
-  top: 15px;
-`;
-
 export const CrossImage = styled.img`
   width: 30px;
   height: 30px;

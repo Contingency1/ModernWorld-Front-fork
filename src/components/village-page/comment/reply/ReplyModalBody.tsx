@@ -2,9 +2,10 @@
 
 import { REPLY } from '@/app/api/reply';
 import * as S from '@/components/village-page/comment/reply/styled';
+import { commentRefreshAtom } from '@/states/commentRefresh';
 import { CommentNumberAtom, RefreshReplyAtom } from '@/states/reply';
 import { IMAGE } from '@/utils/image';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export const ReplyModalBody = () => {
@@ -23,6 +24,7 @@ export const ReplyModalBody = () => {
   const [replyEventTarget, setReplyEventTarget] = useState('');
   const [editReplyNo, setEditReplyNo] = useState(1);
   const commentNo = useAtomValue(CommentNumberAtom);
+  const refreshComment = useSetAtom(commentRefreshAtom);
 
   const getReplies = async () => {
     const response = await REPLY.getReplies(commentNo, currentPage, 5);
