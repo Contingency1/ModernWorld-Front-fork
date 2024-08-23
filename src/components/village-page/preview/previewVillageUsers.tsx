@@ -81,7 +81,6 @@ export default function PreviewVillageUsers(props: { userNo: number }) {
               {like}
             </div>
           </S.MenuButtonDiv>
-
           <S.MenuButtonDiv
             width="14vw"
             $marginLeft="10%"

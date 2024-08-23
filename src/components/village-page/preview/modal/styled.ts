@@ -65,7 +65,7 @@ export const ListRootDiv = styled.div`
   align-items: center;
 `;
 
-export const HeartImgdiv = styled.div`
+export const HeartImgDiv = styled.div`
   width: 20px;
   height: 20px;
   margin-left: 10%;
