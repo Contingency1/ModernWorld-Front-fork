@@ -9,6 +9,13 @@ const LEGENDS = {
     const result: AxiosResponse = await instance.get(`${LEGENDS.path}`);
     return result.data;
   },
+
+  async getLikeLegends(userNo: number, type?: string): Promise<any> {
+    const result: AxiosResponse = await instance.get(`users/${userNo}/likes`, {
+      params: { type: type },
+    });
+    return result;
+  },
 };
 
 export default LEGENDS;
