@@ -27,7 +27,13 @@ export default function LogoutModal(props: { characterImg: string }) {
             <S.Font color="#FF6767" $fontSize="14px" $margin="1vw 0 1.5vw 0">
               진짜... 가실 거예요...?
             </S.Font>
-            <S.LogoutButtonUi $margin="0 0 1vw 0" $backColor="#fff">
+            <S.LogoutButtonUi
+              $margin="0 0 1vw 0"
+              $backColor="#fff"
+              onClick={() => {
+                alert('고마워요!');
+                setIsLogoutModal(false);
+              }}>
               아니! 절대 안 가지.
             </S.LogoutButtonUi>
             <S.LogoutButtonUi $backColor="#EFEFEF">
