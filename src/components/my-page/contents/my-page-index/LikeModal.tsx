@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import LEGENDS from '@/app/api/legends';
 import { userHeartLegendType } from '@/types/legend';
 import { useRouter } from 'next/navigation';
+import { IMAGE } from '@/utils/image';
 
 export default function LikeModal() {
   const userNo = Number(localStorage.getItem('userNo'));
@@ -26,9 +27,6 @@ export default function LikeModal() {
   useEffect(() => {
     getLikeLegends();
   }, [viewType]);
-
-  console.log(viewType);
-  console.log(likeListData);
 
   return (
     <>
@@ -85,7 +83,7 @@ export default function LikeModal() {
                       <S.Img
                         width="1vw"
                         $margin="0 0.5vw 0 1vw"
-                        src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"
+                        src={IMAGE.heart}
                         alt=""
                       />
                       <S.Font $fontSize="12px" color="#454545" width="12vw">
