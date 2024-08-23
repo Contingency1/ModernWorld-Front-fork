@@ -10,6 +10,7 @@ const LEGENDS = {
     return result.data;
   },
 
+  /** like 목록 불러오기 */
   async getLikeLegends(userNo: number, type?: string): Promise<any> {
     const result: AxiosResponse = await instance.get(`users/${userNo}/likes`, {
       params: { type: type },

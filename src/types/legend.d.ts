@@ -5,4 +5,9 @@ export interface userHeartLegendType {
     nickname: string;
     image: string;
   };
+  receiver: {
+    no: number;
+    nickname: string;
+    image: string;
+  };
 }

@@ -2,31 +2,29 @@
 
 import { useAtom } from 'jotai';
 import * as S from './style';
-import { isMyPageMenuModalAtom, userDataAtom } from '@/states/userAtoms';
+import {
+  isLikeModalAtom,
+  isMyPageMenuModalAtom,
+  userDataAtom,
+} from '@/states/userAtoms';
 import { useEffect, useState } from 'react';
 import { UserLegendsType } from '@/types/user';
 import LEGENDS from '@/app/api/legends';
 import USER from '@/app/api/user';
 import { useRouter } from 'next/navigation';
-import MenuModal from '../menu/MenuModal';
+import MenuModal from './MenuModal';
+import LikeModal from './LikeModal';
 
 export default function MyPageIndex() {
-  const userNo = Number(localStorage.getItem('userNo'));
   const router = useRouter();
   const [isEditDescription, setIsEditDescription] = useState(false);
   const [editDescriptionText, setEditDescriptionText] = useState('');
   const [indexUserInfo, setIndexUserInfo] = useAtom(userDataAtom);
   const [isProfileClick, setIsProfileClick] = useState(false);
   const [isMenuModal, setIsMenuModal] = useAtom(isMyPageMenuModalAtom);
-  const [userLegends, setUserLegends] = useState<UserLegendsType>({
-    userNo: 0,
-    attendanceCount: 0,
-    commentCount: 0,
-    itemCount: 0,
-    presentCount: 0,
-    likeCount: 0,
-  });
+  const [userLegends, setUserLegends] = useState<null | UserLegendsType>(null);
   const [isAchievementModal, setIsAchievementModal] = useState(false);
+  const [isLikeModal, setIsLikeModal] = useAtom(isLikeModalAtom);
 
   const handleProfileClick = () => {
     setIsProfileClick(!isProfileClick);
@@ -61,6 +59,12 @@ export default function MyPageIndex() {
 
   const handleOnClickMenu = () => {
     setIsMenuModal(true);
+    setIsLikeModal(false);
+  };
+
+  const handleOnClickLike = () => {
+    setIsLikeModal(true);
+    setIsMenuModal(false);
   };
 
   useEffect(() => {
@@ -74,6 +78,7 @@ export default function MyPageIndex() {
   return (
     <>
       {isMenuModal ? <MenuModal /> : <></>}
+      {isLikeModal ? <LikeModal /> : <></>}
       <S.Background>
         <S.Font
           $margin="1vh 1vw 0 auto"
@@ -164,23 +169,23 @@ export default function MyPageIndex() {
           </S.UserInfoContentSection>
         </S.UserInfoSection>
         <S.StatSection>
-          <S.StatBadge>
+          <S.StatBadge onClick={handleOnClickLike}>
             좋아요
             <S.AccentText>
-              {userLegends.likeCount ? userLegends.likeCount : '0'}
+              {userLegends?.likeCount ? userLegends.likeCount : '0'}
             </S.AccentText>
           </S.StatBadge>
           <S.StatBadge onClick={() => router.push('/my-page/daily-check')}>
             출석
             <S.AccentText>
-              {userLegends.attendanceCount ? userLegends.attendanceCount : '0'}
+              {userLegends?.attendanceCount ? userLegends.attendanceCount : '0'}
             </S.AccentText>
           </S.StatBadge>
 
-          <S.StatBadge onClick={() => router.push('/my-page/inventory')}>
-            아이템
+          <S.StatBadge onClick={() => router.push('/game/rockscissorspaper')}>
+            게임
             <S.AccentText>
-              {userLegends.itemCount ? userLegends.itemCount : '0'}
+              {userLegends?.RSPWinCount ? userLegends.RSPWinCount : '0'}
             </S.AccentText>
           </S.StatBadge>
         </S.StatSection>
