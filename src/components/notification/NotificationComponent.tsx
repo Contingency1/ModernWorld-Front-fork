@@ -93,7 +93,7 @@ const NotificationComponent = () => {
   return (
     <>
       {modalTimeOut ? (
-        <S.RootDiv $display={special}>
+        <S.RootDiv>
           <S.CrossImage
             src={
               'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/cross-small_4338828.svg'
@@ -104,7 +104,6 @@ const NotificationComponent = () => {
               redirectPage(redirect);
               setModalTimeOut(false);
             }}>
-            <S.TitleDiv>{eventContent.title}</S.TitleDiv>
             <S.ContentDiv>{eventContent.content}</S.ContentDiv>
           </div>
         </S.RootDiv>
