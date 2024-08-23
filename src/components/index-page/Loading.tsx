@@ -35,7 +35,6 @@ export const Loading = (props: { social: string }) => {
   const getUsersToken = async () => {
     try {
       const response = await Token.getToken(code, props.social);
-      console.log(response);
       setLocalStorageItem('accessToken', response.accessToken);
       setCookieToken('refreshToken', response.refreshToken);
       setLocalStorageItem('userNo', response.userNo);
