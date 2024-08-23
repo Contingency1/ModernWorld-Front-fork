@@ -24,7 +24,7 @@ export const ReplyModalBody = () => {
   const [replyEventTarget, setReplyEventTarget] = useState('');
   const [editReplyNo, setEditReplyNo] = useState(1);
   const commentNo = useAtomValue(CommentNumberAtom);
-  const refreshComment = useSetAtom(commentRefreshAtom);
+  const [refreshComment, setRefreshComment] = useAtom(commentRefreshAtom);
 
   const getReplies = async () => {
     const response = await REPLY.getReplies(commentNo, currentPage, 5);
@@ -35,6 +35,7 @@ export const ReplyModalBody = () => {
   const deleteReplies = async (replyNo: number) => {
     const response = await REPLY.deleteReplies(commentNo, replyNo);
     setRefresh(!refresh);
+    setRefreshComment(!refreshComment);
   };
 
   const editReplies = async (replyNo: number, replyValue: string) => {
