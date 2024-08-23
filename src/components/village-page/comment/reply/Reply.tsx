@@ -3,13 +3,13 @@ import { ReplyModalHeader } from './ReplyModalHeader';
 import { ReplyModalBody } from './ReplyModalBody';
 import { PostReply } from './PostReply';
 
-const Reply = () => {
+const Reply = (props: { userId: number }) => {
   return (
     <>
       <S.PageDarkDiv>
         <S.ModalContainer>
           <S.ModalDiv>
-            <ReplyModalHeader />
+            <ReplyModalHeader userId={props.userId} />
             <PostReply />
             <ReplyModalBody />
           </S.ModalDiv>

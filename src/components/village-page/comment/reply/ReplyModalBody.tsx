@@ -2,9 +2,10 @@
 
 import { REPLY } from '@/app/api/reply';
 import * as S from '@/components/village-page/comment/reply/styled';
-import { RefreshReplyAtom } from '@/states/reply';
+import { commentRefreshAtom } from '@/states/commentRefresh';
+import { CommentNumberAtom, RefreshReplyAtom } from '@/states/reply';
 import { IMAGE } from '@/utils/image';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export const ReplyModalBody = () => {
@@ -22,23 +23,26 @@ export const ReplyModalBody = () => {
   const [editReplyState, setEditReplyState] = useState(false);
   const [replyEventTarget, setReplyEventTarget] = useState('');
   const [editReplyNo, setEditReplyNo] = useState(1);
+  const commentNo = useAtomValue(CommentNumberAtom);
+  const [refreshComment, setRefreshComment] = useAtom(commentRefreshAtom);
 
   const getReplies = async () => {
-    const response = await REPLY.getReplies(430, currentPage, 5);
+    const response = await REPLY.getReplies(commentNo, currentPage, 5);
     setTotalPages(response.meta.totalPage);
     setRepliesArray(response.data);
   };
 
   const deleteReplies = async (replyNo: number) => {
-    const response = await REPLY.deleteReplies(430, replyNo);
+    const response = await REPLY.deleteReplies(commentNo, replyNo);
     setRefresh(!refresh);
+    setRefreshComment(!refreshComment);
   };
 
   const editReplies = async (replyNo: number, replyValue: string) => {
     setEditReplyNo(replyNo);
     setEditReplyState(!editReplyState);
     if (editReplyState) {
-      const response = await REPLY.editReplies(430, replyNo, replyValue);
+      const response = await REPLY.editReplies(commentNo, replyNo, replyValue);
       setRefresh(!refresh);
       setEditReplyNo(1);
       return response;
@@ -65,12 +69,6 @@ export const ReplyModalBody = () => {
     }
   };
 
-  const replyEventTargetHandler = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setReplyEventTarget(event.target.value);
-  };
-
   return (
     <>
       {repliesArray.map(({ content, no, createdAt, user }) => (
@@ -86,7 +84,9 @@ export const ReplyModalBody = () => {
           ) : (
             <S.ReplyValueInput
               defaultValue={content}
-              onChange={replyEventTargetHandler}></S.ReplyValueInput>
+              onChange={(e) =>
+                setReplyEventTarget(e.target.value)
+              }></S.ReplyValueInput>
           )}
           <S.EditBtn
             onClick={() => {

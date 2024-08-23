@@ -3,8 +3,9 @@
 import { COMMENT } from '@/app/api/comment';
 import * as S from '@/components/village-page/comment/styled';
 import { commentRefreshAtom } from '@/states/commentRefresh';
-import { ModalStateAtom } from '@/states/reply';
+import { CommentNumberAtom, ModalStateAtom } from '@/states/reply';
 import { UserSelectedAtom } from '@/states/village';
+import { IMAGE } from '@/utils/image';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
@@ -25,11 +26,11 @@ export const ShowCommentList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
-  const [editCommentState, setEditCommentState] = useState(false);
   const [editCommentValue, setEditCommentValue] = useState('');
   const [editCommentNo, setEditCommentNo] = useState(0);
   const [userSelected] = useAtom(UserSelectedAtom);
   const modalState = useSetAtom(ModalStateAtom);
+  const commentNo = useSetAtom(CommentNumberAtom);
 
   const getCommentList = async () => {
     const response = await COMMENT.getComments(
@@ -71,18 +72,6 @@ export const ShowCommentList = () => {
       : setCurrentPage(currentPage - 1);
   };
 
-  const editComment = async (commentNo: number, comment: string) => {
-    setEditCommentState(!editCommentState);
-    setEditCommentNo(commentNo);
-    if (editCommentState) {
-      const response = await COMMENT.editCooments(commentNo, comment);
-      setCommentRefresh(!commentRefresh);
-      setEditCommentState(!editCommentState);
-      setEditCommentNo(0);
-      return response;
-    }
-  };
-
   const editCommentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditCommentValue(e.target.value);
   };
@@ -106,33 +95,30 @@ export const ShowCommentList = () => {
             </S.CommentNicknameDiv>
             <S.ReplyDiv>
               <S.Images
-                src={
-                  'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addComment.png'
-                }
+                src={IMAGE.comment}
                 width="1.8vw"
                 height="1.8vw"
                 $marginLeft="1vw"
                 onClick={() => {
                   modalState(true);
+                  commentNo(no);
                 }}></S.Images>
               <S.ReplyCountDiv>{_count.reply}</S.ReplyCountDiv>
             </S.ReplyDiv>
-            <S.EditButton
+            {/* <S.EditButton
               onClick={() => {
                 editComment(no, editCommentValue);
               }}
               $pointerClick={!editCommentState || no === editCommentNo}>
               {no === editCommentNo ? '완료' : '수정'}
-            </S.EditButton>
+            </S.EditButton> */}
             <S.CommentDateDiv>
               {createdAt ? createdAt.match(regex)?.[1] : null}
               <> </>
               {createdAt ? createdAt.match(regex)?.[2] : null}
             </S.CommentDateDiv>
             <S.Images
-              src={
-                'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png'
-              }
+              src={IMAGE.trashBox}
               width="1.8vw"
               height="1.8vw"
               $marginRight="1vw"
@@ -144,17 +130,13 @@ export const ShowCommentList = () => {
       )}
       <S.PageNationDiv>
         <S.Images
-          src={
-            'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png'
-          }
+          src={IMAGE.leftArrow}
           width="1vw"
           height="1vw"
           onClick={() => prevPage()}></S.Images>
         {currentPage} / {totalPage}
         <S.Images
-          src={
-            'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png'
-          }
+          src={IMAGE.rightArrow}
           width="1vw"
           height="1vw"
           onClick={() => nextPage()}></S.Images>

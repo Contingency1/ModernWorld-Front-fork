@@ -2,30 +2,23 @@ import { StyleType } from '@/types/style';
 import styled from 'styled-components';
 
 export const RootDiv = styled.div<StyleType>`
-  display: ${(props) => (props.$display ? 'none' : 'initial')};
+  display: flex;
   position: absolute;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 500px;
   height: 150px;
-  right: 0;
-  bottom: 0;
-  background-color: #ffcccb;
+  right: 3%;
+  bottom: 3%;
+  background-color: #ffffff;
   border-radius: 15px;
-  opacity: 0.8;
   animation: slideInOut 3s ease-in-out forwards;
+  box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.5);
   cursor: pointer;
 `;
 
 export const CrossAndTitleDiv = styled.div`
   display: flex;
-`;
-
-export const TitleDiv = styled.div`
-  position: absolute;
-  font-weight: bold;
-  left: 10px;
-  top: 15px;
 `;
 
 export const CrossImage = styled.img`
@@ -44,9 +37,13 @@ export const CrossImage = styled.img`
 `;
 
 export const ContentDiv = styled.div`
-  width: 70%;
-  height: 20%;
-  position: absolute;
-  left: 50px;
-  top: 50%;
+  width: 450px;
+  height: 80px;
+  border-radius: 47.5px;
+  background-color: #ffeeee;
+  box-shadow: inset 1px 1px 4px rgb(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
 `;
