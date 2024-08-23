@@ -22,13 +22,13 @@ export const ExitButton = styled.img`
  * 마을이름
  */
 export const Title = styled.div`
+  position: relative;
   margin-left: 29%;
   width: 42%;
   height: 16%;
-  img {
-    width: 100%;
-    height: 100%;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 /**
  * 최외곽 박스

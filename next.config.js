@@ -1,14 +1,16 @@
-module.exports = {
+const nextConfig = {
   compiler: {
     styledComponents: true,
   },
   images: {
-    loader: 'custom',
-    loaderFile: './my-loader.ts',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'wang0514.s3.ap-northeast-2.amazonaws.com',
+        pathname: '/items/**',
+      },
+    ],
   },
-};
-
-const nextConfig = {
   output: 'standalone',
   // experimental: {
   //   appDir: true,
