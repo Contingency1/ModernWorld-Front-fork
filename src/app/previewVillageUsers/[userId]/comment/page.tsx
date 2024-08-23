@@ -15,7 +15,7 @@ export default function CommentPage({
 
   return (
     <>
-      <Comment></Comment>
+      <Comment userNo={params.userId}></Comment>
       {modalState ? <Reply userId={params.userId}></Reply> : <></>}
     </>
   );

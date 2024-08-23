@@ -16,7 +16,6 @@ export default function PreviewVillageUsers(props: { userNo: number }) {
   const [comment, setComment] = useState(0);
   const onModal = useSetAtom(IsModalStateAtom);
   const route = useRouter();
-  const closeModal = useSetAtom(IsModalStateAtom);
 
   async function sendLike(userNo: number) {
     const response = await USER.sendLike(userNo);
