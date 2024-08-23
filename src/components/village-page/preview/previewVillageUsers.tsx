@@ -5,6 +5,8 @@ import NEIGHBOR from '@/app/api/neighbor';
 import USER from '@/app/api/user';
 import { MyRoom } from '@/components/my-room/MyRoom';
 import * as S from '@/components/village-page/preview/style';
+import { IsModalStateAtom } from '@/states/village';
+import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +14,9 @@ export default function PreviewVillageUsers(props: { userNo: number }) {
   const [like, setLike] = useState(0);
   const [likeState, setLikeState] = useState(false);
   const [comment, setComment] = useState(0);
+  const onModal = useSetAtom(IsModalStateAtom);
   const route = useRouter();
+  const closeModal = useSetAtom(IsModalStateAtom);
 
   async function sendLike(userNo: number) {
     const response = await USER.sendLike(userNo);
@@ -60,18 +64,23 @@ export default function PreviewVillageUsers(props: { userNo: number }) {
       </S.ContainerDiv>
       <S.previewMenuContainer>
         <S.previewMenuDiv>
-          <S.MenuButtonDiv
-            width="15vw"
-            onClick={() => {
-              !likeState ? sendLike(props.userNo) : cancelLike(props.userNo);
-            }}
-            $marginLeft="15%">
+          <S.MenuButtonDiv width="15vw" $marginLeft="15%">
             <S.ImgStyle
               $marginRight="5%"
               src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png"
               width="20px"
-              height="20px"></S.ImgStyle>
-            좋아요 {like}
+              height="20px"
+              onClick={() => {
+                !likeState ? sendLike(props.userNo) : cancelLike(props.userNo);
+              }}></S.ImgStyle>
+            좋아요{' '}
+            <div
+              onClick={() => {
+                onModal(true);
+              }}
+              style={{ marginLeft: '10px' }}>
+              {like}
+            </div>
           </S.MenuButtonDiv>
 
           <S.MenuButtonDiv
