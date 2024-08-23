@@ -11,7 +11,7 @@ import {
 import { ShopDataType } from '@/types/shop';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
-import ItemClick from './ItemClick';
+import ItemClickModal from './ItemClickModal';
 
 export default function ShopItemBox() {
   const [items, setItems] = useState([]);
@@ -53,7 +53,7 @@ export default function ShopItemBox() {
 
   return (
     <>
-      {isModalOpen && modalNo !== null && <ItemClick no={modalNo} />}
+      {isModalOpen && modalNo !== null && <ItemClickModal no={modalNo} />}
       <S.BookMarkBox height="65vh" $backColor="#F5F0E2">
         {(selectItemType === 0 ? items : characters).map((i: ShopDataType) => (
           <S.ItemDiv key={i.no} onClick={() => handleItemClick(i.no)}>
