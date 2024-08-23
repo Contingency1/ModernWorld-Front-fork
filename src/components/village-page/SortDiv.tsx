@@ -16,16 +16,17 @@ export default function RadioSort() {
 
   return (
     <div style={{ marginTop: '50px' }}>
-      {SortArray.map((e) => (
+      {SortArray.map((sortName, index) => (
         <S.SortCheckDiv
+          key={sortName.name}
           onClick={() => {
-            setSortState(e.sort);
+            setSortState(sortName.sort);
             clearPage(1);
           }}>
           <S.SortCheckBox
-            key={e.sort}
-            $check={sortState === e.sort}></S.SortCheckBox>
-          <div style={{ marginLeft: '10%' }}>{e.name}</div>
+            key={sortName.name}
+            $check={sortState === sortName.sort}></S.SortCheckBox>
+          <div style={{ marginLeft: '10%' }}>{sortName.name}</div>
         </S.SortCheckDiv>
       ))}
     </div>

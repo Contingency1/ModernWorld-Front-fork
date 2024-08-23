@@ -5,8 +5,12 @@ import SearchBox from './SearchBox';
 import { Pagenation } from './Pagenation';
 import Link from 'next/link';
 import { IMAGE } from '@/utils/image';
+import { UserNoAtom } from '@/states/authAtom';
+import { useAtomValue } from 'jotai';
 
 export default function Village(props: { animal: string }) {
+  const userNo = useAtomValue(UserNoAtom);
+  console.log(userNo);
   return (
     <S.BackgroundDisplay color={props.animal === 'cat' ? '#CACACA' : '#E5D9B6'}>
       <S.Title>
