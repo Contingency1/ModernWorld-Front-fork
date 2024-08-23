@@ -59,6 +59,7 @@ export const CloseBtn = styled.img`
   width: 30px;
   height: 30px;
   margin-left: 8vw;
+  cursor: pointer;
 `;
 
 export const CommentRootDiv = styled.div`
@@ -90,8 +91,10 @@ export const CommentEditInput = styled.textarea`
   font-size: 20px;
   position: relative;
   border: none;
+  outline: none;
   margin-bottom: 6.3%;
   resize: none;
+  overflow: hidden;
 `;
 
 export const RepliesRootDiv = styled.div`
@@ -116,10 +119,13 @@ export const PostRepliesDiv = styled.div`
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
 `;
 
-export const PostRepliesInput = styled.input`
+export const PostRepliesInput = styled.textarea`
   width: 85%;
-  height: 88%;
+  height: 70%;
   border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
 `;
 
 export const Images = styled.img<StyleType>`
@@ -167,7 +173,7 @@ export const ReplyCreatedAt = styled.div`
   margin-top: 11%;
 `;
 
-export const ReplyValueInput = styled.input`
+export const ReplyValueInput = styled.textarea`
   width: 22vw;
   height: 90%;
   display: flex;
@@ -175,6 +181,10 @@ export const ReplyValueInput = styled.input`
   justify-content: center;
   align-items: center;
   border: none;
+  font-size: 15px;
+  outline: none;
+  resize: none;
+  overflow: hidden;
 `;
 
 export const EditDeleteBtnDiv = styled.div`
@@ -192,6 +202,7 @@ export const EditBtn = styled.div`
   width: 2.5vw;
   font-size: 15px;
   color: #2d37ff;
+  cursor: pointer;
 `;
 
 export const DeleteBtn = styled.div`
@@ -200,6 +211,7 @@ export const DeleteBtn = styled.div`
   justify-content: flex-end;
   font-size: 15px;
   color: #ff1414;
+  cursor: pointer;
 `;
 
 export const CommentCreated = styled.div`

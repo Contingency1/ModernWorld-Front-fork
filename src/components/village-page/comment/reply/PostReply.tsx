@@ -12,10 +12,6 @@ export const PostReply = () => {
   const [refresh, setRefresh] = useAtom(RefreshReplyAtom);
   const commentNo = useAtomValue(CommentNumberAtom);
 
-  const commentEventTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserReplyValue(event.target.value);
-  };
-
   const postReply = async () => {
     const response = await REPLY.postReplies(commentNo, userReplyValue);
     setRefresh(!refresh);
@@ -25,8 +21,10 @@ export const PostReply = () => {
   return (
     <S.PostRepliesDiv>
       <S.PostRepliesInput
-        placeholder="댓글작성하기"
-        onChange={commentEventTarget}></S.PostRepliesInput>
+        placeholder="댓글 작성하기"
+        onChange={(event) =>
+          setUserReplyValue(event.target.value)
+        }></S.PostRepliesInput>
       <S.Images
         width="30px"
         height="30px"

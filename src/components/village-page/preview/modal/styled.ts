@@ -14,21 +14,22 @@ export const RootDiv = styled.div`
 export const ModalRootDiv = styled.div`
   width: 330px;
   height: 500px;
-  background-color: #d9d9d9b3;
+  background-color: #ffffffbd;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 30px;
   position: relative;
-  margin-left: 4%;
+  margin-left: 2%;
   margin-top: 10%;
   position: absolute;
   z-index: 3;
+  box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.3);
 `;
 
 export const TitleDiv = styled.div`
   width: 96px;
-  font-size: 32px;
+  font-size: 24px;
   margin-top: 5vh;
   color: #00000080;
 `;
@@ -49,11 +50,12 @@ export const LikeListRootDiv = styled.div`
   align-items: center;
   margin-top: 3%;
   overflow-y: auto;
+  margin-bottom: 5%;
 `;
 
 export const ListRootDiv = styled.div`
   width: 90%;
-  padding: 10% 0px;
+  padding: 9% 0px;
   border-radius: 20px;
   background-color: #ffffff;
   margin-top: 4%;
@@ -74,4 +76,5 @@ export const CommentDiv = styled.div`
   display: flex;
   align-items: center;
   margin-left: 10%;
+  font-size: 16px;
 `;

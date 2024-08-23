@@ -66,12 +66,6 @@ export const ReplyModalBody = () => {
     }
   };
 
-  const replyEventTargetHandler = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setReplyEventTarget(event.target.value);
-  };
-
   return (
     <>
       {repliesArray.map(({ content, no, createdAt, user }) => (
@@ -87,7 +81,9 @@ export const ReplyModalBody = () => {
           ) : (
             <S.ReplyValueInput
               defaultValue={content}
-              onChange={replyEventTargetHandler}></S.ReplyValueInput>
+              onChange={(e) =>
+                setReplyEventTarget(e.target.value)
+              }></S.ReplyValueInput>
           )}
           <S.EditBtn
             onClick={() => {
