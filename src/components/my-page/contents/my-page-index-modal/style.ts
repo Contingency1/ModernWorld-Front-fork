@@ -223,7 +223,9 @@ export const Hr = styled.hr<StyleType>`
   width: 9.7vw;
   background-color: #6e6e6e;
   margin: ${(props) =>
-    props.$margin === 'receiver' ? '-1vw 0 1.5vw 4vw' : '-1vw 0 1.5vw 16.2vw'};
+    props.$margin === 'receiverNo'
+      ? '-1vw 0 1.5vw 4vw'
+      : '-1vw 0 1.5vw 16.2vw'};
   opacity: 0.7;
   border-radius: 1px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
