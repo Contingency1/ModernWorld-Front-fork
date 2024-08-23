@@ -77,7 +77,7 @@ export default function LikeModal() {
                             : item?.receiver?.image
                         }
                         width="3vw"
-                        $margin="0 0 0 1.1vw"
+                        $margin="0 0 0 1vw"
                         $border="2px solid #fff"
                       />
                       <S.Img

@@ -182,7 +182,7 @@ export const LikeListSection = styled.div`
 
 /** 좋아요 리스트 하나의 요소 콘테이너 */
 export const LikeListContainer = styled.div<StyleType>`
-  width: 26vw;
+  width: 25vw;
   margin: 0.5vw 0;
   display: flex;
   justify-content: flex-start;
@@ -197,16 +197,13 @@ export const LikeListContainer = styled.div<StyleType>`
 
 /** 좋아요 리스트 방 보러가기 버튼 UI */
 export const GoToRoomButton = styled.div`
-  position: fixed;
   width: 5vw;
   height: 4vh;
-  flex-grow: 1;
-  max-width: 5vw;
-  min-width: 5vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 19.6vw;
+  margin-left: auto;
+  margin-right: 1vw;
   background-color: #fff;
   border: 3px solid #c9d7dd;
   border-radius: 10px;
