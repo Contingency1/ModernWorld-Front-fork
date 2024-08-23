@@ -5,6 +5,7 @@ import * as S from '@/components/village-page/comment/reply/styled';
 import { RefreshReplyAtom } from '@/states/reply';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
+import { IMAGE } from '@/utils/image';
 
 export const PostReply = () => {
   const [userReplyValue, setUserReplyValue] = useState('');
@@ -22,13 +23,17 @@ export const PostReply = () => {
 
   return (
     <S.PostRepliesDiv>
-      <S.PostRepliesInput onChange={commentEventTarget}></S.PostRepliesInput>
-      <div
+      <S.PostRepliesInput
+        placeholder="댓글작성하기"
+        onChange={commentEventTarget}></S.PostRepliesInput>
+      <S.Images
+        width="30px"
+        height="30px"
+        src={IMAGE.pencil}
+        $marginLeft="5%"
         onClick={() => {
           postReply();
-        }}>
-        작성
-      </div>
+        }}></S.Images>
     </S.PostRepliesDiv>
   );
 };
