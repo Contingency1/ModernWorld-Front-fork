@@ -15,8 +15,8 @@ export default function RadioSort() {
   const clearPage = useSetAtom(currentPageAtom);
 
   return (
-    <div style={{ marginTop: '50px' }}>
-      {SortArray.map((sortName, index) => (
+    <div style={{ marginTop: '5vh' }}>
+      {SortArray.map((sortName) => (
         <S.SortCheckDiv
           key={sortName.name}
           onClick={() => {

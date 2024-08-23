@@ -3,10 +3,8 @@
 import * as S from '@/components/village-page/styled';
 import { currentPageAtom, searchValue } from '@/states/village';
 import { IMAGE } from '@/utils/image';
-import { useDebounce } from '@uidotdev/usehooks';
-import { useAtom, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import Image from 'next/image';
-import { useEffect } from 'react';
 
 interface SearchBox {
   inputColor: string;

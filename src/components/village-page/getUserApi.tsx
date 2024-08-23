@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as S from '@/components/village-page/styled';
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { VILLAGE } from '@/app/api/village';
@@ -49,14 +49,15 @@ export default function GetUserApi(props: { animal: string }) {
   return (
     <>
       {villageUsersArray.map((e: VillageData) => (
-        <S.UserBox
-          key={e.nickname}
-          onClick={() => route.push(`/previewVillageUsers/${e.no}`)}>
-          <S.UserCharacter>
+        <S.UserBox>
+          <S.UserCharacter
+            key={e.nickname}
+            onClick={() => route.push(`/previewVillageUsers/${e.no}`)}>
             <S.UserCharacterImgDiv>
               <Image
                 fill
                 alt="유저 캐릭터 이미지"
+                sizes="100vw"
                 src={e.characterLocker[0]?.character.image}
               />
             </S.UserCharacterImgDiv>
@@ -64,7 +65,7 @@ export default function GetUserApi(props: { animal: string }) {
           <S.ShowUserNickname>{e.nickname}</S.ShowUserNickname>
           <S.ShowUserHeartDiv>
             <S.UserHeart>
-              <img src={IMAGE.heart} />
+              <Image fill alt={'하트'} src={IMAGE.heart} sizes="100vw" />
             </S.UserHeart>
             {e.legend?.likeCount} / point:{e.accumulationPoint}
           </S.ShowUserHeartDiv>

@@ -9,12 +9,12 @@ export const BackgroundDisplay = styled.div<StyleType>`
   background-color: ${(props) => props.color};
 `;
 
-export const ExitButton = styled.img`
+export const ExitButton = styled.div`
   position: absolute;
   top: 18%;
   right: 6%;
-  width: 80px;
-  height: 80px;
+  width: 5vw;
+  height: 5vw;
   cursor: pointer;
 `;
 
@@ -83,8 +83,8 @@ export const LeftSection = styled.div`
 
 export const LeftArrow = styled.div`
   position: relative;
-  width: 75px;
-  height: 75px;
+  width: 5vw;
+  height: 5vw;
   cursor: pointer;
 `;
 /**
@@ -107,8 +107,8 @@ export const GreyBox = styled.div`
  */
 export const RightArrow = styled.div`
   position: relative;
-  width: 75px;
-  height: 75px;
+  width: 5vw;
+  height: 5vw;
   margin-left: 10%;
   cursor: pointer;
 `;
@@ -118,7 +118,7 @@ export const RightArrow = styled.div`
  */
 export const UserBox = styled.div`
   width: 65%;
-  height: 65%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,26 +143,25 @@ export const ShowUserHeartDiv = styled.div`
 `;
 
 /**
- * 유저 박스 안에 들어있는 캐릭터 사진
+ * 유저의 캐릭터를 담는 div
  */
 export const UserCharacter = styled.div`
   margin-top: 2%;
   text-align: center;
-  width: 95%;
-  height: 95%;
+  width: 105%;
+  height: 105%;
   border-radius: 20px;
   background-color: #ffffff;
   box-shadow: inset 0px 1.5px 1.5px 1px #868e96;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 `;
 
 export const UserCharacterImgDiv = styled.div`
   width: 70%;
-  height: 70%;
-  margin-top: 20%;
-  position: fixed;
+  height: 80%;
+  position: relative;
 `;
 /**
  *
@@ -185,10 +184,9 @@ export const UserName = styled.div`
  * 유저 하트 수 표시해주는 이미지 크기 조정
  */
 export const UserHeart = styled.div`
-  img {
-    width: 10px;
-    height: 10px;
-  }
+  position: relative;
+  width: 10px;
+  height: 10px;
 `;
 
 export const SortCheckDiv = styled.div`
@@ -240,14 +238,15 @@ export const Outline = styled.div`
   justify-content: center;
 `;
 
-export const ChoiceImg = styled.img<StyleType>`
+export const ChoiceImg = styled.div<StyleType>`
+  position: relative;
   width: ${(props) => props.width};
   height: 165px;
 `;
 
 export const BackgroundArrowCircle = styled.div<StyleType>`
-  width: 100px;
-  height: 100px;
+  width: 7vw;
+  height: 7vw;
   border-radius: 50%;
   box-shadow: 1.5px 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.3);
   background-color: #e5e5e5;
