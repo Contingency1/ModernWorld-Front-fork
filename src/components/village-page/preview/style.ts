@@ -69,11 +69,12 @@ export const MenuButtonDiv = styled.div<StyleType>`
   }
 `;
 
-export const ImgStyle = styled.img<StyleType>`
+export const ImgStyle = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin-left: ${(props) => props.$marginLeft};
   margin-right: ${(props) => props.$marginRight};
   cursor: pointer;
   justify-self: center;
+  position: relative;
 `;

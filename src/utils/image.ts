@@ -18,4 +18,6 @@ export const IMAGE = {
     'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addComment.png',
   remove: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png',
   trashBox: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png',
+  addFriend:
+    'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addFriend.png',
 };
