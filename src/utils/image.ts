@@ -1,23 +1,14 @@
 export const IMAGE = {
-  heart:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/heartPicture.png',
-  rightArrow:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png',
-  leftArrow:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png',
-  magnifier:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EB%8F%8B%EB%B3%B4%EA%B8%B0',
-  exit: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/exit.png',
-  catVillageLogo:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/KakaoTalk_20240509_151108128.png',
-  dogVillageLogo:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EA%B0%95%EC%95%84%EC%A7%80+%EB%A7%88%EC%9D%84.png',
-  pencil:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/%EC%97%B0%ED%95%84.png',
-  comment:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addComment.png',
-  remove: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png',
-  trashBox: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png',
-  addFriend:
-    'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/previewpage/addFriend.png',
+  heart: `${process.env.NEXT_PUBLIC_S3}/page/heartPicture.png`,
+  rightArrow: `${process.env.NEXT_PUBLIC_S3}/items/ArrowRight.png`,
+  leftArrow: `${process.env.NEXT_PUBLIC_S3}/items/ArrowLeft.png`,
+  magnifier: `${process.env.NEXT_PUBLIC_S3}/items/%EB%8F%8B%EB%B3%B4%EA%B8%B0`,
+  exit: `${process.env.NEXT_PUBLIC_S3}/page/exit.png`,
+  catVillageLogo: `${process.env.NEXT_PUBLIC_S3}/items/KakaoTalk_20240509_151108128.png`,
+  dogVillageLogo: `${process.env.NEXT_PUBLIC_S3}/items/%EA%B0%95%EC%95%84%EC%A7%80+%EB%A7%88%EC%9D%84.png`,
+  pencil: `${process.env.NEXT_PUBLIC_S3}/page/%EC%97%B0%ED%95%84.png`,
+  comment: `${process.env.NEXT_PUBLIC_S3}/page/previewpage/addComment.png`,
+  remove: `${process.env.NEXT_PUBLIC_S3}/page/remove.png`,
+  trashBox: `${process.env.NEXT_PUBLIC_S3}/page/trash.png`,
+  addFriend: `${process.env.NEXT_PUBLIC_S3}/page/previewpage/addFriend.png`,
 };

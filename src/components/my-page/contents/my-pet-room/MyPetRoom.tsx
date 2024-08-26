@@ -2,16 +2,21 @@
 
 import { MyRoom } from '@/components/my-room/MyRoom';
 import * as S from './style';
+import { useEffect } from 'react';
 
 export default function MyPetRoom() {
-  const getUserNo = () => {
-    if (typeof window !== undefined) {
-      const userNo = Number(localStorage.getItem('userNo'));
-      return userNo;
-    }
-  };
+  let userNo;
+  useEffect(() => {
+    const getUserNo = () => {
+      if (typeof window !== undefined) {
+        const userNo = Number(localStorage.getItem('userNo'));
+        return userNo;
+      }
+    };
 
-  const userNo = getUserNo() as number;
+    userNo = getUserNo() as number;
+  }, []);
+
   return (
     <>
       <S.MyPetRoomBody>
