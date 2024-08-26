@@ -49,6 +49,7 @@ export default function ShopItemBox() {
     } else {
       getCharacter(character);
     }
+    setIsModalOpen(false);
   }, [selectItemType, theme, character]);
 
   return (

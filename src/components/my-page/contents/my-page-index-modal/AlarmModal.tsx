@@ -50,7 +50,7 @@ export default function AlarmModal() {
             {alarmData && alarmData.length !== 0 ? (
               alarmData.map((item, index) => (
                 <AlarmList
-                  key={item.no} // 고유한 key 사용
+                  key={item.no}
                   color={index % 2 === 0 ? '#fff' : '#EFEFEF'}
                   data={item}
                 />
