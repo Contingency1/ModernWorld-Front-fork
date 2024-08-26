@@ -72,7 +72,7 @@ export const ReplyModalBody = () => {
   return (
     <>
       {repliesArray.map(({ content, no, createdAt, user }) => (
-        <S.RepliesRootDiv>
+        <S.RepliesRootDiv key={no}>
           <S.Images src={IMAGE.comment} width="30px" height="30px"></S.Images>
           <S.ReplyNickname>
             {user.nickname}
