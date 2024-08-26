@@ -7,6 +7,7 @@ import { CommentNumberAtom, ModalStateAtom } from '@/states/reply';
 import { UserSelectedAtom } from '@/states/village';
 import { IMAGE } from '@/utils/image';
 import { useAtom, useSetAtom } from 'jotai';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export const ShowCommentList = (props: { userNo: number }) => {
@@ -94,52 +95,63 @@ export const ShowCommentList = (props: { userNo: number }) => {
               )}
             </S.CommentNicknameDiv>
             <S.ReplyDiv>
-              <S.Images
-                src={IMAGE.comment}
+              <S.ImageDiv
                 width="1.8vw"
                 height="1.8vw"
                 $marginLeft="1vw"
                 onClick={() => {
                   modalState(true);
                   commentNo(no);
-                }}></S.Images>
+                }}>
+                <Image
+                  src={IMAGE.comment}
+                  fill
+                  sizes={'(max-width : 34px) 100vw'}
+                  alt={'대댓글 페이지 이동'}
+                />
+              </S.ImageDiv>
               <S.ReplyCountDiv>{_count.reply}</S.ReplyCountDiv>
             </S.ReplyDiv>
-            {/* <S.EditButton
-              onClick={() => {
-                editComment(no, editCommentValue);
-              }}
-              $pointerClick={!editCommentState || no === editCommentNo}>
-              {no === editCommentNo ? '완료' : '수정'}
-            </S.EditButton> */}
             <S.CommentDateDiv>
               {createdAt ? createdAt.match(regex)?.[1] : null}
               <> </>
               {createdAt ? createdAt.match(regex)?.[2] : null}
             </S.CommentDateDiv>
-            <S.Images
-              src={IMAGE.trashBox}
+            <S.ImageDiv
               width="1.8vw"
               height="1.8vw"
               $marginRight="1vw"
               onClick={() => {
                 deleteComments(no);
-              }}></S.Images>
+              }}>
+              <Image
+                src={IMAGE.trashBox}
+                fill
+                sizes={'(max-width : 34px) 100vw'}
+                alt={'댓글 삭제'}
+              />
+            </S.ImageDiv>
           </S.CommentRootDiv>
         ),
       )}
       <S.PageNationDiv>
-        <S.Images
-          src={IMAGE.leftArrow}
-          width="1vw"
-          height="1vw"
-          onClick={() => prevPage()}></S.Images>
+        <S.ImageDiv width="1vw" height="1vw" onClick={() => prevPage()}>
+          <Image
+            src={IMAGE.leftArrow}
+            fill
+            sizes={'(max-width : 19px) 100vw'}
+            alt={'이전 댓글 목록 보기'}
+          />
+        </S.ImageDiv>
         {currentPage} / {totalPage}
-        <S.Images
-          src={IMAGE.rightArrow}
-          width="1vw"
-          height="1vw"
-          onClick={() => nextPage()}></S.Images>
+        <S.ImageDiv width="1vw" height="1vw" onClick={() => nextPage()}>
+          <Image
+            src={IMAGE.rightArrow}
+            fill
+            sizes={'(max-width : 19px) 100vw'}
+            alt={'다음 댓글 목록 보기'}
+          />
+        </S.ImageDiv>
       </S.PageNationDiv>
     </>
   );
