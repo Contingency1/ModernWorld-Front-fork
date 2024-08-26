@@ -37,7 +37,7 @@ export const Pagenation = (props: { animal: string }) => {
               alt="왼쪽 화살표"
               fill
               src={IMAGE.leftArrow}
-              sizes="100vw"></Image>
+              sizes="(max-width:75px) 100vw"></Image>
           </S.LeftArrow>
         </S.BackgroundArrowCircle>
         <S.PagesDiv>{`${pages.page} / ${pages.totalPage}`}</S.PagesDiv>
@@ -52,7 +52,7 @@ export const Pagenation = (props: { animal: string }) => {
               alt="오른쪽 화살표"
               fill
               src={IMAGE.rightArrow}
-              sizes="100vw"></Image>
+              sizes="(max-width:75px) 100vw"></Image>
           </S.RightArrow>
         </S.BackgroundArrowCircle>
         <RadioSort></RadioSort>

@@ -33,13 +33,12 @@ export const ReplyModalHeader = (props: { userId: number }) => {
   const [refresh, setRefresh] = useState(false);
   const [refreshComment, setRefreshComment] = useAtom(commentRefreshAtom);
 
-  const getComment = async () => {
-    const response = await COMMENT.getSingleComment(commentNo);
-    setUserComment(response);
-    return;
-  };
-
   useEffect(() => {
+    const getComment = async () => {
+      const response = await COMMENT.getSingleComment(commentNo);
+      setUserComment(response);
+      return;
+    };
     getComment();
   }, [refresh]);
 
