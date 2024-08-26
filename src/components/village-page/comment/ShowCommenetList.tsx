@@ -77,11 +77,6 @@ export const ShowCommentList = (props: { userNo: number }) => {
     setEditCommentValue(e.target.value);
   };
 
-  const getUserNo = () => {
-    const userNo = localStorage.getItem('userNo');
-    return userNo;
-  };
-
   return (
     <>
       {commentList.map(

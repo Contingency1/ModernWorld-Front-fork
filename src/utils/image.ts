@@ -10,4 +10,5 @@ export const IMAGE = {
   comment: `${process.env.NEXT_PUBLIC_S3}/page/previewpage/addComment.png`,
   remove: `${process.env.NEXT_PUBLIC_S3}/page/remove.png`,
   trashBox: `${process.env.NEXT_PUBLIC_S3}/page/trash.png`,
+  addFriend: `${process.env.NEXT_PUBLIC_S3}/page/previewpage/addFriend.png`,
 };
