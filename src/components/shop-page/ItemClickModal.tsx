@@ -1,4 +1,3 @@
-import { IMAGE } from '@/utils/image';
 import * as S from './style';
 import { useSetAtom } from 'jotai';
 import { isModalOpenAtom } from '@/states/shopAtoms';
