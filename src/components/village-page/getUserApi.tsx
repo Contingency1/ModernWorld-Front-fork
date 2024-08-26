@@ -30,44 +30,50 @@ export default function GetUserApi(props: { animal: string }) {
   const setPages = useSetAtom(PagesAtom);
   const debounceSearchValue = useDebounce(keyword, 1000);
 
-  async function getUser() {
-    const response = await VILLAGE.getVillageUser({
-      page: currentPage,
-      take: 8,
-      animal: props.animal,
-      orderByField: sortState,
-      nickname: debounceSearchValue,
-    });
-    setVillageUsersArary(response.data);
-    setPages({ page: response.meta.page, totalPage: response.meta.totalPage });
-  }
-
   useEffect(() => {
+    async function getUser() {
+      const response = await VILLAGE.getVillageUser({
+        page: currentPage,
+        take: 8,
+        animal: props.animal,
+        orderByField: sortState,
+        nickname: debounceSearchValue,
+      });
+      setVillageUsersArary(response.data);
+      setPages({
+        page: response.meta.page,
+        totalPage: response.meta.totalPage,
+      });
+    }
     getUser();
   }, [sortState, debounceSearchValue, currentPage]);
 
   return (
     <>
-      {villageUsersArray.map((e: VillageData) => (
-        <S.UserBox>
+      {villageUsersArray.map((userInfo: VillageData) => (
+        <S.UserBox key={userInfo.nickname}>
           <S.UserCharacter
-            key={e.nickname}
-            onClick={() => route.push(`/previewVillageUsers/${e.no}`)}>
+            onClick={() => route.push(`/previewVillageUsers/${userInfo.no}`)}>
             <S.UserCharacterImgDiv>
               <Image
                 fill
                 alt="유저 캐릭터 이미지"
-                sizes="100vw"
-                src={e.characterLocker[0]?.character.image}
+                sizes="(max-width:154px) 100vw"
+                src={userInfo.characterLocker[0]?.character.image}
               />
             </S.UserCharacterImgDiv>
           </S.UserCharacter>
-          <S.ShowUserNickname>{e.nickname}</S.ShowUserNickname>
+          <S.ShowUserNickname>{userInfo.nickname}</S.ShowUserNickname>
           <S.ShowUserHeartDiv>
             <S.UserHeart>
-              <Image fill alt={'하트'} src={IMAGE.heart} sizes="100vw" />
+              <Image
+                fill
+                alt={'하트'}
+                src={IMAGE.heart}
+                sizes="(max-width:10px) 100vw"
+              />
             </S.UserHeart>
-            {e.legend?.likeCount} / point:{e.accumulationPoint}
+            {userInfo.legend?.likeCount} / point:{userInfo.accumulationPoint}
           </S.ShowUserHeartDiv>
         </S.UserBox>
       ))}

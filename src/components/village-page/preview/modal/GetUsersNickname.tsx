@@ -11,12 +11,12 @@ const GetUsersNickname = (props: { userNo: number }) => {
   const [heartLegendList, setHeartLegendList] = useState<userHeartLegendType[]>(
     [],
   );
-  const getUserHeartList = async () => {
-    const response = await LEGENDS.getLikeLegends(props.userNo);
-    setHeartLegendList(response.data);
-  };
 
   useEffect(() => {
+    const getUserHeartList = async () => {
+      const response = await LEGENDS.getLikeLegends(props.userNo);
+      setHeartLegendList(response.data);
+    };
     getUserHeartList();
   }, []);
   return (

@@ -22,7 +22,12 @@ export default function SearchBox(props: SearchBox) {
   return (
     <S.SearchDiv>
       <div style={{ width: '10%', height: '100%', position: 'relative' }}>
-        <Image fill alt={'검색 돋보기'} src={IMAGE.magnifier} />
+        <Image
+          sizes="(max-width:'100px') 100vw"
+          fill
+          alt={'검색 돋보기'}
+          src={IMAGE.magnifier}
+        />
       </div>
       <S.SearchInput
         placeholder="닉네임으로 검색"

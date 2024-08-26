@@ -19,7 +19,8 @@ export default function Village(props: { animal: string }) {
           }
           alt={'마을 로고'}
           fill
-          sizes="100vw"
+          sizes="(max-width:800px) 100vw"
+          priority
         />
       </S.Title>
       <Link href="/my-page">
@@ -28,7 +29,7 @@ export default function Village(props: { animal: string }) {
             src={IMAGE.exit}
             alt={'마이페이지로 돌아가기'}
             fill
-            sizes="100vw"></Image>
+            sizes="(max-width:800px) 100vw"></Image>
         </S.ExitButton>
       </Link>
       <S.TheBiggestBox
