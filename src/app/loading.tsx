@@ -8,7 +8,6 @@ const Loading = () => {
 
   useEffect(() => {
     try {
-      // bouncy.register();
     } catch (error) {
       console.error('Error registering bouncy:', error);
     }
@@ -26,7 +25,6 @@ const Loading = () => {
         display: 'grid',
         placeContent: 'center',
       }}>
-      {/* <l-bouncy size="45" speed="1.75" color="black"></l-bouncy> */}
       로딩중...
     </main>
   );
