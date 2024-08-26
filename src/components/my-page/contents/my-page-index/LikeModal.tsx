@@ -10,7 +10,14 @@ import { useRouter } from 'next/navigation';
 import { IMAGE } from '@/utils/image';
 
 export default function LikeModal() {
-  const userNo = Number(localStorage.getItem('userNo'));
+  const getUserNo = () => {
+    if (typeof window !== undefined) {
+      const userNo = Number(localStorage.getItem('userNo'));
+      return userNo;
+    }
+  };
+
+  const userNo = getUserNo() as number;
   const router = useRouter();
   const [isLikeModal, setIsLikeModal] = useAtom(isLikeModalAtom);
   const [viewType, setViewType] = useState<'receiverNo' | 'senderNo'>(

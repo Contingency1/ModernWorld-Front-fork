@@ -38,19 +38,20 @@ const RecordComponent = () => {
   const [computerHandRecord, setComputerHandRecord] = useState([]);
   const [userHandRecord, setUserHandRecord] = useState([]);
   const [record, setRecord] = useState([]);
-  const [recordAtom111] = useAtom(RecordAtom);
   const refresh = useAtomValue(RefreshResultAtom);
 
   const getUserNo = () => {
-    const userNo = localStorage.getItem('userNo');
-    return Number(userNo);
+    if (typeof window !== undefined) {
+      const userNo = localStorage.getItem('userNo');
+      return Number(userNo);
+    }
   };
 
   useEffect(() => {
     const getUserRecord = async () => {
       if (Number(getTime().UTChours) > 15) {
         const response = await GAME.GetUsersLecord(
-          getUserNo(),
+          getUserNo() as number,
           `${getTime().year}-${Number(date) - 1}`,
         );
         setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
@@ -59,7 +60,7 @@ const RecordComponent = () => {
         setUserRecord(response);
       } else {
         const response = await GAME.GetUsersLecord(
-          getUserNo(),
+          getUserNo() as number,
           `${getTime().year}-${date}`,
         );
         setComputerHandRecord(response.map((hand: any) => hand.computerChoice));

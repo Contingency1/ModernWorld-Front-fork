@@ -4,7 +4,14 @@ import { MyRoom } from '@/components/my-room/MyRoom';
 import * as S from './style';
 
 export default function MyPetRoom() {
-  const userNo = Number(localStorage.getItem('userNo'));
+  const getUserNo = () => {
+    if (typeof window !== undefined) {
+      const userNo = Number(localStorage.getItem('userNo'));
+      return userNo;
+    }
+  };
+
+  const userNo = getUserNo() as number;
   return (
     <>
       <S.MyPetRoomBody>

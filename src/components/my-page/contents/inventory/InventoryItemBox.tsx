@@ -13,7 +13,6 @@ import INVENTORY from '@/app/api/inventory';
 import { InventoryItemType } from '@/types/inventory';
 
 export default function InventoryItemBox() {
-  const userNo = Number(localStorage.getItem('userNo'));
   const [statusView, setStatusView] = useState<string>('착용');
   const [theme] = useAtom<string>(themeAtom);
   const [userItem, setUserItem] = useState<any>([]);
@@ -23,6 +22,15 @@ export default function InventoryItemBox() {
     userCharacterChangeAtom,
   );
   const [selectedType] = useAtom<string>(selectedTypeAtom);
+
+  const getUserNo = () => {
+    if (typeof window !== undefined) {
+      const userNo = Number(localStorage.getItem('userNo'));
+      return userNo;
+    }
+  };
+
+  const userNo = getUserNo() as number;
 
   const getInventoryItem = async () => {
     const response = await INVENTORY.getInventoryItem(userNo, theme);

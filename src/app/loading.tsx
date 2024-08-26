@@ -1,6 +1,5 @@
 'use client';
 
-import { bouncy } from 'ldrs';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 

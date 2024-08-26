@@ -49,8 +49,10 @@ const MiddleSection = () => {
   }>();
 
   const getUserNo = () => {
-    const userNo = localStorage.getItem('userNo');
-    return Number(userNo);
+    if (typeof window !== undefined) {
+      const userNo = localStorage.getItem('userNo');
+      return Number(userNo);
+    }
   };
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const MiddleSection = () => {
       const response = await USER.getUserInfo(userNo);
       setUserInfo(response);
     };
-    getUserInfo(getUserNo());
+    getUserInfo(getUserNo() as number);
   }, [startTimer]);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const MiddleSection = () => {
 
   useEffect(() => {
     const getUserRecord = async () => {
-      const response = await GAME.GetUsersLecord(getUserNo());
+      const response = await GAME.GetUsersLecord(getUserNo() as number);
       setRecord(response);
     };
     getUserRecord();
