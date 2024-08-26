@@ -9,19 +9,19 @@ export default function MainPage() {
   const [name, setName] = useState('');
   const route = useRouter();
 
-  const getUserName = async () => {
-    const userNo = Number(localStorage.getItem('userNo'));
-    try {
-      const response = await USER.getUserInfo(userNo);
-      setName(response.nickname);
-      return;
-    } catch (err) {
-      alert('로그인이 필요합니다');
-      return route.push('/loginpage');
-    }
-  };
-
   useEffect(() => {
+    const getUserName = async () => {
+      const userNo = Number(localStorage.getItem('userNo'));
+      try {
+        const response = await USER.getUserInfo(userNo);
+        setName(response.nickname);
+        return;
+      } catch (err) {
+        alert('로그인이 필요합니다');
+        return route.push('/loginpage');
+      }
+    };
+
     getUserName();
   }, []);
 

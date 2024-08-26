@@ -71,10 +71,10 @@ const MiddleSection = () => {
           '기회를 모두 소진하였습니다 기회를 충전하러 충전 페이지로 이동하시겠씁니까?',
         )
       ) {
-        alert('그런건 없다 게이야 ㅋㅋ');
+        alert('그런건 없답니다~');
         route.push('/my-page');
       } else {
-        alert('끄지라 그럼ㅋㅋ');
+        alert('ㅋㅋㅋ');
         route.push('/my-page');
       }
     }
