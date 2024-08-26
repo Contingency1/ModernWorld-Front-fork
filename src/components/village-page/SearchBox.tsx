@@ -3,9 +3,8 @@
 import * as S from '@/components/village-page/styled';
 import { currentPageAtom, searchValue } from '@/states/village';
 import { IMAGE } from '@/utils/image';
-import { useDebounce } from '@uidotdev/usehooks';
-import { useAtom, useSetAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useSetAtom } from 'jotai';
+import Image from 'next/image';
 
 interface SearchBox {
   inputColor: string;
@@ -22,7 +21,9 @@ export default function SearchBox(props: SearchBox) {
 
   return (
     <S.SearchDiv>
-      <img src={IMAGE.magnifier} />
+      <div style={{ width: '10%', height: '100%', position: 'relative' }}>
+        <Image fill alt={'검색 돋보기'} src={IMAGE.magnifier} />
+      </div>
       <S.SearchInput
         placeholder="닉네임으로 검색"
         $inputColor={props.inputColor}

@@ -5,15 +5,15 @@ import { UserName } from './UserName';
 import { UserRoom } from './UserRoom';
 import { RedirectPrevPage } from './RedirectPrevPage';
 
-export const Comment = () => {
+export const Comment = (props: { userNo: number }) => {
   return (
     <S.CommentContainer>
       <S.RootDiv>
-        <RedirectPrevPage />
-        <UserName />
-        <UserRoom></UserRoom>
+        <RedirectPrevPage userNo={props.userNo} />
+        <UserName userNo={props.userNo} />
+        <UserRoom userNo={props.userNo}></UserRoom>
         <PostComment />
-        <ShowCommentList />
+        <ShowCommentList userNo={props.userNo} />
       </S.RootDiv>
     </S.CommentContainer>
   );

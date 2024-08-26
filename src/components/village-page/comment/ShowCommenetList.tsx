@@ -9,7 +9,7 @@ import { IMAGE } from '@/utils/image';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
-export const ShowCommentList = () => {
+export const ShowCommentList = (props: { userNo: number }) => {
   const regex = /(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/;
 
   const [commentList, setCommentList] = useState<
@@ -34,7 +34,7 @@ export const ShowCommentList = () => {
 
   const getCommentList = async () => {
     const response = await COMMENT.getComments(
-      Number(userSelected),
+      props.userNo,
       currentPage,
       3,
       'desc',

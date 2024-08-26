@@ -6,7 +6,7 @@ import Reply from '@/components/village-page/comment/reply/Reply';
 import { useAtomValue } from 'jotai';
 import { ModalStateAtom } from '@/states/reply';
 
-export default function commentPage({
+export default function CommentPage({
   params,
 }: {
   params: { userId: number };
@@ -15,7 +15,7 @@ export default function commentPage({
 
   return (
     <>
-      <Comment></Comment>
+      <Comment userNo={params.userId}></Comment>
       {modalState ? <Reply userId={params.userId}></Reply> : <></>}
     </>
   );

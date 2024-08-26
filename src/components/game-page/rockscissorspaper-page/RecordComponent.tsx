@@ -5,16 +5,18 @@ import {
   CurrentSecAtom,
   gameResultAtom,
   RecordAtom,
+  RefreshResultAtom,
   SelectHandAtom,
   ShowResultAtom,
   StartTimerAtom,
   userHandAtom,
 } from '@/states/gameAtom';
 import * as S from '../styled';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { GAME } from '@/app/api/game';
 import { getTime } from '@/utils/date';
+import { RecordType } from '@/types/game';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
@@ -23,18 +25,7 @@ const RecordComponent = () => {
   const [timer, setTimer] = useAtom(CurrentSecAtom);
   const [_, setBotHand] = useAtom(BotHandAtom);
   const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
-  const [userRecord, setUserRecord] = useState<
-    [
-      {
-        no: number;
-        userNo: number;
-        userChoice: string;
-        computerChoice: string;
-        result: string;
-        createdAt: string;
-      },
-    ]
-  >([
+  const [userRecord, setUserRecord] = useState<RecordType[]>([
     {
       no: 0,
       userNo: 0,
@@ -48,6 +39,7 @@ const RecordComponent = () => {
   const [userHandRecord, setUserHandRecord] = useState([]);
   const [record, setRecord] = useState([]);
   const [recordAtom111] = useAtom(RecordAtom);
+  const refresh = useAtomValue(RefreshResultAtom);
 
   const getUserNo = () => {
     const userNo = localStorage.getItem('userNo');
@@ -77,7 +69,7 @@ const RecordComponent = () => {
       }
     };
     getUserRecord();
-  }, [startTimer, timer]);
+  }, [startTimer, timer, refresh]);
 
   const userInputDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);

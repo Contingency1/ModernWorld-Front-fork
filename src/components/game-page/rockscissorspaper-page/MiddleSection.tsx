@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import * as S from '../styled';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import {
   gameResultAtom,
   CurrentSecAtom,
@@ -12,6 +12,7 @@ import {
   userHandAtom,
   onlyResultAtom,
   RecordAtom,
+  RefreshResultAtom,
 } from '@/states/gameAtom';
 import { GAME } from '@/app/api/game';
 import { useEffect, useState } from 'react';
@@ -37,6 +38,8 @@ const MiddleSection = () => {
   const [onlyResult, setOnlyResult] = useAtom(onlyResultAtom);
 
   const [record, setRecord] = useAtom(RecordAtom);
+
+  const [refresh, setRefresh] = useAtom(RefreshResultAtom);
 
   const [userInfo, setUserInfo] = useState<{
     image: string;
@@ -75,6 +78,7 @@ const MiddleSection = () => {
   // API 요청
   const postUsersHand = async (hand: number) => {
     const response = await GAME.PostUsersHand(hand);
+    setRefresh(!refresh);
     return setGameResult(response);
   };
 
@@ -149,11 +153,11 @@ const MiddleSection = () => {
         ) : (
           <RecordModal></RecordModal>
         )}
-        {!startTimer && !showResult ? (
+        {/* {!startTimer && !showResult ? (
           <S.ShowRecordText onClick={() => setOnlyResult(!onlyResult)}>
             전적 보기
           </S.ShowRecordText>
-        ) : null}
+        ) : null} */}
         <S.ChanceText>남은 기회 : {userInfo?.chance}/10</S.ChanceText>
         <Link href="/my-page">
           <S.ExistImg

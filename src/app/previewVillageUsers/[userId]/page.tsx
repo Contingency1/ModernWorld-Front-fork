@@ -7,7 +7,7 @@ import '@/style/globals.css';
 import { useAtom } from 'jotai';
 import { usePathname } from 'next/navigation';
 
-export default function previewVillageUsersPage() {
+export default function PreviewVillageUsersPage() {
   const pathName = usePathname().split('/')[2];
   const [_, setUserSelectedAtom] = useAtom(UserSelectedAtom);
   setUserSelectedAtom(pathName);

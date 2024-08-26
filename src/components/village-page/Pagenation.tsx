@@ -10,6 +10,7 @@ import {
   villageUsersArrayAtom,
 } from '@/states/village';
 import { IMAGE } from '@/utils/image';
+import Image from 'next/image';
 
 export const Pagenation = (props: { animal: string }) => {
   const [currentPage, setCurrentPage] = useAtom<number>(currentPageAtom);
@@ -32,7 +33,11 @@ export const Pagenation = (props: { animal: string }) => {
       <S.LeftSection>
         <S.BackgroundArrowCircle $marginTop="13vh">
           <S.LeftArrow onClick={() => PrevPage()}>
-            <img src={IMAGE.leftArrow}></img>
+            <Image
+              alt="왼쪽 화살표"
+              fill
+              src={IMAGE.leftArrow}
+              sizes="100vw"></Image>
           </S.LeftArrow>
         </S.BackgroundArrowCircle>
         <S.PagesDiv>{`${pages.page} / ${pages.totalPage}`}</S.PagesDiv>
@@ -43,7 +48,11 @@ export const Pagenation = (props: { animal: string }) => {
       <S.RightSectionDiv>
         <S.BackgroundArrowCircle $marginTop="25vh">
           <S.RightArrow onClick={() => NextPage()}>
-            <img src={IMAGE.rightArrow}></img>
+            <Image
+              alt="오른쪽 화살표"
+              fill
+              src={IMAGE.rightArrow}
+              sizes="100vw"></Image>
           </S.RightArrow>
         </S.BackgroundArrowCircle>
         <RadioSort></RadioSort>

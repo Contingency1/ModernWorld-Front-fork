@@ -15,17 +15,18 @@ export default function RadioSort() {
   const clearPage = useSetAtom(currentPageAtom);
 
   return (
-    <div style={{ marginTop: '50px' }}>
-      {SortArray.map((e) => (
+    <div style={{ marginTop: '5vh' }}>
+      {SortArray.map((sortName) => (
         <S.SortCheckDiv
+          key={sortName.name}
           onClick={() => {
-            setSortState(e.sort);
+            setSortState(sortName.sort);
             clearPage(1);
           }}>
           <S.SortCheckBox
-            key={e.sort}
-            $check={sortState === e.sort}></S.SortCheckBox>
-          <div style={{ marginLeft: '10%' }}>{e.name}</div>
+            key={sortName.name}
+            $check={sortState === sortName.sort}></S.SortCheckBox>
+          <div style={{ marginLeft: '10%' }}>{sortName.name}</div>
         </S.SortCheckDiv>
       ))}
     </div>

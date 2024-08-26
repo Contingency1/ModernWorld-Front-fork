@@ -25,3 +25,4 @@ export const ShowResultAtom = atom<boolean>(false);
 export const onlyResultAtom = atom<boolean>(false);
 export const BotHandAtom = atom('');
 export const RecordAtom = atom<any>([]);
+export const RefreshResultAtom = atom(false);
