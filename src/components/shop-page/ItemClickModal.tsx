@@ -3,31 +3,75 @@ import * as S from './style';
 import { useSetAtom } from 'jotai';
 import { isModalOpenAtom } from '@/states/shopAtoms';
 import { useEffect, useState } from 'react';
+import { ShopDataType } from '@/types/shop';
 import SHOP from '@/app/api/shop';
+import { useDebounce } from '@uidotdev/usehooks';
+import { UserSearchResult } from '@/types/user';
+import USER from '@/app/api/user';
 
-export default function ItemClickModal(props: { no: number }) {
+export default function ItemClickModal(props: {
+  data: ShopDataType;
+  type: number;
+}) {
   const setIsModal = useSetAtom(isModalOpenAtom);
-  const [userClickType, setUserClickType] = useState<'buy' | 'gift' | null>(
+  const [isGift, setIsGift] = useState(false);
+  const [inputText, setInputText] = useState('');
+  const [searchResult, setSearchResult] = useState<null | UserSearchResult>(
     null,
   );
+  const debouncedSearch = useDebounce(inputText, 1000);
 
-  // const buyItem = async (no: number) => {
-  //   await SHOP.buyItem(no);
-  // };
+  const getUser = async () => {
+    if (debouncedSearch) {
+      const response = await USER.searchUser(debouncedSearch);
+      setSearchResult(response);
+    } else {
+      setSearchResult(null);
+    }
+  };
 
-  // const buyCharacter = async (no: number) => {
-  //   await SHOP.buyCharacter(no);
-  // };
+  const buyItem = async () => {
+    await SHOP.buyItem(props.data.no);
+    setIsModal(false);
+  };
 
-  // const giftItemToUser = async (userNo: any, itemNo: number) => {
-  //   await SHOP.giftItemToUser(userNo, itemNo);
-  // };
+  const buyCharacter = async () => {
+    await SHOP.buyCharacter(props.data.no);
+  };
 
-  // useEffect(()=> {
-  //   if (userClickType === 'buy') {
+  const handleBuyClick = async () => {
+    if (props.type) {
+      buyCharacter();
+    } else {
+      buyItem();
+    }
+  };
 
-  //   }
-  // },[userClickType])
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(e.target.value);
+  };
+
+  const giftItemToUser = async (userNo: number, itemNo: number) => {
+    await SHOP.giftItemToUser(userNo, itemNo);
+  };
+
+  const getGiftRecipientText = () => {
+    if (inputText && searchResult) {
+      return searchResult?.data[0]?.nickname
+        ? `${searchResult.data[0].nickname} 님께`
+        : '해당 유저를 찾을 수 없습니다';
+    }
+    return '? 님께';
+  };
+
+  useEffect(() => {
+    if (debouncedSearch) {
+      getUser();
+    }
+    if (inputText === '') {
+      setSearchResult(null);
+    }
+  }, [debouncedSearch, inputText]);
 
   return (
     <>
@@ -41,26 +85,57 @@ export default function ItemClickModal(props: { no: number }) {
           x
         </S.Font>
         <S.ItemContainer>
-          <S.Img src={IMAGE.pencil} width="70%"></S.Img>
+          <S.Img src={props.data?.image} width="60%"></S.Img>
         </S.ItemContainer>
         <S.Font $fontSize="26px" $margin="2vw 0 1vw 0">
-          모나리자 그림 (100p)
+          {props.data?.name} ({props.data?.price}p)
         </S.Font>
-        <S.Font $fontSize="20px">모나리자에 표정이 생긴 모양이다</S.Font>
+        <S.Font $fontSize="20px">{props.data?.description}</S.Font>
         <S.DisplayDiv
           $flexDirection="row"
           $justifyContent="center"
           $alignItems="center">
-          <S.Button
-            $backColor="#FF7070"
-            onClick={() => setUserClickType('buy')}>
-            구매하기
-          </S.Button>
-          <S.Button
-            $backColor="#FFB1B1"
-            onClick={() => setUserClickType('gift')}>
-            선물하기
-          </S.Button>
+          {isGift ? (
+            <>
+              <S.GiftUiBody>
+                <S.Font
+                  position="fixed"
+                  $margin="0 0 8vw 37vw"
+                  cursor="pointer"
+                  onClick={() => setIsGift(false)}>
+                  x
+                </S.Font>
+                <S.UserNameSearchBar
+                  placeholder="선물할 유저 닉네임을 입력하세요!"
+                  onChange={(e) => handleOnChange(e)}
+                />
+                <S.DisplayDiv $flexDirection="row" $margin="1vw 0 0 0">
+                  <S.Font $fontSize="16px" color="#454545" $margin="1vw 0 0 0">
+                    {getGiftRecipientText()}
+                  </S.Font>
+                  <S.Button
+                    $backColor="#FFB1B1"
+                    $margin="0 0 0 1vw"
+                    onClick={() => {
+                      searchResult &&
+                        giftItemToUser(searchResult?.data[0].no, props.data.no);
+                    }}
+                    disabled={!searchResult?.data[0]?.no}>
+                    선물하기
+                  </S.Button>
+                </S.DisplayDiv>
+              </S.GiftUiBody>
+            </>
+          ) : (
+            <>
+              <S.Button $backColor="#FF7070" onClick={() => handleBuyClick()}>
+                구매하기
+              </S.Button>
+              <S.Button $backColor="#FFB1B1" onClick={() => setIsGift(true)}>
+                선물하기
+              </S.Button>
+            </>
+          )}
         </S.DisplayDiv>
       </S.ItemClickBackground>
     </>

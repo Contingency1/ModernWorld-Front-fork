@@ -19,9 +19,9 @@ export default function ShopItemBox() {
   const selectItemType = useAtomValue(selectItemTypeAtom);
   const theme = useAtomValue(themeTypeAtom);
   const character = useAtomValue(charactersTypeAtom);
-
   const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom);
   const [modalNo, setModalNo] = useState<number | null>(null);
+  const [modalData, setModalData] = useState<null | any>(null);
 
   const getCharacter = async (character: string) => {
     const response = await SHOP.getCharacters(character);
@@ -33,9 +33,9 @@ export default function ShopItemBox() {
     setItems(response);
   };
 
-  const handleItemClick = (no: number) => {
+  const handleItemClick = (data: ShopDataType) => {
     setIsModalOpen(true);
-    setModalNo(no);
+    setModalData(data);
   };
 
   const closeModal = () => {
@@ -53,10 +53,10 @@ export default function ShopItemBox() {
 
   return (
     <>
-      {isModalOpen && modalNo !== null && <ItemClickModal no={modalNo} />}
+      {isModalOpen && <ItemClickModal data={modalData} type={selectItemType} />}
       <S.BookMarkBox height="65vh" $backColor="#F5F0E2">
         {(selectItemType === 0 ? items : characters).map((i: ShopDataType) => (
-          <S.ItemDiv key={i.no} onClick={() => handleItemClick(i.no)}>
+          <S.ItemDiv key={i.no} onClick={() => handleItemClick(i)}>
             <S.Img img={i.image} />
           </S.ItemDiv>
         ))}
