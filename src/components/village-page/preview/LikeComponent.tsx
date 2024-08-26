@@ -31,7 +31,7 @@ const LikeComponent = ({ userNo }: { userNo: number }) => {
       setLike(response.legend.likeCount);
     }
     getLike(userNo);
-  }, [likeState]);
+  }, [likeState, userNo]);
 
   const closeModal = () => {
     setIsModal(false);
@@ -53,7 +53,7 @@ const LikeComponent = ({ userNo }: { userNo: number }) => {
             fill
             sizes="(max-width : 20px) 100vw"></Image>
         </S.ImgStyle>
-        좋아요{' '}
+        좋아요
         <div
           onClick={() => {
             setIsModal(true);

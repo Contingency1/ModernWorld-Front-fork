@@ -21,7 +21,7 @@ const GetUserCommentCount = ({ userNo }: { userNo: number }) => {
       setComment(response.meta.totalCount);
     }
     getComments(userNo);
-  }, []);
+  }, [userNo]);
 
   return (
     <>

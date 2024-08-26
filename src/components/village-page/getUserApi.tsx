@@ -30,19 +30,21 @@ export default function GetUserApi(props: { animal: string }) {
   const setPages = useSetAtom(PagesAtom);
   const debounceSearchValue = useDebounce(keyword, 1000);
 
-  async function getUser() {
-    const response = await VILLAGE.getVillageUser({
-      page: currentPage,
-      take: 8,
-      animal: props.animal,
-      orderByField: sortState,
-      nickname: debounceSearchValue,
-    });
-    setVillageUsersArary(response.data);
-    setPages({ page: response.meta.page, totalPage: response.meta.totalPage });
-  }
-
   useEffect(() => {
+    async function getUser() {
+      const response = await VILLAGE.getVillageUser({
+        page: currentPage,
+        take: 8,
+        animal: props.animal,
+        orderByField: sortState,
+        nickname: debounceSearchValue,
+      });
+      setVillageUsersArary(response.data);
+      setPages({
+        page: response.meta.page,
+        totalPage: response.meta.totalPage,
+      });
+    }
     getUser();
   }, [sortState, debounceSearchValue, currentPage]);
 
