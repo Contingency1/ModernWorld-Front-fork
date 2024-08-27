@@ -2,15 +2,15 @@
 import { useSetAtom } from 'jotai';
 import * as S from './style';
 import { isLogoutModalAtom } from '@/states/userAtoms';
-import LOGOUT from '@/app/api/logout';
 import { useRouter } from 'next/navigation';
+import AUTH from '@/app/api/auth';
 
 export default function LogoutModal(props: { characterImg: string }) {
   const setIsLogoutModal = useSetAtom(isLogoutModalAtom);
   const router = useRouter();
   const handleLogout = async () => {
     router.push('/');
-    await LOGOUT.getLogout();
+    await AUTH.getLogout();
   };
   return (
     <>

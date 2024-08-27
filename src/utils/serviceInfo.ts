@@ -9,7 +9,6 @@ export const serviceDescriptions: DescriptionType[] = [
   {
     id: 2,
     title: '회원탈퇴',
-    description:
-      '- 30일 이내에 재가입시 기존 아이디가 복구됩니다. 회원탈퇴 하러가기',
+    description: '- 30일 이내에 재가입시 기존 아이디가 복구됩니다.',
   },
 ];

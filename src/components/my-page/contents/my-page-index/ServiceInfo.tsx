@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { achievementDescriptions } from '@/utils/achievements';
 import { serviceDescriptions } from '@/utils/serviceInfo';
 import { DescriptionType } from '@/types/utils';
+import AUTH from '@/app/api/auth';
 
 export default function ServiceInfo() {
   const router = useRouter();
@@ -15,6 +16,11 @@ export default function ServiceInfo() {
   const [isAchievementDescription, setIsAchievementDescription] =
     useState(false);
   const [isServiceDescription, setIsServiceDescription] = useState(false);
+
+  const handleUserWithdrawal = async () => {
+    await AUTH.userWithdrawal();
+    router.push('/');
+  };
 
   const toggleDescription = (type: string) => {
     if (type === 'achievement') setIsAchievementDescription((prev) => !prev);
@@ -81,6 +87,14 @@ export default function ServiceInfo() {
               )}
             </div>
           ))}
+          <S.Font
+            $fontSize="14px"
+            color="#9C9C9C"
+            $margin="4vw 2.6vw 0 auto"
+            cursor="pointer"
+            onClick={() => handleUserWithdrawal()}>
+            회원탈퇴 하러가기
+          </S.Font>
         </S.ServiceInfoContainer>
       </S.UserInfoSection>
     </S.Background>
