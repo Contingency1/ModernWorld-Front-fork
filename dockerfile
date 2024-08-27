@@ -33,7 +33,9 @@ WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
 
-COPY . . 
+COPY . .
+
+COPY .env.production.sample .env.production
 
 RUN npm run build
 
@@ -56,6 +58,6 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
+ENV PORT=3000
 
 CMD ["node", "server.js"]
