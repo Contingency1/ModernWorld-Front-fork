@@ -7,16 +7,13 @@ import Image from 'next/image';
 
 export default function NewUser() {
   return (
-    <S.BackgroundColor
-      $backColor="rgb(95, 111, 82)"
-      $flexDirection="column"
-      $alignItems="center">
+    <S.BackgroundColor $flexDirection="column" $alignItems="center">
       <S.CreateCharacterText>캐릭터를 생성하세요!</S.CreateCharacterText>
       <S.InfoNewCharacter>
         <S.WarningImDiv>
           <Image
-            src={IMAGE.warning}
             fill
+            src={IMAGE.warning}
             alt={'주의'}
             sizes={'(max-width : 50px) 100vw'}></Image>
         </S.WarningImDiv>

@@ -31,7 +31,6 @@ export default function NewCharacterHook() {
 
   useEffect(() => {
     setNewUserCharacter(n1);
-    console.log(n1);
   }, [n1]);
 
   const plus = () => {
@@ -43,14 +42,14 @@ export default function NewCharacterHook() {
   };
   return (
     <>
-      <S.LeftArrow>
+      <S.Arrow $check={false}>
         <Image
           alt={'왼쪽 화살표'}
           sizes={'(max-width : 80px) 100vw'}
           fill
           src={IMAGE.leftArrow}
           onClick={minus}></Image>
-      </S.LeftArrow>
+      </S.Arrow>
       <S.FirstCharacter>
         <Image
           fill
@@ -58,14 +57,14 @@ export default function NewCharacterHook() {
           alt={'캐릭터'}
           src={animalsURLmap()[n1 - 1]}></Image>
       </S.FirstCharacter>
-      <S.RightArrow>
+      <S.Arrow $check={true}>
         <Image
           alt={'오른쪽 화살표'}
           sizes={'(max-width : 80px) 100vw'}
           fill
           src={IMAGE.rightArrow}
           onClick={plus}></Image>
-      </S.RightArrow>
+      </S.Arrow>
     </>
   );
 }

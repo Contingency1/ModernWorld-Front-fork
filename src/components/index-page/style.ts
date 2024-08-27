@@ -11,7 +11,7 @@ export const BackgroundColor = styled.div<StyleType>`
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: ${(props) => props.$backColor};
+  background-color: #5f6f52;
   flex-direction: ${(props) => props.$flexDirection};
   align-items: ${(props) => props.$alignItems};
   pointer-events: ${(props) => (!props.$check ? 'auto' : 'none')};
@@ -75,6 +75,9 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   }
 `;
 
+/**
+ * 로그인 아이콘 Image태그 div
+ */
 export const logoDiv = styled.div<StyleType>`
   position: relative;
   margin-left: ${(props) => props.$imgMarginLeft};
@@ -118,7 +121,9 @@ export const InfoNewCharacter = styled.div`
   line-height: 150%;
   margin-bottom: 1.3%;
 `;
-
+/**
+ * 주의 문구 이미지 div
+ */
 export const WarningImDiv = styled.div`
   width: 50px;
   height: 50px;
@@ -210,21 +215,11 @@ export const ShowFirstCharacterBox = styled.div<StyleType>`
 /**
  * 왼쪽 화살표 그리드 위치
  */
-export const LeftArrow = styled.div`
+export const Arrow = styled.div<StyleType>`
   width: 80px;
   height: 80px;
   position: relative;
-  grid-area: left;
-  cursor: pointer;
-`;
-/**
- * 오른쪽 화살표 그리드 위치
- */
-export const RightArrow = styled.div`
-  width: 80px;
-  height: 80px;
-  position: relative;
-  grid-area: right;
+  grid-area: ${(props) => (props.$check ? 'right' : 'left')};
   cursor: pointer;
 `;
 

@@ -30,7 +30,7 @@ export default function MainPage() {
   }, []);
 
   return (
-    <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }} $check={isUser}>
+    <S.BackgroundColor $check={isUser}>
       <S.MainLogoDiv $grid1="40%" $grid2="30%" $grid3="30%">
         <Image
           src={IMAGE.mainLogo}
