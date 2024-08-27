@@ -23,7 +23,7 @@ export const RootDiv = styled.div`
   align-items: center;
 `;
 
-export const ExistButton = styled.img`
+export const ExistButton = styled.div`
   width: 2.5vw;
   height: 2.5vw;
   position: absolute;
@@ -104,11 +104,12 @@ export const CommentSenderNicknameDiv = styled.div`
   width: 8vw;
 `;
 
-export const Images = styled.img<StyleType>`
+export const ImageDiv = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin-left: ${(props) => props.$marginLeft};
   margin-right: ${(props) => props.$marginRight};
+  position: relative;
   cursor: pointer;
 `;
 

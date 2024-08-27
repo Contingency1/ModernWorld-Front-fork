@@ -1,12 +1,17 @@
 import Link from 'next/link';
 import * as S from '@/components/village-page/comment/styled';
+import { IMAGE } from '@/utils/image';
+import Image from 'next/image';
 export const RedirectPrevPage = (props: { userNo: number }) => {
   return (
     <Link href={`/previewVillageUsers/${props.userNo}`}>
-      <S.ExistButton
-        src={
-          'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png'
-        }></S.ExistButton>
+      <S.ExistButton>
+        <Image
+          src={IMAGE.remove}
+          alt={'뒤로가기'}
+          fill
+          sizes={'max-width:48px 100vw'}></Image>
+      </S.ExistButton>
     </Link>
   );
 };
