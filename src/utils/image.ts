@@ -19,4 +19,5 @@ export const IMAGE = {
   firstDog: `${process.env.NEXT_PUBLIC_S3}/items/%EC%BA%90%EB%A6%AD%ED%84%B0%EB%AA%A8%EC%9D%8C/%EC%8B%9C%EC%9E%91%EA%B0%95%EC%95%84%EC%A7%80.svg`,
   firstCat: `${process.env.NEXT_PUBLIC_S3}/items/%EC%BA%90%EB%A6%AD%ED%84%B0%EB%AA%A8%EC%9D%8C/%EC%8B%9C%EC%9E%91%EA%B3%A0%EC%96%91%EC%9D%B4.svg`,
   warning: `${process.env.NEXT_PUBLIC_S3}/page/warning-icon.svg`,
+  cross: `${process.env.NEXT_PUBLIC_S3}/page/cross-small_4338828.svg`,
 };

@@ -30,6 +30,7 @@ export const Loading = (props: { social: string }) => {
   const setCookieToken = (key: string, value: string) => {
     try {
       document.cookie = `${key}=${encodeURIComponent(value)}`;
+      console.log(document.cookie);
     } catch (err) {
       console.log(err);
     }
@@ -48,7 +49,6 @@ export const Loading = (props: { social: string }) => {
       setUserNo(response.userNo);
       setUserAccessToken(response.userAccessToken);
       setUserRefreshToken(response.refreshToken);
-
       if (response.nickname) {
         router.push('/my-page');
       } else {

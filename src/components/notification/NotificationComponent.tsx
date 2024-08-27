@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import { usePathname, useRouter } from 'next/navigation';
 import { EventSourcePolyfill } from 'event-source-polyfill';
+import { Token } from '@/app/api/getToken';
+import { IMAGE } from '@/utils/image';
 
 const NotificationComponent = () => {
   const [eventContent, setEventContent] = useState({
@@ -12,14 +14,42 @@ const NotificationComponent = () => {
   });
   const [modalTimeOut, setModalTimeOut] = useState(false);
   const [redirect, setRedirect] = useState('/');
-  const [special, setSpecial] = useState(false);
+  const [special, setSpecial] = useState(true);
   const route = useRouter();
   const pathName = usePathname();
 
   const isSpecialPage = () => {
-    if (pathName === '/') {
-      setSpecial(true);
+    if (
+      pathName ===
+      ('/' ||
+        '/loginPage' ||
+        '/naver/auth/callback' ||
+        '/newcharacter' ||
+        '/kakao/auth/callback' ||
+        'google/auth/callback')
+    ) {
+      setSpecial(false);
     }
+  };
+
+  const firstGetRefresh = async () => {
+    try {
+      const response = await Token.refreshAccessToken(document.cookie);
+      const setLocalStorageItem = (key: string, value: string) => {
+        try {
+          localStorage.setItem(key, value);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      setLocalStorageItem('accessToken', response);
+    } catch (err) {
+      alert('토큰 재발급 실패');
+    }
+  };
+
+  const startRefreshAccessToken = () => {
+    setInterval(firstGetRefresh, 10000);
   };
 
   const accessToken = localStorage.getItem('accessToken');
@@ -90,14 +120,16 @@ const NotificationComponent = () => {
     route.push(redirect);
   };
 
+  useEffect(() => {
+    // startRefreshAccessToken();
+  }, []);
+
   return (
     <>
-      {modalTimeOut ? (
+      {modalTimeOut && special ? (
         <S.RootDiv>
           <S.CrossImage
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/cross-small_4338828.svg'
-            }
+            src={IMAGE.cross}
             onClick={() => setModalTimeOut(false)}></S.CrossImage>
           <div
             onClick={() => {

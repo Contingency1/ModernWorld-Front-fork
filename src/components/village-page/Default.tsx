@@ -1,6 +1,7 @@
 import * as S from '@/components/village-page/styled';
 import { COLOR } from '@/utils/color';
 import { IMAGE } from '@/utils/image';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
