@@ -59,25 +59,25 @@ const MiddleSection = () => {
   };
 
   useEffect(() => {
-    if (userInfo?.chance) {
-      const getUserInfo = async (userNo: number) => {
-        const response = await USER.getUserInfo(userNo);
-        setUserInfo(response);
-      };
-      getUserInfo(getUserNo() as number);
-    } else {
-      if (
-        confirm(
-          '기회를 모두 소진하였습니다 기회를 충전하러 충전 페이지로 이동하시겠씁니까?',
-        )
-      ) {
-        alert('그런건 없답니다~');
-        route.push('/my-page');
-      } else {
-        alert('ㅋㅋㅋ');
-        route.push('/my-page');
-      }
-    }
+    // if (userInfo?.chance) {
+    const getUserInfo = async (userNo: number) => {
+      const response = await USER.getUserInfo(userNo);
+      setUserInfo(response);
+    };
+    getUserInfo(getUserNo() as number);
+    // } else {
+    //   if (
+    //     confirm(
+    //       '기회를 모두 소진하였습니다 기회를 충전하러 충전 페이지로 이동하시겠씁니까?',
+    //     )
+    //   ) {
+    //     alert('그런건 없답니다~');
+    //     route.push('/my-page');
+    //   } else {
+    //     alert('ㅋㅋㅋ');
+    //     route.push('/my-page');
+    //   }
+    // }
   }, [startTimer]);
 
   useEffect(() => {
