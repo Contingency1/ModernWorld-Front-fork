@@ -3,6 +3,7 @@ import * as S from './style';
 import ALARM from '@/app/api/Alarms';
 import { useSetAtom } from 'jotai';
 import { deleteAlarmAtom } from '@/states/userAtoms';
+import { getFormattedDate } from '@/utils/date';
 
 export default function AlarmList(props: {
   color: string;
@@ -34,7 +35,7 @@ export default function AlarmList(props: {
             $fontSize="10px"
             color="#C8C8C8"
             $margin="1.8vw -6.4vw 0 0">
-            {props.data.createdAt.replace('T', ' ').slice(0, 19)}
+            {getFormattedDate(props.data.createdAt)}
           </S.Font>
         </S.AlarmListEleBox>
         <S.AlarmListEleBox

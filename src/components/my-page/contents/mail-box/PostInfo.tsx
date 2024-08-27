@@ -8,6 +8,7 @@ import {
   isSendMailModalAtom,
   sendMailDataAtom,
 } from '@/states/mailboxAtoms';
+import { getFormattedDate } from '@/utils/date';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
@@ -69,9 +70,11 @@ export default function PostInfo(props: { title: string }) {
           $margin="1vh 2vw 0 2vw"
           $textAlign="left"
           color="#767676">
-          {props.title.includes('보낸')
-            ? senderData[page]?.createdAt
-            : receiverData[page]?.createdAt}
+          {getFormattedDate(
+            props.title.includes('보낸')
+              ? senderData[page]?.createdAt
+              : receiverData[page]?.createdAt,
+          )}
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
         <S.MarginDiv $margin="-1vh 2vw 0 0" $textAlign="right">

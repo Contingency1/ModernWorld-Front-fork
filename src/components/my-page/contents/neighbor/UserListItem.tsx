@@ -5,11 +5,13 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { isNeighborSendModalAtom, pageViewTypeAtom } from '@/states/neighbor';
 import NEIGHBOR from '@/app/api/neighbor';
 import { sendMailDataAtom } from '@/states/mailboxAtoms';
+import { useRouter } from 'next/navigation';
 
 export default function UserListItem(props: any) {
   const setIsSendMailModal = useSetAtom(isNeighborSendModalAtom);
   const [sendMailModalData, setSendMailModalData] = useAtom(sendMailDataAtom);
   const pageViewType = useAtomValue(pageViewTypeAtom);
+  const router = useRouter();
 
   const handleModal = () => {
     setIsSendMailModal(true);
@@ -59,7 +61,14 @@ export default function UserListItem(props: any) {
         {pageViewType === 'list' ? (
           <>
             <S.Button onClick={handleModal}>편지 보내기</S.Button>
-            <S.Button>방 보러가기</S.Button>
+            <S.Button
+              onClick={() =>
+                router.push(
+                  `/previewVillageUsers/${props.userData.neighbor.no}`,
+                )
+              }>
+              방 보러가기
+            </S.Button>
           </>
         ) : (
           <>

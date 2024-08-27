@@ -8,6 +8,7 @@ import {
   viewSendPageAtom,
   viewReceiverPageAtom,
 } from '@/states/mailboxAtoms';
+import { getFormattedDate } from '@/utils/date';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
@@ -99,9 +100,11 @@ export default function PresentInfo(props: { title: string }) {
               : receiverData[page]?.item?.description}
           </S.FontSize>
           <S.FontSize $fontSize="12px">
-            {props.title.includes('보낸')
-              ? senderData[page]?.createdAt
-              : receiverData[page]?.createdAt}
+            {getFormattedDate(
+              props.title.includes('보낸')
+                ? senderData[page]?.createdAt
+                : receiverData[page]?.createdAt,
+            )}
           </S.FontSize>
 
           {props.title === '보낸 선물' || props.title === '보낸 편지' ? (

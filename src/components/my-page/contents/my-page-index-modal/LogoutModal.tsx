@@ -2,9 +2,16 @@
 import { useSetAtom } from 'jotai';
 import * as S from './style';
 import { isLogoutModalAtom } from '@/states/userAtoms';
+import LOGOUT from '@/app/api/logout';
+import { useRouter } from 'next/navigation';
 
 export default function LogoutModal(props: { characterImg: string }) {
   const setIsLogoutModal = useSetAtom(isLogoutModalAtom);
+  const router = useRouter();
+  const handleLogout = async () => {
+    router.push('/');
+    await LOGOUT.getLogout();
+  };
   return (
     <>
       <S.MenuModalBody $margin="0 0 0 1vw">
@@ -36,7 +43,9 @@ export default function LogoutModal(props: { characterImg: string }) {
               }}>
               아니! 절대 안 가지.
             </S.LogoutButtonUi>
-            <S.LogoutButtonUi $backColor="#EFEFEF">
+            <S.LogoutButtonUi
+              $backColor="#EFEFEF"
+              onClick={() => handleLogout()}>
               응! 다음에 다시 올게~
             </S.LogoutButtonUi>
           </S.ContentContainer>
