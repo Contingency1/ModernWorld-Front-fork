@@ -10,6 +10,7 @@ import {
   viewReceiverPageAtom,
 } from '@/states/mailboxAtoms';
 import { useEffect, useState } from 'react';
+import { IMAGE } from '@/utils/image';
 
 export default function Title(props: { title: string }) {
   const type = useAtomValue(mailBoxSelectAtom);
@@ -44,15 +45,7 @@ export default function Title(props: { title: string }) {
         )
       </S.MarginDiv>
       <S.UserInfo>
-        <img
-          src={
-            type
-              ? 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/gift-icon.png'
-              : 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mail.png'
-          }
-          alt="gift"
-          width="20vw"
-        />
+        <img src={type ? IMAGE.gift : IMAGE.mail} alt="gift" width="20vw" />
         <S.MarginDiv $margin="1vw">
           {name} 님에게{' '}
           {props.title.includes('보낸') ? '보냈습니다.' : '받았습니다.'}
