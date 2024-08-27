@@ -2,6 +2,8 @@ import NewCharacterHook from './NewUserSelectFirstCharacter';
 import NewNicknameCondition from './NewNicknameCondition';
 import { NewUserCreateNewname } from './NewUserCreateNickname';
 import * as S from './style';
+import { IMAGE } from '@/utils/image';
+import Image from 'next/image';
 
 export default function NewUser() {
   return (
@@ -11,13 +13,21 @@ export default function NewUser() {
       $alignItems="center">
       <S.CreateCharacterText>캐릭터를 생성하세요!</S.CreateCharacterText>
       <S.InfoNewCharacter>
-        <img src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/warning-icon.svg"></img>
-        <br />
-        모던월드에서 당신을 투영할 캐릭터를 생성합니다.
-        <br /> 기본 캐릭터가 마음에 들지 않는다고 해서 너무 상심하지 마세요.{' '}
-        <br />
-        상점에서 다른 캐릭터로 변경이 가능합니다. <br />
-        모쪼록 생성한 캐릭터와 행복한 시간 보내시길 바랍니다.
+        <S.WarningImDiv>
+          <Image
+            src={IMAGE.warning}
+            fill
+            alt={'주의'}
+            sizes={'(max-width : 50px) 100vw'}></Image>
+        </S.WarningImDiv>
+        <div style={{ marginTop: '30px' }}>
+          <br />
+          모던월드에서 당신을 투영할 캐릭터를 생성합니다.
+          <br /> 기본 캐릭터가 마음에 들지 않는다고 해서 너무 상심하지 마세요.{' '}
+          <br />
+          상점에서 다른 캐릭터로 변경이 가능합니다. <br />
+          모쪼록 생성한 캐릭터와 행복한 시간 보내시길 바랍니다.
+        </div>
       </S.InfoNewCharacter>
       <S.ChoiseCharacterBox>
         <S.InputNicknameBox>

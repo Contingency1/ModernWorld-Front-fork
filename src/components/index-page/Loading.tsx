@@ -45,7 +45,6 @@ export const Loading = (props: { social: string }) => {
       setLocalStorageItem('accessToken', response.accessToken);
       setCookieToken('refreshToken', response.refreshToken);
       setLocalStorageItem('userNo', response.userNo);
-      console.log(response.refreshToken);
       setUserNo(response.userNo);
       setUserAccessToken(response.userAccessToken);
       setUserRefreshToken(response.refreshToken);

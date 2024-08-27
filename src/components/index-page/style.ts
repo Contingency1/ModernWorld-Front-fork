@@ -14,6 +14,7 @@ export const BackgroundColor = styled.div<StyleType>`
   background-color: ${(props) => props.$backColor};
   flex-direction: ${(props) => props.$flexDirection};
   align-items: ${(props) => props.$alignItems};
+  pointer-events: ${(props) => (!props.$check ? 'auto' : 'none')};
 `;
 
 /**
@@ -118,6 +119,13 @@ export const InfoNewCharacter = styled.div`
   margin-bottom: 1.3%;
 `;
 
+export const WarningImDiv = styled.div`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+`;
+
 /**
  메인박스
  */
@@ -203,6 +211,9 @@ export const ShowFirstCharacterBox = styled.div<StyleType>`
  * 왼쪽 화살표 그리드 위치
  */
 export const LeftArrow = styled.div`
+  width: 80px;
+  height: 80px;
+  position: relative;
   grid-area: left;
   cursor: pointer;
 `;
@@ -210,6 +221,9 @@ export const LeftArrow = styled.div`
  * 오른쪽 화살표 그리드 위치
  */
 export const RightArrow = styled.div`
+  width: 80px;
+  height: 80px;
+  position: relative;
   grid-area: right;
   cursor: pointer;
 `;
@@ -218,11 +232,10 @@ export const RightArrow = styled.div`
  * 캐릭터 위치 크기 및 위치 조정
  */
 export const FirstCharacter = styled.div`
+  width: 180px;
+  position: relative;
+  height: 180px;
   grid-area: center;
-  img {
-    width: 180px;
-    height: 180px;
-  }
   z-index: 1;
 `;
 /**

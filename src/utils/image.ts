@@ -16,4 +16,7 @@ export const IMAGE = {
   naverLogo: `${process.env.NEXT_PUBLIC_S3}/page/%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EC%95%84%EC%9D%B4%EC%BD%98+%EB%A1%9C%EA%B3%A0+%EB%AA%A8%EC%9D%8C/n%EB%A1%9C%EA%B3%A0-removebg-preview.png`,
   kakaoLogo: `${process.env.NEXT_PUBLIC_S3}/page/%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EC%95%84%EC%9D%B4%EC%BD%98+%EB%A1%9C%EA%B3%A0+%EB%AA%A8%EC%9D%8C/%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A1%9C%EA%B3%A0-removebg-preview.png`,
   googleLogo: `${process.env.NEXT_PUBLIC_S3}/page/%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EC%95%84%EC%9D%B4%EC%BD%98+%EB%A1%9C%EA%B3%A0+%EB%AA%A8%EC%9D%8C/%EA%B5%AC%EA%B8%80%EB%A1%9C%EA%B3%A02-removebg-preview.png`,
+  firstDog: `${process.env.NEXT_PUBLIC_S3}/items/%EC%BA%90%EB%A6%AD%ED%84%B0%EB%AA%A8%EC%9D%8C/%EC%8B%9C%EC%9E%91%EA%B0%95%EC%95%84%EC%A7%80.svg`,
+  firstCat: `${process.env.NEXT_PUBLIC_S3}/items/%EC%BA%90%EB%A6%AD%ED%84%B0%EB%AA%A8%EC%9D%8C/%EC%8B%9C%EC%9E%91%EA%B3%A0%EC%96%91%EC%9D%B4.svg`,
+  warning: `${process.env.NEXT_PUBLIC_S3}/page/warning-icon.svg`,
 };
