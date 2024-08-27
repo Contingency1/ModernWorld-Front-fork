@@ -47,6 +47,7 @@ interface Props {
   opacity: string;
   $zIndex: string;
   $overFlowY: string;
+  $bottom: string;
 }
 
 export interface StyleType extends Partial<Props> {}

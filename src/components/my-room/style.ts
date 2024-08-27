@@ -120,15 +120,16 @@ export const ImageSize = styled.img<StyleType>`
   position: absolute;
   z-index: 0;
   display: ${(props) => (props.$hasError ? 'block' : 'none')};
+  bottom: ${(props) => props.$bottom};
 `;
 
 /**
  * 캐릭터 크기를 조정해주기 위한 컴포넌트입니다.
  */
-export const CharacterImage = styled.img`
+export const CharacterImage = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;
   z-index: 1000;
-  margin-bottom: 5%;
+  bottom: 5%;
 `;

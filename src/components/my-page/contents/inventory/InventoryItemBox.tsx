@@ -13,7 +13,6 @@ import INVENTORY from '@/app/api/inventory';
 import { InventoryItemType } from '@/types/inventory';
 
 export default function InventoryItemBox() {
-  const userNo = Number(localStorage.getItem('userNo'));
   const [statusView, setStatusView] = useState<string>('착용');
   const [theme] = useAtom<string>(themeAtom);
   const [userItem, setUserItem] = useState<any>([]);
@@ -24,12 +23,12 @@ export default function InventoryItemBox() {
   );
   const [selectedType] = useAtom<string>(selectedTypeAtom);
 
-  const getInventoryItem = async () => {
+  const getInventoryItem = async (userNo: number) => {
     const response = await INVENTORY.getInventoryItem(userNo, theme);
     setUserItem(response);
   };
 
-  const getInventoryCharacter = async () => {
+  const getInventoryCharacter = async (userNo: number) => {
     const response = await INVENTORY.getInventoryCharacter(
       userNo,
       characterType,
@@ -49,10 +48,19 @@ export default function InventoryItemBox() {
   };
 
   const dynamicFetch = async () => {
+    const getUserNo = () => {
+      if (typeof window !== undefined) {
+        const userNo = Number(localStorage.getItem('userNo'));
+        return userNo;
+      }
+    };
+
+    const userNo = getUserNo() as number;
+
     if (selectedType === 'objects') {
-      await getInventoryItem();
+      await getInventoryItem(userNo);
     } else {
-      await getInventoryCharacter();
+      await getInventoryCharacter(userNo);
     }
   };
 

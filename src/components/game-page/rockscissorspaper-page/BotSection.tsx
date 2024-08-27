@@ -1,6 +1,5 @@
 'use client';
 
-import { dotPulse } from 'ldrs';
 import * as S from '../styled';
 import {
   RockSicssorsPaperArray,
@@ -14,7 +13,6 @@ const BotSection = () => {
   const [bothand, setBotHand] = useAtom(BotHandAtom);
   const [startTimer] = useAtom(StartTimerAtom);
   setBotHand(gameResult.computerChoice);
-  dotPulse.register();
   return (
     <S.SectionRootDiv>
       <S.ProfileCircle>
@@ -37,9 +35,7 @@ const BotSection = () => {
           </S.IconSircle>
         ))
       ) : (
-        <S.LoadingDiv>
-          <l-dot-pulse size="43" speed="1.3" color="black"></l-dot-pulse>
-        </S.LoadingDiv>
+        <S.LoadingDiv>로딩중... </S.LoadingDiv>
       )}
     </S.SectionRootDiv>
   );

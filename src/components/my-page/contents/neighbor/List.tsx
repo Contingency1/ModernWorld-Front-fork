@@ -2,11 +2,8 @@ import { NeighborsDataType } from '@/types/neighbors';
 import Pagination from './Pagination';
 import UserListItem from './UserListItem';
 import * as S from './style';
-import { bouncy } from 'ldrs';
 
 export default function List(props: { userData: null | NeighborsDataType }) {
-  bouncy.register();
-
   return props.userData ? (
     <>
       <S.UserListSection>
@@ -27,6 +24,6 @@ export default function List(props: { userData: null | NeighborsDataType }) {
       />
     </>
   ) : (
-    <l-bouncy size="45" speed="1.75" color="black"></l-bouncy>
+    <>로딩중...</>
   );
 }

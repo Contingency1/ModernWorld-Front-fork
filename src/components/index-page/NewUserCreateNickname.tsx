@@ -20,6 +20,7 @@ export const NewUserCreateNewname = () => {
       await USER.createCharacter(newUserCharacter);
       route.push('my-page');
     } catch (err) {
+      console.error(err);
       alert('회원가입 실패');
     }
   };
