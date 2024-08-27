@@ -5,17 +5,17 @@ import { COLOR } from '@/utils/color';
 export default function LoginPage() {
   return (
     <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }}>
-      {/* <Image
+      <Image
         src={IMAGE.mainLogo}
         fill
         alt={'메인로그'}
-        sizes={'(max-width)'}></Image> */}
+        sizes={'(max-width)'}></Image>
       <S.MainLogoDiv $grid1="40%" $grid2="11%" $grid3="11%" $grid4="11%">
         <S.MainLogoText $marginTop="13%" $fontSize="500%">
           모던월드
         </S.MainLogoText>
         <S.LoginBtnLink
-          href={`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_NAVER_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/naver/auth/callback&state=test&auth_type=reauthenticate`}
+          href={`${process.env.NEXT_PUBLIC_CALLBACK_NAVER_URL}`}
           color="#03C75A"
           $textColor={COLOR.white}
           font="110%">
@@ -30,7 +30,7 @@ export default function LoginPage() {
           <div>네이버 로그인</div>
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href={` https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/kakao/auth/callback&response_type=code&prompt=login`}
+          href={`${process.env.NEXT_PUBLIC_CALLBACK_KAKAO_URL}`}
           color="#FEE500"
           $textColor={COLOR.black}
           font="110%">
@@ -49,7 +49,7 @@ export default function LoginPage() {
           <div>카카오 로그인</div>
         </S.LoginBtnLink>
         <S.LoginBtnLink
-          href={`https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_ID}&redirect_uri=${process.env.NEXT_PUBLIC_HTTPS_LOCALHOST}/google/auth/callback&scope=https://www.googleapis.com/auth/userinfo.profile&prompt=consent`}
+          href={`${process.env.NEXT_PUBLIC_CALLBACK_GOOGLE_URL}`}
           color={COLOR.white}
           $textColor={COLOR.black}
           font="110%">

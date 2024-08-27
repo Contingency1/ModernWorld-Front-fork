@@ -20,7 +20,7 @@ export const BackgroundColor = styled.div<StyleType>`
  * 배경에 있는 커다란 새싹 백그라운드 이미지
  */
 export const MainLogoDiv = styled.div<StyleType>`
-  width: 95vw;
+  width: 100vw;
   height: 100vh;
   grid-template-rows: ${(props) => props.$grid1} ${(props) => props.$grid2} ${(
       props,
