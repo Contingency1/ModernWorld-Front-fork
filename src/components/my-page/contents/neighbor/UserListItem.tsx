@@ -8,7 +8,6 @@ import { sendMailDataAtom } from '@/states/mailboxAtoms';
 import { useRouter } from 'next/navigation';
 
 export default function UserListItem(props: any) {
-  console.log(props);
   const setIsSendMailModal = useSetAtom(isNeighborSendModalAtom);
   const [sendMailModalData, setSendMailModalData] = useAtom(sendMailDataAtom);
   const pageViewType = useAtomValue(pageViewTypeAtom);
