@@ -1,7 +1,6 @@
 import * as S from '@/components/village-page/styled';
 import { COLOR } from '@/utils/color';
 import { IMAGE } from '@/utils/image';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,7 +14,8 @@ export const Default = () => {
               <Image
                 fill
                 alt={'고양이 마을 로고'}
-                sizes="100vw"
+                priority
+                sizes="(max-width : 735px) 100vw"
                 src={IMAGE.catVillageLogo}></Image>
             </S.ChoiceImg>
           </S.Outline>
@@ -27,7 +27,8 @@ export const Default = () => {
             <S.ChoiceImg width={'90%'}>
               <Image
                 fill
-                sizes="100vw"
+                sizes="(max-width : 735px) 100vw"
+                priority
                 alt={'강아지 마을 로고'}
                 src={IMAGE.dogVillageLogo}></Image>
             </S.ChoiceImg>
