@@ -4,17 +4,18 @@ import { useAtom } from 'jotai';
 import * as S from './style';
 import React, { useState, useEffect } from 'react';
 import { newUserCharacterAtom } from '@/states/newUserNickname';
+import { IMAGE } from '@/utils/image';
 
 const animalsURL = [
   {
     id: 1,
     name: 'dog',
-    url: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EC%BA%90%EB%A6%AD%ED%84%B0%EB%AA%A8%EC%9D%8C/firstdog.svg',
+    url: IMAGE.addFriend,
   },
   {
     id: 2,
     name: 'cat',
-    url: 'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/%EC%BA%90%EB%A6%AD%ED%84%B0%EB%AA%A8%EC%9D%8C/firstcat.svg',
+    url: IMAGE.comment,
   },
 ];
 
