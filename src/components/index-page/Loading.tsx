@@ -4,7 +4,6 @@ import { Token } from '@/app/api/getToken';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { bouncy } from 'ldrs';
 import { useSetAtom } from 'jotai';
 import {
   UserAccessTokenAtom,
@@ -16,7 +15,6 @@ export const Loading = (props: { social: string }) => {
   const params = useSearchParams();
   const router = useRouter();
   const code = params.get('code');
-  bouncy.register();
   const setUserNo = useSetAtom(UserNoAtom);
   const setUserAccessToken = useSetAtom(UserAccessTokenAtom);
   const setUserRefreshToken = useSetAtom(UserRefreshTokenAtom);
@@ -73,7 +71,7 @@ export const Loading = (props: { social: string }) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <l-bouncy size="45" speed="1.75" color="black"></l-bouncy>
+      로딩중..
     </div>
   );
 };

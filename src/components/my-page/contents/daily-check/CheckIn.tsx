@@ -7,7 +7,6 @@ import USER from '@/app/api/user';
 import { UserAttendanceDataType } from '@/types/user';
 import { days } from '@/utils/daysConstants';
 import { EMOJIS } from '@/utils/emojiConstants';
-import { bouncy } from 'ldrs';
 
 export default function CheckIn() {
   const [selectedEmoji, setSelectedEmoji] = useState<number | null>(null);
@@ -16,8 +15,6 @@ export default function CheckIn() {
   const [weekday, setWeekday] = useState(0);
   const [attendanceData, setAttendanceData] =
     useState<UserAttendanceDataType | null>(null);
-
-  bouncy.register();
 
   const getAttendance = async () => {
     const response = await USER.getAttendance();
@@ -102,7 +99,7 @@ export default function CheckIn() {
                 );
               })
             ) : (
-              <l-bouncy size="45" speed="1.75" color="black"></l-bouncy>
+              <>로딩중...</>
             )}
           </S.ContentSection>
           <S.MoodSelectorSection>

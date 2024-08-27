@@ -7,7 +7,7 @@ import styled from 'styled-components';
 /**
  * 배경색, 그리드 부여
  */
-export const BackgroundColor = styled.body<StyleType>`
+export const BackgroundColor = styled.div<StyleType>`
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -19,13 +19,9 @@ export const BackgroundColor = styled.body<StyleType>`
 /**
  * 배경에 있는 커다란 새싹 백그라운드 이미지
  */
-export const MainLogo = styled.div<StyleType>`
+export const MainLogoDiv = styled.div<StyleType>`
   width: 95vw;
   height: 100vh;
-  background-size: 90% 110%;
-  background-position: center;
-  background-image: url('https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mainLogo.png');
-  background-repeat: no-repeat;
   grid-template-rows: ${(props) => props.$grid1} ${(props) => props.$grid2} ${(
       props,
     ) => props.$grid3} ${(props) => props.$grid4};
@@ -48,6 +44,8 @@ export const MainLogoText = styled.div<StyleType>`
   margin-top: ${(props) => props.$marginTop};
   margin-left: ${(props) => props.$marginLeft};
   text-shadow: 4px 4px white;
+  position: relative;
+  z-index: 1;
 `;
 
 /**
@@ -67,7 +65,8 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   font-weight: bolder;
   display: flex;
   align-items: center;
-  img {
+  position: relative;
+  z-index: 1 img {
     margin-left: ${(props) => props.$imgMarginLeft};
     margin-right: ${(props) => props.$imgMarginRight};
     width: ${(props) => props.$imgWidth};
@@ -75,17 +74,22 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   }
 `;
 
+export const logoDiv = styled.div<StyleType>`
+  position: relative;
+  margin-left: ${(props) => props.$imgMarginLeft};
+  margin-right: ${(props) => props.$imgMarginRight};
+  width: ${(props) => props.$imgWidth};
+  height: ${(props) => props.$imgHeight};
+`;
+
 /**
  소셜 로그인 성공시 생성되는 접속버튼
  @params width : string, height : string
  */
 export const MainPowerBtn = styled.div<StyleType>`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(https://wang0514.s3.ap-northeast-2.amazonaws.com/page/power.png);
+  width: 80px;
+  height: 80px;
+  position: relative;
   filter: drop-shadow(5px 2px 2px grey);
 `;
 

@@ -5,7 +5,6 @@ import * as S from './style';
 import USER from '@/app/api/user';
 import { UserSearchResult } from '@/types/user';
 import { useDebounce } from '@uidotdev/usehooks';
-import { dotWave } from 'ldrs';
 import NEIGHBOR from '@/app/api/neighbor';
 
 export default function SearchBar() {
@@ -18,7 +17,6 @@ export default function SearchBar() {
     '? 님께',
   );
   const debouncedSearch = useDebounce(nickname, 2000);
-  dotWave.register();
 
   const getUser = async () => {
     if (debouncedSearch) {
@@ -45,9 +43,7 @@ export default function SearchBar() {
       setIsLoading(false);
     } else {
       setIsLoading(true);
-      setDisplayMessage(
-        <l-dot-wave size="47" speed="1" color="black"></l-dot-wave>,
-      );
+      setDisplayMessage('로딩중...');
     }
   }, [nickname]);
 

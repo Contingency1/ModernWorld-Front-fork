@@ -22,8 +22,9 @@ export const Area7_8_9 = (props: { userNo?: number }) => {
               width={useCheckItemSizeHook(8, 'width', props.userNo)}
               height={useCheckItemSizeHook(8, 'height', props.userNo)}
               src={useCheckAreaHook(8, props.userNo)}
-              $hasError={useCheckAreaHook(8, props.userNo)}></S.ImageSize>
-            <GetUserCharacter></GetUserCharacter>
+              $hasError={useCheckAreaHook(8, props.userNo)}
+              $bottom={'5%'}></S.ImageSize>
+            <GetUserCharacter userNo={Number(props.userNo)} />
           </S.ItemImageSize>
         </S.DivElement>
         <S.DivElement $marginLeft="20%" id="place_9">

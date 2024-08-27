@@ -20,6 +20,7 @@ import { RockSicssorsPaperImgArray } from '@/utils/rockScissorsPaper';
 import { RecordModal } from './RecordModal';
 import { TimerIfYouWantPlay } from './TimerIfYouWantPlay';
 import USER from '@/app/api/user';
+import { useRouter } from 'next/navigation';
 
 const MiddleSection = () => {
   // 유저의 손
@@ -48,17 +49,35 @@ const MiddleSection = () => {
     nickname: string;
   }>();
 
+  const route = useRouter();
+
   const getUserNo = () => {
-    const userNo = localStorage.getItem('userNo');
-    return Number(userNo);
+    if (typeof window !== undefined) {
+      const userNo = localStorage.getItem('userNo');
+      return Number(userNo);
+    }
   };
 
   useEffect(() => {
+    // if (userInfo?.chance) {
     const getUserInfo = async (userNo: number) => {
       const response = await USER.getUserInfo(userNo);
       setUserInfo(response);
     };
-    getUserInfo(getUserNo());
+    getUserInfo(getUserNo() as number);
+    // } else {
+    //   if (
+    //     confirm(
+    //       '기회를 모두 소진하였습니다 기회를 충전하러 충전 페이지로 이동하시겠씁니까?',
+    //     )
+    //   ) {
+    //     alert('그런건 없답니다~');
+    //     route.push('/my-page');
+    //   } else {
+    //     alert('ㅋㅋㅋ');
+    //     route.push('/my-page');
+    //   }
+    // }
   }, [startTimer]);
 
   useEffect(() => {
@@ -69,7 +88,7 @@ const MiddleSection = () => {
 
   useEffect(() => {
     const getUserRecord = async () => {
-      const response = await GAME.GetUsersLecord(getUserNo());
+      const response = await GAME.GetUsersLecord(getUserNo() as number);
       setRecord(response);
     };
     getUserRecord();

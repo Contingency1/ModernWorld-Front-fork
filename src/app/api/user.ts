@@ -73,7 +73,7 @@ const USER = {
       const result: AxiosResponse = await instance.post(
         `${USER.path}/my/nickname`,
         {
-          nickname: nickname,
+          nickname,
         },
       );
       return result;
