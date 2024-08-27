@@ -30,11 +30,15 @@ export const MailBoxSection = styled.div`
 export const ContentsView = styled.div<StyleType>`
   width: 25vw;
   display: flex;
+  align-items: ${(props) => props.$alignItems};
+  justify-content: ${(props) => props.$justifyContent};
   flex-direction: column;
   height: ${(props) => props.height};
   margin: 2vh 0;
   border-radius: 30px;
   background-color: #fff;
+  box-shadow: ${(props) =>
+    props.$boxShadow ? props.$boxShadow : '0px 4px 4px rgb(0, 0, 0, 0.1)'};
 `;
 
 /** ##님에게 ##습니다. 를 담는 div*/

@@ -68,6 +68,12 @@ export default function PresentInfo(props: { title: string }) {
     MAILBOX.updatePresentStatus(receivePresentNo, s);
   };
 
+  if (props.title.includes('보낸')) {
+    if (!senderData.length) return <></>;
+  } else if (!receiverData.length) {
+    return <></>;
+  }
+
   return (
     <>
       <S.ContentsView height="25vh">

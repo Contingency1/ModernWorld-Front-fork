@@ -56,6 +56,11 @@ export default function PostInfo(props: { title: string }) {
     }
   }, [props.title, page, senderData, receiverData, isSendMailModal]);
 
+  if (props.title.includes('보낸')) {
+    if (!senderData.length) return <></>;
+  } else if (!receiverData.length) {
+    return <></>;
+  }
   return (
     <>
       <S.ContentsView height="25vh">

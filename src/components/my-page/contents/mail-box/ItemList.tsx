@@ -7,6 +7,12 @@ export default function ItemList(props: { title: string }) {
   const senderData = useAtomValue(senderDataAtom);
   const receiverData = useAtomValue(receiverDataAtom);
 
+  if (props.title.includes('보낸')) {
+    if (!senderData.length) return <></>;
+  } else if (!receiverData.length) {
+    return <></>;
+  }
+
   return (
     <>
       <S.ContentsView height="20vh">
