@@ -35,8 +35,6 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-COPY package.json package-lock.json ./
-
 RUN npm run build
 
 #실행
@@ -45,17 +43,13 @@ FROM base AS runner
 WORKDIR /app
 
 # 실행 될지 확인 필요
-# ENV NODE_ENV=production
+ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-COPY --from=builder --chown=nextjs:nodejs /app/.env.production.local ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
