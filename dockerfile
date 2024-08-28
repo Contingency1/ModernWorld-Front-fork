@@ -35,8 +35,6 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-COPY .env .
-
 RUN npm run build
 
 #실행
