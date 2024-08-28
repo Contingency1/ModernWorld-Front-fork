@@ -16,7 +16,6 @@ import { getTime } from '@/utils/date';
 import { RecordType } from '@/types/game';
 import { IMAGE } from '@/utils/image';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
