@@ -29,6 +29,8 @@ const NotificationComponent = () => {
         'google/auth/callback')
     ) {
       setSpecial(false);
+    } else {
+      setSpecial(true);
     }
   };
 
