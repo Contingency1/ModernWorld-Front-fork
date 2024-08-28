@@ -36,7 +36,7 @@ const NotificationComponent = () => {
 
   const firstGetRefresh = async () => {
     try {
-      const response = await Token.refreshAccessToken(document.cookie);
+      const response = await Token.refreshAccessToken();
       const setLocalStorageItem = (key: string, value: string) => {
         try {
           localStorage.setItem(key, value);
@@ -44,7 +44,7 @@ const NotificationComponent = () => {
           console.log(err);
         }
       };
-      setLocalStorageItem('accessToken', response);
+      setLocalStorageItem('accessToken', response.accessToken);
     } catch (err) {
       alert('토큰 재발급 실패');
     }
@@ -77,7 +77,7 @@ const NotificationComponent = () => {
           setTimeout(() => setModalTimeOut(false), 10000);
         }
       } catch (err) {
-        console.log(err);
+        console.log(err, 1);
       }
 
       switch (eventContent.title) {
@@ -123,7 +123,7 @@ const NotificationComponent = () => {
   };
 
   useEffect(() => {
-    // startRefreshAccessToken();
+    startRefreshAccessToken();
   }, []);
 
   return (

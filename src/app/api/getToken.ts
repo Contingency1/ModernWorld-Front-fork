@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 
 const refreshInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL,
-  timeout: 4000,
+  timeout: 10000,
 });
 
 export const Token = {
@@ -23,21 +23,18 @@ export const Token = {
     }
   },
 
-  async refreshAccessToken(refreshToken: string) {
+  async refreshAccessToken() {
     try {
-      console.log(refreshToken, 1);
-      const result: AxiosResponse = await refreshInstance.get(
+      const result: AxiosResponse = await instance.get(
         `${this.auth}/new-access-token`,
         {
-          headers: {
-            Authorization: `Bearer ${refreshToken}`,
-          },
+          withCredentials: true,
         },
       );
+      console.log(result);
       return result.data;
     } catch (err) {
       const Error = err as ErrorType;
-      console.log(err);
       if (Error.response?.status === HTTP_STATUS.BAD_REQUEST) {
         alert('유효하지 않은 요청입니다');
       } else if (Error.response?.status === HTTP_STATUS.UNAUTHORIZED) {

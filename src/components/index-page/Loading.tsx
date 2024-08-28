@@ -18,14 +18,13 @@ export const Loading = (props: { social: string }) => {
     }
   };
 
-  const setCookieToken = (key: string, value: string) => {
-    try {
-      document.cookie = `${key}=${encodeURIComponent(value)}`;
-      console.log(document.cookie);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const setCookieToken = (value: string) => {
+  //   try {
+  //     document.cookie = `refreshToken=${encodeURIComponent(value)}`;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const routeNewCharacterPage = () => {
     router.push('/newcharacter');
@@ -35,7 +34,7 @@ export const Loading = (props: { social: string }) => {
     try {
       const response = await Token.getToken(code, props.social);
       setLocalStorageItem('accessToken', response.accessToken);
-      setCookieToken('refreshToken', response.refreshToken);
+      // setCookieToken(response.refreshToken);
       setLocalStorageItem('userNo', response.userNo);
       if (response.nickname) {
         router.push('/my-page');
