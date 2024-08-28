@@ -13,12 +13,15 @@ import { getTime } from '@/utils/date';
 import { RecordType } from '@/types/game';
 import { IMAGE } from '@/utils/image';
 import Image from 'next/image';
+import { add, format } from 'date-fns';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
   const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
+  let monthDay = getTime().current;
+
   const setResetUserHand = useSetAtom(userHandAtom);
-  const [userRecord, setUserRecord] = useState<RecordType[]>([
+  const [record, setRecord] = useState<RecordType[]>([
     {
       no: 0,
       userNo: 0,
@@ -42,22 +45,32 @@ const RecordComponent = () => {
       if (Number(getTime().UTChours) > 15) {
         const response = await GAME.GetUsersLecord(
           getUserNo() as number,
-          `${getTime().year}-${Number(date) - 1}`,
+          `${monthDay}`,
         );
-        setUserRecord(response);
+        setRecord(response);
       } else {
         const response = await GAME.GetUsersLecord(
           getUserNo() as number,
-          `${getTime().year}-${date}`,
+          `${monthDay}`,
         );
-        setUserRecord(response);
+        setRecord(response);
       }
     };
     getUserRecord();
-  }, [refresh, date]);
+  }, [refresh, date, monthDay]);
 
   const userInputDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
+  };
+
+  const addDay = (date: string) => {
+    monthDay = format(add(date, { days: 1 }), 'yyyy-MM-dd');
+    return monthDay;
+  };
+
+  const prevDay = (date: string) => {
+    monthDay = format(add(date, { days: -1 }), 'yyyy-MM-dd');
+    return monthDay;
   };
 
   return (
@@ -82,17 +95,22 @@ const RecordComponent = () => {
         </S.RecordHeader>
         <S.RecordBody>
           <S.BotAndUserRecordDiv>
-            <S.ArrowDiv>
+            <S.ArrowDiv
+              $pointerClick={!showResult}
+              onClick={() => {
+                prevDay(monthDay);
+                console.log(monthDay);
+              }}>
               <Image
                 fill
                 src={IMAGE.leftArrow}
                 sizes={'(max-width : 50pv) 100vw'}
-                alt={'오른쪽 화살표'}></Image>
+                alt={'왼쪽 화살표'}></Image>
             </S.ArrowDiv>
             <S.UserAndBotText>봇</S.UserAndBotText>
             <S.Line></S.Line>
             <S.RecordLegendDiv>
-              {userRecord.map(({ computerChoice }, index) => (
+              {record.map(({ computerChoice }, index) => (
                 <div key={index + 1}>
                   {computerChoice === 'Rock'
                     ? '바위'
@@ -106,7 +124,7 @@ const RecordComponent = () => {
           </S.BotAndUserRecordDiv>
           <S.ScoreDiv>
             <S.RecordLegendDiv>
-              {userRecord.map(({ result }, index) => (
+              {record.map(({ result }, index) => (
                 <S.RecordText
                   key={index}
                   color={
@@ -121,7 +139,7 @@ const RecordComponent = () => {
               ))}
             </S.RecordLegendDiv>
             <S.RecordLegendDiv>
-              {userRecord.map(({ result }, index) => (
+              {record.map(({ result }, index) => (
                 <S.RecordText
                   style={{ marginLeft: '1vw' }}
                   key={index}
@@ -133,7 +151,7 @@ const RecordComponent = () => {
           </S.ScoreDiv>
           <S.BotAndUserRecordDiv>
             <S.RecordLegendDiv>
-              {userRecord.map(({ userChoice }, index) => (
+              {record.map(({ userChoice }, index) => (
                 <div key={index + 1}>
                   {userChoice === 'Rock'
                     ? '바위'
@@ -148,12 +166,16 @@ const RecordComponent = () => {
             </S.RecordLegendDiv>
             <S.Line></S.Line>
             <S.UserAndBotText>나</S.UserAndBotText>
-            <S.ArrowDiv>
+            <S.ArrowDiv
+              $pointerClick={!showResult}
+              onClick={() => {
+                addDay(monthDay);
+              }}>
               <Image
                 fill
                 src={IMAGE.rightArrow}
                 sizes={'(max-width : 50pv) 100vw'}
-                alt={'왼쪽 화살표'}></Image>
+                alt={'오른쪽 화살표'}></Image>
             </S.ArrowDiv>
           </S.BotAndUserRecordDiv>
         </S.RecordBody>

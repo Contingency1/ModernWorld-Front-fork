@@ -334,11 +334,12 @@ export const RecordText = styled.span`
   color: ${(props) => props.color};
 `;
 
-export const ArrowDiv = styled.div`
+export const ArrowDiv = styled.div<StyleType>`
   position: relative;
   width: 2vw;
   height: 2vw;
   cursor: pointer;
+  pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
 `;
 
 export const UserAndBotText = styled.div`

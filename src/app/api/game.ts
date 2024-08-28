@@ -31,9 +31,6 @@ export const GAME = {
       const result: AxiosResponse = await instance.get(
         `${this.users}/${userNo}/${this.RSP}?date=${`${getTime().year}-${getTime().month}-${Number(getTime().day) - 1}`}`,
       );
-      console.log(
-        `${getTime().year}-${getTime().month}-${Number(getTime().day) - 1}`,
-      );
       return result.data;
     } else {
       const result: AxiosResponse = await instance.get(
