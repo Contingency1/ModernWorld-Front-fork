@@ -9,6 +9,7 @@ import { UserSearchResult } from '@/types/user';
 import USER from '@/app/api/user';
 import { userShoppingAtom } from '@/states/userAtoms';
 import INVENTORY from '@/app/api/inventory';
+import { SHOP_ERROR_MESSAGES } from '@/utils/errorCode';
 
 export default function ItemClickModal(props: {
   data: ShopDataType;
@@ -22,6 +23,19 @@ export default function ItemClickModal(props: {
   );
   const debouncedSearch = useDebounce(inputText, 1000);
   const setUserShopping = useSetAtom(userShoppingAtom);
+
+  const getUserNo = () => {
+    if (typeof window !== undefined) {
+      const userNo = Number(localStorage.getItem('userNo'));
+      return userNo;
+    }
+  };
+
+  const handleError = (message: string) => {
+    const alertMessage =
+      SHOP_ERROR_MESSAGES[message] || '알 수 없는 오류가 발생했습니다.';
+    alert(alertMessage);
+  };
 
   const getUser = async () => {
     if (debouncedSearch) {
@@ -43,18 +57,26 @@ export default function ItemClickModal(props: {
   };
 
   const buyItem = async () => {
-    const response = await isHasItem(2);
-    if (response.length) {
-      return alert('이미 보유 중인 아이템입니다!');
+    try {
+      const response = await isHasItem(2);
+      if (response.length) {
+        return alert('이미 보유 중인 아이템입니다!');
+      }
+      await SHOP.buyItem(props.data.no);
+      setIsModal(false);
+      setUserShopping(`${props.data.no} ${props.data.name}`);
+    } catch (error: any) {
+      handleError(error.response.data.message);
     }
-    await SHOP.buyItem(props.data.no);
-    setIsModal(false);
-    setUserShopping(`${props.data.no} ${props.data.name}`);
   };
 
   const buyCharacter = async () => {
-    await SHOP.buyCharacter(props.data.no);
-    setUserShopping(`${props.data.no} ${props.data.name}`);
+    try {
+      await SHOP.buyCharacter(props.data.no);
+      setUserShopping(`${props.data.no} ${props.data.name}`);
+    } catch (error: any) {
+      handleError(error.response.data.message);
+    }
   };
 
   const handleBuyClick = async () => {
@@ -70,6 +92,10 @@ export default function ItemClickModal(props: {
   };
 
   const giftItemToUser = async (userNo: number, itemNo: number) => {
+    if (userNo === getUserNo()) {
+      alert('자기 자신에게는 선물 할 수 없어요!');
+      return;
+    }
     const response = await isHasItem(userNo);
     if (response.length) {
       if (
@@ -159,9 +185,11 @@ export default function ItemClickModal(props: {
               <S.Button $backColor="#FF7070" onClick={() => handleBuyClick()}>
                 구매하기
               </S.Button>
-              <S.Button $backColor="#FFB1B1" onClick={() => setIsGift(true)}>
-                선물하기
-              </S.Button>
+              {!props.type && (
+                <S.Button $backColor="#FFB1B1" onClick={() => setIsGift(true)}>
+                  선물하기
+                </S.Button>
+              )}
             </>
           )}
         </S.DisplayDiv>
