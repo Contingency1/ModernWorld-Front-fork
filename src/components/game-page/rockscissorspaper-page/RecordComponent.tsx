@@ -3,20 +3,20 @@
 import {
   BotHandAtom,
   CurrentSecAtom,
-  gameResultAtom,
-  RecordAtom,
   RefreshResultAtom,
   SelectHandAtom,
   ShowResultAtom,
   StartTimerAtom,
-  userHandAtom,
 } from '@/states/gameAtom';
 import * as S from '../styled';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { GAME } from '@/app/api/game';
 import { getTime } from '@/utils/date';
 import { RecordType } from '@/types/game';
+import { IMAGE } from '@/utils/image';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
@@ -77,92 +77,104 @@ const RecordComponent = () => {
   };
 
   return (
-    <S.RecordRootDiv $pointerClick={!showResult}>
-      <S.RecordHeader>
-        <S.InputDateTodayMatchDiv>
-          <S.InputDate
-            placeholder={`${Number(getTime().UTChours) > 15 ? `${getTime().month}-${Number(getTime().day) - 1}` : `${getTime().month}-${getTime().day}`}`}
+    <>
+      <S.RecordRootDiv $pointerClick={!showResult}>
+        <S.RecordHeader>
+          <S.InputDateTodayMatchDiv>
+            <S.InputDate
+              placeholder={`${Number(getTime().UTChours) > 15 ? `${getTime().month}-${Number(getTime().day) - 1}` : `${getTime().month}-${getTime().day}`}`}
+              $pointerClick={!showResult}
+              onChange={userInputDate}></S.InputDate>
+            <S.TodayMatch>의 대전</S.TodayMatch>
+          </S.InputDateTodayMatchDiv>
+          <S.RetryText
             $pointerClick={!showResult}
-            onChange={userInputDate}></S.InputDate>
-          <S.TodayMatch>의 대전</S.TodayMatch>
-        </S.InputDateTodayMatchDiv>
-        <S.RetryText
-          $pointerClick={!showResult}
-          onClick={() => {
-            setShowResult(false);
-            setSelectHand(false);
-          }}>
-          게임하기
-        </S.RetryText>
-      </S.RecordHeader>
-      <S.RecordBody>
-        <S.BotAndUserRecordDiv>
-          <S.ArrowImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png'
-            }></S.ArrowImg>
-          <S.UserAndBotText>봇</S.UserAndBotText>
-          <S.Line></S.Line>
-          <S.RecordLegendDiv>
-            {computerHandRecord.map((hand, index) => (
-              <div key={index + 1}>
-                {hand === 'Rock' ? '바위' : hand === 'Scissors' ? '가위' : '보'}
-                <br />
-              </div>
-            ))}
-          </S.RecordLegendDiv>
-        </S.BotAndUserRecordDiv>
-        <S.ScoreDiv>
-          <S.RecordLegendDiv>
-            {record.map((record, index) => (
-              <S.RecordText
-                key={index}
-                color={
-                  record === 'win'
-                    ? 'blue'
-                    : record === 'draw'
-                      ? '#FF5454'
-                      : 'red'
-                }>
-                {record === 'win' ? '승' : record === 'draw' ? '무' : '패'}
-              </S.RecordText>
-            ))}
-          </S.RecordLegendDiv>
-          <S.RecordLegendDiv>
-            {record.map((record, index) => (
-              <S.RecordText
-                style={{ marginLeft: '1vw' }}
-                key={index}
-                color={record === 'white' ? 'white' : 'white'}>
-                {record === 'win' ? '+300' : 0}
-              </S.RecordText>
-            ))}
-          </S.RecordLegendDiv>
-        </S.ScoreDiv>
-        <S.BotAndUserRecordDiv>
-          <S.RecordLegendDiv>
-            {userHandRecord.map((hand, index) => (
-              <div key={index + 1}>
-                {hand === 'Rock'
-                  ? '바위'
-                  : hand === 'Scissors'
-                    ? '가위'
-                    : hand === 'Paper'
-                      ? '보'
-                      : '-'}
-                <br />
-              </div>
-            ))}
-          </S.RecordLegendDiv>
-          <S.Line></S.Line>
-          <S.UserAndBotText>나</S.UserAndBotText>
-          <S.ArrowImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png'
-            }></S.ArrowImg>
-        </S.BotAndUserRecordDiv>
-      </S.RecordBody>
-    </S.RecordRootDiv>
+            onClick={() => {
+              setShowResult(false);
+              setSelectHand(false);
+            }}>
+            게임하기
+          </S.RetryText>
+        </S.RecordHeader>
+        <S.RecordBody>
+          <S.BotAndUserRecordDiv>
+            <S.ArrowDiv>
+              <Image
+                fill
+                src={IMAGE.leftArrow}
+                sizes={'(max-width : 50pv) 100vw'}
+                alt={'오른쪽 화살표'}></Image>
+            </S.ArrowDiv>
+            <S.UserAndBotText>봇</S.UserAndBotText>
+            <S.Line></S.Line>
+            <S.RecordLegendDiv>
+              {computerHandRecord.map((hand, index) => (
+                <div key={index + 1}>
+                  {hand === 'Rock'
+                    ? '바위'
+                    : hand === 'Scissors'
+                      ? '가위'
+                      : '보'}
+                  <br />
+                </div>
+              ))}
+            </S.RecordLegendDiv>
+          </S.BotAndUserRecordDiv>
+          <S.ScoreDiv>
+            <S.RecordLegendDiv>
+              {record.map((record, index) => (
+                <S.RecordText
+                  key={index}
+                  color={
+                    record === 'win'
+                      ? 'blue'
+                      : record === 'draw'
+                        ? '#FF5454'
+                        : 'red'
+                  }>
+                  {record === 'win' ? '승' : record === 'draw' ? '무' : '패'}
+                </S.RecordText>
+              ))}
+            </S.RecordLegendDiv>
+            <S.RecordLegendDiv>
+              {record.map((record, index) => (
+                <S.RecordText
+                  style={{ marginLeft: '1vw' }}
+                  key={index}
+                  color={record === 'white' ? 'white' : 'white'}>
+                  {record === 'win' ? '+300' : 0}
+                </S.RecordText>
+              ))}
+            </S.RecordLegendDiv>
+          </S.ScoreDiv>
+          <S.BotAndUserRecordDiv>
+            <S.RecordLegendDiv>
+              {userHandRecord.map((hand, index) => (
+                <div key={index + 1}>
+                  {hand === 'Rock'
+                    ? '바위'
+                    : hand === 'Scissors'
+                      ? '가위'
+                      : hand === 'Paper'
+                        ? '보'
+                        : '-'}
+                  <br />
+                </div>
+              ))}
+            </S.RecordLegendDiv>
+            <S.Line></S.Line>
+            <S.UserAndBotText>나</S.UserAndBotText>
+            <S.ArrowDiv>
+              <Image
+                fill
+                src={IMAGE.rightArrow}
+                sizes={'(max-width : 50pv) 100vw'}
+                alt={'왼쪽 화살표'}></Image>
+            </S.ArrowDiv>
+          </S.BotAndUserRecordDiv>
+        </S.RecordBody>
+      </S.RecordRootDiv>
+    </>
   );
 };
 
