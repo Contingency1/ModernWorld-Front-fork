@@ -48,6 +48,7 @@ interface Props {
   $zIndex: string;
   $overFlowY: string;
   $bottom: string;
+  $boxShadow: string;
 }
 
 export interface StyleType extends Partial<Props> {}

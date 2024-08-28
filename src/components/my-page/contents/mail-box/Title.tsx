@@ -10,6 +10,7 @@ import {
   viewReceiverPageAtom,
 } from '@/states/mailboxAtoms';
 import { useEffect, useState } from 'react';
+import { IMAGE } from '@/utils/image';
 
 export default function Title(props: { title: string }) {
   const type = useAtomValue(mailBoxSelectAtom);
@@ -36,6 +37,31 @@ export default function Title(props: { title: string }) {
     setName(getName());
   }, [senderData, receiverData, page]);
 
+  const zeroData = (
+    <>
+      <S.ContentsView
+        height="70vh"
+        $alignItems="center"
+        $justifyContent="center"
+        $boxShadow="inset 0px 4px 4px rgb(0, 0, 0, 0.1)">
+        <S.UserInfo>
+          <img src={type ? IMAGE.gift : IMAGE.mail} alt="gift" width="20vw" />
+          <S.MarginDiv $margin="1vw">
+            {props.title.includes('선물')
+              ? `아직 ${props.title}이 없어요!`
+              : `아직 ${props.title}가 없어요!`}
+          </S.MarginDiv>
+        </S.UserInfo>
+      </S.ContentsView>
+    </>
+  );
+
+  if (props.title.includes('보낸')) {
+    if (!senderData.length) return zeroData;
+  } else if (!receiverData.length) {
+    return zeroData;
+  }
+
   return (
     <>
       <S.MarginDiv $margin="0.5vh 0 1vh 0" $fontSize="28px">
@@ -44,15 +70,7 @@ export default function Title(props: { title: string }) {
         )
       </S.MarginDiv>
       <S.UserInfo>
-        <img
-          src={
-            type
-              ? 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/gift-icon.png'
-              : 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mail.png'
-          }
-          alt="gift"
-          width="20vw"
-        />
+        <img src={type ? IMAGE.gift : IMAGE.mail} alt="gift" width="20vw" />
         <S.MarginDiv $margin="1vw">
           {name} 님에게{' '}
           {props.title.includes('보낸') ? '보냈습니다.' : '받았습니다.'}

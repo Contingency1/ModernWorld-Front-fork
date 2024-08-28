@@ -21,4 +21,10 @@ export const IMAGE = {
   warning: `${process.env.NEXT_PUBLIC_S3}/page/warning-icon.svg`,
   cross: `${process.env.NEXT_PUBLIC_S3}/page/cross-small_4338828.svg`,
   favicon: `${process.env.NEXT_PUBLIC_S3}/page/favicon11.png`,
+  gift: `${process.env.NEXT_PUBLIC_S3}/page/gift-icon.png`,
+  mail: `${process.env.NEXT_PUBLIC_S3}/page/mail.png`,
+  alarm: `${process.env.NEXT_PUBLIC_S3}/page/alarm.png`,
+  logout: `${process.env.NEXT_PUBLIC_S3}/page/logout.png`,
+  arrowUp: `${process.env.NEXT_PUBLIC_S3}/page/TopArrow.svg`,
+  arrowDown: `${process.env.NEXT_PUBLIC_S3}/page/DownArrow.svg`,
 };

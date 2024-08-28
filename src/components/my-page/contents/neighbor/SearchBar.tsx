@@ -43,7 +43,7 @@ export default function SearchBar() {
       setIsLoading(false);
     } else {
       setIsLoading(true);
-      setDisplayMessage('로딩중...');
+      setDisplayMessage('검색중...');
     }
   }, [nickname]);
 

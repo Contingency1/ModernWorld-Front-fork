@@ -4,7 +4,15 @@ import UserListItem from './UserListItem';
 import * as S from './style';
 
 export default function List(props: { userData: null | NeighborsDataType }) {
-  return props.userData ? (
+  if (!props.userData) {
+    return <>로딩중...</>;
+  }
+
+  if (props.userData.data.length === 0) {
+    return <>아직 이웃이 없습니다!</>;
+  }
+
+  return (
     <>
       <S.UserListSection>
         <UserListItem userData={props.userData.data[0]} />
@@ -23,7 +31,5 @@ export default function List(props: { userData: null | NeighborsDataType }) {
         totalPage={props.userData.meta.totalPage}
       />
     </>
-  ) : (
-    <>로딩중...</>
   );
 }
