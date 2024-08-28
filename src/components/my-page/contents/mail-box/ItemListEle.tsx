@@ -2,6 +2,7 @@
 
 import * as S from '@/components/my-page/contents/mail-box/style';
 import { mailBoxSelectAtom } from '@/states/mailboxAtoms';
+import { IMAGE } from '@/utils/image';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
@@ -46,11 +47,7 @@ export default function ItemListEle(props: any) {
     <>
       <div>
         <S.ItemListEleDiv>
-          <img
-            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/gift-icon.png"
-            alt="img"
-            width="18vw"
-          />
+          <img src={IMAGE.gift} alt="img" width="18vw" />
           <S.MarginDiv $margin="1vw" $fontSize="16px">
             {props.title.includes('받은') ? receiverName : senderName} 님에게{' '}
             {props.title}

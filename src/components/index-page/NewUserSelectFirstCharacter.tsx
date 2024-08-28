@@ -5,17 +5,18 @@ import * as S from './style';
 import React, { useState, useEffect } from 'react';
 import { newUserCharacterAtom } from '@/states/newUserNickname';
 import { IMAGE } from '@/utils/image';
+import Image from 'next/image';
 
 const animalsURL = [
   {
     id: 1,
     name: 'dog',
-    url: IMAGE.addFriend,
+    url: IMAGE.firstDog,
   },
   {
     id: 2,
     name: 'cat',
-    url: IMAGE.comment,
+    url: IMAGE.firstCat,
   },
 ];
 
@@ -33,27 +34,37 @@ export default function NewCharacterHook() {
   }, [n1]);
 
   const plus = () => {
-    n1 >= animalsURL.length - 1 ? setn1(0) : setn1(n1 + 1);
+    n1 >= animalsURL.length ? setn1(1) : setn1(n1 + 1);
   };
 
   const minus = () => {
-    n1 <= 0 ? setn1(animalsURL.length - 1) : setn1(n1 - 1);
+    n1 <= 1 ? setn1(animalsURL.length) : setn1(n1 - 1);
   };
   return (
     <>
-      <S.LeftArrow>
-        <img
-          src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"
-          onClick={minus}></img>
-      </S.LeftArrow>
+      <S.Arrow $check={false}>
+        <Image
+          alt={'왼쪽 화살표'}
+          sizes={'(max-width : 80px) 100vw'}
+          fill
+          src={IMAGE.leftArrow}
+          onClick={minus}></Image>
+      </S.Arrow>
       <S.FirstCharacter>
-        <img src={animalsURLmap()[n1]}></img>
+        <Image
+          fill
+          sizes={'(max-width : 180px) : 100vw'}
+          alt={'캐릭터'}
+          src={animalsURLmap()[n1 - 1]}></Image>
       </S.FirstCharacter>
-      <S.RightArrow>
-        <img
-          src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"
-          onClick={plus}></img>
-      </S.RightArrow>
+      <S.Arrow $check={true}>
+        <Image
+          alt={'오른쪽 화살표'}
+          sizes={'(max-width : 80px) 100vw'}
+          fill
+          src={IMAGE.rightArrow}
+          onClick={plus}></Image>
+      </S.Arrow>
     </>
   );
 }

@@ -14,7 +14,8 @@ export const Default = () => {
               <Image
                 fill
                 alt={'고양이 마을 로고'}
-                sizes="100vw"
+                priority
+                sizes="(max-width : 735px) 100vw"
                 src={IMAGE.catVillageLogo}></Image>
             </S.ChoiceImg>
           </S.Outline>
@@ -26,7 +27,8 @@ export const Default = () => {
             <S.ChoiceImg width={'90%'}>
               <Image
                 fill
-                sizes="100vw"
+                sizes="(max-width : 735px) 100vw"
+                priority
                 alt={'강아지 마을 로고'}
                 src={IMAGE.dogVillageLogo}></Image>
             </S.ChoiceImg>
