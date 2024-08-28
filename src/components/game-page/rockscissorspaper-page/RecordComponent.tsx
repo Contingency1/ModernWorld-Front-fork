@@ -1,8 +1,12 @@
 'use client';
 
-import { RefreshResultAtom, ShowResultAtom } from '@/states/gameAtom';
+import {
+  RefreshResultAtom,
+  ShowResultAtom,
+  userHandAtom,
+} from '@/states/gameAtom';
 import * as S from '../styled';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { GAME } from '@/app/api/game';
 import { getTime } from '@/utils/date';
@@ -13,6 +17,7 @@ import Image from 'next/image';
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
   const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
+  const setResetUserHand = useSetAtom(userHandAtom);
   const [userRecord, setUserRecord] = useState<RecordType[]>([
     {
       no: 0,
@@ -69,6 +74,7 @@ const RecordComponent = () => {
           <S.RetryText
             $pointerClick={!showResult}
             onClick={() => {
+              setResetUserHand(3);
               setShowResult(false);
             }}>
             게임하기

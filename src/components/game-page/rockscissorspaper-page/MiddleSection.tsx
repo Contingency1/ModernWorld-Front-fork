@@ -9,7 +9,6 @@ import {
   ShowResultAtom,
   StartTimerAtom,
   userHandAtom,
-  RecordAtom,
   RefreshResultAtom,
 } from '@/states/gameAtom';
 import { GAME } from '@/app/api/game';
@@ -32,8 +31,6 @@ const MiddleSection = () => {
   const [timer, setTimer] = useAtom(CurrentSecAtom);
   // 결과를 보여주는 boolean
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
-
-  const setRecord = useSetAtom(RecordAtom);
 
   const [refresh, setRefresh] = useAtom(RefreshResultAtom);
 
@@ -81,14 +78,6 @@ const MiddleSection = () => {
     }
   }, [startTimer, timer]);
 
-  useEffect(() => {
-    const getUserRecord = async () => {
-      const response = await GAME.GetUsersLecord(getUserNo() as number);
-      setRecord(response);
-    };
-    getUserRecord();
-  }, [startTimer, timer, showResult]);
-
   // API 요청
   const postUsersHand = async (hand: number) => {
     const response = await GAME.PostUsersHand(hand);
@@ -109,7 +98,6 @@ const MiddleSection = () => {
         const clearTimer = () => {
           setStartTimer(false);
         };
-        userHand(3);
         setStartTimer(true);
         setTimeout(clearTimer, 3000);
         setTimeout(showResultFoo, 3000);

@@ -9,7 +9,10 @@ import { RefreshResultAtom, userHandAtom } from '@/states/gameAtom';
 import Image from 'next/image';
 
 const UserSection = () => {
+  //유저의 손 선택
   const [hand, setHand] = useAtom(userHandAtom);
+
+  //api 요청 새로고침
   const refresh = useAtomValue(RefreshResultAtom);
 
   // 게임 결과
