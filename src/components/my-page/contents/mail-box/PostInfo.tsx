@@ -7,6 +7,7 @@ import {
   viewReceiverPageAtom,
   isSendMailModalAtom,
   sendMailDataAtom,
+  mailBoxSelectAtom,
 } from '@/states/mailboxAtoms';
 import { getFormattedDate } from '@/utils/date';
 import { IMAGE } from '@/utils/image';
@@ -14,7 +15,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 export default function PostInfo(props: { title: string }) {
-  const page = useAtomValue(
+  const [page, setPage] = useAtom(
     props.title.includes('보낸') ? viewSendPageAtom : viewReceiverPageAtom,
   );
   const senderData = useAtomValue(senderDataAtom);

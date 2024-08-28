@@ -9,6 +9,7 @@ import {
   viewSendPageAtom,
 } from '@/states/mailboxAtoms';
 import { useAtom, useAtomValue } from 'jotai';
+import { useEffect } from 'react';
 
 export default function Pagination(props: any) {
   const [senderPage, setSenderPage] = useAtom(viewSendPageAtom);
@@ -42,6 +43,11 @@ export default function Pagination(props: any) {
       );
     }
   };
+
+  useEffect(() => {
+    setSenderPage(0);
+    setReceiverPage(0);
+  }, [type]);
 
   if (props.title.includes('보낸')) {
     if (!senderData.length) return <></>;
