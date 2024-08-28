@@ -9,6 +9,7 @@ import {
   userDataAtom,
   userCharacterChangeAtom,
   achievementColorAtom,
+  userShoppingAtom,
 } from '@/states/userAtoms';
 
 export default function LeftSection() {
@@ -22,6 +23,7 @@ export default function LeftSection() {
   const [userData, setUserData] = useAtom(userDataAtom);
   const userCharacterChange = useAtomValue(userCharacterChangeAtom);
   const achievementColor = useAtomValue(achievementColorAtom);
+  const userShopping = useAtomValue(userShoppingAtom);
 
   const getUserInfo = async () => {
     const response = await USER.getUserInfo(getUserNo() as number);
@@ -30,7 +32,7 @@ export default function LeftSection() {
 
   useEffect(() => {
     getUserInfo();
-  }, [userCharacterChange, achievementColor]); //캐릭터가 변경될 때마다 요청 보냄
+  }, [userCharacterChange, achievementColor, userShopping]);
 
   return (
     <>

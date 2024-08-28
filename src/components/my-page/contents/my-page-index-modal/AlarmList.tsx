@@ -5,6 +5,8 @@ import { useSetAtom } from 'jotai';
 import { deleteAlarmAtom } from '@/states/userAtoms';
 import { getFormattedDate } from '@/utils/date';
 import { IMAGE } from '@/utils/image';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function AlarmList(props: {
   color: string;
@@ -17,39 +19,41 @@ export default function AlarmList(props: {
   };
   return (
     <>
-      <S.DisplayDiv flex="row" $margin="0.5vw 0">
-        <S.AlarmListEleBox
-          width="4vw"
-          $margin="0 0.5vw 0 0"
-          $backColor={props.color}
-          cursor="default">
-          {props.data.title}
-        </S.AlarmListEleBox>
-        <S.AlarmListEleBox
-          width="13.5vw"
-          $margin="0 0.5vw 0 0"
-          $backColor={props.color}
-          cursor="pointer">
-          {props.data.content}
-          <S.Font
-            position="absolute"
-            $fontSize="10px"
-            color="#C8C8C8"
-            $margin="1.8vw -6.4vw 0 0">
-            {getFormattedDate(props.data.createdAt)}
-          </S.Font>
-        </S.AlarmListEleBox>
-        <S.AlarmListEleBox
-          width="2vw"
-          $backColor={props.color}
-          cursor="pointer">
-          <S.Img
-            src={IMAGE.trashBox}
-            width="1.5vw"
-            opacity="0.7"
-            onClick={handleDel}></S.Img>
-        </S.AlarmListEleBox>
-      </S.DisplayDiv>
+      <Link style={{ textDecoration: 'none' }} href="">
+        <S.DisplayDiv flex="row" $margin="0.5vw 0">
+          <S.AlarmListEleBox
+            width="4vw"
+            $margin="0 0.5vw 0 0"
+            $backColor={props.color}
+            cursor="default">
+            {props.data.title}
+          </S.AlarmListEleBox>
+          <S.AlarmListEleBox
+            width="13.5vw"
+            $margin="0 0.5vw 0 0"
+            $backColor={props.color}
+            cursor="pointer">
+            {props.data.content}
+            <S.Font
+              position="absolute"
+              $fontSize="10px"
+              color="#C8C8C8"
+              $margin="1.8vw -6.4vw 0 0">
+              {getFormattedDate(props.data.createdAt)}
+            </S.Font>
+          </S.AlarmListEleBox>
+          <S.AlarmListEleBox
+            width="2vw"
+            $backColor={props.color}
+            cursor="pointer">
+            <S.Img
+              src={IMAGE.trashBox}
+              width="1.5vw"
+              opacity="0.7"
+              onClick={handleDel}></S.Img>
+          </S.AlarmListEleBox>
+        </S.DisplayDiv>
+      </Link>
     </>
   );
 }

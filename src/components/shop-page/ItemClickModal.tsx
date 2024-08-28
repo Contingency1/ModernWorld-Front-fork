@@ -7,6 +7,7 @@ import SHOP from '@/app/api/shop';
 import { useDebounce } from '@uidotdev/usehooks';
 import { UserSearchResult } from '@/types/user';
 import USER from '@/app/api/user';
+import { userShoppingAtom } from '@/states/userAtoms';
 
 export default function ItemClickModal(props: {
   data: ShopDataType;
@@ -19,6 +20,7 @@ export default function ItemClickModal(props: {
     null,
   );
   const debouncedSearch = useDebounce(inputText, 1000);
+  const setUserShopping = useSetAtom(userShoppingAtom);
 
   const getUser = async () => {
     if (debouncedSearch) {
@@ -32,10 +34,12 @@ export default function ItemClickModal(props: {
   const buyItem = async () => {
     await SHOP.buyItem(props.data.no);
     setIsModal(false);
+    setUserShopping(`${props.data.no} ${props.data.name}`);
   };
 
   const buyCharacter = async () => {
     await SHOP.buyCharacter(props.data.no);
+    setUserShopping(`${props.data.no} ${props.data.name}`);
   };
 
   const handleBuyClick = async () => {
