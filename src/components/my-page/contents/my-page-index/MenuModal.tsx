@@ -10,6 +10,7 @@ import {
 } from '@/states/userAtoms';
 import LogoutModal from '../my-page-index-modal/LogoutModal';
 import AlarmModal from '../my-page-index-modal/AlarmModal';
+import { IMAGE } from '@/utils/image';
 
 export default function MenuModal() {
   const setIsMenuModal = useSetAtom(isMyPageMenuModalAtom);
@@ -47,11 +48,11 @@ export default function MenuModal() {
             $flexDirection="column">
             <S.UserImg src={userData.image} />
             <S.ButtonUi $margin="2.5vw 0 1vw 0" onClick={handleAlarmClick}>
-              <S.UiImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/alarm.png" />
+              <S.UiImg src={IMAGE.alarm} />
               알람 목록 확인하기
             </S.ButtonUi>
             <S.ButtonUi onClick={handleLogoutClick}>
-              <S.UiImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/logout.png" />
+              <S.UiImg src={IMAGE.logout} />
               로그아웃 하러가기
             </S.ButtonUi>
           </S.DisplayDiv>

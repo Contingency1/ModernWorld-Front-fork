@@ -4,6 +4,7 @@ import ALARM from '@/app/api/Alarms';
 import { useSetAtom } from 'jotai';
 import { deleteAlarmAtom } from '@/states/userAtoms';
 import { getFormattedDate } from '@/utils/date';
+import { IMAGE } from '@/utils/image';
 
 export default function AlarmList(props: {
   color: string;
@@ -43,7 +44,7 @@ export default function AlarmList(props: {
           $backColor={props.color}
           cursor="pointer">
           <S.Img
-            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
+            src={IMAGE.trashBox}
             width="1.5vw"
             opacity="0.7"
             onClick={handleDel}></S.Img>

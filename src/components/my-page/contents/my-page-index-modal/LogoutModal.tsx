@@ -4,6 +4,7 @@ import * as S from './style';
 import { isLogoutModalAtom } from '@/states/userAtoms';
 import { useRouter } from 'next/navigation';
 import AUTH from '@/app/api/auth';
+import { IMAGE } from '@/utils/image';
 
 export default function LogoutModal(props: { characterImg: string }) {
   const setIsLogoutModal = useSetAtom(isLogoutModalAtom);
@@ -26,7 +27,7 @@ export default function LogoutModal(props: { characterImg: string }) {
             $defaultOpacity="1"
             $margin="1.5vw 0 0 0"
             $cursor="default">
-            <S.UiImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/logout.png" />
+            <S.UiImg src={IMAGE.logout} />
             로그아웃 하러가기
           </S.ButtonUi>
           <S.ContentContainer>

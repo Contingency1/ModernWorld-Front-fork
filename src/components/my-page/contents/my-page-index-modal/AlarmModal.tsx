@@ -6,6 +6,7 @@ import AlarmList from './AlarmList';
 import ALARM from '@/app/api/Alarms';
 import { useEffect, useState } from 'react';
 import { AlarmsData, AlarmsMetaData } from '@/types/alarm';
+import { IMAGE } from '@/utils/image';
 
 export default function AlarmModal() {
   const setIsAlarmModal = useSetAtom(isAlarmModalAtom);
@@ -42,7 +43,7 @@ export default function AlarmModal() {
         $alignItems="center"
         $flexDirection="column">
         <S.ButtonUi $defaultOpacity="1" $margin="1.5vw 0 0 0" $cursor="default">
-          <S.UiImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/alarm.png" />
+          <S.UiImg src={IMAGE.alarm} />
           알람 목록 확인하기
         </S.ButtonUi>
         <S.ContentContainer>

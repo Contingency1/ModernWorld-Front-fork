@@ -9,6 +9,7 @@ import { achievementDescriptions } from '@/utils/achievements';
 import { serviceDescriptions } from '@/utils/serviceInfo';
 import { DescriptionType } from '@/types/utils';
 import AUTH from '@/app/api/auth';
+import { IMAGE } from '@/utils/image';
 
 export default function ServiceInfo() {
   const router = useRouter();
@@ -72,11 +73,7 @@ export default function ServiceInfo() {
               <S.UserInfoContent width="40vw" $backColor={backColor}>
                 {label}
                 <S.Arrow
-                  src={
-                    isVisible
-                      ? 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/TopArrow.svg'
-                      : 'https://wang0514.s3.ap-northeast-2.amazonaws.com/page/DownArrow.svg'
-                  }
+                  src={isVisible ? IMAGE.arrowUp : IMAGE.arrowDown}
                   onClick={toggle}
                 />
               </S.UserInfoContent>
