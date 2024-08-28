@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { COLOR } from '@/utils/color';
 export default function LoginPage() {
   return (
-    <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }}>
+    <S.BackgroundColor>
       <Image
         src={IMAGE.mainLogo}
         fill

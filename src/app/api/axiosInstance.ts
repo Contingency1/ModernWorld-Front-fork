@@ -3,7 +3,7 @@ import axios from 'axios';
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL,
   timeout: 4000,
-  //withCredentials: true, //자격 증명(쿠키) 전송
+  withCredentials: true, //자격 증명(쿠키) 전송
   headers: {
     'X-Custom-Header': 'foobar',
     Accept: 'application/json',

@@ -4,20 +4,11 @@ import { Token } from '@/app/api/getToken';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { useSetAtom } from 'jotai';
-import {
-  UserAccessTokenAtom,
-  UserNoAtom,
-  UserRefreshTokenAtom,
-} from '@/states/authAtom';
 
 export const Loading = (props: { social: string }) => {
   const params = useSearchParams();
   const router = useRouter();
   const code = params.get('code');
-  const setUserNo = useSetAtom(UserNoAtom);
-  const setUserAccessToken = useSetAtom(UserAccessTokenAtom);
-  const setUserRefreshToken = useSetAtom(UserRefreshTokenAtom);
 
   const setLocalStorageItem = (key: string, value: string) => {
     try {
@@ -27,13 +18,13 @@ export const Loading = (props: { social: string }) => {
     }
   };
 
-  const setCookieToken = (key: string, value: string) => {
-    try {
-      document.cookie = `${key}=${encodeURIComponent(value)}`;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const setCookieToken = (value: string) => {
+  //   try {
+  //     document.cookie = `refreshToken=${encodeURIComponent(value)}`;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const routeNewCharacterPage = () => {
     router.push('/newcharacter');
@@ -43,13 +34,8 @@ export const Loading = (props: { social: string }) => {
     try {
       const response = await Token.getToken(code, props.social);
       setLocalStorageItem('accessToken', response.accessToken);
-      setCookieToken('refreshToken', response.refreshToken);
+      // setCookieToken(response.refreshToken);
       setLocalStorageItem('userNo', response.userNo);
-      console.log(response.refreshToken);
-      setUserNo(response.userNo);
-      setUserAccessToken(response.userAccessToken);
-      setUserRefreshToken(response.refreshToken);
-
       if (response.nickname) {
         router.push('/my-page');
       } else {

@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { IMAGE } from '@/utils/image';
 export default function MainPage() {
   const [name, setName] = useState('');
+  const [isUser, setIsUser] = useState<boolean>(true);
   const route = useRouter();
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function MainPage() {
         setName(response.nickname);
         return;
       } catch (err) {
+        setIsUser(false);
         alert('로그인이 필요합니다');
         return route.push('/loginpage');
       }
@@ -28,7 +30,7 @@ export default function MainPage() {
   }, []);
 
   return (
-    <S.BackgroundColor style={{ backgroundColor: '#5F6F52' }}>
+    <S.BackgroundColor $check={isUser}>
       <S.MainLogoDiv $grid1="40%" $grid2="30%" $grid3="30%">
         <Image
           src={IMAGE.mainLogo}
