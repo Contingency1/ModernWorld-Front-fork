@@ -6,6 +6,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import MAILBOX from '@/app/api/mailBox';
 import { isNeighborSendModalAtom } from '@/states/neighbor';
+import { IMAGE } from '@/utils/image';
 
 export default function SendPostModal() {
   const setIsSendMailModal = useSetAtom(isSendMailModalAtom);
@@ -39,7 +40,7 @@ export default function SendPostModal() {
           <S.SendPostModalBody>
             <S.SendPostModalHeader>
               <S.Img
-                src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png"
+                src={IMAGE.remove}
                 width="1.5vw"
                 $margin="1vw"
                 cursor="pointer"
@@ -47,11 +48,7 @@ export default function SendPostModal() {
               />
             </S.SendPostModalHeader>
             <S.SendPostModalTitle>
-              <S.Img
-                src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mail.png"
-                width="1.5vw"
-                $margin="1vw"
-              />
+              <S.Img src={IMAGE.mail} width="1.5vw" $margin="1vw" />
               <S.Font $fontSize="20px" $margin="0 0.5vw">
                 {sendMailData?.nickname} 님께 보내는 편지
               </S.Font>
@@ -71,7 +68,7 @@ export default function SendPostModal() {
                 전송하기
               </S.Font>
               <S.Img
-                src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/send.png"
+                src={IMAGE.send}
                 width="2vw"
                 cursor="pointer"
                 $margin="0 0.5vw 0 0"

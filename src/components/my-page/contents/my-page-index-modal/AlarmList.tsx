@@ -2,24 +2,33 @@ import { OneAlarmData } from '@/types/alarm';
 import * as S from './style';
 import ALARM from '@/app/api/Alarms';
 import { useSetAtom } from 'jotai';
-import { deleteAlarmAtom } from '@/states/userAtoms';
+import { deleteAlarmAtom, isMyPageMenuModalAtom } from '@/states/userAtoms';
 import { getFormattedDate } from '@/utils/date';
 import { IMAGE } from '@/utils/image';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { ALARMS } from '@/utils/alarm';
 
 export default function AlarmList(props: {
   color: string;
   data: OneAlarmData;
 }) {
   const setDelAlarm = useSetAtom(deleteAlarmAtom);
+  const setIsMenuModal = useSetAtom(isMyPageMenuModalAtom);
   const handleDel = async () => {
     const response = await ALARM.delAlarm(props.data.no);
     setDelAlarm(props.data.no);
   };
+
+  const alarmLink = ALARMS[props.data.title as keyof typeof ALARMS] || '';
+
   return (
     <>
-      <Link style={{ textDecoration: 'none' }} href="">
+      <Link
+        style={{ textDecoration: 'none' }}
+        href={alarmLink}
+        onClick={() => {
+          !alarmLink && confirm('알람창을 닫을까요?') && setIsMenuModal(false);
+        }}>
         <S.DisplayDiv flex="row" $margin="0.5vw 0">
           <S.AlarmListEleBox
             width="4vw"
