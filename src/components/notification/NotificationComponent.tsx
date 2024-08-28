@@ -74,7 +74,7 @@ const NotificationComponent = () => {
         if (e.data !== 'Connected') {
           setModalTimeOut(true);
           setEventContent(eventData);
-          setTimeout(() => setModalTimeOut(false), 10000);
+          setTimeout(() => setModalTimeOut(false), 3600 * 2000);
         }
       } catch (err) {
         console.log(err, 1);
