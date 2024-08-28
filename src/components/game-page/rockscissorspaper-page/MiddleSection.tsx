@@ -6,7 +6,6 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import {
   gameResultAtom,
   CurrentSecAtom,
-  SelectHandAtom,
   ShowResultAtom,
   StartTimerAtom,
   userHandAtom,
@@ -31,8 +30,6 @@ const MiddleSection = () => {
   const [startTimer, setStartTimer] = useAtom(StartTimerAtom);
   // 현재 초
   const [timer, setTimer] = useAtom(CurrentSecAtom);
-  //유저의 손을 선택
-  const setSelectHand = useSetAtom(SelectHandAtom);
   // 결과를 보여주는 boolean
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
 
@@ -108,17 +105,12 @@ const MiddleSection = () => {
         const showResultFoo = () => {
           setShowResult(true);
         };
-        // 유저의 손을 초기화
-        const setTimeOutSelectHand = () => {
-          setSelectHand(false);
-        };
         // 타이머 초기화
         const clearTimer = () => {
           setStartTimer(false);
         };
         userHand(3);
         setStartTimer(true);
-        setTimeout(setTimeOutSelectHand, 3000);
         setTimeout(clearTimer, 3000);
         setTimeout(showResultFoo, 3000);
       }
@@ -170,7 +162,6 @@ const MiddleSection = () => {
         $pointerClick={showResult}
         onClick={() => {
           delayedPostUsersHand();
-          setSelectHand(true);
           startCountdown();
         }}>
         {!showResult ? (

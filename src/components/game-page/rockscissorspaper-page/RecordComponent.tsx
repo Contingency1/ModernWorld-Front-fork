@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  BotHandAtom,
-  CurrentSecAtom,
-  RefreshResultAtom,
-  SelectHandAtom,
-  ShowResultAtom,
-  StartTimerAtom,
-} from '@/states/gameAtom';
+import { RefreshResultAtom, ShowResultAtom } from '@/states/gameAtom';
 import * as S from '../styled';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -19,10 +12,6 @@ import Image from 'next/image';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
-  const [selectHand, setSelectHand] = useAtom(SelectHandAtom);
-  const [startTimer] = useAtom(StartTimerAtom);
-  const [timer, setTimer] = useAtom(CurrentSecAtom);
-  const [_, setBotHand] = useAtom(BotHandAtom);
   const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
   const [userRecord, setUserRecord] = useState<RecordType[]>([
     {
@@ -34,9 +23,6 @@ const RecordComponent = () => {
       createdAt: '',
     },
   ]);
-  const [computerHandRecord, setComputerHandRecord] = useState([]);
-  const [userHandRecord, setUserHandRecord] = useState([]);
-  const [record, setRecord] = useState([]);
   const refresh = useAtomValue(RefreshResultAtom);
 
   const getUserNo = () => {
@@ -53,23 +39,17 @@ const RecordComponent = () => {
           getUserNo() as number,
           `${getTime().year}-${Number(date) - 1}`,
         );
-        setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
-        setUserHandRecord(response.map((hand: any) => hand.userChoice));
-        setRecord(response.map((hand: any) => hand.result));
         setUserRecord(response);
       } else {
         const response = await GAME.GetUsersLecord(
           getUserNo() as number,
           `${getTime().year}-${date}`,
         );
-        setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
-        setUserHandRecord(response.map((hand: any) => hand.userChoice));
-        setRecord(response.map((hand: any) => hand.result));
         setUserRecord(response);
       }
     };
     getUserRecord();
-  }, [startTimer, timer, refresh]);
+  }, [refresh, date]);
 
   const userInputDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
@@ -90,7 +70,6 @@ const RecordComponent = () => {
             $pointerClick={!showResult}
             onClick={() => {
               setShowResult(false);
-              setSelectHand(false);
             }}>
             게임하기
           </S.RetryText>
@@ -107,11 +86,11 @@ const RecordComponent = () => {
             <S.UserAndBotText>봇</S.UserAndBotText>
             <S.Line></S.Line>
             <S.RecordLegendDiv>
-              {computerHandRecord.map((hand, index) => (
+              {userRecord.map(({ computerChoice }, index) => (
                 <div key={index + 1}>
-                  {hand === 'Rock'
+                  {computerChoice === 'Rock'
                     ? '바위'
-                    : hand === 'Scissors'
+                    : computerChoice === 'Scissors'
                       ? '가위'
                       : '보'}
                   <br />
@@ -121,40 +100,40 @@ const RecordComponent = () => {
           </S.BotAndUserRecordDiv>
           <S.ScoreDiv>
             <S.RecordLegendDiv>
-              {record.map((record, index) => (
+              {userRecord.map(({ result }, index) => (
                 <S.RecordText
                   key={index}
                   color={
-                    record === 'win'
+                    result === 'win'
                       ? 'blue'
-                      : record === 'draw'
+                      : result === 'draw'
                         ? '#FF5454'
                         : 'red'
                   }>
-                  {record === 'win' ? '승' : record === 'draw' ? '무' : '패'}
+                  {result === 'win' ? '승' : result === 'draw' ? '무' : '패'}
                 </S.RecordText>
               ))}
             </S.RecordLegendDiv>
             <S.RecordLegendDiv>
-              {record.map((record, index) => (
+              {userRecord.map(({ result }, index) => (
                 <S.RecordText
                   style={{ marginLeft: '1vw' }}
                   key={index}
-                  color={record === 'white' ? 'white' : 'white'}>
-                  {record === 'win' ? '+300' : 0}
+                  color={result === 'white' ? 'white' : 'white'}>
+                  {result === 'win' ? '+300' : 0}
                 </S.RecordText>
               ))}
             </S.RecordLegendDiv>
           </S.ScoreDiv>
           <S.BotAndUserRecordDiv>
             <S.RecordLegendDiv>
-              {userHandRecord.map((hand, index) => (
+              {userRecord.map(({ userChoice }, index) => (
                 <div key={index + 1}>
-                  {hand === 'Rock'
+                  {userChoice === 'Rock'
                     ? '바위'
-                    : hand === 'Scissors'
+                    : userChoice === 'Scissors'
                       ? '가위'
-                      : hand === 'Paper'
+                      : userChoice === 'Paper'
                         ? '보'
                         : '-'}
                   <br />
