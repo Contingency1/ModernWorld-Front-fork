@@ -9,6 +9,7 @@ const INVENTORY = {
     user: number,
     theme?: string,
     status?: boolean,
+    itemName?: string,
   ): Promise<any> {
     const result: AxiosResponse = await instance.get(
       `${INVENTORY.path}/${user}/items`,
@@ -16,6 +17,7 @@ const INVENTORY = {
         params: {
           theme: theme,
           status: status,
+          itemName: itemName ?? '',
         },
       },
     );

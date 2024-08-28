@@ -8,6 +8,7 @@ import { useDebounce } from '@uidotdev/usehooks';
 import { UserSearchResult } from '@/types/user';
 import USER from '@/app/api/user';
 import { userShoppingAtom } from '@/states/userAtoms';
+import INVENTORY from '@/app/api/inventory';
 
 export default function ItemClickModal(props: {
   data: ShopDataType;
@@ -31,7 +32,21 @@ export default function ItemClickModal(props: {
     }
   };
 
+  /** 유저가 아이템 보유하고 있는지 검사 */
+  const isHasItem = async (userNo: number) => {
+    return await INVENTORY.getInventoryItem(
+      userNo,
+      undefined,
+      undefined,
+      props.data.name,
+    );
+  };
+
   const buyItem = async () => {
+    const response = await isHasItem(2);
+    if (response.length) {
+      return alert('이미 보유 중인 아이템입니다!');
+    }
     await SHOP.buyItem(props.data.no);
     setIsModal(false);
     setUserShopping(`${props.data.no} ${props.data.name}`);
@@ -55,6 +70,16 @@ export default function ItemClickModal(props: {
   };
 
   const giftItemToUser = async (userNo: number, itemNo: number) => {
+    const response = await isHasItem(userNo);
+    if (response.length) {
+      if (
+        !window.confirm(
+          `${searchResult?.data[0]?.nickname}님이 이미 보유 중인 아이템이므로 해당 아이템 포인트의 50% 가 지급됩니다. 동의하십니까?`,
+        )
+      ) {
+        return;
+      }
+    }
     await SHOP.giftItemToUser(userNo, itemNo);
   };
 
