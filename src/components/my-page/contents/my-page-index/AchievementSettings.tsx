@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { ACHIEVEMENTS } from '@/app/api/achievement';
 import { achievementTitles, levelColors } from '@/utils/achievements';
 import { AchievementDataType } from '@/types/achievement';
+import { IMAGE } from '@/utils/image';
 
 const padTitle = (title: string) => {
   if (title.length >= 5) return title;
@@ -42,6 +43,8 @@ export default function AchievementSettings() {
     setAchievementColor(data.achievement.level);
   };
 
+  console.log(achievementData);
+
   return (
     <>
       <S.Background>
@@ -68,9 +71,7 @@ export default function AchievementSettings() {
                             color={levelColors[data.achievement.level]}
                             onClick={() => handleItemClick(data)}>
                             <S.CheckUi />
-                            {data.status && (
-                              <S.CheckImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/check.png" />
-                            )}
+                            {data.status && <S.CheckImg src={IMAGE.check} />}
                             {padTitle(data.achievement.title)}
                           </S.AchievementListFont>
                         ),

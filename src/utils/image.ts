@@ -23,4 +23,5 @@ export const IMAGE = {
   arrowUp: `${process.env.NEXT_PUBLIC_S3}/page/TopArrow.svg`,
   arrowDown: `${process.env.NEXT_PUBLIC_S3}/page/DownArrow.svg`,
   send: `${process.env.NEXT_PUBLIC_S3}/page/send.png`,
+  check: `${process.env.NEXT_PUBLIC_S3}/page/check.png`,
 };
