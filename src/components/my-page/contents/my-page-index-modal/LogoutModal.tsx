@@ -2,9 +2,17 @@
 import { useSetAtom } from 'jotai';
 import * as S from './style';
 import { isLogoutModalAtom } from '@/states/userAtoms';
+import { useRouter } from 'next/navigation';
+import AUTH from '@/app/api/auth';
+import { IMAGE } from '@/utils/image';
 
 export default function LogoutModal(props: { characterImg: string }) {
   const setIsLogoutModal = useSetAtom(isLogoutModalAtom);
+  const router = useRouter();
+  const handleLogout = async () => {
+    router.push('/');
+    await AUTH.getLogout();
+  };
   return (
     <>
       <S.MenuModalBody $margin="0 0 0 1vw">
@@ -19,7 +27,7 @@ export default function LogoutModal(props: { characterImg: string }) {
             $defaultOpacity="1"
             $margin="1.5vw 0 0 0"
             $cursor="default">
-            <S.UiImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/logout.png" />
+            <S.UiImg src={IMAGE.logout} />
             로그아웃 하러가기
           </S.ButtonUi>
           <S.ContentContainer>
@@ -36,7 +44,9 @@ export default function LogoutModal(props: { characterImg: string }) {
               }}>
               아니! 절대 안 가지.
             </S.LogoutButtonUi>
-            <S.LogoutButtonUi $backColor="#EFEFEF">
+            <S.LogoutButtonUi
+              $backColor="#EFEFEF"
+              onClick={() => handleLogout()}>
               응! 다음에 다시 올게~
             </S.LogoutButtonUi>
           </S.ContentContainer>

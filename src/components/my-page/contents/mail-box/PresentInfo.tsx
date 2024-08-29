@@ -8,6 +8,8 @@ import {
   viewSendPageAtom,
   viewReceiverPageAtom,
 } from '@/states/mailboxAtoms';
+import { getFormattedDate } from '@/utils/date';
+import { IMAGE } from '@/utils/image';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
@@ -66,12 +68,18 @@ export default function PresentInfo(props: { title: string }) {
     MAILBOX.updatePresentStatus(receivePresentNo, s);
   };
 
+  if (props.title.includes('보낸')) {
+    if (!senderData.length) return <></>;
+  } else if (!receiverData.length) {
+    return <></>;
+  }
+
   return (
     <>
       <S.ContentsView height="25vh">
         <S.DelSection>
           <S.Image
-            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/remove.png"
+            src={IMAGE.remove}
             alt="del"
             width="20vw"
             onClick={deleteHandle}
@@ -99,9 +107,11 @@ export default function PresentInfo(props: { title: string }) {
               : receiverData[page]?.item?.description}
           </S.FontSize>
           <S.FontSize $fontSize="12px">
-            {props.title.includes('보낸')
-              ? senderData[page]?.createdAt
-              : receiverData[page]?.createdAt}
+            {getFormattedDate(
+              props.title.includes('보낸')
+                ? senderData[page]?.createdAt
+                : receiverData[page]?.createdAt,
+            )}
           </S.FontSize>
 
           {props.title === '보낸 선물' || props.title === '보낸 편지' ? (

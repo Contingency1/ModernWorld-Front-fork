@@ -8,6 +8,8 @@ import {
   isSendMailModalAtom,
   sendMailDataAtom,
 } from '@/states/mailboxAtoms';
+import { getFormattedDate } from '@/utils/date';
+import { IMAGE } from '@/utils/image';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
@@ -54,6 +56,11 @@ export default function PostInfo(props: { title: string }) {
     }
   }, [props.title, page, senderData, receiverData, isSendMailModal]);
 
+  if (props.title.includes('보낸')) {
+    if (!senderData.length) return <></>;
+  } else if (!receiverData.length) {
+    return <></>;
+  }
   return (
     <>
       <S.ContentsView height="25vh">
@@ -69,9 +76,11 @@ export default function PostInfo(props: { title: string }) {
           $margin="1vh 2vw 0 2vw"
           $textAlign="left"
           color="#767676">
-          {props.title.includes('보낸')
-            ? senderData[page]?.createdAt
-            : receiverData[page]?.createdAt}
+          {getFormattedDate(
+            props.title.includes('보낸')
+              ? senderData[page]?.createdAt
+              : receiverData[page]?.createdAt,
+          )}
         </S.MarginDiv>
         <hr style={{ width: '90%', borderTop: '1px dashed' }} />
         <S.MarginDiv $margin="-1vh 2vw 0 0" $textAlign="right">
@@ -85,7 +94,7 @@ export default function PostInfo(props: { title: string }) {
               {props.title.includes('받은 편지') ? '답장하기' : '다시 보내기'}
             </S.MarginDiv>
             <S.Image
-              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/trash.png"
+              src={IMAGE.trashBox}
               alt="del"
               width="33vw"
               onClick={handleClickDelete}

@@ -11,7 +11,7 @@ import {
 import { ShopDataType } from '@/types/shop';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
-import ItemClick from './ItemClick';
+import ItemClickModal from './ItemClickModal';
 
 export default function ShopItemBox() {
   const [items, setItems] = useState([]);
@@ -19,9 +19,9 @@ export default function ShopItemBox() {
   const selectItemType = useAtomValue(selectItemTypeAtom);
   const theme = useAtomValue(themeTypeAtom);
   const character = useAtomValue(charactersTypeAtom);
-
   const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom);
   const [modalNo, setModalNo] = useState<number | null>(null);
+  const [modalData, setModalData] = useState<null | any>(null);
 
   const getCharacter = async (character: string) => {
     const response = await SHOP.getCharacters(character);
@@ -33,9 +33,9 @@ export default function ShopItemBox() {
     setItems(response);
   };
 
-  const handleItemClick = (no: number) => {
+  const handleItemClick = (data: ShopDataType) => {
     setIsModalOpen(true);
-    setModalNo(no);
+    setModalData(data);
   };
 
   const closeModal = () => {
@@ -49,14 +49,15 @@ export default function ShopItemBox() {
     } else {
       getCharacter(character);
     }
+    setIsModalOpen(false);
   }, [selectItemType, theme, character]);
 
   return (
     <>
-      {isModalOpen && modalNo !== null && <ItemClick no={modalNo} />}
+      {isModalOpen && <ItemClickModal data={modalData} type={selectItemType} />}
       <S.BookMarkBox height="65vh" $backColor="#F5F0E2">
         {(selectItemType === 0 ? items : characters).map((i: ShopDataType) => (
-          <S.ItemDiv key={i.no} onClick={() => handleItemClick(i.no)}>
+          <S.ItemDiv key={i.no} onClick={() => handleItemClick(i)}>
             <S.Img img={i.image} />
           </S.ItemDiv>
         ))}

@@ -10,7 +10,14 @@ import { useRouter } from 'next/navigation';
 import { IMAGE } from '@/utils/image';
 
 export default function LikeModal() {
-  const userNo = Number(localStorage.getItem('userNo'));
+  const getUserNo = () => {
+    if (typeof window !== undefined) {
+      const userNo = Number(localStorage.getItem('userNo'));
+      return userNo;
+    }
+  };
+
+  const userNo = getUserNo() as number;
   const router = useRouter();
   const [isLikeModal, setIsLikeModal] = useAtom(isLikeModalAtom);
   const [viewType, setViewType] = useState<'receiverNo' | 'senderNo'>(
@@ -54,14 +61,16 @@ export default function LikeModal() {
                   $margin="0 3.2vw 0 0"
                   cursor="pointer"
                   onClick={() => setViewType('receiverNo')}>
-                  받은 좋아요 (30)
+                  받은 좋아요 (
+                  {viewType === 'receiverNo' ? likeListData?.length : '?'})
                 </S.Font>
                 <S.Font
                   color="#454545"
                   $fontSize="18px"
                   cursor="pointer"
                   onClick={() => setViewType('senderNo')}>
-                  보낸 좋아요 (30)
+                  보낸 좋아요 (
+                  {viewType === 'senderNo' ? likeListData?.length : '?'})
                 </S.Font>
               </S.DisplayDiv>
               <S.Hr $margin={viewType} />

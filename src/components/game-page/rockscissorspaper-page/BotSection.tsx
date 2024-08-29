@@ -1,6 +1,5 @@
 'use client';
 
-import { dotPulse } from 'ldrs';
 import * as S from '../styled';
 import {
   RockSicssorsPaperArray,
@@ -8,13 +7,13 @@ import {
 } from '@/utils/rockScissorsPaper';
 import { useAtom } from 'jotai';
 import { BotHandAtom, gameResultAtom, StartTimerAtom } from '@/states/gameAtom';
+import Image from 'next/image';
 
 const BotSection = () => {
   const [gameResult] = useAtom(gameResultAtom);
   const [bothand, setBotHand] = useAtom(BotHandAtom);
   const [startTimer] = useAtom(StartTimerAtom);
   setBotHand(gameResult.computerChoice);
-  dotPulse.register();
   return (
     <S.SectionRootDiv>
       <S.ProfileCircle>
@@ -32,14 +31,19 @@ const BotSection = () => {
             key={img}
             $check={index === RockSicssorsPaperArray.indexOf(bothand)}>
             <S.IconBackColor>
-              <S.IconImg src={img}></S.IconImg>
+              <S.IconDiv>
+                <Image
+                  src={img}
+                  fill
+                  alt={'손'}
+                  sizes={'(max-width : 90px) 100vw'}
+                />
+              </S.IconDiv>
             </S.IconBackColor>
           </S.IconSircle>
         ))
       ) : (
-        <S.LoadingDiv>
-          <l-dot-pulse size="43" speed="1.3" color="black"></l-dot-pulse>
-        </S.LoadingDiv>
+        <S.LoadingDiv>로딩중... </S.LoadingDiv>
       )}
     </S.SectionRootDiv>
   );

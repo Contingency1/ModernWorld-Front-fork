@@ -1,14 +1,9 @@
 'use client';
 
 import {
-  BotHandAtom,
-  CurrentSecAtom,
-  gameResultAtom,
-  RecordAtom,
+  OnlyRecordAtom,
   RefreshResultAtom,
-  SelectHandAtom,
   ShowResultAtom,
-  StartTimerAtom,
   userHandAtom,
 } from '@/states/gameAtom';
 import * as S from '../styled';
@@ -17,15 +12,17 @@ import { useEffect, useState } from 'react';
 import { GAME } from '@/app/api/game';
 import { getTime } from '@/utils/date';
 import { RecordType } from '@/types/game';
+import { IMAGE } from '@/utils/image';
+import Image from 'next/image';
+import { add, format } from 'date-fns';
 
-const RecordComponent = () => {
+const RecordComponent = ({ gameText }: { gameText?: boolean }) => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
-  const [selectHand, setSelectHand] = useAtom(SelectHandAtom);
-  const [startTimer] = useAtom(StartTimerAtom);
-  const [timer, setTimer] = useAtom(CurrentSecAtom);
-  const [_, setBotHand] = useAtom(BotHandAtom);
   const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
-  const [userRecord, setUserRecord] = useState<RecordType[]>([
+  const [monthDay, setMonthDay] = useState(getTime().current);
+
+  const setResetUserHand = useSetAtom(userHandAtom);
+  const [record, setRecord] = useState<RecordType[]>([
     {
       no: 0,
       userNo: 0,
@@ -35,133 +32,165 @@ const RecordComponent = () => {
       createdAt: '',
     },
   ]);
-  const [computerHandRecord, setComputerHandRecord] = useState([]);
-  const [userHandRecord, setUserHandRecord] = useState([]);
-  const [record, setRecord] = useState([]);
-  const [recordAtom111] = useAtom(RecordAtom);
   const refresh = useAtomValue(RefreshResultAtom);
+  const [onlyRecord, setOnlyRecord] = useAtom(OnlyRecordAtom);
 
   const getUserNo = () => {
-    const userNo = localStorage.getItem('userNo');
-    return Number(userNo);
+    if (typeof window !== undefined) {
+      const userNo = localStorage.getItem('userNo');
+      return Number(userNo);
+    }
   };
 
   useEffect(() => {
     const getUserRecord = async () => {
-      if (Number(getTime().UTChours) > 15) {
-        const response = await GAME.GetUsersLecord(
-          getUserNo(),
-          `${getTime().year}-${Number(date) - 1}`,
-        );
-        setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
-        setUserHandRecord(response.map((hand: any) => hand.userChoice));
-        setRecord(response.map((hand: any) => hand.result));
-        setUserRecord(response);
-      } else {
-        const response = await GAME.GetUsersLecord(
-          getUserNo(),
-          `${getTime().year}-${date}`,
-        );
-        setComputerHandRecord(response.map((hand: any) => hand.computerChoice));
-        setUserHandRecord(response.map((hand: any) => hand.userChoice));
-        setRecord(response.map((hand: any) => hand.result));
-        setUserRecord(response);
-      }
+      // const kstDate = new Date(monthDay);
+
+      // const utcDate = subHours(kstDate, 9);
+
+      // const date = format(utcDate, 'yyyy-MM-dd');
+
+      const response = await GAME.GetUsersLecord(
+        getUserNo() as number,
+        `${monthDay}`,
+      );
+      setRecord(response);
     };
     getUserRecord();
-  }, [startTimer, timer, refresh]);
+  }, [refresh, date, monthDay]);
 
   const userInputDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
   };
 
+  const addDay = (date: string) => {
+    const addDay = format(add(date, { days: 1 }), 'yyyy-MM-dd');
+    setMonthDay(addDay);
+  };
+
+  const prevDay = (date: string) => {
+    const prevDay = format(add(date, { days: -1 }), 'yyyy-MM-dd');
+    setMonthDay(prevDay);
+  };
+
+  const onclickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
-    <S.RecordRootDiv $pointerClick={!showResult}>
-      <S.RecordHeader>
-        <S.InputDateTodayMatchDiv>
-          <S.InputDate
-            placeholder={`${Number(getTime().UTChours) > 15 ? `${getTime().month}-${Number(getTime().day) - 1}` : `${getTime().month}-${getTime().day}`}`}
-            $pointerClick={!showResult}
-            onChange={userInputDate}></S.InputDate>
-          <S.TodayMatch>의 대전</S.TodayMatch>
-        </S.InputDateTodayMatchDiv>
-        <S.RetryText
-          $pointerClick={!showResult}
-          onClick={() => {
-            setShowResult(false);
-            setSelectHand(false);
-          }}>
-          게임하기
-        </S.RetryText>
-      </S.RecordHeader>
-      <S.RecordBody>
-        <S.BotAndUserRecordDiv>
-          <S.ArrowImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png'
-            }></S.ArrowImg>
-          <S.UserAndBotText>봇</S.UserAndBotText>
-          <S.Line></S.Line>
-          <S.RecordLegendDiv>
-            {computerHandRecord.map((hand, index) => (
-              <div key={index + 1}>
-                {hand === 'Rock' ? '바위' : hand === 'Scissors' ? '가위' : '보'}
-                <br />
-              </div>
-            ))}
-          </S.RecordLegendDiv>
-        </S.BotAndUserRecordDiv>
-        <S.ScoreDiv>
-          <S.RecordLegendDiv>
-            {record.map((record, index) => (
-              <S.RecordText
-                key={index}
-                color={
-                  record === 'win'
-                    ? 'blue'
-                    : record === 'draw'
-                      ? '#FF5454'
-                      : 'red'
-                }>
-                {record === 'win' ? '승' : record === 'draw' ? '무' : '패'}
-              </S.RecordText>
-            ))}
-          </S.RecordLegendDiv>
-          <S.RecordLegendDiv>
-            {record.map((record, index) => (
-              <S.RecordText
-                style={{ marginLeft: '1vw' }}
-                key={index}
-                color={record === 'white' ? 'white' : 'white'}>
-                {record === 'win' ? '+300' : 0}
-              </S.RecordText>
-            ))}
-          </S.RecordLegendDiv>
-        </S.ScoreDiv>
-        <S.BotAndUserRecordDiv>
-          <S.RecordLegendDiv>
-            {userHandRecord.map((hand, index) => (
-              <div key={index + 1}>
-                {hand === 'Rock'
-                  ? '바위'
-                  : hand === 'Scissors'
-                    ? '가위'
-                    : hand === 'Paper'
-                      ? '보'
-                      : '-'}
-                <br />
-              </div>
-            ))}
-          </S.RecordLegendDiv>
-          <S.Line></S.Line>
-          <S.UserAndBotText>나</S.UserAndBotText>
-          <S.ArrowImg
-            src={
-              'https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png'
-            }></S.ArrowImg>
-        </S.BotAndUserRecordDiv>
-      </S.RecordBody>
-    </S.RecordRootDiv>
+    <>
+      <S.RecordRootDiv $pointerClick={!showResult} onClick={onclickHandler}>
+        <S.RecordHeader>
+          <S.InputDateTodayMatchDiv>
+            <S.InputDate
+              placeholder={monthDay}
+              $pointerClick={!showResult}
+              onChange={userInputDate}></S.InputDate>
+            <S.TodayMatch>의 대전</S.TodayMatch>
+          </S.InputDateTodayMatchDiv>
+          <S.RetryText
+            $pointerClick={
+              (!showResult && onlyRecord) || (showResult && !onlyRecord)
+            }
+            onClick={() => {
+              setResetUserHand(3);
+              setShowResult(false);
+              setOnlyRecord(false);
+            }}>
+            {gameText ? '시작하기' : '다시하기'}
+          </S.RetryText>
+        </S.RecordHeader>
+        <S.RecordBody>
+          <S.BotAndUserRecordDiv>
+            <S.ArrowDiv
+              $pointerClick={
+                (!showResult && onlyRecord) || (showResult && !onlyRecord)
+              }
+              onClick={() => {
+                prevDay(monthDay);
+              }}>
+              <Image
+                fill
+                src={IMAGE.leftArrow}
+                sizes={'(max-width : 50pv) 100vw'}
+                alt={'왼쪽 화살표'}></Image>
+            </S.ArrowDiv>
+            <S.UserAndBotText>봇</S.UserAndBotText>
+            <S.Line></S.Line>
+            <S.RecordLegendDiv>
+              {record.map(({ computerChoice }, index) => (
+                <div key={index + 1} style={{ fontSize: '14px' }}>
+                  {computerChoice === 'Rock'
+                    ? '바위'
+                    : computerChoice === 'Scissors'
+                      ? '가위'
+                      : '보'}
+                  <br />
+                </div>
+              ))}
+            </S.RecordLegendDiv>
+          </S.BotAndUserRecordDiv>
+          <S.ScoreDiv>
+            <S.RecordLegendDiv>
+              {record.map(({ result }, index) => (
+                <S.RecordText
+                  key={index}
+                  color={
+                    result === 'win'
+                      ? 'blue'
+                      : result === 'draw'
+                        ? '#FF5454'
+                        : 'red'
+                  }>
+                  {result === 'win' ? '승' : result === 'draw' ? '무' : '패'}
+                </S.RecordText>
+              ))}
+            </S.RecordLegendDiv>
+            <S.RecordLegendDiv>
+              {record.map(({ result }, index) => (
+                <S.RecordText
+                  style={{ marginLeft: '1vw' }}
+                  key={index}
+                  color={result === 'white' ? 'white' : 'white'}>
+                  {result === 'win' ? '+300' : 0}
+                </S.RecordText>
+              ))}
+            </S.RecordLegendDiv>
+          </S.ScoreDiv>
+          <S.BotAndUserRecordDiv>
+            <S.RecordLegendDiv>
+              {record.map(({ userChoice }, index) => (
+                <div key={index + 1} style={{ fontSize: '14px' }}>
+                  {userChoice === 'Rock'
+                    ? '바위'
+                    : userChoice === 'Scissors'
+                      ? '가위'
+                      : userChoice === 'Paper'
+                        ? '보'
+                        : '-'}
+                  <br />
+                </div>
+              ))}
+            </S.RecordLegendDiv>
+            <S.Line></S.Line>
+            <S.UserAndBotText>나</S.UserAndBotText>
+            <S.ArrowDiv
+              $pointerClick={
+                (!showResult && onlyRecord) || (showResult && !onlyRecord)
+              }
+              onClick={() => {
+                addDay(monthDay);
+              }}>
+              <Image
+                fill
+                src={IMAGE.rightArrow}
+                sizes={'(max-width : 50pv) 100vw'}
+                alt={'오른쪽 화살표'}></Image>
+            </S.ArrowDiv>
+          </S.BotAndUserRecordDiv>
+        </S.RecordBody>
+      </S.RecordRootDiv>
+    </>
   );
 };
 

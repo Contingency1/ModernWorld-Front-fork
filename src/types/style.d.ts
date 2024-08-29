@@ -31,6 +31,7 @@ interface Props {
   $marginLeft: string;
   $marginRight: string;
   $marginTop: string;
+  $marginBottom: string;
   z_index: number;
   $border: string;
   $textColor: string;
@@ -47,6 +48,8 @@ interface Props {
   opacity: string;
   $zIndex: string;
   $overFlowY: string;
+  $bottom: string;
+  $boxShadow: string;
 }
 
 export interface StyleType extends Partial<Props> {}

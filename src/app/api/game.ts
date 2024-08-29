@@ -27,17 +27,9 @@ export const GAME = {
   },
 
   async GetUsersLecord(userNo: number, date?: string) {
-    if (Number(getTime().UTChours) > 15) {
+    {
       const result: AxiosResponse = await instance.get(
-        `${this.users}/${userNo}/${this.RSP}?date=${`${getTime().year}-${getTime().month}-${Number(getTime().day) - 1}`}`,
-      );
-      console.log(
-        `${getTime().year}-${getTime().month}-${Number(getTime().day) - 1}`,
-      );
-      return result.data;
-    } else {
-      const result: AxiosResponse = await instance.get(
-        `${this.users}/${userNo}/${this.RSP}?date=${!date ? `${getTime().year}-${getTime().month}-${getTime().day}` : date}`,
+        `${this.users}/${userNo}/${this.RSP}?date=${date}`,
       );
       return result.data;
     }

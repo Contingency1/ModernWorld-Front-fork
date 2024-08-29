@@ -12,13 +12,19 @@ import {
 } from '@/states/userAtoms';
 
 export default function LeftSection() {
-  const userNo = Number(localStorage.getItem('userNo'));
+  const getUserNo = () => {
+    if (typeof window !== undefined) {
+      const userNo = Number(localStorage.getItem('userNo'));
+      return userNo;
+    }
+  };
+
   const [userData, setUserData] = useAtom(userDataAtom);
   const userCharacterChange = useAtomValue(userCharacterChangeAtom);
   const achievementColor = useAtomValue(achievementColorAtom);
 
   const getUserInfo = async () => {
-    const response = await USER.getUserInfo(userNo);
+    const response = await USER.getUserInfo(getUserNo() as number);
     setUserData(response);
   };
 

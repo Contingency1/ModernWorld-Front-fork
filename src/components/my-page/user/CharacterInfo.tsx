@@ -35,7 +35,7 @@ export default function CharacterInfo(props: {
               router.push('/my-page/achievement-settings');
             }}>
             {' '}
-            ({data.userAchievement?.[0]?.achievement?.title})
+            ({data.userAchievement?.[0]?.achievement?.title ?? '업적 없음' })
           </S.Font>
         </S.NameSection>
       </S.CharacterInfo>

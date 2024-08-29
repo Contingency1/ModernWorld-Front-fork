@@ -7,25 +7,22 @@ import styled from 'styled-components';
 /**
  * 배경색, 그리드 부여
  */
-export const BackgroundColor = styled.body<StyleType>`
+export const BackgroundColor = styled.div<StyleType>`
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: ${(props) => props.$backColor};
+  background-color: #5f6f52;
   flex-direction: ${(props) => props.$flexDirection};
   align-items: ${(props) => props.$alignItems};
+  pointer-events: ${(props) => (!props.$check ? 'auto' : 'none')};
 `;
 
 /**
  * 배경에 있는 커다란 새싹 백그라운드 이미지
  */
-export const MainLogo = styled.div<StyleType>`
-  width: 95vw;
+export const MainLogoDiv = styled.div<StyleType>`
+  width: 100vw;
   height: 100vh;
-  background-size: 90% 110%;
-  background-position: center;
-  background-image: url('https://wang0514.s3.ap-northeast-2.amazonaws.com/page/mainLogo.png');
-  background-repeat: no-repeat;
   grid-template-rows: ${(props) => props.$grid1} ${(props) => props.$grid2} ${(
       props,
     ) => props.$grid3} ${(props) => props.$grid4};
@@ -48,6 +45,8 @@ export const MainLogoText = styled.div<StyleType>`
   margin-top: ${(props) => props.$marginTop};
   margin-left: ${(props) => props.$marginLeft};
   text-shadow: 4px 4px white;
+  position: relative;
+  z-index: 1;
 `;
 
 /**
@@ -67,7 +66,8 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   font-weight: bolder;
   display: flex;
   align-items: center;
-  img {
+  position: relative;
+  z-index: 1 img {
     margin-left: ${(props) => props.$imgMarginLeft};
     margin-right: ${(props) => props.$imgMarginRight};
     width: ${(props) => props.$imgWidth};
@@ -76,16 +76,24 @@ export const LoginBtnLink = styled(Link)<StyleType>`
 `;
 
 /**
+ * 로그인 아이콘 Image태그 div
+ */
+export const logoDiv = styled.div<StyleType>`
+  position: relative;
+  margin-left: ${(props) => props.$imgMarginLeft};
+  margin-right: ${(props) => props.$imgMarginRight};
+  width: ${(props) => props.$imgWidth};
+  height: ${(props) => props.$imgHeight};
+`;
+
+/**
  소셜 로그인 성공시 생성되는 접속버튼
  @params width : string, height : string
  */
 export const MainPowerBtn = styled.div<StyleType>`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(https://wang0514.s3.ap-northeast-2.amazonaws.com/page/power.png);
+  width: 80px;
+  height: 80px;
+  position: relative;
   filter: drop-shadow(5px 2px 2px grey);
 `;
 
@@ -112,6 +120,15 @@ export const InfoNewCharacter = styled.div`
   font-size: 2.5vh;
   line-height: 150%;
   margin-bottom: 1.3%;
+`;
+/**
+ * 주의 문구 이미지 div
+ */
+export const WarningImDiv = styled.div`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
 `;
 
 /**
@@ -198,15 +215,11 @@ export const ShowFirstCharacterBox = styled.div<StyleType>`
 /**
  * 왼쪽 화살표 그리드 위치
  */
-export const LeftArrow = styled.div`
-  grid-area: left;
-  cursor: pointer;
-`;
-/**
- * 오른쪽 화살표 그리드 위치
- */
-export const RightArrow = styled.div`
-  grid-area: right;
+export const Arrow = styled.div<StyleType>`
+  width: 80px;
+  height: 80px;
+  position: relative;
+  grid-area: ${(props) => (props.$check ? 'right' : 'left')};
   cursor: pointer;
 `;
 
@@ -214,11 +227,10 @@ export const RightArrow = styled.div`
  * 캐릭터 위치 크기 및 위치 조정
  */
 export const FirstCharacter = styled.div`
+  width: 180px;
+  position: relative;
+  height: 180px;
   grid-area: center;
-  img {
-    width: 180px;
-    height: 180px;
-  }
   z-index: 1;
 `;
 /**

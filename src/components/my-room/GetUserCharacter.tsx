@@ -4,19 +4,19 @@ import * as S from './style';
 import INVENTORY from '@/app/api/inventory';
 import { InventoryItemType } from '@/types/inventory';
 import { characterSize } from '@/utils/itemSizeConstains';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-export const GetUserCharacter = () => {
+export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
   const [character, setCharacter] = useState([]);
   const [characterName, setCharacterName] = useState<string>('');
 
   useEffect(() => {
-    const userNo: number = Number(localStorage.getItem('userNo'));
-    const getUserCharacter = async () => {
+    const getUserCharacter = async (userNo: number) => {
       const response = await INVENTORY.getInventoryCharacter(userNo);
       setCharacter(response);
     };
-    getUserCharacter();
+    getUserCharacter(userNo);
     const getUsersCharacterLocker = async () => {
       const response = await INVENTORY.getUsersCharacterLocker(userNo);
       setCharacterName(response.character.name);
@@ -33,14 +33,20 @@ export const GetUserCharacter = () => {
       {checkCharacter ? (
         <S.CharacterImage
           width={checkCharacter.width}
-          height={checkCharacter.height}
-          src={
-            (
-              character.filter(
-                (e: InventoryItemType) => e.status,
-              )[0] as InventoryItemType
-            )?.character.image
-          }></S.CharacterImage>
+          height={checkCharacter.height}>
+          <Image
+            alt={'유저의 캐릭터'}
+            fill
+            sizes={'(max-width : 300px) 100vw'}
+            src={
+              (
+                character.filter(
+                  (e: InventoryItemType) => e.status,
+                )[0] as InventoryItemType
+              )?.character.image
+            }
+          />
+        </S.CharacterImage>
       ) : null}
     </>
   );
