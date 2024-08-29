@@ -125,7 +125,17 @@ const NotificationComponent = () => {
   };
 
   useEffect(() => {
-    startRefreshAccessToken();
+    if (
+      pathName !==
+      ('/' ||
+        '/loginPage' ||
+        '/naver/auth/callback' ||
+        '/newcharacter' ||
+        '/kakao/auth/callback' ||
+        'google/auth/callback')
+    ) {
+      startRefreshAccessToken();
+    }
   }, []);
 
   return (

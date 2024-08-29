@@ -150,8 +150,12 @@ const MiddleSection = () => {
       <S.GameInfoBody
         $pointerClick={showResult}
         onClick={() => {
-          delayedPostUsersHand();
-          startCountdown();
+          if (userInfo?.chance) {
+            delayedPostUsersHand();
+            startCountdown();
+          } else {
+            alert('남은 기회가 없습니다');
+          }
         }}>
         {!onlyRecord ? (
           !showResult ? (

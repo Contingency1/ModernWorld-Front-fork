@@ -10,7 +10,7 @@ const Lobby = () => {
       <S.TopDiv>
         <S.Flexdiv width={'40vw'} $justifyContent="space-between">
           {RockSicssorsPaperImgArray.map((img) => (
-            <S.HandAndShadowDiv $marginTop="23%">
+            <S.HandAndShadowDiv $marginTop="23%" key={img}>
               <S.HandDiv width={'8vw'} height={'20vh'}>
                 <Image
                   src={img}

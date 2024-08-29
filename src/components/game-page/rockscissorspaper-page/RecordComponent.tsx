@@ -119,7 +119,7 @@ const RecordComponent = ({ gameText }: { gameText?: boolean }) => {
             <S.Line></S.Line>
             <S.RecordLegendDiv>
               {record.map(({ computerChoice }, index) => (
-                <div key={index + 1}>
+                <div key={index + 1} style={{ fontSize: '14px' }}>
                   {computerChoice === 'Rock'
                     ? '바위'
                     : computerChoice === 'Scissors'
@@ -160,7 +160,7 @@ const RecordComponent = ({ gameText }: { gameText?: boolean }) => {
           <S.BotAndUserRecordDiv>
             <S.RecordLegendDiv>
               {record.map(({ userChoice }, index) => (
-                <div key={index + 1}>
+                <div key={index + 1} style={{ fontSize: '14px' }}>
                   {userChoice === 'Rock'
                     ? '바위'
                     : userChoice === 'Scissors'
