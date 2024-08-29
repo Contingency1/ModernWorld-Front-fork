@@ -1,6 +1,4 @@
-import { DescriptionType } from '@/types/utils';
-
-export const serviceDescriptions: DescriptionType[] = [
+export const serviceDescriptions = [
   {
     id: 1,
     title: '닉네임',
