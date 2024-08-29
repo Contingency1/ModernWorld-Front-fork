@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  CurrentSecAtom,
-  SelectHandAtom,
-  StartTimerAtom,
-} from '@/states/gameAtom';
+import { CurrentSecAtom, StartTimerAtom } from '@/states/gameAtom';
 import { useAtom } from 'jotai';
 import * as S from '../styled';
 

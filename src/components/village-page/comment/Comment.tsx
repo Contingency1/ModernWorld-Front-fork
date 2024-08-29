@@ -12,7 +12,7 @@ export const Comment = (props: { userNo: number }) => {
         <RedirectPrevPage userNo={props.userNo} />
         <UserName userNo={props.userNo} />
         <UserRoom userNo={props.userNo}></UserRoom>
-        <PostComment />
+        <PostComment userNo={props.userNo} />
         <ShowCommentList userNo={props.userNo} />
       </S.RootDiv>
     </S.CommentContainer>

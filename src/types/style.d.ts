@@ -31,6 +31,7 @@ interface Props {
   $marginLeft: string;
   $marginRight: string;
   $marginTop: string;
+  $marginBottom: string;
   z_index: number;
   $border: string;
   $textColor: string;

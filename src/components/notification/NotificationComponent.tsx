@@ -51,7 +51,7 @@ const NotificationComponent = () => {
   };
 
   const startRefreshAccessToken = () => {
-    setInterval(firstGetRefresh, 10000);
+    setInterval(firstGetRefresh, 3600 * 1000);
   };
 
   const accessToken = localStorage.getItem('accessToken');
@@ -74,7 +74,7 @@ const NotificationComponent = () => {
         if (e.data !== 'Connected') {
           setModalTimeOut(true);
           setEventContent(eventData);
-          setTimeout(() => setModalTimeOut(false), 3600 * 2000);
+          setTimeout(() => setModalTimeOut(false), 10000);
         }
       } catch (err) {
         console.log(err, 1);
@@ -85,7 +85,9 @@ const NotificationComponent = () => {
           setRedirect('/my-page/mailbox');
           break;
         case '방명록':
-          setRedirect('/');
+          setRedirect(
+            `/previewVillageUsers/${localStorage.getItem('userNo')}/comment`,
+          );
           break;
         case '이웃':
           setRedirect('/my-page');
@@ -116,14 +118,24 @@ const NotificationComponent = () => {
       eventSource.removeEventListener('message', eventContentHandler);
       eventSource.close();
     };
-  }, [eventContent]);
+  }, [eventContent, pathName]);
 
   const redirectPage = (redirect: string) => {
     route.push(redirect);
   };
 
   useEffect(() => {
-    startRefreshAccessToken();
+    if (
+      pathName !==
+      ('/' ||
+        '/loginPage' ||
+        '/naver/auth/callback' ||
+        '/newcharacter' ||
+        '/kakao/auth/callback' ||
+        'google/auth/callback')
+    ) {
+      startRefreshAccessToken();
+    }
   }, []);
 
   return (

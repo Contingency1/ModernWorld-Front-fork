@@ -1,3 +1,5 @@
+import { add, format } from 'date-fns';
+
 export const getTime = () => {
   const today = new Date();
   const year = today.getFullYear(); // 년
@@ -9,7 +11,11 @@ export const getTime = () => {
   const UTChours = String(today.getUTCHours()).padStart(2, '0'); // UTC시
   const UTCminutes = String(today.getUTCMinutes()).padStart(2, '0'); // UTC분
   const UTCseconds = String(today.getUTCSeconds()).padStart(2, '0'); // UTC초
+
+  const current = format(today, 'yyyy-MM-dd');
+
   return {
+    current,
     year,
     today,
     month,

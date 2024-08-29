@@ -9,10 +9,9 @@ import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { useState } from 'react';
 
-export const PostComment = () => {
+export const PostComment = ({ userNo }: { userNo: number }) => {
   const [userComment, setUserComment] = useState('');
   const [commentRefresh, setCommentRefresh] = useAtom(commentRefreshAtom);
-  const [userSelected] = useAtom(UserSelectedAtom);
 
   const postComments = async (userNo: number, content: string) => {
     if (confirm('방명록을 작성하시겠습니까?')) {
@@ -35,7 +34,7 @@ export const PostComment = () => {
         width="2vw"
         height="2vw"
         $marginLeft="15%"
-        onClick={() => postComments(Number(userSelected), userComment)}>
+        onClick={() => postComments(userNo, userComment)}>
         <Image
           src={IMAGE.pencil}
           sizes="(max-width : 38px) 100vw"
