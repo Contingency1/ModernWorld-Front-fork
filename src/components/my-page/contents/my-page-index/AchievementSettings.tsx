@@ -6,8 +6,9 @@ import { achievementColorAtom, userDataAtom } from '@/states/userAtoms';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ACHIEVEMENTS } from '@/app/api/achievement';
-import { achievementTitles, levelColors } from '@/utils/achievements';
+import { achievementDescriptions, levelColors } from '@/utils/achievements';
 import { AchievementDataType } from '@/types/achievement';
+import { IMAGE } from '@/utils/image';
 
 const padTitle = (title: string) => {
   if (title.length >= 5) return title;
@@ -31,15 +32,19 @@ export default function AchievementSettings() {
   };
 
   useEffect(() => {
-    achievementTitles.flat().forEach((title) => getAchievements(title));
+    achievementDescriptions.forEach((achievement) =>
+      getAchievements(achievement.title),
+    );
   }, [achievementColor]);
 
   const handleItemClick = async (data: AchievementDataType) => {
-    const response = await ACHIEVEMENTS.setAchievements(
-      data.achievementNo,
-      data.achievement.title,
-    );
-    setAchievementColor(data.achievement.level);
+    if (data.achievement.title) {
+      const response = await ACHIEVEMENTS.setAchievements(
+        data.achievementNo,
+        data.achievement.title,
+      );
+      setAchievementColor(data.achievement.level);
+    }
   };
 
   return (
@@ -55,31 +60,54 @@ export default function AchievementSettings() {
             <S.Font>나의 업적 선택하기</S.Font>
           </S.AchievementViewContainer>
           <S.AchievementEleContainer>
-            {achievementTitles.map((pair, index) => (
-              <S.DirectionDiv flex="row" $margin="1vw 0" key={index}>
-                {pair.map((title) => (
+            {achievementDescriptions
+              .reduce((rows, { title, level }, index) => {
+                const currentRow = Math.floor(index / 2);
+                if (!rows[currentRow]) {
+                  rows[currentRow] = [];
+                }
+                rows[currentRow].push(
                   <S.DirectionDiv flex="row" $margin="0 1vw" key={title}>
                     <S.AchievementBadge>{padTitle(title)}</S.AchievementBadge>
                     <S.DirectionDiv flex="column">
-                      {achievementData[title]?.map(
-                        (data: AchievementDataType) => (
+                      {level?.map((lvl: string, idx: number) => {
+                        const achievement = achievementData[title]?.find(
+                          (ach) => ach.achievement.title === lvl,
+                        );
+
+                        const isAvailable = achievement?.achievement.title;
+                        const fontColor = isAvailable
+                          ? levelColors[achievement?.achievement.level]
+                          : '#45454540';
+
+                        return (
                           <S.AchievementListFont
-                            key={data.achievementNo}
-                            color={levelColors[data.achievement.level]}
-                            onClick={() => handleItemClick(data)}>
+                            key={`${title}-${idx}`}
+                            color={fontColor}
+                            onClick={() =>
+                              isAvailable && handleItemClick(achievement!)
+                            }
+                            style={{
+                              cursor: isAvailable ? 'pointer' : 'not-allowed',
+                            }}>
                             <S.CheckUi />
-                            {data.status && (
-                              <S.CheckImg src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/check.png" />
+                            {isAvailable && achievement?.status && (
+                              <S.CheckImg src={IMAGE.check} />
                             )}
-                            {padTitle(data.achievement.title)}
+                            {padTitle(lvl)}
                           </S.AchievementListFont>
-                        ),
-                      )}
+                        );
+                      })}
                     </S.DirectionDiv>
-                  </S.DirectionDiv>
-                ))}
-              </S.DirectionDiv>
-            ))}
+                  </S.DirectionDiv>,
+                );
+                return rows;
+              }, [] as JSX.Element[][])
+              .map((row, index) => (
+                <S.DirectionDiv flex="row" $margin="1vw 0" key={index}>
+                  {row}
+                </S.DirectionDiv>
+              ))}
           </S.AchievementEleContainer>
         </S.UserInfoSection>
       </S.Background>

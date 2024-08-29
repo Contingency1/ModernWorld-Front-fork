@@ -27,5 +27,7 @@ export const IMAGE = {
   logout: `${process.env.NEXT_PUBLIC_S3}/page/logout.png`,
   arrowUp: `${process.env.NEXT_PUBLIC_S3}/page/TopArrow.svg`,
   arrowDown: `${process.env.NEXT_PUBLIC_S3}/page/DownArrow.svg`,
+  send: `${process.env.NEXT_PUBLIC_S3}/page/send.png`,
+  check: `${process.env.NEXT_PUBLIC_S3}/page/check.png`,
   handShdow: `${process.env.NEXT_PUBLIC_S3}/page/%EA%B0%80%EC%9C%84%EB%B0%94%EC%9C%84%EB%B3%B4/handShadow.svg`,
 };

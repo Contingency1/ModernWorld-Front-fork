@@ -4,6 +4,7 @@ export const achievementDescriptions: DescriptionType[] = [
   {
     id: 1,
     title: '소통왕',
+    level: ['소통해요', '소통완료', '댓글부대'],
     description: [
       '- 소통해요: 댓글 10개를 작성하면 달성하며, 2,000 포인트를 획득합니다.',
       '- 소통완료: 댓글 20개를 작성하면 달성하며, 2,000 포인트를 획득합니다.',
@@ -13,6 +14,7 @@ export const achievementDescriptions: DescriptionType[] = [
   {
     id: 2,
     title: '인기왕',
+    level: ['인싸', '인플루언서', '연예인'],
     description: [
       '- 인싸: 좋아요 10개를 받으면 달성하며, 1,000 포인트를 획득합니다.',
       '- 인플루언서: 좋아요 20개를 받으면 달성하며, 2,000 포인트를 획득합니다.',
@@ -22,6 +24,7 @@ export const achievementDescriptions: DescriptionType[] = [
   {
     id: 3,
     title: '출석왕',
+    level: ['성실', '꾸준', '개근'],
     description: [
       '- 성실: 출석을 10회 하면 달성하며, 1,000 포인트를 획득합니다.',
       '- 꾸준: 출석을 20회 하면 달성하며, 2,000 포인트를 획득합니다.',
@@ -31,6 +34,7 @@ export const achievementDescriptions: DescriptionType[] = [
   {
     id: 4,
     title: '수집왕',
+    level: ['돈있음', '돈많음', '부자'],
     description: [
       '- 돈있음: 아이템 10개를 구매하면 달성하며, 1,000 포인트를 획득합니다.',
       '- 돈많음: 아이템 20개를 구매하면 달성하며, 2,000 포인트를 획득합니다.',
@@ -40,6 +44,7 @@ export const achievementDescriptions: DescriptionType[] = [
   {
     id: 5,
     title: '선물왕',
+    level: ['착함', '엄청착함', '천사'],
     description: [
       '- 착함: 선물을 10번 보내면 달성하며, 10,000 포인트를 획득합니다.',
       '- 엄청착함: 선물을 20번 보내면 달성하며, 20,000 포인트를 획득합니다.',
@@ -49,6 +54,7 @@ export const achievementDescriptions: DescriptionType[] = [
   {
     id: 6,
     title: '게임왕',
+    level: ['대단함', '멋짐', '레전드'],
     description: [
       '- 대단함: 가위바위보 게임에서 10번 승리하면 달성하며, 1,000 포인트를 획득합니다.',
       '- 멋짐: 가위바위보 게임에서 20번 승리하면 달성하며, 2,000 포인트를 획득합니다.',

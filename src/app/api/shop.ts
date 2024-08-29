@@ -52,7 +52,7 @@ const SHOP = {
       return result.data;
     } catch (error: any) {
       console.error('실패하였습니다.', error);
-      alert('실패했습니다.');
+
       throw error;
     }
   },
@@ -70,7 +70,6 @@ const SHOP = {
       return result.data;
     } catch (error: any) {
       console.error('실패하였습니다.', error);
-      alert('실패했습니다.');
       throw error;
     }
   },
@@ -91,7 +90,6 @@ const SHOP = {
       return result.data;
     } catch (error: any) {
       console.error('실패하였습니다.', error);
-      alert('실패했습니다.');
       throw error;
     }
   },

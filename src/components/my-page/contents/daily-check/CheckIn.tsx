@@ -7,6 +7,7 @@ import USER from '@/app/api/user';
 import { UserAttendanceDataType } from '@/types/user';
 import { days } from '@/utils/daysConstants';
 import { EMOJIS } from '@/utils/emojiConstants';
+import { IMAGE } from '@/utils/image';
 
 export default function CheckIn() {
   const [selectedEmoji, setSelectedEmoji] = useState<number | null>(null);
@@ -71,10 +72,7 @@ export default function CheckIn() {
             <S.Font $fontSize="40px" color="#6C6C6C" $margin="0 3vh 0 0">
               출 석 체 크
             </S.Font>
-            <img
-              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/check.png"
-              width={'30vw'}
-            />
+            <img src={IMAGE.check} width={'30vw'} />
           </S.ContentSection>
           <S.ContentSection>
             {attendanceData ? (
@@ -113,10 +111,7 @@ export default function CheckIn() {
                 <S.Font $margin="0 0.5vw 0 0">
                   {isCheck ? '출석완료' : '출석하기'}
                 </S.Font>
-                <img
-                  src="https://wang0514.s3.ap-northeast-2.amazonaws.com/page/check.png"
-                  width={'12vw'}
-                />
+                <img src={IMAGE.check} width={'12vw'} />
               </S.CheckButton>
               <S.Font $margin="2vh" color="#FF7070" $fontSize="18px">
                 {currentDate}

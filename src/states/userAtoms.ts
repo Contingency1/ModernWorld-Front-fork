@@ -27,6 +27,7 @@ export const userDataAtom = atom<UserInfoType>({
 });
 export const characterImage = atom<string>('');
 export const userCharacterChangeAtom = atom<boolean>(true);
+export const userShoppingAtom = atom('');
 export const achievementColorAtom = atom<'one' | 'two' | 'three' | null>(null);
 export const isMyPageMenuModalAtom = atom<boolean>(false);
 export const isLogoutModalAtom = atom(false);

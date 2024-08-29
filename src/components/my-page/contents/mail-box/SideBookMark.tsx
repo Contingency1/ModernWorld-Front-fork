@@ -7,25 +7,17 @@ import { mailBoxSelectAtom } from '@/states/mailboxAtoms';
 export default function SideBookMark() {
   const [type, setType] = useAtom(mailBoxSelectAtom);
 
-  const typeClick = (index: number) => {
-    if (index === 0) {
-      setType(0);
-    } else {
-      setType(1);
-    }
-  };
-
   return (
     <>
       <S.BookMarkSide>
         <S.RMenuDiv
           color={!type ? '#363A8D' : '#7C80C8'}
-          onClick={() => typeClick(0)}>
+          onClick={() => setType(0)}>
           편지
         </S.RMenuDiv>
         <S.RMenuDiv
           color={type ? '#363A8D' : '#7C80C8'}
-          onClick={() => typeClick(1)}>
+          onClick={() => setType(1)}>
           선물
         </S.RMenuDiv>
       </S.BookMarkSide>
