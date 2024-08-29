@@ -5,6 +5,7 @@ import * as S from '@/components/village-page/comment/styled';
 import { commentRefreshAtom } from '@/states/commentRefresh';
 import { CommentNumberAtom, ModalStateAtom } from '@/states/reply';
 import { UserSelectedAtom } from '@/states/village';
+import { getFormattedDate } from '@/utils/date';
 import { IMAGE } from '@/utils/image';
 import { useAtom, useSetAtom } from 'jotai';
 import Image from 'next/image';
@@ -112,11 +113,7 @@ export const ShowCommentList = (props: { userNo: number }) => {
               </S.ImageDiv>
               <S.ReplyCountDiv>{_count.reply}</S.ReplyCountDiv>
             </S.ReplyDiv>
-            <S.CommentDateDiv>
-              {createdAt ? createdAt.match(regex)?.[1] : null}
-              <> </>
-              {createdAt ? createdAt.match(regex)?.[2] : null}
-            </S.CommentDateDiv>
+            <S.CommentDateDiv>{getFormattedDate(createdAt)}</S.CommentDateDiv>
             <S.ImageDiv
               width="1.8vw"
               height="1.8vw"

@@ -5,6 +5,7 @@ import * as S from '@/components/village-page/comment/reply/styled';
 import { commentRefreshAtom } from '@/states/commentRefresh';
 import { CommentNumberAtom, ModalStateAtom } from '@/states/reply';
 import { singleCommentType } from '@/types/comment';
+import { getFormattedDate } from '@/utils/date';
 import { IMAGE } from '@/utils/image';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -85,12 +86,14 @@ export const ReplyModalHeader = (props: { userId: number }) => {
               setEditCommentValue(e.target.value)
             }></S.CommentEditInput>
         )}
-        <S.CommentCreated>{userComment.createdAt}</S.CommentCreated>
+        <S.CommentCreated>
+          {getFormattedDate(userComment.createdAt)}
+        </S.CommentCreated>
         <S.EditDeleteBtnDiv>
           <S.EditBtn onClick={() => editComment(commentNo, editCommentValue)}>
             {!editCommentState ? '수정' : '완료'}
           </S.EditBtn>
-          /{' '}
+          /
           <S.DeleteBtn onClick={() => deleteComments(commentNo)}>
             삭제
           </S.DeleteBtn>

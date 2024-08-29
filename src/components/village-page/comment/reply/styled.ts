@@ -73,16 +73,26 @@ export const CommentRootDiv = styled.div`
   justify-content: center;
   align-items: center;
   background-color: white;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3);
   position: relative;
 `;
 
 export const CommentDiv = styled.div`
   margin-top: 2%;
+  margin-right: 2%;
   width: 88%;
   height: 88%;
   font-size: 20px;
   position: relative;
+`;
+
+export const Line = styled.div`
+  width: 42%;
+  border-top: 1px solid #000000;
+  margin-top: 30px;
+  position: absolute;
+  top: 31.4%;
+  z-index: 1;
 `;
 
 export const CommentEditInput = styled.textarea`
@@ -116,12 +126,11 @@ export const PostRepliesDiv = styled.div`
   align-items: center;
   border-radius: 10px;
   margin-top: 3%;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.3);
 `;
 
-export const PostRepliesInput = styled.textarea`
+export const PostRepliesInput = styled.input`
   width: 85%;
-  height: 70%;
   border: none;
   outline: none;
   resize: none;
@@ -143,6 +152,8 @@ export const PagesDiv = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 11.5%;
 `;
 
 export const ReplyValueDiv = styled.div`
@@ -151,18 +162,17 @@ export const ReplyValueDiv = styled.div`
   display: flex;
   align-items: center;
   font-size: 15px;
-  margin-left: 1%;
+  margin-left: 1.5%;
 `;
 
 export const ReplyNickname = styled.div`
-  width: 10vw;
+  width: 8vw;
   height: 100%;
   font-size: 15px;
-  display: flex;
-  align-items: center;
   flex-direction: column;
   position: relative;
-  margin-top: 6.2%;
+  margin-top: 6.5%;
+  margin-left: 2%;
 `;
 
 export const ReplyCreatedAt = styled.div`
@@ -170,12 +180,12 @@ export const ReplyCreatedAt = styled.div`
   font-size: 11px;
   color: #9b9b9b;
   position: absolute;
-  margin-top: 11%;
+  margin-top: 1%;
 `;
 
 export const ReplyValueInput = styled.textarea`
   width: 22vw;
-  height: 90%;
+  height: 100%;
   display: flex;
   background-color: #fbf9e4;
   justify-content: center;
@@ -193,9 +203,9 @@ export const EditDeleteBtnDiv = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   position: absolute;
-  font-size: 10px;
-  right: 3%;
-  bottom: 3%;
+  font-size: 16px;
+  right: 4.5%;
+  bottom: 7%;
 `;
 
 export const EditBtn = styled.div`
@@ -203,6 +213,7 @@ export const EditBtn = styled.div`
   font-size: 15px;
   color: #2d37ff;
   cursor: pointer;
+  margin-left: 2.3%;
 `;
 
 export const DeleteBtn = styled.div`
@@ -216,7 +227,7 @@ export const DeleteBtn = styled.div`
 
 export const CommentCreated = styled.div`
   font-size: 12px;
-  width: 5vw;
+  width: 7vw;
   color: #b7b7b7;
   position: absolute;
   left: 5%;

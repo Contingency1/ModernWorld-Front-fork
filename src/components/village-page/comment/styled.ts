@@ -144,7 +144,8 @@ export const CommentDateDiv = styled.div`
 `;
 
 export const PageNationDiv = styled.div`
-  margin-top: 2%;
+  position: absolute;
+  bottom: 13%;
   width: 8vw;
   height: 2vh;
   flex-direction: row;

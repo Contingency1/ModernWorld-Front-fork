@@ -4,6 +4,7 @@ import { REPLY } from '@/app/api/reply';
 import * as S from '@/components/village-page/comment/reply/styled';
 import { commentRefreshAtom } from '@/states/commentRefresh';
 import { CommentNumberAtom, RefreshReplyAtom } from '@/states/reply';
+import { getFormattedDate } from '@/utils/date';
 import { IMAGE } from '@/utils/image';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -76,7 +77,7 @@ export const ReplyModalBody = () => {
           <S.Images src={IMAGE.comment} width="30px" height="30px"></S.Images>
           <S.ReplyNickname>
             {user.nickname}
-            <S.ReplyCreatedAt>{createdAt}</S.ReplyCreatedAt>
+            <S.ReplyCreatedAt>{getFormattedDate(createdAt)}</S.ReplyCreatedAt>
           </S.ReplyNickname>
           /
           {no !== editReplyNo ? (

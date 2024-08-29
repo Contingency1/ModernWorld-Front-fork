@@ -10,6 +10,7 @@ const Reply = (props: { userId: number }) => {
         <S.ModalContainer>
           <S.ModalDiv>
             <ReplyModalHeader userId={props.userId} />
+            <S.Line></S.Line>
             <PostReply />
             <ReplyModalBody />
           </S.ModalDiv>
