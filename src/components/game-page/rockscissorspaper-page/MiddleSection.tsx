@@ -32,6 +32,8 @@ const MiddleSection = () => {
   // 결과를 보여주는 boolean
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
 
+  const [onlyRecord, setOnlyRecord] = useState(false);
+
   const [refresh, setRefresh] = useAtom(RefreshResultAtom);
 
   const [userInfo, setUserInfo] = useState<{

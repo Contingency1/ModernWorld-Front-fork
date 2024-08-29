@@ -301,7 +301,7 @@ export const InputDate = styled.input<StyleType>`
   pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
   &::placeholder {
     color: #000000;
-    font-size: 16px;
+    font-size: 10px;
   }
 `;
 

@@ -13,12 +13,12 @@ import { getTime } from '@/utils/date';
 import { RecordType } from '@/types/game';
 import { IMAGE } from '@/utils/image';
 import Image from 'next/image';
-import { add, format } from 'date-fns';
+import { add, format, subHours } from 'date-fns';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
   const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
-  let monthDay = getTime().current;
+  const [monthDay, setMonthDay] = useState(getTime().current);
 
   const setResetUserHand = useSetAtom(userHandAtom);
   const [record, setRecord] = useState<RecordType[]>([
@@ -42,19 +42,17 @@ const RecordComponent = () => {
 
   useEffect(() => {
     const getUserRecord = async () => {
-      if (Number(getTime().UTChours) > 15) {
-        const response = await GAME.GetUsersLecord(
-          getUserNo() as number,
-          `${monthDay}`,
-        );
-        setRecord(response);
-      } else {
-        const response = await GAME.GetUsersLecord(
-          getUserNo() as number,
-          `${monthDay}`,
-        );
-        setRecord(response);
-      }
+      // const kstDate = new Date(monthDay);
+
+      // const utcDate = subHours(kstDate, 9);
+
+      // const date = format(utcDate, 'yyyy-MM-dd');
+
+      const response = await GAME.GetUsersLecord(
+        getUserNo() as number,
+        `${monthDay}`,
+      );
+      setRecord(response);
     };
     getUserRecord();
   }, [refresh, date, monthDay]);
@@ -64,13 +62,13 @@ const RecordComponent = () => {
   };
 
   const addDay = (date: string) => {
-    monthDay = format(add(date, { days: 1 }), 'yyyy-MM-dd');
-    return monthDay;
+    const addDay = format(add(date, { days: 1 }), 'yyyy-MM-dd');
+    setMonthDay(addDay);
   };
 
   const prevDay = (date: string) => {
-    monthDay = format(add(date, { days: -1 }), 'yyyy-MM-dd');
-    return monthDay;
+    const prevDay = format(add(date, { days: -1 }), 'yyyy-MM-dd');
+    setMonthDay(prevDay);
   };
 
   return (
@@ -79,7 +77,7 @@ const RecordComponent = () => {
         <S.RecordHeader>
           <S.InputDateTodayMatchDiv>
             <S.InputDate
-              placeholder={`${Number(getTime().UTChours) > 15 ? `${getTime().month}-${Number(getTime().day) - 1}` : `${getTime().month}-${getTime().day}`}`}
+              placeholder={monthDay}
               $pointerClick={!showResult}
               onChange={userInputDate}></S.InputDate>
             <S.TodayMatch>의 대전</S.TodayMatch>
@@ -90,7 +88,7 @@ const RecordComponent = () => {
               setResetUserHand(3);
               setShowResult(false);
             }}>
-            게임하기
+            다시하기
           </S.RetryText>
         </S.RecordHeader>
         <S.RecordBody>
