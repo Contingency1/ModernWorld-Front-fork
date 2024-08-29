@@ -6,5 +6,9 @@ import { OnlyRecordAtom } from '../../../states/gameAtom';
 
 export const OnlyRecord = () => {
   const onlyRecord = useAtomValue(OnlyRecordAtom);
-  return <>{onlyRecord ? <RecordComponent></RecordComponent> : null}</>;
+  return (
+    <>
+      {onlyRecord ? <RecordComponent gameText={true}></RecordComponent> : null}
+    </>
+  );
 };

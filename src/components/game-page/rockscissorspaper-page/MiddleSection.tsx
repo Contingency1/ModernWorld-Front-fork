@@ -130,7 +130,7 @@ const MiddleSection = () => {
   };
 
   return (
-    <S.GameInfoRootDiv $pointerClick={showResult}>
+    <S.GameInfoRootDiv $pointerClick={showResult || onlyRecord}>
       <S.GameInfoHeader>
         <S.Flexdiv
           $marginTop={'0'}
@@ -163,12 +163,14 @@ const MiddleSection = () => {
           delayedPostUsersHand();
           startCountdown();
         }}>
-        {!showResult ? (
-          <TimerIfYouWantPlay></TimerIfYouWantPlay>
-        ) : (
-          <RecordModal></RecordModal>
-        )}
-        {!onlyRecord && !showResult ? (
+        {!onlyRecord ? (
+          !showResult ? (
+            <TimerIfYouWantPlay></TimerIfYouWantPlay>
+          ) : (
+            <RecordModal></RecordModal>
+          )
+        ) : null}
+        {!onlyRecord && !showResult && !startTimer ? (
           <S.ShowRecordText onClick={(event) => handleChildClick(event, true)}>
             전적 보기
           </S.ShowRecordText>

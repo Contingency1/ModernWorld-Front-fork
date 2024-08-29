@@ -14,10 +14,9 @@ import { getTime } from '@/utils/date';
 import { RecordType } from '@/types/game';
 import { IMAGE } from '@/utils/image';
 import Image from 'next/image';
-import { add, format, subHours } from 'date-fns';
-import { OnlyRecord } from './OnlyRecord';
+import { add, format } from 'date-fns';
 
-const RecordComponent = () => {
+const RecordComponent = ({ gameText }: { gameText?: boolean }) => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
   const [date, setDate] = useState(`${getTime().month}-${getTime().day}`);
   const [monthDay, setMonthDay] = useState(getTime().current);
@@ -34,7 +33,7 @@ const RecordComponent = () => {
     },
   ]);
   const refresh = useAtomValue(RefreshResultAtom);
-  const onlyRecord = useAtomValue(OnlyRecordAtom);
+  const [onlyRecord, setOnlyRecord] = useAtom(OnlyRecordAtom);
 
   const getUserNo = () => {
     if (typeof window !== undefined) {
@@ -96,8 +95,9 @@ const RecordComponent = () => {
             onClick={() => {
               setResetUserHand(3);
               setShowResult(false);
+              setOnlyRecord(false);
             }}>
-            다시하기
+            {gameText ? '시작하기' : '다시하기'}
           </S.RetryText>
         </S.RecordHeader>
         <S.RecordBody>
