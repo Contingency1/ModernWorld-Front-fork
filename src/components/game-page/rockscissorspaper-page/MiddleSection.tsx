@@ -54,25 +54,11 @@ const MiddleSection = () => {
   };
 
   useEffect(() => {
-    // if (userInfo?.chance) {
     const getUserInfo = async (userNo: number) => {
       const response = await USER.getUserInfo(userNo);
       setUserInfo(response);
     };
     getUserInfo(getUserNo() as number);
-    // } else {
-    //   if (
-    //     confirm(
-    //       '기회를 모두 소진하였습니다 기회를 충전하러 충전 페이지로 이동하시겠씁니까?',
-    //     )
-    //   ) {
-    //     alert('그런건 없답니다~');
-    //     route.push('/my-page');
-    //   } else {
-    //     alert('ㅋㅋㅋ');
-    //     route.push('/my-page');
-    //   }
-    // }
   }, [startTimer, refresh]);
 
   useEffect(() => {
@@ -90,21 +76,25 @@ const MiddleSection = () => {
 
   // 3초 뒤에 요청 API 요청, 타이머 초기화, 결과창 확인, 손 자동 초기화
   const delayedPostUsersHand = () => {
-    if (!startTimer) {
-      if (!showResult) {
-        setTimer(3);
-        //결과창 확인
-        const showResultFoo = () => {
-          setShowResult(true);
-        };
-        // 타이머 초기화
-        const clearTimer = () => {
-          setStartTimer(false);
-        };
-        setStartTimer(true);
-        setTimeout(clearTimer, 3000);
-        setTimeout(showResultFoo, 3000);
+    if (userInfo?.chance) {
+      if (!startTimer) {
+        if (!showResult) {
+          setTimer(3);
+          //결과창 확인
+          const showResultFoo = () => {
+            setShowResult(true);
+          };
+          // 타이머 초기화
+          const clearTimer = () => {
+            setStartTimer(false);
+          };
+          setStartTimer(true);
+          setTimeout(clearTimer, 3000);
+          setTimeout(showResultFoo, 3000);
+        }
       }
+    } else {
+      alert('남은 기회가 없습니다');
     }
   };
 
