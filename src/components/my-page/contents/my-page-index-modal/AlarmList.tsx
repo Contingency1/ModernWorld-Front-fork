@@ -8,20 +8,41 @@ import { deleteAlarmAtom, isMyPageMenuModalAtom } from '@/states/userAtoms';
 import { getFormattedDate } from '@/utils/date';
 import { IMAGE } from '@/utils/image';
 import Link from 'next/link';
-import { ALARMS } from '@/utils/alarm';
+import { useEffect, useState } from 'react';
 
 export default function AlarmList(props: {
   color: string;
   data: OneAlarmData;
 }) {
+  const getUserNo = () => {
+    if (typeof window !== undefined) {
+      const number = Number(localStorage.getItem('userNo'));
+      setUserNo(number);
+    }
+  };
+
   const setDelAlarm = useSetAtom(deleteAlarmAtom);
   const setIsMenuModal = useSetAtom(isMyPageMenuModalAtom);
   const handleDel = async () => {
     const response = await ALARM.delAlarm(props.data.no);
     setDelAlarm(props.data.no);
   };
+  const [userNo, setUserNo] = useState(0);
+  const ALARMS = {
+    방명록: `/previewVillageUsers/${userNo}`,
+    게임: '',
+    좋아요: `/previewVillageUsers/${userNo}`,
+    이웃: '/my-page/neighbor',
+    쪽지: '/my-page/mailbox',
+    선물: '/my-page/mailbox',
+    업적: '/my-page/achievement-settings',
+  };
 
   const alarmLink = ALARMS[props.data.title as keyof typeof ALARMS] || '';
+
+  useEffect(() => {
+    getUserNo();
+  }, []);
 
   return (
     <>
