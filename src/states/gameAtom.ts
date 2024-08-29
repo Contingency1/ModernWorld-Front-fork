@@ -23,3 +23,4 @@ export const CurrentSecAtom = atom<number>(3);
 export const ShowResultAtom = atom<boolean>(false);
 export const BotHandAtom = atom('');
 export const RefreshResultAtom = atom(false);
+export const OnlyRecordAtom = atom(false);

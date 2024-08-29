@@ -10,6 +10,7 @@ import {
   StartTimerAtom,
   userHandAtom,
   RefreshResultAtom,
+  OnlyRecordAtom,
 } from '@/states/gameAtom';
 import { GAME } from '@/app/api/game';
 import { useEffect, useState } from 'react';
@@ -19,6 +20,8 @@ import { TimerIfYouWantPlay } from './TimerIfYouWantPlay';
 import USER from '@/app/api/user';
 import { IMAGE } from '@/utils/image';
 import Image from 'next/image';
+import React from 'react';
+import { OnlyRecord } from './OnlyRecord';
 
 const MiddleSection = () => {
   // 유저의 손
@@ -32,7 +35,7 @@ const MiddleSection = () => {
   // 결과를 보여주는 boolean
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
 
-  const [onlyRecord, setOnlyRecord] = useState(false);
+  const [onlyRecord, setOnlyRecord] = useAtom(OnlyRecordAtom);
 
   const [refresh, setRefresh] = useAtom(RefreshResultAtom);
 
@@ -42,8 +45,6 @@ const MiddleSection = () => {
     currentPoint: number;
     nickname: string;
   }>();
-
-  const userHand = useSetAtom(userHandAtom);
 
   const getUserNo = () => {
     if (typeof window !== undefined) {
@@ -120,6 +121,14 @@ const MiddleSection = () => {
     }, 1000);
   };
 
+  const handleChildClick = (
+    event: React.MouseEvent<HTMLDivElement>,
+    action: boolean,
+  ) => {
+    event.stopPropagation();
+    action ? setOnlyRecord(true) : null;
+  };
+
   return (
     <S.GameInfoRootDiv $pointerClick={showResult}>
       <S.GameInfoHeader>
@@ -159,14 +168,15 @@ const MiddleSection = () => {
         ) : (
           <RecordModal></RecordModal>
         )}
-        {/* {!startTimer && !showResult ? (
-          <S.ShowRecordText onClick={() => setOnlyResult(!onlyResult)}>
+        {!onlyRecord && !showResult ? (
+          <S.ShowRecordText onClick={(event) => handleChildClick(event, true)}>
             전적 보기
           </S.ShowRecordText>
-        ) : null} */}
+        ) : null}
+        <OnlyRecord></OnlyRecord>
         <S.ChanceText>남은 기회 : {userInfo?.chance}/10</S.ChanceText>
         <Link href="/my-page">
-          <S.ExistDiv>
+          <S.ExistDiv onClick={(event) => handleChildClick(event, false)}>
             <Image
               src={IMAGE.exit}
               alt={'나가기'}

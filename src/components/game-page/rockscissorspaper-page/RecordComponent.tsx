@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  OnlyRecordAtom,
   RefreshResultAtom,
   ShowResultAtom,
   userHandAtom,
@@ -14,6 +15,7 @@ import { RecordType } from '@/types/game';
 import { IMAGE } from '@/utils/image';
 import Image from 'next/image';
 import { add, format, subHours } from 'date-fns';
+import { OnlyRecord } from './OnlyRecord';
 
 const RecordComponent = () => {
   const [showResult, setShowResult] = useAtom(ShowResultAtom);
@@ -32,6 +34,7 @@ const RecordComponent = () => {
     },
   ]);
   const refresh = useAtomValue(RefreshResultAtom);
+  const onlyRecord = useAtomValue(OnlyRecordAtom);
 
   const getUserNo = () => {
     if (typeof window !== undefined) {
@@ -71,9 +74,13 @@ const RecordComponent = () => {
     setMonthDay(prevDay);
   };
 
+  const onclickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
-      <S.RecordRootDiv $pointerClick={!showResult}>
+      <S.RecordRootDiv $pointerClick={!showResult} onClick={onclickHandler}>
         <S.RecordHeader>
           <S.InputDateTodayMatchDiv>
             <S.InputDate
@@ -83,7 +90,9 @@ const RecordComponent = () => {
             <S.TodayMatch>의 대전</S.TodayMatch>
           </S.InputDateTodayMatchDiv>
           <S.RetryText
-            $pointerClick={!showResult}
+            $pointerClick={
+              (!showResult && onlyRecord) || (showResult && !onlyRecord)
+            }
             onClick={() => {
               setResetUserHand(3);
               setShowResult(false);
@@ -94,10 +103,11 @@ const RecordComponent = () => {
         <S.RecordBody>
           <S.BotAndUserRecordDiv>
             <S.ArrowDiv
-              $pointerClick={!showResult}
+              $pointerClick={
+                (!showResult && onlyRecord) || (showResult && !onlyRecord)
+              }
               onClick={() => {
                 prevDay(monthDay);
-                console.log(monthDay);
               }}>
               <Image
                 fill
@@ -165,7 +175,9 @@ const RecordComponent = () => {
             <S.Line></S.Line>
             <S.UserAndBotText>나</S.UserAndBotText>
             <S.ArrowDiv
-              $pointerClick={!showResult}
+              $pointerClick={
+                (!showResult && onlyRecord) || (showResult && !onlyRecord)
+              }
               onClick={() => {
                 addDay(monthDay);
               }}>

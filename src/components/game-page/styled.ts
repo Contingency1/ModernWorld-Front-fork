@@ -314,7 +314,7 @@ export const RetryText = styled.div<StyleType>`
   margin-left: 10vw;
   color: #2e53b8;
   font-size: 0.7em;
-  pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
+  pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
   cursor: pointer;
 `;
 
@@ -339,7 +339,7 @@ export const ArrowDiv = styled.div<StyleType>`
   width: 2vw;
   height: 2vw;
   cursor: pointer;
-  pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
+  pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
 `;
 
 export const UserAndBotText = styled.div`
