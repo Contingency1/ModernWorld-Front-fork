@@ -70,7 +70,7 @@ export default function AchievementSettings() {
                   <S.DirectionDiv flex="row" $margin="0 1vw" key={title}>
                     <S.AchievementBadge>{padTitle(title)}</S.AchievementBadge>
                     <S.DirectionDiv flex="column">
-                      {level.map((lvl, idx) => {
+                      {level.map((lvl: string, idx: number) => {
                         const achievement = achievementData[title]?.find(
                           (ach) => ach.achievement.title === lvl,
                         );
