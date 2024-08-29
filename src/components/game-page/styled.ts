@@ -40,18 +40,21 @@ export const HandAndShadowDiv = styled.div<StyleType>`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 1000;
+  position: relative;
 `;
 
-export const HandImg = styled.img`
+export const HandDiv = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  position: relative;
 `;
 
-export const ShadowImg = styled.img`
+export const ShadowDiv = styled.div<StyleType>`
+  position: relative;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  margin-bottom: 60%;
+  margin-bottom: ${(props) => props.$marginBottom};
+  z-index: 2;
 `;
 
 export const Flexdiv = styled.div<StyleType>`
@@ -72,11 +75,12 @@ export const RockSicssorsPapreDiv = styled.div`
   margin-bottom: 6%;
 `;
 
-export const PowerImg = styled.img`
+export const PowerDiv = styled.div`
   width: 80px;
   height: 80px;
   margin-bottom: 3%;
   filter: drop-shadow(4px 3px 0.3px #a9a9a9);
+  position: relative;
   cursor: pointer;
 `;
 
@@ -157,7 +161,8 @@ export const IconBackColor = styled.div`
   background-color: #ececec;
 `;
 
-export const IconImg = styled.img`
+export const IconDiv = styled.div`
+  position: relative;
   width: 5vw;
   height: 5vw;
   border-radius: 50%;
@@ -232,7 +237,7 @@ export const ChanceText = styled.div`
   height: 3vh;
 `;
 
-export const ExistImg = styled.img<StyleType>`
+export const ExistDiv = styled.div<StyleType>`
   position: absolute;
   bottom: 1.5%;
   right: 21%;
@@ -296,7 +301,7 @@ export const InputDate = styled.input<StyleType>`
   pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
   &::placeholder {
     color: #000000;
-    font-size: 16px;
+    font-size: 10px;
   }
 `;
 
@@ -309,7 +314,7 @@ export const RetryText = styled.div<StyleType>`
   margin-left: 10vw;
   color: #2e53b8;
   font-size: 0.7em;
-  pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
+  pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
   cursor: pointer;
 `;
 
@@ -329,10 +334,12 @@ export const RecordText = styled.span`
   color: ${(props) => props.color};
 `;
 
-export const ArrowImg = styled.img`
+export const ArrowDiv = styled.div<StyleType>`
+  position: relative;
   width: 2vw;
   height: 2vw;
   cursor: pointer;
+  pointer-events: ${(props) => (props.$pointerClick ? 'auto' : 'none')};
 `;
 
 export const UserAndBotText = styled.div`

@@ -223,13 +223,12 @@ export const AchievementEleContainer = styled.div`
   width: 700px;
   height: 220px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   margin-bottom: -16vh;
   overflow-y: auto;
   box-sizing: border-box;
-  padding-top: 15vw;
 `;
 
 /** flex 방향 */

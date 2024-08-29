@@ -20,9 +20,7 @@ export const gameResultAtom = atom<{
 });
 export const StartTimerAtom = atom<boolean>(false);
 export const CurrentSecAtom = atom<number>(3);
-export const SelectHandAtom = atom<boolean>(false);
 export const ShowResultAtom = atom<boolean>(false);
-export const onlyResultAtom = atom<boolean>(false);
 export const BotHandAtom = atom('');
-export const RecordAtom = atom<any>([]);
 export const RefreshResultAtom = atom(false);
+export const OnlyRecordAtom = atom(false);

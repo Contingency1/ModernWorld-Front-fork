@@ -1,5 +1,4 @@
-import { isMyPageMenuModalAtom } from '@/states/userAtoms';
-import { useSetAtom } from 'jotai';
+'use client';
 
 const getUserNo = () => {
   if (typeof window !== undefined) {

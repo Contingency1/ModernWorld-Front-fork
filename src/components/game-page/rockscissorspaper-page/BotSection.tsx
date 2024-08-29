@@ -7,6 +7,7 @@ import {
 } from '@/utils/rockScissorsPaper';
 import { useAtom } from 'jotai';
 import { BotHandAtom, gameResultAtom, StartTimerAtom } from '@/states/gameAtom';
+import Image from 'next/image';
 
 const BotSection = () => {
   const [gameResult] = useAtom(gameResultAtom);
@@ -30,7 +31,14 @@ const BotSection = () => {
             key={img}
             $check={index === RockSicssorsPaperArray.indexOf(bothand)}>
             <S.IconBackColor>
-              <S.IconImg src={img}></S.IconImg>
+              <S.IconDiv>
+                <Image
+                  src={img}
+                  fill
+                  alt={'손'}
+                  sizes={'(max-width : 90px) 100vw'}
+                />
+              </S.IconDiv>
             </S.IconBackColor>
           </S.IconSircle>
         ))

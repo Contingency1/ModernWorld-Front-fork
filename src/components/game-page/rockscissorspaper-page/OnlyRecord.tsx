@@ -1,5 +1,14 @@
+'use client';
+
+import { useAtomValue } from 'jotai';
 import RecordComponent from './RecordComponent';
+import { OnlyRecordAtom } from '../../../states/gameAtom';
 
 export const OnlyRecord = () => {
-  return <RecordComponent></RecordComponent>;
+  const onlyRecord = useAtomValue(OnlyRecordAtom);
+  return (
+    <>
+      {onlyRecord ? <RecordComponent gameText={true}></RecordComponent> : null}
+    </>
+  );
 };

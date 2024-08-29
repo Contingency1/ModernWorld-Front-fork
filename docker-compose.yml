@@ -4,7 +4,9 @@ services:
     ports:
       - '3000:3000'
     env_file:
-      - ./.env
+      - .env
+    volumes:
+      - ./.env:/app/.env
     restart: always
 
   nginx:

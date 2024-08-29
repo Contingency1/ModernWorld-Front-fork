@@ -1,3 +1,5 @@
+'use client';
+
 import { OneAlarmData } from '@/types/alarm';
 import * as S from './style';
 import ALARM from '@/app/api/Alarms';
