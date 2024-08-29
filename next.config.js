@@ -1,4 +1,9 @@
 const nextConfig = {
+  headers: [
+    {
+      key: 'Access-Control-Allow-Origin',
+    },
+  ],
   compiler: {
     styledComponents: true,
   },
