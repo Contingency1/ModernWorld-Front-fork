@@ -14,6 +14,7 @@ export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
   useEffect(() => {
     const getUserCharacter = async (userNo: number) => {
       const response = await INVENTORY.getInventoryCharacter(userNo);
+      console.log(response);
       setCharacter(response);
     };
     getUserCharacter(userNo);

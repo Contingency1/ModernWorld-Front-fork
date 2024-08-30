@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import * as S from './style';
 import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';
@@ -11,8 +12,14 @@ export const Area1_4_5 = (props: { userNo?: number }) => {
             <S.ImageSize
               width={useCheckItemSizeHook(1, 'width', props.userNo)}
               height={useCheckItemSizeHook(1, 'height', props.userNo)}
-              src={useCheckAreaHook(1, props.userNo)}
-              $hasError={useCheckAreaHook(1, props.userNo)}></S.ImageSize>
+              $hasError={useCheckAreaHook(1, props.userNo)}>
+              <Image
+                src={useCheckAreaHook(1, props.userNo)}
+                fill
+                alt={'1번 가구 이미지'}
+                sizes={'(max-width : 400px) 100vw'}
+              />
+            </S.ImageSize>
           </S.ItemImageSize>
         </S.DivElement>
         <S.Place_4_5>
@@ -21,8 +28,14 @@ export const Area1_4_5 = (props: { userNo?: number }) => {
               <S.ImageSize
                 width={useCheckItemSizeHook(4, 'width', props.userNo)}
                 height={useCheckItemSizeHook(4, 'height', props.userNo)}
-                src={useCheckAreaHook(4, props.userNo)}
-                $hasError={useCheckAreaHook(4, props.userNo)}></S.ImageSize>
+                $hasError={useCheckAreaHook(4, props.userNo)}>
+                <Image
+                  src={useCheckAreaHook(4, props.userNo)}
+                  fill
+                  alt={'4번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
+              </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <S.DivElement width="50%" height="100%" id="Place_5">
@@ -30,8 +43,14 @@ export const Area1_4_5 = (props: { userNo?: number }) => {
               <S.ImageSize
                 width={useCheckItemSizeHook(5, 'width', props.userNo)}
                 height={useCheckItemSizeHook(5, 'height', props.userNo)}
-                src={useCheckAreaHook(5, props.userNo)}
-                $hasError={useCheckAreaHook(5, props.userNo)}></S.ImageSize>
+                $hasError={useCheckAreaHook(5, props.userNo)}>
+                <Image
+                  src={useCheckAreaHook(5, props.userNo)}
+                  fill
+                  alt={'5번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
+              </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
         </S.Place_4_5>

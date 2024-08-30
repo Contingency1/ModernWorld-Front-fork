@@ -5,6 +5,7 @@ import { Area1_4_5 } from './Area1_4_5';
 import { Area7_8_9 } from './Area7_8_9';
 import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';
+import Image from 'next/image';
 
 export function MyRoom(props: {
   width: string;
@@ -24,8 +25,14 @@ export function MyRoom(props: {
               <S.ImageSize
                 width={useCheckItemSizeHook(2, 'width', props.userNo)}
                 height={useCheckItemSizeHook(2, 'height', props.userNo)}
-                src={useCheckAreaHook(2, props.userNo)}
-                $hasError={useCheckAreaHook(2, props.userNo)}></S.ImageSize>
+                $hasError={useCheckAreaHook(2, props.userNo)}>
+                <Image
+                  src={useCheckAreaHook(2, props.userNo)}
+                  fill
+                  alt={'2번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
+              </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <Area1_4_5 userNo={props.userNo} />
@@ -34,8 +41,14 @@ export function MyRoom(props: {
               <S.ImageSize
                 width={useCheckItemSizeHook(3, 'width', props.userNo)}
                 height={useCheckItemSizeHook(3, 'height', props.userNo)}
-                src={useCheckAreaHook(3, props.userNo)}
-                $hasError={useCheckAreaHook(3, props.userNo)}></S.ImageSize>
+                $hasError={useCheckAreaHook(3, props.userNo)}>
+                <Image
+                  src={useCheckAreaHook(3, props.userNo)}
+                  fill
+                  alt={'3번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
+              </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <S.DivElement id="place_6">
@@ -43,8 +56,14 @@ export function MyRoom(props: {
               <S.ImageSize
                 width={useCheckItemSizeHook(6, 'width', props.userNo)}
                 height={useCheckItemSizeHook(6, 'height', props.userNo)}
-                src={useCheckAreaHook(6, props.userNo)}
-                $hasError={useCheckAreaHook(6, props.userNo)}></S.ImageSize>
+                $hasError={useCheckAreaHook(6, props.userNo)}>
+                <Image
+                  src={useCheckAreaHook(6, props.userNo)}
+                  fill
+                  alt={'6번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
+              </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
           <Area7_8_9 userNo={props.userNo} />
@@ -53,8 +72,14 @@ export function MyRoom(props: {
               <S.ImageSize
                 width={useCheckItemSizeHook(10, 'width', props.userNo)}
                 height={useCheckItemSizeHook(10, 'height', props.userNo)}
-                src={useCheckAreaHook(10, props.userNo)}
-                $hasError={useCheckAreaHook(10, props.userNo)}></S.ImageSize>
+                $hasError={useCheckAreaHook(10, props.userNo)}>
+                <Image
+                  src={useCheckAreaHook(10, props.userNo)}
+                  fill
+                  alt={'10번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
+              </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
         </S.ItemsGrid>

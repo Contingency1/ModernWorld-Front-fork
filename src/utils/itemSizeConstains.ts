@@ -33,10 +33,12 @@ export const itemSize = [
 ];
 
 export const characterSize = [
-  { characterName: '1번 cat 이름', width: '50%', height: '50%' },
-  { characterName: 2, width: '50%', height: '50%' },
-  { characterName: 3, width: '50%', height: '50%' },
-  { characterName: 4, width: '50%', height: '50%' },
-  { characterName: 5, width: '50%', height: '50%' },
-  { characterName: 6, width: '50%', height: '50%' },
+  { characterName: '시작고양이', width: '50%', height: '50%' },
+  { characterName: '탄강아지', width: '50%', height: '50%' },
+  { characterName: '안진우회색강아지', width: '50%', height: '50%' },
+  { characterName: '시작강아지', width: '50%', height: '50%' },
+  { characterName: '에이리언고양이', width: '50%', height: '50%' },
+  { characterName: '안진우똥색고양이', width: '50%', height: '50%' },
+  { characterName: '김은우검은고양이', width: '50%', height: '50%' },
+  { characterName: '조영은회색강아지', width: '50%', height: '50%' },
 ];
