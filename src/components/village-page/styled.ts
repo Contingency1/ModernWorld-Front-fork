@@ -9,10 +9,10 @@ export const BackgroundDisplay = styled.div<StyleType>`
   background-color: ${(props) => props.color};
 `;
 
-export const ExitButton = styled.div`
+export const ExitButton = styled.div<StyleType>`
   position: absolute;
-  top: 18%;
-  right: 6%;
+  top: ${(props) => props.$top};
+  right: ${(props) => props.$right};
   width: 5vw;
   height: 5vw;
   cursor: pointer;

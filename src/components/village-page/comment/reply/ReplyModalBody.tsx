@@ -70,6 +70,19 @@ export const ReplyModalBody = () => {
     }
   };
 
+  const keyDown = async (
+    event: React.KeyboardEvent,
+    replyNo: number,
+    replyValue: string,
+  ) => {
+    if (event.key === 'Enter' && editReplyState) {
+      const response = await REPLY.editReplies(commentNo, replyNo, replyValue);
+      setRefresh(!refresh);
+      setEditReplyNo(1);
+      return response;
+    }
+  };
+
   return (
     <>
       {repliesArray.map(({ content, no, createdAt, user }) => (
@@ -85,8 +98,9 @@ export const ReplyModalBody = () => {
           ) : (
             <S.ReplyValueInput
               defaultValue={content}
-              onChange={(e) =>
-                setReplyEventTarget(e.target.value)
+              onChange={(e) => setReplyEventTarget(e.target.value)}
+              onKeyDown={(event) =>
+                keyDown(event, no, replyEventTarget)
               }></S.ReplyValueInput>
           )}
           <S.EditBtn
