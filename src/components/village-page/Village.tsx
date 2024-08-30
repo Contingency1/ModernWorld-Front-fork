@@ -24,7 +24,7 @@ export default function Village(props: { animal: string }) {
         />
       </S.Title>
       <Link href="/my-page">
-        <S.ExitButton>
+        <S.ExitButton $top="18%" $right="6%">
           <Image
             src={IMAGE.exit}
             alt={'마이페이지로 돌아가기'}

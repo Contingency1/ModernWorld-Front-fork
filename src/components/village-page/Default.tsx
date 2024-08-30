@@ -35,6 +35,15 @@ export const Default = () => {
           </S.Outline>
         </S.HarfDiv>
       </Link>
+      <Link href={'/my-page'}>
+        <S.ExitButton $top={'86%'} $right={'4%'}>
+          <Image
+            src={IMAGE.exit}
+            alt={'나가기 버튼'}
+            fill
+            sizes={'(max-width : 50px) 100vw'}></Image>
+        </S.ExitButton>
+      </Link>
     </S.RootDiv>
   );
 };
