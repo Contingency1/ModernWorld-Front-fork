@@ -13,8 +13,8 @@ export const ExitButton = styled.div<StyleType>`
   position: absolute;
   top: ${(props) => props.$top};
   right: ${(props) => props.$right};
-  width: 5vw;
-  height: 5vw;
+  width: 3vw;
+  height: 3vw;
   cursor: pointer;
 `;
 

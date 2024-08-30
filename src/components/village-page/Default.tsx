@@ -36,7 +36,7 @@ export const Default = () => {
         </S.HarfDiv>
       </Link>
       <Link href={'/my-page'}>
-        <S.ExitButton $top={'50%'} $right={'50%'}>
+        <S.ExitButton $top={'86%'} $right={'4%'}>
           <Image
             src={IMAGE.exit}
             alt={'나가기 버튼'}
