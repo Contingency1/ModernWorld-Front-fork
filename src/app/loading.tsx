@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const Loading = () => {
   const route = useRouter();
@@ -12,17 +12,15 @@ const Loading = () => {
     return () => clearTimeout(timeout);
   }, [route]);
   return (
-    <Suspense fallback={<></>}>
-      <main
-        style={{
-          width: '95vw',
-          height: '95vh',
-          display: 'grid',
-          placeContent: 'center',
-        }}>
-        로딩중...
-      </main>
-    </Suspense>
+    <main
+      style={{
+        width: '95vw',
+        height: '95vh',
+        display: 'grid',
+        placeContent: 'center',
+      }}>
+      로딩중...
+    </main>
   );
 };
 

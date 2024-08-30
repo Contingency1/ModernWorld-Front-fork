@@ -2,26 +2,27 @@
 
 import { MyRoom } from '@/components/my-room/MyRoom';
 import * as S from './style';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function MyPetRoom() {
-  let userNo;
+  const [userNo, setUserNo] = useState<number | null>(null);
   useEffect(() => {
     const getUserNo = () => {
       if (typeof window !== undefined) {
-        const userNo = Number(localStorage.getItem('userNo'));
-        return userNo;
+        const userNumber = Number(localStorage.getItem('userNo'));
+        setUserNo(userNumber);
       }
     };
-
-    userNo = getUserNo() as number;
+    getUserNo();
   }, []);
 
   return (
     <>
       <S.MyPetRoomBody>
         <S.RoomBorder>
-          <MyRoom width="94%" height="90%" userNo={userNo} />
+          {userNo !== null && (
+            <MyRoom width="94%" height="90%" userNo={userNo} />
+          )}
         </S.RoomBorder>
       </S.MyPetRoomBody>
     </>
