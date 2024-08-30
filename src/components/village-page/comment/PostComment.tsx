@@ -3,11 +3,10 @@
 import { COMMENT } from '@/app/api/comment';
 import * as S from '@/components/village-page/comment/styled';
 import { commentRefreshAtom } from '@/states/commentRefresh';
-import { UserSelectedAtom } from '@/states/village';
 import { IMAGE } from '@/utils/image';
 import { useAtom } from 'jotai';
 import Image from 'next/image';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const PostComment = ({ userNo }: { userNo: number }) => {
   const [userComment, setUserComment] = useState('');
@@ -17,6 +16,7 @@ export const PostComment = ({ userNo }: { userNo: number }) => {
     if (confirm('방명록을 작성하시겠습니까?')) {
       const response = await COMMENT.postComments(userNo, content);
       setCommentRefresh(!commentRefresh);
+      setUserComment('');
       return response;
     }
   };
@@ -25,11 +25,28 @@ export const PostComment = ({ userNo }: { userNo: number }) => {
     setUserComment(event.target.value);
   };
 
+  const keyDown = async (
+    event: React.KeyboardEvent,
+    userNo: number,
+    content: string,
+  ) => {
+    if (event.key === 'Enter') {
+      if (confirm('방명록을 작성하시겠습니까?')) {
+        const response = await COMMENT.postComments(userNo, content);
+        setCommentRefresh(!commentRefresh);
+        setUserComment('');
+        return response;
+      }
+    }
+  };
+
   return (
     <S.CommentInputRootDiv>
       <S.CommentInput
         placeholder="방명록을 남겨보세요~"
-        onChange={commentEventTarget}></S.CommentInput>
+        onChange={commentEventTarget}
+        onKeyDown={(event) => keyDown(event, userNo, userComment)}
+        value={userComment}></S.CommentInput>
       <S.ImageDiv
         width="2vw"
         height="2vw"

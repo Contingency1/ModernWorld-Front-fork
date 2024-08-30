@@ -18,17 +18,27 @@ export const PostReply = () => {
     const response = await REPLY.postReplies(commentNo, userReplyValue);
     setRefresh(!refresh);
     setRefreshComment(!refreshComment);
-
+    setUserReplyValue('');
     return response;
+  };
+
+  const keyDown = async (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      const response = await REPLY.postReplies(commentNo, userReplyValue);
+      setRefresh(!refresh);
+      setRefreshComment(!refreshComment);
+      setUserReplyValue('');
+      return response;
+    }
   };
 
   return (
     <S.PostRepliesDiv>
       <S.PostRepliesInput
         placeholder="댓글 작성하기"
-        onChange={(event) =>
-          setUserReplyValue(event.target.value)
-        }></S.PostRepliesInput>
+        onChange={(event) => setUserReplyValue(event.target.value)}
+        onKeyDown={(event) => keyDown(event)}
+        value={userReplyValue}></S.PostRepliesInput>
       <S.Images
         width="30px"
         height="30px"
