@@ -1,5 +1,3 @@
-const { ACTION_SERVER_ACTION } = require("next/dist/client/components/router-reducer/router-reducer-types");
-
 const nextConfig = {
   output: 'standalone',
   async headers() {
