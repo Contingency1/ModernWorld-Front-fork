@@ -1,3 +1,5 @@
+const { ACTION_SERVER_ACTION } = require("next/dist/client/components/router-reducer/router-reducer-types");
+
 const nextConfig = {
   output: 'standalone',
   async headers() {
@@ -39,6 +41,9 @@ const nextConfig = {
   //   appDir: true,
   // },
   reactStrictMode: false,
+  serverActions: {
+    allowedOringins: ["testmodenworld.shop", "localhost:3001"],
+  }
 };
 
 module.exports = nextConfig;
