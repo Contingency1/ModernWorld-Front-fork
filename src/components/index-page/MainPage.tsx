@@ -30,7 +30,7 @@ export default function MainPage() {
   }, []);
 
   return (
-    <S.BackgroundColor $check={isUser}>
+    <S.BackgroundColor>
       <S.MainLogoDiv $grid1="40%" $grid2="30%" $grid3="30%">
         <Image
           src={IMAGE.mainLogo}

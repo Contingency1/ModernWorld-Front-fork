@@ -5,12 +5,13 @@ import { useEffect } from 'react';
 
 const Loading = () => {
   const route = useRouter();
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       route.replace('/not-found');
     }, 5000);
     return () => clearTimeout(timeout);
-  }, [route]);
+  }, []);
   return (
     <main
       style={{

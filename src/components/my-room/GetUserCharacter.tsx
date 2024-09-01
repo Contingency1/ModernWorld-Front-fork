@@ -14,7 +14,6 @@ export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
   useEffect(() => {
     const getUserCharacter = async (userNo: number) => {
       const response = await INVENTORY.getInventoryCharacter(userNo);
-      console.log(response);
       setCharacter(response);
     };
     getUserCharacter(userNo);
@@ -44,7 +43,7 @@ export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
                 character.filter(
                   (e: InventoryItemType) => e.status,
                 )[0] as InventoryItemType
-              )?.character.image
+              )?.character.image || `${process.env.NEXT_PUBLIC_S3}`
             }
           />
         </S.CharacterImage>

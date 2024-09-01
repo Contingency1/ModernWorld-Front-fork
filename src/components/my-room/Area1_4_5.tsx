@@ -13,14 +13,15 @@ export const Area1_4_5 = (props: { userNo?: number }) => {
               width={useCheckItemSizeHook(1, 'width', props.userNo)}
               height={useCheckItemSizeHook(1, 'height', props.userNo)}
               $hasError={useCheckAreaHook(1, props.userNo)}>
-              {useCheckAreaHook(1, props.userNo) && (
-                <Image
-                  src={useCheckAreaHook(1, props.userNo)}
-                  fill
-                  alt={'1번 가구 이미지'}
-                  sizes={'(max-width : 400px) 100vw'}
-                />
-              )}
+              <Image
+                src={
+                  useCheckAreaHook(1, props.userNo) ||
+                  `${process.env.NEXT_PUBLIC_S3}`
+                }
+                fill
+                alt={'1번 가구 이미지'}
+                sizes={'(max-width : 400px) 100vw'}
+              />
             </S.ImageSize>
           </S.ItemImageSize>
         </S.DivElement>
@@ -31,14 +32,15 @@ export const Area1_4_5 = (props: { userNo?: number }) => {
                 width={useCheckItemSizeHook(4, 'width', props.userNo)}
                 height={useCheckItemSizeHook(4, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(4, props.userNo)}>
-                {useCheckAreaHook(4, props.userNo) && (
-                  <Image
-                    src={useCheckAreaHook(4, props.userNo)}
-                    fill
-                    alt={'4번 가구 이미지'}
-                    sizes={'(max-width : 400px) 100vw'}
-                  />
-                )}
+                <Image
+                  src={
+                    useCheckAreaHook(4, props.userNo) ||
+                    `${process.env.NEXT_PUBLIC_S3}`
+                  }
+                  fill
+                  alt={'4번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
               </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
@@ -48,14 +50,15 @@ export const Area1_4_5 = (props: { userNo?: number }) => {
                 width={useCheckItemSizeHook(5, 'width', props.userNo)}
                 height={useCheckItemSizeHook(5, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(5, props.userNo)}>
-                {useCheckAreaHook(5, props.userNo) && (
-                  <Image
-                    src={useCheckAreaHook(5, props.userNo)}
-                    fill
-                    alt={'5번 가구 이미지'}
-                    sizes={'(max-width : 400px) 100vw'}
-                  />
-                )}
+                <Image
+                  src={
+                    useCheckAreaHook(5, props.userNo) ||
+                    `${process.env.NEXT_PUBLIC_S3}`
+                  }
+                  fill
+                  alt={'5번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
               </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>

@@ -26,14 +26,15 @@ export function MyRoom(props: {
                 width={useCheckItemSizeHook(2, 'width', props.userNo)}
                 height={useCheckItemSizeHook(2, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(2, props.userNo)}>
-                {useCheckAreaHook(2, props.userNo) && (
-                  <Image
-                    src={useCheckAreaHook(2, props.userNo)}
-                    fill
-                    alt={'2번 가구 이미지'}
-                    sizes={'(max-width : 400px) 100vw'}
-                  />
-                )}
+                <Image
+                  src={
+                    useCheckAreaHook(2, props.userNo) ||
+                    `${process.env.NEXT_PUBLIC_S3}`
+                  }
+                  fill
+                  alt={'2번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
               </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
@@ -44,14 +45,15 @@ export function MyRoom(props: {
                 width={useCheckItemSizeHook(3, 'width', props.userNo)}
                 height={useCheckItemSizeHook(3, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(3, props.userNo)}>
-                {useCheckAreaHook(3, props.userNo) && (
-                  <Image
-                    src={useCheckAreaHook(3, props.userNo)}
-                    fill
-                    alt={'3번 가구 이미지'}
-                    sizes={'(max-width : 400px) 100vw'}
-                  />
-                )}
+                <Image
+                  src={
+                    useCheckAreaHook(3, props.userNo) ||
+                    `${process.env.NEXT_PUBLIC_S3}`
+                  }
+                  fill
+                  alt={'3번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
               </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
@@ -61,14 +63,15 @@ export function MyRoom(props: {
                 width={useCheckItemSizeHook(6, 'width', props.userNo)}
                 height={useCheckItemSizeHook(6, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(6, props.userNo)}>
-                {useCheckAreaHook(6, props.userNo) && (
-                  <Image
-                    src={useCheckAreaHook(6, props.userNo)}
-                    fill
-                    alt={'6번 가구 이미지'}
-                    sizes={'(max-width : 400px) 100vw'}
-                  />
-                )}
+                <Image
+                  src={
+                    useCheckAreaHook(6, props.userNo) ||
+                    `${process.env.NEXT_PUBLIC_S3}`
+                  }
+                  fill
+                  alt={'6번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
               </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
@@ -79,14 +82,15 @@ export function MyRoom(props: {
                 width={useCheckItemSizeHook(10, 'width', props.userNo)}
                 height={useCheckItemSizeHook(10, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(10, props.userNo)}>
-                {useCheckAreaHook(10, props.userNo) && (
-                  <Image
-                    src={useCheckAreaHook(10, props.userNo)}
-                    fill
-                    alt={'10번 가구 이미지'}
-                    sizes={'(max-width : 400px) 100vw'}
-                  />
-                )}
+                <Image
+                  src={
+                    useCheckAreaHook(10, props.userNo) ||
+                    `${process.env.NEXT_PUBLIC_S3}`
+                  }
+                  fill
+                  alt={'10번 가구 이미지'}
+                  sizes={'(max-width : 400px) 100vw'}
+                />
               </S.ImageSize>
             </S.ItemImageSize>
           </S.DivElement>
