@@ -30,6 +30,20 @@ export const itemSize = [
   { itemNo: 29, width: '30%', height: '30%' },
   { itemNo: 30, width: '30%', height: '30%' },
   { itemNo: 31, width: '30%', height: '30%' },
+  { itemNo: 32, width: '30%', height: '30%' },
+  { itemNo: 33, width: '30%', height: '30%' },
+  { itemNo: 34, width: '30%', height: '30%' },
+  { itemNo: 35, width: '30%', height: '30%' },
+  { itemNo: 36, width: '30%', height: '30%' },
+  { itemNo: 37, width: '50%', height: '50%' },
+  { itemNo: 38, width: '50%', height: '50%' },
+  { itemNo: 39, width: '50%', height: '50%' },
+  { itemNo: 40, width: '50%', height: '50%' },
+  { itemNo: 41, width: '50%', height: '50%' },
+  { itemNo: 42, width: '50%', height: '50%' },
+  { itemNo: 43, width: '50%', height: '50%' },
+  { itemNo: 44, width: '50%', height: '50%' },
+  { itemNo: 45, width: '50%', height: '50%' },
 ];
 
 export const characterSize = [
