@@ -40,7 +40,7 @@ const nextConfig = {
   // },
   reactStrictMode: false,
   serverActions: {
-    allowedOringins: ["testmodenworld.shop", "localhost:3001"],
+    allowedOringins: ["moden-world.kr", "localhost:3001"],
   }
 };
 
