@@ -1,5 +1,3 @@
-const { ACTION_SERVER_ACTION } = require("next/dist/client/components/router-reducer/router-reducer-types");
-
 const nextConfig = {
   output: 'standalone',
   async headers() {
@@ -42,7 +40,7 @@ const nextConfig = {
   // },
   reactStrictMode: false,
   serverActions: {
-    allowedOringins: ["testmodenworld.shop", "localhost:3001"],
+    allowedOringins: ["moden-world.kr", "localhost:3001"],
   }
 };
 
