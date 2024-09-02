@@ -39,9 +39,6 @@ const nextConfig = {
   //   appDir: true,
   // },
   reactStrictMode: false,
-  serverActions: {
-    allowedOringins: ["moden-world.kr", "localhost:3001"],
-  }
 };
 
 module.exports = nextConfig;

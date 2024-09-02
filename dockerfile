@@ -11,8 +11,6 @@ FROM node:20-alpine AS base
 
 # CMD [ "npm", "run", "dev" ]
 
-# 여기까지 *
-
 # 의존성 설치
 FROM base AS deps 
 
