@@ -3,7 +3,6 @@
 import '../../style/globals.css';
 import * as S from '@/components/my-page/user/style';
 import LeftSection from '@/components/my-page/user/LeftSection';
-
 export default function MyPageLayout({
   children,
 }: {

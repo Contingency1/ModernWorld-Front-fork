@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { StyleType } from '@/types/style';
 
 /** Background Color CSS */
-export const BodyContainer = styled.body<StyleType>`
+export const BodyContainer = styled.div<StyleType>`
   background-color: ${(props) => props.color};
+  width: 100vw;
+  height: 100vh;
 `;
 
 /** 최상단 Div 에 grid 적용 */

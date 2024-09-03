@@ -39,14 +39,13 @@ const LikeComponent = ({ userNo }: { userNo: number }) => {
 
   return (
     <>
-      <S.MenuButtonDiv width="15vw" $marginLeft="15%">
-        <S.ImgStyle
-          $marginRight="5%"
-          width="20px"
-          height="20px"
-          onClick={() => {
-            !likeState ? sendLike(userNo) : cancelLike(userNo);
-          }}>
+      <S.MenuButtonDiv
+        width="15vw"
+        $marginLeft="15%"
+        onClick={() => {
+          !likeState ? sendLike(userNo) : cancelLike(userNo);
+        }}>
+        <S.ImgStyle $marginRight="5%" width="20px" height="20px">
           <Image
             src={IMAGE.heart}
             alt={'좋아요'}

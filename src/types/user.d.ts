@@ -1,4 +1,5 @@
 export interface UserInfoType {
+  socialName: string;
   nickname: string;
   currentPoint: number;
   accumulationPoint: number;
