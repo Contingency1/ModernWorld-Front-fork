@@ -20,7 +20,11 @@ export default function CharacterInfo(props: {
           <img
             src={data.characterLocker?.[0]?.character?.image}
             alt="character"
-            width="100vw"
+            style={{
+              width: '7vw',
+              height: 'auto',
+              objectFit: 'cover',
+            }}
           />
         </Link>
         <S.NameSection>
