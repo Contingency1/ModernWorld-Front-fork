@@ -46,6 +46,7 @@ export interface UserAttendanceDataType {
 export interface UserSearchResult {
   data: {
     no: number;
+    socialName: string;
     nickname: string;
     description: string;
     accumulationPoint: number;
