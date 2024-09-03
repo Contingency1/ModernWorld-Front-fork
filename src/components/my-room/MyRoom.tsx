@@ -16,8 +16,26 @@ export function MyRoom(props: {
     <>
       <S.MyRoomRootDiv width={props.width} height={props.height}>
         <S.BackGroundGrid>
-          <S.FloorAndWall color="#b5e4ff" $border="30px 30px 0px 0px" />
-          <S.FloorAndWall color="#d5f0ff" $border="0px 0px 30px 30px" />
+          <S.FloorAndWall $border="30px 30px 0px 0px">
+            <Image
+              alt={'바닥 이미지'}
+              src={
+                useCheckAreaHook(11, props.userNo) ||
+                `${process.env.NEXT_PUBLIC_S3}`
+              }
+              fill
+              sizes={'(max-size:1920px) 100vw'}></Image>
+          </S.FloorAndWall>
+          <S.FloorAndWall $border="0px 0px 30px 30px">
+            <Image
+              alt={'벽지 이미지'}
+              src={
+                useCheckAreaHook(12, props.userNo) ||
+                `${process.env.NEXT_PUBLIC_S3}`
+              }
+              fill
+              sizes={'(max-size:1080px) 100vh'}></Image>
+          </S.FloorAndWall>
         </S.BackGroundGrid>
         <S.ItemsGrid>
           <S.DivElement width="100%" height="100%" id="place_2">
@@ -25,7 +43,8 @@ export function MyRoom(props: {
               <S.ImageSize
                 width={useCheckItemSizeHook(2, 'width', props.userNo)}
                 height={useCheckItemSizeHook(2, 'height', props.userNo)}
-                $hasError={useCheckAreaHook(2, props.userNo)}>
+                $hasError={useCheckAreaHook(2, props.userNo)}
+                $bottom="12%">
                 <Image
                   src={
                     useCheckAreaHook(2, props.userNo) ||
@@ -44,7 +63,8 @@ export function MyRoom(props: {
               <S.ImageSize
                 width={useCheckItemSizeHook(3, 'width', props.userNo)}
                 height={useCheckItemSizeHook(3, 'height', props.userNo)}
-                $hasError={useCheckAreaHook(3, props.userNo)}>
+                $hasError={useCheckAreaHook(3, props.userNo)}
+                $bottom="-4%">
                 <Image
                   src={
                     useCheckAreaHook(3, props.userNo) ||

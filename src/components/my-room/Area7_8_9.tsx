@@ -13,7 +13,9 @@ export const Area7_8_9 = (props: { userNo?: number }) => {
             <S.ImageSize
               width={useCheckItemSizeHook(7, 'width', props.userNo)}
               height={useCheckItemSizeHook(7, 'height', props.userNo)}
-              $hasError={useCheckAreaHook(7, props.userNo)}>
+              $hasError={useCheckAreaHook(7, props.userNo)}
+              $left="-17%"
+              $top="1%">
               <Image
                 src={
                   useCheckAreaHook(7, props.userNo) ||
@@ -32,7 +34,7 @@ export const Area7_8_9 = (props: { userNo?: number }) => {
               width={useCheckItemSizeHook(8, 'width', props.userNo)}
               height={useCheckItemSizeHook(8, 'height', props.userNo)}
               $hasError={useCheckAreaHook(8, props.userNo)}
-              $bottom={'5%'}>
+              $bottom={'-13%'}>
               <Image
                 src={
                   useCheckAreaHook(8, props.userNo) ||

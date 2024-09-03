@@ -66,6 +66,7 @@ const SHOP = {
       const result: AxiosResponse = await instance.post(`/users/my/items`, {
         itemNo: no,
       });
+      console.log(no);
       alert('성공했습니다.');
       return result.data;
     } catch (error: any) {

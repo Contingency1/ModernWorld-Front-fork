@@ -29,6 +29,8 @@ export const Grid = styled.div`
  * 배경 그리드입니다
  */
 export const BackGroundGrid = styled(Grid)`
+  width: 100%;
+  height: 100%;
   grid-template-rows: 65% 35%;
   align-items: center;
 `;
@@ -39,10 +41,10 @@ export const BackGroundGrid = styled(Grid)`
  * @color : 색깔 해시값
  */
 export const FloorAndWall = styled.div<StyleType>`
-  background-color: ${(props) => props.color};
   width: 100%;
   height: 100%;
   border-radius: ${(props) => props.$border};
+  position: relative;
 `;
 
 /**
@@ -121,6 +123,8 @@ export const ImageSize = styled.div<StyleType>`
   z-index: 0;
   display: ${(props) => (props.$hasError ? 'block' : 'none')};
   bottom: ${(props) => props.$bottom};
+  left: ${(props) => props.$left};
+  top: ${(props) => props.$top};
 `;
 
 /**

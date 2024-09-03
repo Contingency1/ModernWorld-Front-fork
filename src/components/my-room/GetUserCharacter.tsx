@@ -20,6 +20,7 @@ export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
     const getUsersCharacterLocker = async () => {
       const response = await INVENTORY.getUsersCharacterLocker(userNo);
       setCharacterName(response.character.name);
+      console.log(response.character);
     };
     getUsersCharacterLocker();
   }, []);
@@ -37,7 +38,7 @@ export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
           <Image
             alt={'유저의 캐릭터'}
             fill
-            sizes={'(max-width : 300px) 100vw'}
+            sizes={'(max-width : 200px) 100vw'}
             src={
               (
                 character.filter(

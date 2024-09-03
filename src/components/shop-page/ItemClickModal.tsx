@@ -58,10 +58,11 @@ export default function ItemClickModal(props: {
 
   const buyItem = async () => {
     try {
-      const response = await isHasItem(2);
-      if (response.length) {
-        return alert('이미 보유 중인 아이템입니다!');
-      }
+      // const response = await isHasItem(2);
+
+      // if (response.length) {
+      //   return alert('이미 보유 중인 아이템입니다!');
+      // }
       await SHOP.buyItem(props.data.no);
       setIsModal(false);
       setUserShopping(`${props.data.no} ${props.data.name}`);

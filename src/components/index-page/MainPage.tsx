@@ -9,8 +9,6 @@ import Image from 'next/image';
 import { IMAGE } from '@/utils/image';
 export default function MainPage() {
   const [name, setName] = useState('');
-  const [isUser, setIsUser] = useState<boolean>(true);
-  const route = useRouter();
 
   useEffect(() => {
     const getUserName = async () => {
@@ -20,12 +18,9 @@ export default function MainPage() {
         setName(response.nickname);
         return;
       } catch (err) {
-        setIsUser(false);
-        alert('로그인이 필요합니다');
-        return route.push('/loginpage');
+        setName('신규 유저');
       }
     };
-
     getUserName();
   }, []);
 
@@ -43,7 +38,7 @@ export default function MainPage() {
         <S.MainLogoText $fontSize="100%" style={{ marginBottom: '5%' }}>
           {name}님 환영합니다 :)
         </S.MainLogoText>
-        <Link href="/my-page">
+        <Link href={name !== '신규 유저' ? '/my-page' : '/loginpage'}>
           <S.MainPowerBtn>
             <Image
               src={IMAGE.powerBtn}
