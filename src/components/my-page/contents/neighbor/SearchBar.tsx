@@ -12,10 +12,6 @@ export default function SearchBar() {
   const [searchResult, setSearchResult] = useState<null | UserSearchResult>(
     null,
   );
-  const [isLoading, setIsLoading] = useState(false);
-  const [displayMessage, setDisplayMessage] = useState<JSX.Element | string>(
-    '? 님께',
-  );
   const debouncedSearch = useDebounce(nickname, 2000);
 
   const getUser = async () => {
@@ -24,53 +20,19 @@ export default function SearchBar() {
         const response = await USER.searchUser(debouncedSearch);
         setSearchResult(response);
       } finally {
-        setIsLoading(false);
       }
     } else {
       setSearchResult(null);
     }
   };
 
+  useEffect(() => {
+    getUser();
+  }, [debouncedSearch]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const trimmedValue = event.target.value.trim();
     setNickname(trimmedValue);
-  };
-
-  // 초기값
-  useEffect(() => {
-    if (nickname === '') {
-      setDisplayMessage('? 님께');
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-      setDisplayMessage('검색중...');
-    }
-  }, [nickname]);
-
-  // 검색
-  useEffect(() => {
-    if (debouncedSearch) {
-      getUser();
-    }
-  }, [debouncedSearch]);
-
-  // 검색 결과에 따라 message 값 업데이트
-  useEffect(() => {
-    if (!isLoading) {
-      if (searchResult && searchResult.data[0]?.nickname === nickname) {
-        setDisplayMessage(`${searchResult.data[0].nickname} 님께`);
-      } else if (nickname !== '') {
-        setDisplayMessage('? 님께');
-      }
-    }
-  }, [isLoading, searchResult, nickname]);
-
-  const sendFriendRequest = async () => {
-    if (searchResult) {
-      const response = await NEIGHBOR.sendFriendRequest(
-        searchResult?.data[0].no,
-      );
-    }
   };
 
   return (
@@ -81,12 +43,22 @@ export default function SearchBar() {
             placeholder="친구 신청할 유저 닉네임을 검색하세요!"
             onChange={handleInputChange}
           />
-          <S.DisplayDiv flex="row" $margin="1vw">
-            <S.Font $fontSize="18px" $margin="0 1vw">
-              {displayMessage}
-            </S.Font>
-            <S.Button onClick={sendFriendRequest}>요청 보내기</S.Button>
-          </S.DisplayDiv>
+          <S.ListContainer>
+            {searchResult &&
+              searchResult?.data.map((user) => (
+                <S.DisplayDiv $flexDirection="row" key={user.no}>
+                  <S.ListBar $margin="1vw 0 0.5vw 0">
+                    {user.nickname} : {user.description ?? '자기소개 없음'}
+                  </S.ListBar>
+                  <S.FriendRequest
+                    onClick={() => {
+                      NEIGHBOR.sendFriendRequest(user.no);
+                    }}>
+                    친구 신청
+                  </S.FriendRequest>
+                </S.DisplayDiv>
+              ))}
+          </S.ListContainer>
         </S.ColumnSection>
       </S.ManageSection>
     </>

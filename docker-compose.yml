@@ -27,4 +27,4 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
 
-    entrypoint: "/bin/sh -c 'trap exit TERM; if [ ! -e /etc/letsencrypt/live/testmodernworld.shop/fullchain.pem ]; then certbot certonly --webroot --webroot-path=/var/www/certbot -d testmodernworld.shop -d www.testmodernworld.shop --email w9559@naver.com --agree-tos --no-eff-email; fi; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    entrypoint: "/bin/sh -c 'trap exit TERM; if [ ! -e /etc/letsencrypt/live/modern-world.kr/fullchain.pem ]; then certbot certonly --webroot --webroot-path=/var/www/certbot -d modern-world.kr -d www.modern-world.kr --email jo1814@naver.com --agree-tos --no-eff-email; fi; while :; do certbot renew; sleep 12h & wait $${!}; done;'"

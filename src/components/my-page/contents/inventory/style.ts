@@ -19,15 +19,19 @@ export const BookMarkBox = styled.div<StyleType>`
 
 /** 인벤토리의 각 아이템 넣을 div */
 export const ItemDiv = styled.div`
-  height: 80%;
-  width: 85%;
+  height: 7.5vw;
+  width: 8vw;
   padding: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
   :hover {
     cursor: pointer;
   }
+  box-sizing: border-box;
 `;
 
 /** Link 태그 style */
@@ -38,8 +42,8 @@ export const LinkBox = styled(Link)`
 
 /** 각 아이템 이미지 넣을 태그 */
 export const Img = styled.div<StyleType>`
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   background-image: url(${(props) => props.img});
   background-size: contain;
   background-position: center;

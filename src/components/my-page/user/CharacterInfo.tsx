@@ -20,7 +20,11 @@ export default function CharacterInfo(props: {
           <img
             src={data.characterLocker?.[0]?.character?.image}
             alt="character"
-            width="110vw"
+            style={{
+              width: '7vw',
+              height: 'auto',
+              objectFit: 'cover',
+            }}
           />
         </Link>
         <S.NameSection>
@@ -35,7 +39,7 @@ export default function CharacterInfo(props: {
               router.push('/my-page/achievement-settings');
             }}>
             {' '}
-            ({data.userAchievement?.[0]?.achievement?.title ?? '업적 없음' })
+            ({data.userAchievement?.[0]?.achievement?.title ?? '업적 없음'})
           </S.Font>
         </S.NameSection>
       </S.CharacterInfo>

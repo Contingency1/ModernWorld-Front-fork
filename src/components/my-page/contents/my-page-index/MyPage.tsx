@@ -110,7 +110,9 @@ export default function MyPageIndex() {
               닉 네 임
             </S.UserInfoContent>
             <S.UserInfoContent width="30vw" $backColor="#FFDEDE">
-              {indexUserInfo.nickname ? indexUserInfo.nickname : '이름 없음'}
+              {indexUserInfo.nickname ??
+                indexUserInfo.socialName ??
+                '이름 없음'}
               <S.Font
                 $fontSize="16px"
                 color="#FF3131"
