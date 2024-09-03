@@ -37,6 +37,10 @@ const LikeComponent = ({ userNo }: { userNo: number }) => {
     setIsModal(false);
   };
 
+  const handleChildClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
       <S.MenuButtonDiv
@@ -54,7 +58,8 @@ const LikeComponent = ({ userNo }: { userNo: number }) => {
         </S.ImgStyle>
         좋아요
         <div
-          onClick={() => {
+          onClick={(event) => {
+            handleChildClick(event);
             setIsModal(true);
           }}
           style={{ marginLeft: '10px' }}>
