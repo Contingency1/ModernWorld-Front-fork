@@ -20,7 +20,6 @@ export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
     const getUsersCharacterLocker = async () => {
       const response = await INVENTORY.getUsersCharacterLocker(userNo);
       setCharacterName(response.character.name);
-      console.log(response.character);
     };
     getUsersCharacterLocker();
   }, []);
