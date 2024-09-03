@@ -7,6 +7,7 @@ import {
 } from '@/states/neighbor';
 import * as S from './style';
 import { useAtom, useAtomValue } from 'jotai';
+import { IMAGE } from '@/utils/image';
 
 export default function Pagination(props: {
   width: string;
@@ -36,17 +37,19 @@ export default function Pagination(props: {
     <>
       <S.PaginationSection width={props.width} $margin={props.margin}>
         <img
-          src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"
+          src={IMAGE.leftArrow}
           alt="<"
           width="30vw"
           onClick={previousPage}
+          style={{ cursor: 'pointer' }}
         />
         {page} / {props.totalPage}
         <img
-          src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"
+          src={IMAGE.rightArrow}
           alt=">"
           width="30vw"
           onClick={nextPage}
+          style={{ cursor: 'pointer' }}
         />
       </S.PaginationSection>
     </>

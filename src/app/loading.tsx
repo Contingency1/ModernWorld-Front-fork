@@ -7,16 +7,11 @@ const Loading = () => {
   const route = useRouter();
 
   useEffect(() => {
-    try {
-    } catch (error) {
-      console.error('Error registering bouncy:', error);
-    }
     const timeout = setTimeout(() => {
       route.replace('/not-found');
     }, 5000);
     return () => clearTimeout(timeout);
-  }, [route]);
-
+  }, []);
   return (
     <main
       style={{

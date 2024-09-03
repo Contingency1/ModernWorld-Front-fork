@@ -107,7 +107,7 @@ export default function MyPageIndex() {
               width="8vw"
               $backColor="#FFDEDE"
               $textAlign="center">
-              이　　름
+              닉 네 임
             </S.UserInfoContent>
             <S.UserInfoContent width="30vw" $backColor="#FFDEDE">
               {indexUserInfo.nickname ??

@@ -27,7 +27,6 @@ export const Token = {
       );
       return result.data;
     } catch (err) {
-      console.log(err);
       const Error = err as ErrorType;
       if (Error.response?.status === HTTP_STATUS.BAD_REQUEST) {
         alert('유효하지 않은 요청입니다');

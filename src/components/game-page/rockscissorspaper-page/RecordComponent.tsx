@@ -79,12 +79,14 @@ const RecordComponent = ({ gameText }: { gameText?: boolean }) => {
 
   return (
     <>
-      <S.RecordRootDiv $pointerClick={!showResult} onClick={onclickHandler}>
+      <S.RecordRootDiv onClick={onclickHandler}>
         <S.RecordHeader>
           <S.InputDateTodayMatchDiv>
             <S.InputDate
               placeholder={monthDay}
-              $pointerClick={!showResult}
+              $pointerClick={
+                (!showResult && onlyRecord) || (showResult && !onlyRecord)
+              }
               onChange={userInputDate}></S.InputDate>
             <S.TodayMatch>의 대전</S.TodayMatch>
           </S.InputDateTodayMatchDiv>

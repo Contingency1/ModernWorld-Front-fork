@@ -11,9 +11,6 @@ FROM node:20-alpine AS base
 
 # CMD [ "npm", "run", "dev" ]
 
-# 여기까지 *
-
-
 # 의존성 설치
 FROM base AS deps 
 
@@ -43,7 +40,6 @@ FROM base AS runner
 
 WORKDIR /app
 
-# 실행 될지 확인 필요
 ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs
