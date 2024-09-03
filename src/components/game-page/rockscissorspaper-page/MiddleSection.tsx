@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import * as S from '../styled';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import {
@@ -22,6 +21,7 @@ import { IMAGE } from '@/utils/image';
 import Image from 'next/image';
 import React from 'react';
 import { OnlyRecord } from './OnlyRecord';
+import ExistComponent from './ExistComponent';
 
 const MiddleSection = () => {
   // 유저의 손
@@ -120,68 +120,63 @@ const MiddleSection = () => {
   };
 
   return (
-    <S.GameInfoRootDiv $pointerClick={showResult || onlyRecord}>
-      <S.GameInfoHeader>
-        <S.Flexdiv
-          $marginTop={'0'}
-          width={'30vw'}
-          height={'20vh'}
-          $justifyContent={'space-evenly'}>
-          {RockSicssorsPaperImgArray.map((img, index) => (
-            <S.HandAndShadowDiv $marginTop="7vh" key={index + 1}>
-              <S.HandDiv width={'5vw'} height={'11vh'}>
-                <Image
-                  fill
-                  src={img}
-                  alt={'손'}
-                  sizes={'(max-width : 50px) 100vw'}></Image>
-              </S.HandDiv>
-              <S.ShadowDiv width={'5vw'} height={'3vh'} $marginBottom="60%">
-                <Image
-                  fill
-                  src={IMAGE.handShdow}
-                  alt={'손 그림자'}
-                  sizes={'(max-width : 50px) 100vw'}></Image>
-              </S.ShadowDiv>
-            </S.HandAndShadowDiv>
-          ))}
-        </S.Flexdiv>
-      </S.GameInfoHeader>
-      <S.GameInfoBody
-        $pointerClick={showResult}
-        onClick={() => {
-          if (userInfo?.chance) {
-            delayedPostUsersHand();
-            startCountdown();
-          } else {
-            alert('남은 기회가 없습니다');
-          }
-        }}>
-        {!onlyRecord ? (
-          !showResult ? (
-            <TimerIfYouWantPlay></TimerIfYouWantPlay>
-          ) : (
-            <RecordModal></RecordModal>
-          )
-        ) : null}
-        {!onlyRecord && !showResult && !startTimer ? (
-          <S.ShowRecordText onClick={(event) => handleChildClick(event, true)}>
-            전적 보기
-          </S.ShowRecordText>
-        ) : null}
-        <OnlyRecord></OnlyRecord>
-        <S.ChanceText>남은 기회 : {userInfo?.chance}/10</S.ChanceText>
-        <Link href="/my-page">
-          <S.ExistDiv onClick={(event) => handleChildClick(event, false)}>
-            <Image
-              src={IMAGE.exit}
-              alt={'나가기'}
-              fill
-              sizes={'(max-width : 50px) 100vw'}></Image>
-          </S.ExistDiv>
-        </Link>
-      </S.GameInfoBody>
-    </S.GameInfoRootDiv>
+    <>
+      <S.GameInfoRootDiv $pointerClick={showResult || onlyRecord}>
+        <S.GameInfoHeader>
+          <S.Flexdiv
+            $marginTop={'0'}
+            width={'30vw'}
+            height={'20vh'}
+            $justifyContent={'space-evenly'}>
+            {RockSicssorsPaperImgArray.map((img, index) => (
+              <S.HandAndShadowDiv $marginTop="7vh" key={index + 1}>
+                <S.HandDiv width={'5vw'} height={'11vh'}>
+                  <Image
+                    fill
+                    src={img}
+                    alt={'손'}
+                    sizes={'(max-width : 50px) 100vw'}></Image>
+                </S.HandDiv>
+                <S.ShadowDiv width={'5vw'} height={'3vh'} $marginBottom="60%">
+                  <Image
+                    fill
+                    src={IMAGE.handShdow}
+                    alt={'손 그림자'}
+                    sizes={'(max-width : 50px) 100vw'}></Image>
+                </S.ShadowDiv>
+              </S.HandAndShadowDiv>
+            ))}
+          </S.Flexdiv>
+        </S.GameInfoHeader>
+        <S.GameInfoBody
+          $pointerClick={showResult}
+          onClick={() => {
+            if (userInfo?.chance) {
+              delayedPostUsersHand();
+              startCountdown();
+            } else {
+              alert('남은 기회가 없습니다');
+            }
+          }}>
+          {!onlyRecord ? (
+            !showResult ? (
+              <TimerIfYouWantPlay></TimerIfYouWantPlay>
+            ) : (
+              <RecordModal></RecordModal>
+            )
+          ) : null}
+          {!onlyRecord && !showResult && !startTimer ? (
+            <S.ShowRecordText
+              onClick={(event) => handleChildClick(event, true)}>
+              전적 보기
+            </S.ShowRecordText>
+          ) : null}
+          <OnlyRecord></OnlyRecord>
+          <S.ChanceText>남은 기회 : {userInfo?.chance}/10</S.ChanceText>
+        </S.GameInfoBody>
+      </S.GameInfoRootDiv>
+      <ExistComponent />
+    </>
   );
 };
 
