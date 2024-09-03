@@ -46,8 +46,8 @@ export default function SearchBar() {
           <S.ListContainer>
             {searchResult &&
               searchResult?.data.map((user) => (
-                <S.DisplayDiv $flexDirection="row">
-                  <S.ListBar key={user.no} $margin="1vw 0 0.5vw 0">
+                <S.DisplayDiv $flexDirection="row" key={user.no}>
+                  <S.ListBar $margin="1vw 0 0.5vw 0">
                     {user.nickname} : {user.description ?? '자기소개 없음'}
                   </S.ListBar>
                   <S.FriendRequest
