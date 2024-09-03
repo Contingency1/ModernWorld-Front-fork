@@ -190,7 +190,6 @@ export default function MyPageIndex() {
           </S.StatBadge>
         </S.StatSection>
       </S.Background>
-      <S.SocialSection>이 름{indexUserInfo.socialName}</S.SocialSection>
     </>
   );
 }

@@ -97,11 +97,6 @@ export const UserInfoContent = styled.div<StyleType>`
   box-sizing: border-box;
 `;
 
-export const SocialSection = styled.div`
-  position: absolute;
-  bottom: 50%;
-`;
-
 /** index Page info Section */
 export const UserInfoSection = styled.div<StyleType>`
   width: 80%;
