@@ -107,7 +107,7 @@ export default function MyPageIndex() {
               width="8vw"
               $backColor="#FFDEDE"
               $textAlign="center">
-              이　　름
+              닉 네 임
             </S.UserInfoContent>
             <S.UserInfoContent width="30vw" $backColor="#FFDEDE">
               {indexUserInfo.nickname ? indexUserInfo.nickname : '이름 없음'}
@@ -190,6 +190,7 @@ export default function MyPageIndex() {
           </S.StatBadge>
         </S.StatSection>
       </S.Background>
+      <S.SocialSection>이 름{indexUserInfo.socialName}</S.SocialSection>
     </>
   );
 }
