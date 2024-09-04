@@ -4,7 +4,6 @@ import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';
 
 export const Area1_4_5 = (props: { userNo?: number }) => {
-  console.log(useCheckItemSizeHook(1, 'top', props.userNo));
   return (
     <>
       <S.Place_1_4_5>
