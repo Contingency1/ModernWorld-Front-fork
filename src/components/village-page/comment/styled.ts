@@ -46,7 +46,7 @@ export const UserNameDiv = styled.div`
 `;
 
 export const UserRoomDiv = styled.div`
-  width: 33vw;
+  width: 22vw;
   height: 24vh;
   border-radius: 30px;
   margin-top: 4vh;

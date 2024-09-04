@@ -16,6 +16,32 @@ export function MyRoom(props: {
   return (
     <>
       <S.MyRoomRootDiv width={props.width} height={props.height}>
+        <S.BackGroundGrid>
+          <S.FloorAndWall $border="30px 30px 0px 0px">
+            <Image
+              alt={'바닥 이미지'}
+              src={
+                useCheckAreaHook(11, props.userNo) ||
+                `${process.env.NEXT_PUBLIC_S3}`
+              }
+              fill
+              sizes="(max-size:1920px) 100vw"
+              objectFit="cover"
+            />
+          </S.FloorAndWall>
+          <S.FloorAndWall $border="0px 0px 30px 30px">
+            <Image
+              alt={'벽지 이미지'}
+              src={
+                useCheckAreaHook(12, props.userNo) ||
+                `${process.env.NEXT_PUBLIC_S3}`
+              }
+              fill
+              sizes={'(max-size:1080px) 100vh'}
+              objectFit="cover"
+            />
+          </S.FloorAndWall>
+        </S.BackGroundGrid>
         <S.ItemsGrid>
           <S.DivElement width="100%" height="100%" id="place_2">
             <S.ItemImageSize id="place_2" $marginTop="100px">
@@ -23,7 +49,7 @@ export function MyRoom(props: {
                 width={useCheckItemSizeHook(2, 'width', props.userNo)}
                 height={useCheckItemSizeHook(2, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(2, props.userNo)}
-                $bottom="12%">
+                $bottom="30%">
                 <Image
                   src={
                     useCheckAreaHook(2, props.userNo) ||
@@ -38,12 +64,12 @@ export function MyRoom(props: {
           </S.DivElement>
           <Area1_4_5 userNo={props.userNo} />
           <S.DivElement width="100%" height="100%" id="place_3">
-            <S.ItemImageSize id="place_3" $marginTop="100px">
+            <S.ItemImageSize id="place_3">
               <S.ImageSize
                 width={useCheckItemSizeHook(3, 'width', props.userNo)}
                 height={useCheckItemSizeHook(3, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(3, props.userNo)}
-                $bottom="-4%">
+                $bottom="30%">
                 <Image
                   src={
                     useCheckAreaHook(3, props.userNo) ||

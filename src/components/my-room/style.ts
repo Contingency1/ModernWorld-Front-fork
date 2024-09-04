@@ -45,6 +45,7 @@ export const FloorAndWall = styled.div<StyleType>`
   height: 100%;
   border-radius: ${(props) => props.$border};
   position: relative;
+  overflow: hidden;
 `;
 
 /**
@@ -77,6 +78,7 @@ export const Place_1_4_5 = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 100px;
+  align-items: center;
 `;
 
 /**
@@ -84,7 +86,7 @@ export const Place_1_4_5 = styled.div`
  */
 export const Place_4_5 = styled.div`
   display: flex;
-  width: 100%;
+  width: 200%;
   height: 50%;
   margin-bottom: 100px;
 `;
