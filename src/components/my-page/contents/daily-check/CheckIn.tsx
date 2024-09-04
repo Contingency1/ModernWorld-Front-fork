@@ -77,10 +77,6 @@ export default function CheckIn() {
           <S.ContentSection>
             {attendanceData ? (
               days.map((day, index) => {
-                if (day.trim() === '') {
-                  return null;
-                }
-
                 const attendance =
                   attendanceData.attendance && attendanceData.attendance[index]
                     ? attendanceData.attendance[index]
