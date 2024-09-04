@@ -279,7 +279,12 @@ export const PagesDiv = styled.div`
 `;
 
 export const UserAchievementDiv = styled.div`
-  color: red;
+  color: ${(props) =>
+    props.color === 'one'
+      ? '#E1BB34'
+      : props.color === 'two'
+        ? 'green'
+        : 'red'};
   font-size: 10px;
   display: flex;
   align-items: flex-end;

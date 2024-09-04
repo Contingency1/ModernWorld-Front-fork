@@ -65,7 +65,8 @@ export default function GetUserApi(props: { animal: string }) {
           </S.UserCharacter>
           <S.ShowUserNickname>
             {userInfo.nickname}{' '}
-            <S.UserAchievementDiv>
+            <S.UserAchievementDiv
+              color={userInfo.userAchievement[0]?.achievement.level}>
               {userInfo.userAchievement[0]?.achievement.title}
             </S.UserAchievementDiv>
           </S.ShowUserNickname>
