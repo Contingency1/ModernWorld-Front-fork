@@ -91,7 +91,7 @@ export default function MyPageIndex() {
         <S.UserInfoSection>
           <S.UserImageContainer
             onClick={handleProfileClick}
-            isProfileClick={isProfileClick}>
+            $isProfileClick={isProfileClick}>
             <img src={indexUserInfo.image} alt="User Profile" />
             {isProfileClick && (
               <div className="button-container">

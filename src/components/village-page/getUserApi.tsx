@@ -63,7 +63,12 @@ export default function GetUserApi(props: { animal: string }) {
               />
             </S.UserCharacterImgDiv>
           </S.UserCharacter>
-          <S.ShowUserNickname>{userInfo.nickname}</S.ShowUserNickname>
+          <S.ShowUserNickname>
+            {userInfo.nickname}{' '}
+            <S.UserAchievementDiv>
+              {userInfo.userAchievement[0]?.achievement.title}
+            </S.UserAchievementDiv>
+          </S.ShowUserNickname>
           <S.ShowUserHeartDiv>
             <S.UserHeart>
               <Image

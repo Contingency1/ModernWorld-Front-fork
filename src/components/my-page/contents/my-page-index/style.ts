@@ -16,7 +16,7 @@ export const Background = styled.div`
 `;
 
 interface UserImageContainerProps {
-  isProfileClick?: boolean;
+  $isProfileClick?: boolean;
   marginTop?: string;
 }
 
@@ -37,7 +37,7 @@ export const UserImageContainer = styled.div<UserImageContainerProps>`
     height: 100%;
     object-fit: cover;
     filter: ${(props) =>
-      props.isProfileClick
+      props.$isProfileClick
         ? 'brightness(50%)'
         : 'brightness(100%)'}; // 클릭 상태에 따른 필터 적용
   }

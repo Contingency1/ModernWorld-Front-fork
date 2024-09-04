@@ -35,7 +35,7 @@ export const itemSize = [
   { itemNo: 34, width: '30%', height: '30%' },
   { itemNo: 35, width: '30%', height: '30%' },
   { itemNo: 36, width: '30%', height: '30%' },
-  { itemNo: 37, width: '100%', height: '100%' },
+  { itemNo: 37, width: '30%', height: '30%' },
   { itemNo: 38, width: '60%', height: '60%' },
   { itemNo: 39, width: '120%', height: '120%' },
   { itemNo: 40, width: '60%', height: '60%' },
@@ -45,7 +45,7 @@ export const itemSize = [
   { itemNo: 44, width: '60%', height: '60%' },
   { itemNo: 45, width: '60%', height: '60%' },
   { itemNo: 46, width: '40%', height: '40%' },
-  { itemNo: 47, width: '130%', height: '130%' },
+  { itemNo: 47, width: '100%', height: '100%' },
   { itemNo: 48, width: '130%', height: '130%' },
 ];
 
