@@ -65,7 +65,7 @@ export default function ServiceInfo() {
               backColor: '#FFDEDE',
             },
             {
-              label: '회원 정보',
+              label: '이용 정보',
               isVisible: isServiceDescription,
               toggle: () => toggleDescription('service'),
               content: renderDescriptions(serviceDescriptions),
