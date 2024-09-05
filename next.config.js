@@ -36,6 +36,11 @@ const nextConfig = {
     ],
   },
   reactStrictMode: false,
+  experimental: {
+    serverActions: {
+      allowedForwardedHosts: ['my-forwarded-host.com'],
+    },
+  }
 };
 
 module.exports = nextConfig;
