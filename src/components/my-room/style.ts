@@ -136,6 +136,6 @@ export const CharacterImage = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;
-  z-index: 1000;
+  z-index: 1;
   bottom: 5%;
 `;
