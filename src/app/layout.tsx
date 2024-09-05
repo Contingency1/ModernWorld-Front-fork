@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   icons: IMAGE.favicon,
 };
 
-const neodgm = localFont({
+const neoDGM = localFont({
   src: '../../public/fonts/neodgm.ttf',
   variable: '--font-neodgm',
 });
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={neoDGM.variable}>
       <body>
         <StyledComponentsRegistry>
           <GlobalStyleWrapper>{children}</GlobalStyleWrapper>

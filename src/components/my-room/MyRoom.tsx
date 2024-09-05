@@ -6,7 +6,6 @@ import { Area7_8_9 } from './Area7_8_9';
 import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';
 import Image from 'next/image';
-import { IMAGE } from '@/utils/image';
 
 export function MyRoom(props: {
   width: string;
@@ -69,7 +68,7 @@ export function MyRoom(props: {
                 width={useCheckItemSizeHook(3, 'width', props.userNo)}
                 height={useCheckItemSizeHook(3, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(3, props.userNo)}
-                $bottom="30%">
+                $bottom={useCheckItemSizeHook(3, 'bottom', props.userNo)}>
                 <Image
                   src={
                     useCheckAreaHook(3, props.userNo) ||
