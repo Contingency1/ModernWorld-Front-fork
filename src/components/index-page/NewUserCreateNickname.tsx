@@ -16,8 +16,8 @@ export const NewUserCreateNewname = () => {
 
   const getCreateUserApi = async () => {
     try {
-      await USER.createNickname(newUserNickname);
       try {
+        await USER.createNickname(newUserNickname);
         await USER.createCharacter(newUserCharacter);
       } catch (err) {
         alert('캐릭터 생성 실패');

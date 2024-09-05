@@ -9,14 +9,14 @@ import Image from 'next/image';
 
 const animalsURL = [
   {
-    id: 1,
-    name: 'dog',
-    url: IMAGE.firstDog,
-  },
-  {
     id: 2,
     name: 'cat',
     url: IMAGE.firstCat,
+  },
+  {
+    id: 1,
+    name: 'dog',
+    url: IMAGE.firstDog,
   },
 ];
 
