@@ -56,3 +56,12 @@ export const StatusCheck = styled.div<StyleType>`
   background-color: ${(props) => props.color};
   border-radius: 50%;
 `;
+
+/** 디자이너님 이름 적는 칸 */
+export const DesignerName = styled.div`
+  position: fixed;
+  bottom: 0;
+  margin-right: 5.5vw;
+  font-size: 14px;
+  color: #878787;
+`;

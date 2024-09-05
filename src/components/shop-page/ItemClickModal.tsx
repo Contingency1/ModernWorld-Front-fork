@@ -139,8 +139,8 @@ export default function ItemClickModal(props: {
           onClick={() => setIsModal(false)}>
           x
         </S.Font>
-        <S.ItemContainer>
-          <S.Img src={props.data?.image} width="60%"></S.Img>
+        <S.ItemContainer width="13vw" height="13vw">
+          <S.Img src={props.data?.image} width="80%"></S.Img>
         </S.ItemContainer>
         <S.Font $fontSize="26px" $margin="2vw 0 1vw 0">
           {props.data?.name} ({props.data?.price}p)

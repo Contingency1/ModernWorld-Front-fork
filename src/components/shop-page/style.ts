@@ -24,9 +24,9 @@ export const Img = styled.img<StyleType>`
 `;
 
 /** 아이템 사진 들어갈 div */
-export const ItemContainer = styled.div`
-  width: 9vw;
-  height: 9vw;
+export const ItemContainer = styled.div<StyleType>`
+  width: ${(props) => (props.width ? props.width : '9vw')};
+  height: ${(props) => (props.width ? props.width : '9vw')};
   display: flex;
   justify-content: center;
   align-items: center;

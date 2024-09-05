@@ -113,3 +113,14 @@ export const Font = styled.div<StyleType>`
   color: ${(props) => props.color};
   cursor: pointer;
 `;
+
+/** Copyright ⓒ 넣을 곳 */
+export const Copyright = styled.div`
+  position: fixed;
+  font-size: 0.8vw;
+  text-align: right;
+  color: #767676;
+  bottom: 0;
+  right: 0;
+  margin: 1vw 11.5vw 0.5vw 0;
+`;

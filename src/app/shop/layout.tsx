@@ -3,6 +3,7 @@
 import '../../style/globals.css';
 import * as S from '@/components/my-page/user/style';
 import LeftSection from '@/components/my-page/user/LeftSection';
+import Link from 'next/link';
 
 export default function MyPageLayout({
   children,
@@ -18,6 +19,13 @@ export default function MyPageLayout({
             {children}
           </S.OutLineSection>
         </S.GridContainer>
+        <Link href={'/terms-of-service'}>
+          <S.Copyright>
+            Design 김진 박경후 이채영 <br /> Dev 김은우 김진 김준우 안진우
+            조영은 <br />
+            Copyright ⓒ 2024 Modern Agile. All rights reserved.
+          </S.Copyright>
+        </Link>
       </S.BodyContainer>
     </>
   );

@@ -22,6 +22,7 @@ export default function ShopItemBox() {
   const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom);
   const [modalNo, setModalNo] = useState<number | null>(null);
   const [modalData, setModalData] = useState<null | any>(null);
+  const [designer, setDesigner] = useState('');
 
   const getCharacter = async (character: string) => {
     const response = await SHOP.getCharacters(character);
@@ -42,6 +43,22 @@ export default function ShopItemBox() {
     setIsModalOpen(false);
     setModalNo(null);
   };
+
+  useEffect(() => {
+    switch (theme) {
+      case '여름 테마':
+        setDesigner('이채영');
+        break;
+      case '봄 테마':
+        setDesigner('이채영');
+        break;
+      case '겨울 테마':
+        setDesigner('박경후');
+        break;
+      case '가을 테마':
+        setDesigner('조영은');
+    }
+  }, [theme]);
 
   useEffect(() => {
     if (selectItemType === 0) {
@@ -68,6 +85,9 @@ export default function ShopItemBox() {
         ].map((_, index) => (
           <S.ItemDiv key={`null-${index}`}></S.ItemDiv>
         ))}
+        {!selectItemType && (
+          <S.DesignerName>디자인 : {designer} 님</S.DesignerName>
+        )}
       </S.BookMarkBox>
     </>
   );
