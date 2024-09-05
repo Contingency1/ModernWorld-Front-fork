@@ -187,6 +187,7 @@ export const InputNickname = styled.input`
   font-size: 35px;
   outline: none;
   border: 0;
+  font-family: "'NeoDGM', sans-serif";
 `;
 
 /**
