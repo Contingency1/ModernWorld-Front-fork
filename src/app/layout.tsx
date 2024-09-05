@@ -5,6 +5,7 @@ import NotificationComponent from '@/components/notification/NotificationCompone
 import { IMAGE } from '@/utils/image';
 import localFont from 'next/font/local';
 import GlobalStyleWrapper from './globalStyles';
+import '../style/globals.css';
 
 export const metadata: Metadata = {
   title: '모던월드',
