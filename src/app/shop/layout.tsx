@@ -3,6 +3,7 @@
 import '../../style/globals.css';
 import * as S from '@/components/my-page/user/style';
 import LeftSection from '@/components/my-page/user/LeftSection';
+import Link from 'next/link';
 
 export default function MyPageLayout({
   children,
@@ -18,6 +19,9 @@ export default function MyPageLayout({
             {children}
           </S.OutLineSection>
         </S.GridContainer>
+        <Link href={'/terms-of-service'}>
+          <S.Copyright>Copyright ⓒ 모던애자일</S.Copyright>
+        </Link>
       </S.BodyContainer>
     </>
   );
