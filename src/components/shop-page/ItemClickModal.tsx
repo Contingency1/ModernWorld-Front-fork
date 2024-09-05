@@ -58,10 +58,6 @@ export default function ItemClickModal(props: {
 
   const buyItem = async () => {
     try {
-      const response = await isHasItem(2);
-      if (response.length) {
-        return alert('이미 보유 중인 아이템입니다!');
-      }
       await SHOP.buyItem(props.data.no);
       setIsModal(false);
       setUserShopping(`${props.data.no} ${props.data.name}`);
@@ -73,6 +69,7 @@ export default function ItemClickModal(props: {
   const buyCharacter = async () => {
     try {
       await SHOP.buyCharacter(props.data.no);
+      setIsModal(false);
       setUserShopping(`${props.data.no} ${props.data.name}`);
     } catch (error: any) {
       handleError(error.response.data.message);
@@ -92,21 +89,25 @@ export default function ItemClickModal(props: {
   };
 
   const giftItemToUser = async (userNo: number, itemNo: number) => {
-    if (userNo === getUserNo()) {
-      alert('자기 자신에게는 선물 할 수 없어요!');
-      return;
-    }
-    const response = await isHasItem(userNo);
-    if (response.length) {
-      if (
-        !window.confirm(
-          `${searchResult?.data[0]?.nickname}님이 이미 보유 중인 아이템이므로 해당 아이템 포인트의 50% 가 지급됩니다. 동의하십니까?`,
-        )
-      ) {
+    try {
+      if (userNo === getUserNo()) {
+        alert('자기 자신에게는 선물 할 수 없어요!');
         return;
       }
+      const response = await isHasItem(userNo);
+      if (response.length) {
+        if (
+          !window.confirm(
+            `${searchResult?.data[0]?.nickname}님이 이미 보유 중인 아이템이므로 해당 아이템 포인트의 50% 가 지급됩니다. 동의하십니까?`,
+          )
+        ) {
+          return;
+        }
+      }
+      await SHOP.giftItemToUser(userNo, itemNo);
+    } catch (error: any) {
+      handleError(error.response.data.message);
     }
-    await SHOP.giftItemToUser(userNo, itemNo);
   };
 
   const getGiftRecipientText = () => {

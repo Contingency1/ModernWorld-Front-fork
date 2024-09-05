@@ -8,6 +8,7 @@ import {
   viewReceiverPageAtom,
   viewSendPageAtom,
 } from '@/states/mailboxAtoms';
+import { IMAGE } from '@/utils/image';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 
@@ -58,23 +59,15 @@ export default function Pagination(props: any) {
   return (
     <>
       <S.PageSection width={`${props.width}`}>
-        <div onClick={previousPage}>
-          <img
-            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"
-            alt="<"
-            width="30vw"
-          />
+        <div onClick={previousPage} style={{ cursor: 'pointer' }}>
+          <img src={IMAGE.leftArrow} alt="<" width="30vw" />
         </div>
         {props.title.includes('보낸') ? senderPage + 1 : receiverPage + 1} /{' '}
         {props.title.includes('보낸') || props.title === '보낸 편지'
           ? senderData.length
           : receiverData.length}
-        <div onClick={nextPage}>
-          <img
-            src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"
-            alt=">"
-            width="30vw"
-          />
+        <div onClick={nextPage} style={{ cursor: 'pointer' }}>
+          <img src={IMAGE.rightArrow} alt=">" width="30vw" />
         </div>
       </S.PageSection>
     </>

@@ -1,6 +1,7 @@
 import { UserInfoType } from '@/types/user';
 import { atom } from 'jotai';
 export const userDataAtom = atom<UserInfoType>({
+  socialName: '',
   nickname: '',
   currentPoint: 0,
   accumulationPoint: 0,

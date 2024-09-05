@@ -1,8 +1,15 @@
-* {
+/* * {
   font-family: 'DungGeunMo';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
     format('woff');
   font-size: 20px;
+} */
+
+@font-face {
+  font-family: 'neodgm';
+  src: url('/fonts/neodgm.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 200;
 }
 
 body {

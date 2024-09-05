@@ -83,7 +83,8 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   color: #454545;
-  font-size: 18px;
+  font-family: 'NeoDGM', sans-serif;
+  /* font-size: 18px; */
   background-color: #ffffff;
   border: 3px solid #c9d7dd;
   border-radius: 15px;
@@ -116,6 +117,7 @@ export const UserSearchBar = styled.input`
   height: 5%;
   color: #454545;
   font-size: 18px;
+  font-family: 'NeoDGM', sans-serif;
   padding: 1.5vw;
   border-radius: 35px;
   background-color: #e9e9e9;
@@ -131,4 +133,52 @@ export const DisplayDiv = styled.div<StyleType>`
   align-items: center;
   flex-direction: ${(props) => props.flex};
   margin: ${(props) => props.$margin};
+`;
+
+/** 친구 요청 결과 List 콘테이너 */
+export const ListContainer = styled.div`
+  width: 40vw;
+  height: 15vh;
+  padding: 0 1vw;
+  margin: 1vw 0 0 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+`;
+
+/** 친구 요청 목록 들어갈 DIV */
+export const ListBar = styled.div<StyleType>`
+  width: 25vw;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #454545;
+  font-size: 14px;
+  padding: 0.5vw;
+  margin: ${(props) => props.$margin};
+  border-radius: 35px;
+  background-color: #fff;
+  border: 1px solid #e9e9e9;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+`;
+
+/** 친구 신청 버튼 UI */
+export const FriendRequest = styled.div<StyleType>`
+  width: 8vw;
+  height: 5vh;
+  color: #454545;
+  border: 4px solid #c9d7dd;
+  border-radius: 30px;
+  font-size: 14px;
+  padding: 0.5vw;
+  margin: 0 0 0 1vw;
+  border-radius: 35px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  cursor: pointer;
 `;

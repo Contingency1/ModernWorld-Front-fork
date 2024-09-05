@@ -37,13 +37,13 @@ export const GetUserCharacter = ({ userNo }: { userNo: number }) => {
           <Image
             alt={'유저의 캐릭터'}
             fill
-            sizes={'(max-width : 300px) 100vw'}
+            sizes={'(max-width : 200px) 100vw'}
             src={
               (
                 character.filter(
                   (e: InventoryItemType) => e.status,
                 )[0] as InventoryItemType
-              )?.character.image
+              )?.character.image || `${process.env.NEXT_PUBLIC_S3}`
             }
           />
         </S.CharacterImage>

@@ -29,6 +29,8 @@ export const Grid = styled.div`
  * 배경 그리드입니다
  */
 export const BackGroundGrid = styled(Grid)`
+  width: 100%;
+  height: 100%;
   grid-template-rows: 65% 35%;
   align-items: center;
 `;
@@ -39,10 +41,11 @@ export const BackGroundGrid = styled(Grid)`
  * @color : 색깔 해시값
  */
 export const FloorAndWall = styled.div<StyleType>`
-  background-color: ${(props) => props.color};
   width: 100%;
   height: 100%;
   border-radius: ${(props) => props.$border};
+  position: relative;
+  overflow: hidden;
 `;
 
 /**
@@ -75,6 +78,7 @@ export const Place_1_4_5 = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 100px;
+  align-items: center;
 `;
 
 /**
@@ -82,7 +86,7 @@ export const Place_1_4_5 = styled.div`
  */
 export const Place_4_5 = styled.div`
   display: flex;
-  width: 100%;
+  width: 200%;
   height: 50%;
   margin-bottom: 100px;
 `;
@@ -114,13 +118,15 @@ export const ItemImageSize = styled.div<StyleType>`
 /**
  * item size test
  */
-export const ImageSize = styled.img<StyleType>`
+export const ImageSize = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;
   z-index: 0;
   display: ${(props) => (props.$hasError ? 'block' : 'none')};
   bottom: ${(props) => props.$bottom};
+  left: ${(props) => props.$left};
+  top: ${(props) => props.$top};
 `;
 
 /**
@@ -130,6 +136,6 @@ export const CharacterImage = styled.div<StyleType>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;
-  z-index: 1000;
+  z-index: 1;
   bottom: 5%;
 `;

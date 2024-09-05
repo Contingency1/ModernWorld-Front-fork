@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import * as S from './styled';
+import '../../style/globals.css';
 
 export const Not_found = () => {
   return (

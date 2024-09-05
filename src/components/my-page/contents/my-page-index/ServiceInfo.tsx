@@ -53,6 +53,9 @@ export default function ServiceInfo() {
           <img src={indexUserInfo.image} alt="User Profile" />
         </S.UserImageContainer>
         <S.ServiceInfoContainer>
+          <S.Font $fontSize="14px" color="#9C9C9C" $margin="0 -1.5vw 0 0">
+            {indexUserInfo.socialName} 님 안녕하세요!
+          </S.Font>
           {[
             {
               label: '업적 설명',
@@ -62,7 +65,7 @@ export default function ServiceInfo() {
               backColor: '#FFDEDE',
             },
             {
-              label: '회원 정보',
+              label: '이용 정보',
               isVisible: isServiceDescription,
               toggle: () => toggleDescription('service'),
               content: renderDescriptions(serviceDescriptions),

@@ -62,7 +62,7 @@ export default function AlarmModal() {
           </S.Margin>
           <S.DisplayDiv flex="row" $margin="18.7vw 0 0 0" position="fixed">
             <S.Img
-              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowLeft.png"
+              src={IMAGE.leftArrow}
               alt="<"
               width="1vw"
               $margin="0 8vw 0 0"
@@ -74,7 +74,7 @@ export default function AlarmModal() {
               {page} / {metaData?.totalPage}
             </S.Font>
             <S.Img
-              src="https://wang0514.s3.ap-northeast-2.amazonaws.com/items/ArrowRight.png"
+              src={IMAGE.rightArrow}
               alt=">"
               width="1vw"
               $margin="0 0 0 8vw"

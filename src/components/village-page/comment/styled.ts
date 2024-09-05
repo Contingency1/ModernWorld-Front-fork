@@ -46,7 +46,7 @@ export const UserNameDiv = styled.div`
 `;
 
 export const UserRoomDiv = styled.div`
-  width: 33vw;
+  width: 22vw;
   height: 24vh;
   border-radius: 30px;
   margin-top: 4vh;
@@ -73,6 +73,7 @@ export const CommentInput = styled.input`
   font-size: 18px;
   background-color: #daedf8;
   border-width: 0;
+  font-family: 'NeoDGM', sans-serif;
   outline: none;
   margin-left: 4%;
   color: #494949;

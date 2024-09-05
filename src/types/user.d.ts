@@ -1,4 +1,5 @@
 export interface UserInfoType {
+  socialName: string;
   nickname: string;
   currentPoint: number;
   accumulationPoint: number;
@@ -45,6 +46,7 @@ export interface UserAttendanceDataType {
 export interface UserSearchResult {
   data: {
     no: number;
+    socialName: string;
     nickname: string;
     description: string;
     accumulationPoint: number;

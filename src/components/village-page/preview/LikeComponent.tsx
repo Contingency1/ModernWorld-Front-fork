@@ -37,16 +37,19 @@ const LikeComponent = ({ userNo }: { userNo: number }) => {
     setIsModal(false);
   };
 
+  const handleChildClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
-      <S.MenuButtonDiv width="15vw" $marginLeft="15%">
-        <S.ImgStyle
-          $marginRight="5%"
-          width="20px"
-          height="20px"
-          onClick={() => {
-            !likeState ? sendLike(userNo) : cancelLike(userNo);
-          }}>
+      <S.MenuButtonDiv
+        width="15vw"
+        $marginLeft="15%"
+        onClick={() => {
+          !likeState ? sendLike(userNo) : cancelLike(userNo);
+        }}>
+        <S.ImgStyle $marginRight="5%" width="20px" height="20px">
           <Image
             src={IMAGE.heart}
             alt={'좋아요'}
@@ -55,7 +58,8 @@ const LikeComponent = ({ userNo }: { userNo: number }) => {
         </S.ImgStyle>
         좋아요
         <div
-          onClick={() => {
+          onClick={(event) => {
+            handleChildClick(event);
             setIsModal(true);
           }}
           style={{ marginLeft: '10px' }}>

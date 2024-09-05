@@ -3,6 +3,8 @@ import StyledComponentsRegistry from './lib/registry';
 import { ClientOnly } from '@/utils/clientOnly';
 import NotificationComponent from '@/components/notification/NotificationComponent';
 import { IMAGE } from '@/utils/image';
+import GlobalStyleWrapper from './globalStyles';
+import '../style/globals.css';
 
 export const metadata: Metadata = {
   title: '모던월드',
@@ -19,7 +21,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <StyledComponentsRegistry>
-          {children}
+          <GlobalStyleWrapper>{children}</GlobalStyleWrapper>
           <ClientOnly>
             <NotificationComponent />
           </ClientOnly>

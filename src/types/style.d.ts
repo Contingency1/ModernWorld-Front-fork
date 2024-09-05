@@ -52,6 +52,7 @@ interface Props {
   $boxShadow: string;
   $top: string;
   $right: string;
+  $left: string;
 }
 
 export interface StyleType extends Partial<Props> {}

@@ -19,8 +19,8 @@ export const BookMarkBox = styled.div<StyleType>`
 
 /** 인벤토리의 각 아이템 넣을 div */
 export const ItemDiv = styled.div`
-  height: 80%;
-  width: 85%;
+  height: 100%;
+  width: 100%;
   padding: 15%;
   background-color: #fff;
   border-radius: 20px;
@@ -28,18 +28,18 @@ export const ItemDiv = styled.div`
   :hover {
     cursor: pointer;
   }
+  box-sizing: border-box;
 `;
 
 /** Link 태그 style */
-
 export const LinkBox = styled(Link)`
   text-decoration-line: none;
 `;
 
 /** 각 아이템 이미지 넣을 태그 */
 export const Img = styled.div<StyleType>`
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   background-image: url(${(props) => props.img});
   background-size: contain;
   background-position: center;
@@ -51,7 +51,7 @@ export const Img = styled.div<StyleType>`
 export const StatusCheck = styled.div<StyleType>`
   width: 6px;
   height: 6px;
-  margin-left: 6.5vw;
+  margin-left: 5.4vw;
   margin-top: -0.6vh;
   background-color: ${(props) => props.color};
   border-radius: 50%;
