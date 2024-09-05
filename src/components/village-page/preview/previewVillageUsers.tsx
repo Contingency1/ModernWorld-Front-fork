@@ -10,7 +10,7 @@ export default function PreviewVillageUsers(props: { userNo: number }) {
     <S.RootDiv>
       <S.ContainerDiv>
         <S.previewRoomDiv>
-          <MyRoom width={'95%'} height={'90%'} userNo={props.userNo}></MyRoom>
+          <MyRoom width={'75%'} height={'90%'} userNo={props.userNo}></MyRoom>
         </S.previewRoomDiv>
       </S.ContainerDiv>
       <S.previewMenuContainer>

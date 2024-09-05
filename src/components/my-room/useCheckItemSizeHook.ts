@@ -34,7 +34,11 @@ export default function useCheckItemSizeHook(
   if (filteredItem !== undefined) {
     return WidthorHeight === 'width'
       ? itemSize[filteredItem - 1]?.width
-      : itemSize[filteredItem - 1]?.height;
+      : WidthorHeight === 'height'
+        ? itemSize[filteredItem - 1]?.height
+        : WidthorHeight === 'top'
+          ? itemSize[filteredItem - 1]?.top
+          : itemSize[filteredItem - 1]?.bottom;
   }
 
   return WidthorHeight === 'width' ? '10%' : '10%';

@@ -15,4 +15,5 @@ export interface VillageData {
   legend: { likeCount: number };
   nickname: string;
   accumulationPoint: number;
+  userAchievement: [{ achievement: { title: string; level: string } }];
 }

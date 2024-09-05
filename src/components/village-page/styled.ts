@@ -131,6 +131,8 @@ export const ShowUserNickname = styled.div`
   margin-top: 5px;
   text-align: center;
   font-size: 15px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const ShowUserHeartDiv = styled.div`
@@ -274,4 +276,17 @@ export const PagesDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const UserAchievementDiv = styled.div`
+  color: ${(props) =>
+    props.color === 'one'
+      ? '#E1BB34'
+      : props.color === 'two'
+        ? 'green'
+        : 'red'};
+  font-size: 10px;
+  display: flex;
+  align-items: flex-end;
+  margin-left: 3px;
 `;
