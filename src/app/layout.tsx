@@ -3,7 +3,6 @@ import StyledComponentsRegistry from './lib/registry';
 import { ClientOnly } from '@/utils/clientOnly';
 import NotificationComponent from '@/components/notification/NotificationComponent';
 import { IMAGE } from '@/utils/image';
-import localFont from 'next/font/local';
 import GlobalStyleWrapper from './globalStyles';
 import '../style/globals.css';
 
@@ -13,18 +12,13 @@ export const metadata: Metadata = {
   icons: IMAGE.favicon,
 };
 
-const neoDGM = localFont({
-  src: '../../public/fonts/neodgm.ttf',
-  variable: '--font-neodgm',
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={neoDGM.variable}>
+    <html lang="ko">
       <body>
         <StyledComponentsRegistry>
           <GlobalStyleWrapper>{children}</GlobalStyleWrapper>
