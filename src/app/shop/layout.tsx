@@ -20,7 +20,11 @@ export default function MyPageLayout({
           </S.OutLineSection>
         </S.GridContainer>
         <Link href={'/terms-of-service'}>
-          <S.Copyright>Copyright ⓒ 모던애자일</S.Copyright>
+          <S.Copyright>
+            Design 김진 박경후 이채영 <br /> Dev 김은우 김진 김준우 안진우
+            조영은 <br />
+            Copyright ⓒ 2024 Modern Agile. All rights reserved.
+          </S.Copyright>
         </Link>
       </S.BodyContainer>
     </>
