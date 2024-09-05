@@ -58,6 +58,7 @@ export const InputContainer = styled.textarea`
   height: 30vh;
   font-size: 18px;
   color: #3b3b3b;
+  font-family: 'NeoDGM', sans-serif;
   padding: 1vw;
   background-color: #d9d9d9;
   border: none;

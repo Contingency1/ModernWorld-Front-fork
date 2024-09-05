@@ -66,6 +66,7 @@ export const SearchInput = styled.input<StyleType>`
   background-color: ${({ $inputColor }) => $inputColor};
   font-size: 4vh;
   margin-left: 6%;
+  font-family: 'NeoDGM', sans-serif;
 `;
 /**
  * 왼쪽 화살표

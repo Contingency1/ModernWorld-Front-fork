@@ -83,7 +83,8 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   color: #454545;
-  font-size: 18px;
+  font-family: 'NeoDGM', sans-serif;
+  /* font-size: 18px; */
   background-color: #ffffff;
   border: 3px solid #c9d7dd;
   border-radius: 15px;
@@ -116,6 +117,7 @@ export const UserSearchBar = styled.input`
   height: 5%;
   color: #454545;
   font-size: 18px;
+  font-family: 'NeoDGM', sans-serif;
   padding: 1.5vw;
   border-radius: 35px;
   background-color: #e9e9e9;

@@ -105,6 +105,7 @@ export const CommentEditInput = styled.textarea`
   margin-bottom: 6.3%;
   resize: none;
   overflow: hidden;
+  font-family: 'NeoDGM', sans-serif;
 `;
 
 export const RepliesRootDiv = styled.div`
@@ -135,6 +136,7 @@ export const PostRepliesInput = styled.input`
   outline: none;
   resize: none;
   overflow: hidden;
+  font-family: 'NeoDGM', sans-serif;
 `;
 
 export const Images = styled.img<StyleType>`
@@ -195,6 +197,7 @@ export const ReplyValueInput = styled.textarea`
   outline: none;
   resize: none;
   overflow: hidden;
+  font-family: 'NeoDGM', sans-serif;
 `;
 
 export const EditDeleteBtnDiv = styled.div`

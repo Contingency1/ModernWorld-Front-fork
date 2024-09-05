@@ -14,7 +14,10 @@ export const Area1_4_5 = (props: { userNo?: number }) => {
             $hasError={useCheckAreaHook(1, props.userNo)}
             $top={useCheckItemSizeHook(1, 'top', props.userNo)}>
             <Image
-              src={useCheckAreaHook(1, props.userNo)}
+              src={
+                useCheckAreaHook(1, props.userNo) ||
+                `${process.env.NEXT_PUBLIC_S3}`
+              }
               fill
               alt={'1번 가구 이미지'}
               sizes={'(max-width : 400px) 100vw'}

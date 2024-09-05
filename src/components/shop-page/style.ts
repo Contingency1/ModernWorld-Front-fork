@@ -67,7 +67,7 @@ export const Button = styled.button<StyleType>`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   font-size: 20px;
   cursor: pointer;
-
+  font-family: 'NeoDGM', sans-serif;
   &:disabled {
     cursor: not-allowed;
   }
@@ -95,6 +95,7 @@ export const UserNameSearchBar = styled.input`
   font-size: 16px;
   color: #454545;
   background-color: #fff;
+  font-family: 'NeoDGM', sans-serif;
   border-radius: 50px;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
   border: none;

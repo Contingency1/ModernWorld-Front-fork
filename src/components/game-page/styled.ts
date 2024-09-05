@@ -298,6 +298,7 @@ export const InputDate = styled.input<StyleType>`
   border-width: 0;
   text-align: center;
   margin-right: 10px;
+  font-family: 'NeoDGM', sans-serif;
   pointer-events: ${(props) => (!props.$pointerClick ? 'auto' : 'none')};
   &::placeholder {
     color: #000000;
