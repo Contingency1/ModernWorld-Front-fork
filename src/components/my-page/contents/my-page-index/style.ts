@@ -52,11 +52,11 @@ export const UserImageContainer = styled.div<UserImageContainerProps>`
     gap: 0.5rem;
 
     div {
-      width: 5rem;
-      height: 1rem;
+      width: 6.5rem;
+      height: 1.1rem;
       background-color: rgba(255, 255, 255, 0.8);
       border: 3px solid #c8c8c8;
-      border-radius: 5px;
+      border-radius: 6px;
       padding: 0.3rem;
       cursor: pointer;
       font-size: 13px;
