@@ -31,4 +31,6 @@ export const IMAGE = {
   check: `${process.env.NEXT_PUBLIC_S3}/page/check.png`,
   handShdow: `${process.env.NEXT_PUBLIC_S3}/page/%EA%B0%80%EC%9C%84%EB%B0%94%EC%9C%84%EB%B3%B4/handShadow.svg`,
   null: `${process.env.NEXT_PUBLIC_S3}/items/item/null.jpg`,
+  default_wall: `${process.env.NEXT_PUBLIC_S3}/items/item/default_wall.svg`,
+  default_floor: `${process.env.NEXT_PUBLIC_S3}/items/item/default_floor.svg`,
 };

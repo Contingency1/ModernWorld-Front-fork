@@ -16,15 +16,11 @@ export const NewUserCreateNewname = () => {
 
   const getCreateUserApi = async () => {
     try {
-      try {
-        await USER.createNickname(newUserNickname);
-        await USER.createCharacter(newUserCharacter);
-      } catch (err) {
-        alert('캐릭터 생성 실패');
-      }
+      await USER.createNickname(newUserNickname);
+      await USER.createCharacter(newUserCharacter);
       route.push('my-page');
     } catch (err) {
-      alert('닉네임 생성 실패');
+      alert('회원가입 실패');
     }
   };
   return (

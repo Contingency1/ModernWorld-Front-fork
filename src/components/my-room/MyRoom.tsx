@@ -6,6 +6,7 @@ import { Area7_8_9 } from './Area7_8_9';
 import useCheckAreaHook from './useCheckAreaHook';
 import useCheckItemSizeHook from './useCheckItemSizeHook';
 import Image from 'next/image';
+import { IMAGE } from '@/utils/image';
 
 export function MyRoom(props: {
   width: string;
@@ -19,10 +20,7 @@ export function MyRoom(props: {
           <S.FloorAndWall $border="30px 30px 0px 0px">
             <Image
               alt={'바닥 이미지'}
-              src={
-                useCheckAreaHook(11, props.userNo) ||
-                `${process.env.NEXT_PUBLIC_S3}`
-              }
+              src={useCheckAreaHook(11, props.userNo) || IMAGE.default_floor}
               fill
               sizes="(max-size:1920px) 100vw"
               objectFit="cover"
@@ -31,10 +29,7 @@ export function MyRoom(props: {
           <S.FloorAndWall $border="0px 0px 30px 30px">
             <Image
               alt={'벽지 이미지'}
-              src={
-                useCheckAreaHook(12, props.userNo) ||
-                `${process.env.NEXT_PUBLIC_S3}`
-              }
+              src={useCheckAreaHook(12, props.userNo) || IMAGE.default_wall}
               fill
               sizes={'(max-size:1080px) 100vh'}
               objectFit="cover"
