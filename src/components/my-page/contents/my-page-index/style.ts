@@ -154,6 +154,7 @@ export const EditInput = styled.input<StyleType>`
   border: 0.8px solid
     ${(props) => (props.$backColor === '#D7E7FF' ? '#458FFF' : '#ff3131')};
   padding-left: 1vw;
+  font-family: 'NeoDGM', sans-serif;
   box-sizing: border-box;
   outline: none;
 `;

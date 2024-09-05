@@ -60,7 +60,15 @@ const NotificationComponent = () => {
     const eventSource = new EventSourcePolyfill(
       `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}sse`,
       {
-        headers: { Authorization: `Bearer ${accessToken ? accessToken : ''}` },
+        headers: {
+          Authorization: `Bearer ${accessToken ? accessToken : ''}`,
+          'Content-Type': 'text/event-stream',
+          'Cache-Control': 'no-cache',
+          Connection: 'keep-alive',
+          'X-Accel-Buffering': 'no',
+        },
+
+        heartbeatTimeout: 1000 * 60 * 5,
       },
     );
 

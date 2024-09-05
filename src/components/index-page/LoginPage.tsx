@@ -27,7 +27,9 @@ export default function LoginPage() {
               sizes={'(max-width:80px) 100vw'}
             />
           </S.logoDiv>
-          <div>네이버 로그인</div>
+          <div style={{ fontFamily: "'NeoDGM', sans-serif" }}>
+            네이버 로그인
+          </div>
         </S.LoginBtnLink>
         <S.LoginBtnLink
           href={`${process.env.NEXT_PUBLIC_CALLBACK_KAKAO_URL}`}
@@ -46,7 +48,9 @@ export default function LoginPage() {
               sizes={'(max-width:80px) 100vw'}
             />
           </S.logoDiv>
-          <div>카카오 로그인</div>
+          <div style={{ fontFamily: "'NeoDGM', sans-serif" }}>
+            카카오 로그인
+          </div>
         </S.LoginBtnLink>
         <S.LoginBtnLink
           href={`${process.env.NEXT_PUBLIC_CALLBACK_GOOGLE_URL}`}
@@ -65,7 +69,9 @@ export default function LoginPage() {
               sizes={'(max-width:80px) 100vw'}
             />
           </S.logoDiv>
-          <div style={{ marginLeft: '8%' }}>Google 로그인</div>
+          <div style={{ marginLeft: '8%', fontFamily: "'NeoDGM', sans-serif" }}>
+            Google 로그인
+          </div>
         </S.LoginBtnLink>
       </S.MainLogoDiv>
     </S.BackgroundColor>
