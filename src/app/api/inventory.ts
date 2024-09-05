@@ -89,9 +89,15 @@ const INVENTORY = {
 
   async getUsersCharacterLocker(
     characterNo: number,
+    status?: boolean,
   ): Promise<UsersCharacterLockerType> {
     const result: AxiosResponse = await instance.get(
       `${this.path}/${characterNo}/characters`,
+      {
+        params: {
+          status,
+        },
+      },
     );
     return result.data[0];
   },

@@ -46,6 +46,7 @@ export const FloorAndWall = styled.div<StyleType>`
   border-radius: ${(props) => props.$border};
   position: relative;
   overflow: hidden;
+  z-index: 0;
 `;
 
 /**
