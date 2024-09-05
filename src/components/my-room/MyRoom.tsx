@@ -49,7 +49,7 @@ export function MyRoom(props: {
                 width={useCheckItemSizeHook(2, 'width', props.userNo)}
                 height={useCheckItemSizeHook(2, 'height', props.userNo)}
                 $hasError={useCheckAreaHook(2, props.userNo)}
-                $bottom="30%">
+                $bottom={useCheckItemSizeHook(2, 'bottom', props.userNo)}>
                 <Image
                   src={
                     useCheckAreaHook(2, props.userNo) ||
