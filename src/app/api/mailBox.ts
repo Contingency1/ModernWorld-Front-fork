@@ -66,8 +66,13 @@ const MAILBOX = {
       return result.data;
     } catch (error: any) {
       console.error('실패하였습니다.', error);
-      if (error.response.status === 403) {
-        alert(`이미 ${status} 된 선물입니다`);
+      if (error.response.message === "Present's status must be 'read'") {
+        ('죄송합니다! 한 번 더 수락하기를 눌러 주세요!');
+      } else if (
+        error.response.message ===
+        'status must be one of the following values: accept, reject'
+      ) {
+        alert(`이미 수락하거나 거절한 선물입니다`);
       } else {
         alert('실패했습니다.');
       }
