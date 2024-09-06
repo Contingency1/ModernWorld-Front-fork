@@ -107,6 +107,8 @@ export default function ItemClickModal(props: {
       await SHOP.giftItemToUser(userNo, itemNo);
     } catch (error: any) {
       handleError(error.response.data.message);
+    } finally {
+      setUserShopping(`${props.data.no} ${props.data.name}`);
     }
   };
 
@@ -139,7 +141,7 @@ export default function ItemClickModal(props: {
           onClick={() => setIsModal(false)}>
           x
         </S.Font>
-        <S.ItemContainer width="13vw" height="13vw">
+        <S.ItemContainer width="12vw" height="12vw">
           <S.Img src={props.data?.image} width="80%"></S.Img>
         </S.ItemContainer>
         <S.Font $fontSize="26px" $margin="2vw 0 1vw 0">
@@ -155,7 +157,7 @@ export default function ItemClickModal(props: {
               <S.GiftUiBody>
                 <S.Font
                   position="fixed"
-                  $margin="0 0 8vw 37vw"
+                  $margin="0 0 6vw 37vw"
                   cursor="pointer"
                   onClick={() => setIsGift(false)}>
                   x

@@ -76,8 +76,8 @@ export const Button = styled.button<StyleType>`
 /** 선물 보내는 UI 창 body */
 export const GiftUiBody = styled.div`
   width: 40vw;
-  height: 25vh;
-  margin: 2vw 0 0 0;
+  height: 20vh;
+  margin: 1.5vw 0 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
