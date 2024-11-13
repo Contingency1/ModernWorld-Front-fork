@@ -10,4 +10,4 @@ assignees: chamjin, dmsdnWkd1234
 - 
 
 ### 🔩 작업
-- []
+- [ ]
