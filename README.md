@@ -14,11 +14,11 @@
       <td colspan="3"><strong>Back-end</strong></td>
     </tr>
     <tr>
-      <td><img src="https://github.com/user-attachments/assets/61129c81-9ae6-4405-8aa4-27ab6b1ac70d" width="100"></td>
-      <td><img src="https://github.com/user-attachments/assets/c0cb947f-24bf-460b-a323-b5592315d98e" width="100"></td>
-      <td><img src="https://github.com/user-attachments/assets/cd15050b-ba11-4915-9f02-0f3c0f0f15f1" width="100"></td>
-      <td><img src="https://github.com/user-attachments/assets/becd91f1-2460-47df-8496-7ccc351c1699" width="100"></td>
-      <td><img src="https://github.com/user-attachments/assets/d1a4e2be-4938-4a17-90dd-7bc100b1c373" width="100"></td>
+      <td><img src="https://github.com/user-attachments/assets/61129c81-9ae6-4405-8aa4-27ab6b1ac70d" width="180"></td>
+      <td><img src="https://github.com/user-attachments/assets/c0cb947f-24bf-460b-a323-b5592315d98e" width="180"></td>
+      <td><img src="https://github.com/user-attachments/assets/cd15050b-ba11-4915-9f02-0f3c0f0f15f1" width="180"></td>
+      <td><img src="https://github.com/user-attachments/assets/becd91f1-2460-47df-8496-7ccc351c1699" width="180"></td>
+      <td><img src="https://github.com/user-attachments/assets/d1a4e2be-4938-4a17-90dd-7bc100b1c373" width="180"></td>
     </tr>
     <tr>
       <td><a href="https://github.com/dmsdnWkd1234">김은우</a></td>
