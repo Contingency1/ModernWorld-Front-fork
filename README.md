@@ -1,8 +1,8 @@
 # 🌍 모던월드 🌏
-### 👋 Modern Agile 7 term, Main Project 
-### 💻 개발 기간 : 24.03.01 ~ 24.09.06 
-### 🗺️ 배포 : 24.09.06 
-### 🔗 URL : <a href='modern-world.kr'>modern-world.kr</a> 
+- ### 👋 Modern Agile 7 term, Main Project 
+- ### 💻 개발 기간 : 24.03.01 ~ 24.09.06 
+- ### 🗺️ 배포 : 24.09.06 
+- ### 🔗 URL : <a href='modern-world.kr'>modern-world.kr</a> 
 
 <br/>
 
