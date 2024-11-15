@@ -16,9 +16,16 @@ export const NewUserCreateNewname = () => {
 
   const getCreateUserApi = async () => {
     try {
-      await USER.createNickname(newUserNickname);
-      await USER.createCharacter(newUserCharacter);
-      route.push('my-page');
+      const responseName = await USER.createNickname(newUserNickname);
+      console.log(responseName);
+      if (responseName.status === 201) {
+        const responseCharacter = await USER.createCharacter(newUserCharacter);
+        console.log(responseCharacter);
+        if (responseCharacter.status === 201) {
+          alert('회원가입 성공!!');
+          route.push('my-page');
+        }
+      }
     } catch (err) {
       alert('회원가입 실패');
     }

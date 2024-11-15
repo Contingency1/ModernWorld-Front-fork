@@ -124,3 +124,19 @@ export const Copyright = styled.div`
   right: 0;
   margin: 1vw 11.5vw 0.5vw 0;
 `;
+
+export const Logo = styled.div`
+  position: absolute;
+  right: 9%;
+  bottom: 1%;
+  width: 2.5vw;
+  height: 2.5vw;
+`;
+
+export const Rule = styled.div`
+  position: absolute;
+  font-size: 0.8vw;
+  bottom: 1%;
+  right: 33%;
+  color: #767676;
+`;
