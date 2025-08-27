@@ -24,6 +24,7 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.12.1",
     "@types/event-source-polyfill": "^1.0.5",
     "@types/eventsource": "^1.1.15",
     "@types/node": "^20",
