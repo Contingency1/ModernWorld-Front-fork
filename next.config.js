@@ -29,7 +29,7 @@ const nextConfig = {
         //웬만하면 이거
         protocol: 'https',
         //s3 주소 쓰면 됨
-        hostname: 'ma7-production-s3.s3.ap-northeast-2.amazonaws.com',
+        hostname: process.env.NEXT_PUBLIC_S3,
         // hostname 하위의 어떤 경로든 허용 한다는 의미
         pathname: '/**',
       },
