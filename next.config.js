@@ -33,6 +33,12 @@ const nextConfig = {
         // hostname 하위의 어떤 경로든 허용 한다는 의미
         pathname: '/**',
       },
+      // 새로운 주소 패턴 추가
+      {
+        protocol: 'https',
+        hostname: 'ma7-production-s3-2.s3.ap-northeast-2.amazonaws.com',
+        pathname: '/**',
+      },
     ],
   },
   reactStrictMode: false,
