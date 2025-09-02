@@ -58,7 +58,7 @@ const NotificationComponent = () => {
 
   useEffect(() => {
     const eventSource = new EventSourcePolyfill(
-      `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}/sse`,
+      `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}sse`,
       {
         headers: {
           Authorization: `Bearer ${accessToken ? accessToken : ''}`,
