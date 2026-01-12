@@ -1,3 +1,5 @@
+'use client';
+
 import { IMAGE } from '@/utils/image';
 import * as S from './style';
 import Image from 'next/image';
