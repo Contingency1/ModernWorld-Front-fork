@@ -12,7 +12,7 @@ export default function LoginPage() {
   const handleLogin = async (provider: string) => {
     try {
       const response = await axios.get(
-        `${BACKEND_API_URL}/auth/login-url/${provider}`,
+        `${BACKEND_API_URL}auth/login-url/${provider}`,
       );
 
       const targetUrl = response.data.loginUrl;
