@@ -53,7 +53,7 @@ export const MainLogoText = styled.div<StyleType>`
  * selfmade login btn
  * @params color : string, textcolor : string, img_margin_right : string, img_width : string, img_height : string
  */
-export const LoginBtnLink = styled(Link)<StyleType>`
+export const LoginBtnLink = styled.div<StyleType>`
   width: 18%;
   height: 90%;
   background-color: ${(props) => props.color};
@@ -67,7 +67,10 @@ export const LoginBtnLink = styled(Link)<StyleType>`
   display: flex;
   align-items: center;
   position: relative;
-  z-index: 1 img {
+  cursor: pointer; // 마우스 올렸을 때 손가락 모양 나오게 추가
+  z-index: 1; // z-index와 img 스타일 분리 (기존 코드에 오타가 있어보여 수정 제안: z-index: 1; & > img { ... })
+
+  & > div {
     margin-left: ${(props) => props.$imgMarginLeft};
     margin-right: ${(props) => props.$imgMarginRight};
     width: ${(props) => props.$imgWidth};

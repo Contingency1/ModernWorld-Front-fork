@@ -2,20 +2,42 @@ import { IMAGE } from '@/utils/image';
 import * as S from './style';
 import Image from 'next/image';
 import { COLOR } from '@/utils/color';
+import axios from 'axios';
 export default function LoginPage() {
+  const BACKEND_API_URL =
+    process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL || 'http://localhost:8080';
+
+  const handleLogin = async (provider: string) => {
+    try {
+      const response = await axios.get(
+        `${BACKEND_API_URL}/auth/login-url/${provider}`,
+      );
+
+      const targetUrl = response.data.loginUrl;
+
+      if (targetUrl) {
+        window.location.href = targetUrl;
+      } else {
+        alert('로그인 URL을 받아오지 못했습니다.');
+      }
+    } catch (error) {
+      console.error('로그인 에러:', error);
+      alert('로그인 서버 연결 실패');
+    }
+  };
+
   return (
     <S.BackgroundColor>
-      <Image
-        src={IMAGE.mainLogo}
-        fill
-        alt={'메인로그'}
-        sizes={'(max-width)'}></Image>
+      <Image src={IMAGE.mainLogo} fill alt={'메인로그'} sizes={'(max-width)'} />
       <S.MainLogoDiv $grid1="40%" $grid2="11%" $grid3="11%" $grid4="11%">
         <S.MainLogoText $marginTop="13%" $fontSize="500%">
           모던월드
         </S.MainLogoText>
+
+        {/* 네이버 로그인 버튼 */}
         <S.LoginBtnLink
-          href={`${process.env.NEXT_PUBLIC_CALLBACK_NAVER_URL}`}
+          // href 속성 제거
+          onClick={() => handleLogin('naver')} // 클릭 이벤트 추가
           color="#03C75A"
           $textColor={COLOR.white}
           font="110%">
@@ -31,8 +53,11 @@ export default function LoginPage() {
             네이버 로그인
           </div>
         </S.LoginBtnLink>
+
+        {/* 카카오 로그인 버튼 */}
         <S.LoginBtnLink
-          href={`${process.env.NEXT_PUBLIC_CALLBACK_KAKAO_URL}`}
+          // href 속성 제거
+          onClick={() => handleLogin('kakao')} // 클릭 이벤트 추가
           color="#FEE500"
           $textColor={COLOR.black}
           font="110%">
@@ -52,8 +77,11 @@ export default function LoginPage() {
             카카오 로그인
           </div>
         </S.LoginBtnLink>
+
+        {/* 구글 로그인 버튼 */}
         <S.LoginBtnLink
-          href={`${process.env.NEXT_PUBLIC_CALLBACK_GOOGLE_URL}`}
+          // href 속성 제거
+          onClick={() => handleLogin('google')} // 클릭 이벤트 추가
           color={COLOR.white}
           $textColor={COLOR.black}
           font="110%">
