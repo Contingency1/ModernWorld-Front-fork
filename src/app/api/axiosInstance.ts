@@ -20,7 +20,10 @@ const getAccessToken = () => {
 instance.interceptors.request.use(
   // 요청이 전달되기 전에 작업 수행
   (config) => {
-    config.headers['Authorization'] = `Bearer ${getAccessToken()}`;
+    const token = getAccessToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   // 요청 오류가 있는 작업 수행

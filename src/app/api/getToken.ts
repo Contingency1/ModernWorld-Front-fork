@@ -6,10 +6,10 @@ import { HTTP_STATUS } from '@/utils/httpStatusCode';
 export const Token = {
   auth: '/auth',
 
-  async getToken(code: string | null, social: string) {
+  async getToken(social: string, code: string, state: string) {
     try {
       const result: AxiosResponse = await instance.post(
-        `${Token.auth}/${social}/login?code=${code}`,
+        `${Token.auth}/${social}/login?code=${code}&state=${state}`,
       );
       return result.data;
     } catch (err) {

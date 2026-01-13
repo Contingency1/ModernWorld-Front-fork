@@ -8,7 +8,8 @@ import { useEffect } from 'react';
 export const Loading = (props: { social: string }) => {
   const params = useSearchParams();
   const router = useRouter();
-  const code = params.get('code');
+  const code = params.get('code') || 'err';
+  const state = params.get('state') || 'err';
 
   const setLocalStorageItem = (key: string, value: string) => {
     try {
@@ -32,7 +33,7 @@ export const Loading = (props: { social: string }) => {
 
   const getUsersToken = async () => {
     try {
-      const response = await Token.getToken(code, props.social);
+      const response = await Token.getToken(props.social, code, state);
       setLocalStorageItem('accessToken', response.accessToken);
       // setCookieToken(response.refreshToken);
       setLocalStorageItem('userNo', response.userNo);
