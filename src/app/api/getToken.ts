@@ -9,7 +9,7 @@ export const Token = {
   async getToken(social: string, code: string, state: string) {
     try {
       const result: AxiosResponse = await instance.post(
-        `${Token.auth}/${social}/login?code=${code}&state=${state}`,
+        `${Token.auth}/login/${social}?code=${code}&state=${state}`,
       );
       return result.data;
     } catch (err) {
