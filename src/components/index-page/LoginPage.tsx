@@ -5,15 +5,11 @@ import * as S from './style';
 import Image from 'next/image';
 import { COLOR } from '@/utils/color';
 import axios from 'axios';
+import instance from '@/app/api/axiosInstance';
 export default function LoginPage() {
-  const BACKEND_API_URL =
-    process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL || 'http://localhost:8080';
-
   const handleLogin = async (provider: string) => {
     try {
-      const response = await axios.get(
-        `${BACKEND_API_URL}auth/login-url/${provider}`,
-      );
+      const response = await instance.get(`auth/login-url/${provider}`);
 
       const { redirectURL } = response.data;
 
