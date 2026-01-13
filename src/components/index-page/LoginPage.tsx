@@ -15,10 +15,10 @@ export default function LoginPage() {
         `${BACKEND_API_URL}auth/login-url/${provider}`,
       );
 
-      const targetUrl = response.data.loginUrl;
+      const { redirectURL } = response.data;
 
-      if (targetUrl) {
-        window.location.href = targetUrl;
+      if (redirectURL) {
+        window.location.href = redirectURL;
       } else {
         alert('로그인 URL을 받아오지 못했습니다.');
       }
