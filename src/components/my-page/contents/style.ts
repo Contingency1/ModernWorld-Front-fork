@@ -65,11 +65,11 @@ export const RMenuDiv = styled.div<StyleType>`
 /** 북마크가 존재하는 내용물 들어갈 div */
 export const BookMarkBox = styled.div<StyleType>`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr 1fr 1fr 0.1fr;
   gap: 5vh;
   padding: 5vh 12vw;
-  width: 180vw;
+  width: 100%;
   height: ${(props) => props.height};
   background-color: #e9eff1;
   border-radius: 20px;

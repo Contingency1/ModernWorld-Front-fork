@@ -5,13 +5,14 @@ import { StyleType } from '@/types/style';
 
 /**mail box layout 그리드 설정  */
 export const Grid = styled.div`
-  width: 250%;
+  width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   border-radius: 30px;
   background-color: #e9eff1;
+  overflow: hidden;
 `;
 
 /** 왼쪽 오른쪽 섹션 구분 + display:flex 적용 */
@@ -28,13 +29,13 @@ export const MailBoxSection = styled.div`
 
 /** 받은/보낸 item 설명 & 받은 아이템 목록 보여주는 fff div */
 export const ContentsView = styled.div<StyleType>`
-  width: 25vw;
+  width: 90%;
   display: flex;
   align-items: ${(props) => props.$alignItems};
   justify-content: ${(props) => props.$justifyContent};
   flex-direction: column;
   height: ${(props) => props.height};
-  margin: 2vh 0;
+  margin: 2vh auto;
   border-radius: 30px;
   background-color: #fff;
   box-shadow: ${(props) =>
