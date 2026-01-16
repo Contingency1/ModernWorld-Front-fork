@@ -44,13 +44,10 @@ export default function PresentInfo(props: { title: string }) {
     switch (s) {
       case 'unread':
         return '안읽음';
-        break;
       case 'read':
         return '읽　음';
-        break;
       case 'accept':
         return '수　락';
-        break;
       case 'reject':
         return '거　절';
     }
@@ -116,19 +113,28 @@ export default function PresentInfo(props: { title: string }) {
 
           {props.title === '보낸 선물' || props.title === '보낸 편지' ? (
             <S.StatusFont $fontSize="18px">
-              {props.title.includes('보낸')
-                ? statusChange(senderData[page]?.status)
-                : statusChange(receiverData[page]?.status)}
+              {statusChange(senderData[page]?.status)}
             </S.StatusFont>
           ) : (
-            <S.ItemApprovalControls>
-              <S.AcceptRejectUi onClick={acceptRejectHandle('accept')}>
-                수락하기
-              </S.AcceptRejectUi>
-              <S.AcceptRejectUi onClick={acceptRejectHandle('reject')}>
-                거절하기
-              </S.AcceptRejectUi>
-            </S.ItemApprovalControls>
+            <>
+              {/* status가 'accept'나 'reject'가 아닐 때만 버튼 표시 */}
+              {receiverData[page]?.status !== 'accept' &&
+              receiverData[page]?.status !== 'reject' ? (
+                <S.ItemApprovalControls>
+                  <S.AcceptRejectUi onClick={acceptRejectHandle('accept')}>
+                    수락하기
+                  </S.AcceptRejectUi>
+                  <S.AcceptRejectUi onClick={acceptRejectHandle('reject')}>
+                    거절하기
+                  </S.AcceptRejectUi>
+                </S.ItemApprovalControls>
+              ) : (
+                // 이미 수락/거절 했다면 상태 텍스트 표시
+                <S.StatusFont $fontSize="18px">
+                  {statusChange(receiverData[page]?.status)}
+                </S.StatusFont>
+              )}
+            </>
           )}
         </S.ItemImg>
       </S.ContentsView>
