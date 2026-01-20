@@ -9,12 +9,17 @@ const instance = axios.create({
   withCredentials: true, // 쿠키(리프레시 토큰) 전송을 위해 필수
 });
 
+const getAccessToken = () => {
+  if (typeof window !== 'undefined') {
+    // 'undefined' 문자열 체크로 수정
+    return localStorage.getItem('accessToken');
+  }
+  return null;
+};
+
 instance.interceptors.request.use(
   (config) => {
-    const token =
-      typeof window !== 'undefined'
-        ? localStorage.getItem('accessToken')
-        : null;
+    const token = getAccessToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -33,38 +38,32 @@ instance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // 401 에러가 발생했고, 아직 재시도하지 않은 요청인 경우
+    // 401 에러 발생 시 && 아직 재시도하지 않았을 때
     if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true; // 무한 루프 방지 플래그
+      originalRequest._retry = true; // 무한 루프 방지용 플래그
 
       try {
-        // 1. 리프레시 토큰을 사용하여 새로운 액세스 토큰 요청
-        // (백엔드 OAuthController의 GET /auth/new-access-token 엔드포인트 호출)
+        // 1. 토큰 갱신 요청 (이제 순수 axios를 쓰므로 인터셉터 안 거침)
         const result = await Token.refreshAccessToken();
 
-        // 2. 백엔드 응답에서 새로운 액세스 토큰 추출 (RenewalAccessTokenResponseDTO 구조에 따름)
-        const newAccessToken = result.data.accessToken;
+        // 2. 새 토큰 저장 (백엔드 응답 구조에 맞춰 수정 필요: result.accessToken 등)
+        const newAccessToken = result.accessToken;
 
         if (newAccessToken) {
-          // 3. 로컬 스토리지 갱신
           localStorage.setItem('accessToken', newAccessToken);
 
-          // 4. axios 인스턴스 및 원본 요청의 헤더 갱신
+          // 3. 헤더 갱신 후 재요청
           instance.defaults.headers.common['Authorization'] =
             `Bearer ${newAccessToken}`;
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 
-          // 5. 원본 요청 재시도
           return instance(originalRequest);
         }
       } catch (refreshError) {
-        // 리프레시 토큰도 만료되었거나 갱신 실패 시 로그아웃 처리
-        console.error('토큰 갱신 실패:', refreshError);
+        // 갱신 실패 시 (리프레시 토큰 만료 등) -> 강제 로그아웃
+        console.error('토큰 갱신 실패, 로그아웃 처리');
         localStorage.removeItem('accessToken');
-        // 필요 시 로그인 페이지로 리다이렉트
-        if (typeof window !== 'undefined') {
-          window.location.href = '/loginpage';
-        }
+        window.location.href = '/loginpage'; // 로그인 페이지로 튕겨내기
         return Promise.reject(refreshError);
       }
     }

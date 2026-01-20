@@ -19,10 +19,13 @@ export const Token = {
 
   async refreshAccessToken() {
     try {
-      const result: AxiosResponse = await instance.get(
-        `${this.auth}/new-access-token`,
+      const result: AxiosResponse = await axios.get(
+        `${process.env.NEXT_PUBLIC_MODERN_WORLD_BASE_URL}${this.auth}/new-access-token`,
         {
-          withCredentials: true,
+          withCredentials: true, // 쿠키 전송 필수
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
       );
       return result.data;
@@ -35,6 +38,7 @@ export const Token = {
       } else if (Error.response?.status === HTTP_STATUS.NOT_FOUND) {
         alert('토큰을 찾을 수 없습니다');
       }
+      throw err;
     }
   },
 };
