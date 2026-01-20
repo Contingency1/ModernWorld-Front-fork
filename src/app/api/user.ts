@@ -138,7 +138,7 @@ const USER = {
   },
 
   async profileUpdate(): Promise<any> {
-    const result: AxiosResponse = await instance.patch(`/auth/updateProfile`);
+    const result: AxiosResponse = await instance.put(`${USER.path}/my/image`);
     return result.data;
   },
 };

@@ -72,7 +72,7 @@ export const COMMENT = {
     try {
       if (confirm('수정하시겠습니까?')) {
         const result: AxiosResponse = await instance.patch(
-          `users/my/${this.path}/${no}`,
+          `/users/my/${this.path}/${no}`,
           {
             content: content,
           },
