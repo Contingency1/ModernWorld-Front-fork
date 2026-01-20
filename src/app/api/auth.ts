@@ -14,10 +14,24 @@ const AUTH = {
       const result: AxiosResponse = await instance.delete(
         `${AUTH.path}/logout`,
       );
+
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userNo');
+      }
+
+      delete instance.defaults.headers.common['Authorization'];
+
       alert('로그아웃 되었습니다.');
       return result.data;
     } catch (error) {
       console.error('로그아웃 실패하였습니다.', error);
+
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userNo');
+      }
+
       alert('로그아웃 실패하였습니다.');
       throw error;
     }
@@ -40,6 +54,14 @@ const AUTH = {
       const result: AxiosResponse = await instance.delete(
         `${AUTH.path}/unlink`,
       );
+
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userNo');
+      }
+
+      delete instance.defaults.headers.common['Authorization'];
+
       alert('성공적으로 탈퇴하였습니다.');
       return result.data;
     } catch (error) {

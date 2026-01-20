@@ -10,8 +10,10 @@ export default function LogoutModal(props: { characterImg: string }) {
   const setIsLogoutModal = useSetAtom(isLogoutModalAtom);
   const router = useRouter();
   const handleLogout = async () => {
-    router.push('/');
-    await AUTH.getLogout();
+    try {
+      await AUTH.getLogout();
+      router.push('/');
+    } catch (error) {}
   };
   return (
     <>
