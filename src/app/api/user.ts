@@ -16,7 +16,7 @@ const USER = {
     const result: AxiosResponse = await instance.get(`${USER.path}`, {
       params: {
         page: 1,
-        take: 100,
+        take: 50,
         nickname: nickname,
       },
     });
