@@ -4,7 +4,7 @@ import { ErrorType } from '@/types/error';
 import { HTTP_STATUS } from '@/utils/httpStatusCode';
 
 export const Token = {
-  auth: '/auth',
+  auth: 'auth',
 
   async getToken(social: string, code: string, state: string) {
     try {
